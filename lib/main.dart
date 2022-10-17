@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sos_mobile/homeScreen.dart';
+import 'package:sos_mobile/utils/helpers/conllection_controller.dart/collection_controller.dart';
 
 import 'configs/theme/theme.dart';
 
 void main() {
+  configureDependencies();
   runApp(const MyApp());
 }
 

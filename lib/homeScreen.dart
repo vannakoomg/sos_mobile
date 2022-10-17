@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sos_mobile/modules/setting/controller/setting_controller.dart';
+import 'package:sos_mobile/utils/helpers/conllection_controller.dart/collection_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,7 +11,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(),
       body: Center(
         child: Text(
-          "nice to meet you ",
+          "${getIt<SettingController>().i}",
           style: Theme.of(context).textTheme.titleSmall,
         ),
       ),
