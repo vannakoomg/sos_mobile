@@ -8,7 +8,8 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../../modules/setting/controller/setting_controller.dart'
+import '../../../cores/setting/controller/setting_controller.dart' as _i4;
+import '../../controller/language_controller.dart'
     as _i3; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
@@ -23,6 +24,7 @@ _i1.GetIt $initGetIt(
     environment,
     environmentFilter,
   );
-  gh.factory<_i3.SettingController>(() => _i3.SettingController());
+  gh.factory<_i3.LanguageController>(() => _i3.LanguageController());
+  gh.factory<_i4.SettingController>(() => _i4.SettingController());
   return get;
 }

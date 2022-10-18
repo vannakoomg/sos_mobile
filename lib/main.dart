@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:global_configuration/global_configuration.dart';
 import 'package:sos_mobile/homeScreen.dart';
 import 'package:sos_mobile/utils/helpers/conllection_controller.dart/collection_controller.dart';
 
 import 'configs/theme/theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GlobalConfiguration().loadFromAsset('app_settings');
   configureDependencies();
   runApp(const MyApp());
 }

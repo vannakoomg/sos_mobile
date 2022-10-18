@@ -13,6 +13,9 @@ dependencies:
   get: ^4.6.5
   get_it: ^7.2.0
   injectable: ^1.5.3
+  http: ^0.13.5
+  global_configuration: ^2.0.0-nullsafety.1
+  shared_preferences: ^2.0.15
 # dev_dependencies
 dev_dependencies:
   flutter_test:
@@ -30,3 +33,5 @@ flutter:
     - family: siemreap
       fonts:
         - asset: assets/font/Siemreap.ttf
+  assets:
+    - assets/cfg/

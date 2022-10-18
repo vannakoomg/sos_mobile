@@ -8,12 +8,12 @@ part of 'language_model.dart';
 
 _$_LanduageModel _$$_LanduageModelFromJson(Map<String, dynamic> json) =>
     _$_LanduageModel(
-      json['apartment'] as String? ?? 'Apartment',
-      json['office_space'] as String? ?? 'Office Space',
+      json['Yes'] as String?,
+      json['No'] as String?,
     );
 
 Map<String, dynamic> _$$_LanduageModelToJson(_$_LanduageModel instance) =>
     <String, dynamic>{
-      'apartment': instance.apartment,
-      'office_space': instance.officeSpace,
+      'Yes': instance.Yes,
+      'No': instance.No,
     };

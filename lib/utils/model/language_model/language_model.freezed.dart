@@ -20,9 +20,8 @@ LanduageModel _$LanduageModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LanduageModel {
-  String? get apartment => throw _privateConstructorUsedError;
-  @JsonKey(name: 'office_space')
-  String? get officeSpace => throw _privateConstructorUsedError;
+  String? get Yes => throw _privateConstructorUsedError;
+  String? get No => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,8 +35,7 @@ abstract class $LanduageModelCopyWith<$Res> {
           LanduageModel value, $Res Function(LanduageModel) then) =
       _$LanduageModelCopyWithImpl<$Res, LanduageModel>;
   @useResult
-  $Res call(
-      {String? apartment, @JsonKey(name: 'office_space') String? officeSpace});
+  $Res call({String? Yes, String? No});
 }
 
 /// @nodoc
@@ -53,17 +51,17 @@ class _$LanduageModelCopyWithImpl<$Res, $Val extends LanduageModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? apartment = freezed,
-    Object? officeSpace = freezed,
+    Object? Yes = freezed,
+    Object? No = freezed,
   }) {
     return _then(_value.copyWith(
-      apartment: freezed == apartment
-          ? _value.apartment
-          : apartment // ignore: cast_nullable_to_non_nullable
+      Yes: freezed == Yes
+          ? _value.Yes
+          : Yes // ignore: cast_nullable_to_non_nullable
               as String?,
-      officeSpace: freezed == officeSpace
-          ? _value.officeSpace
-          : officeSpace // ignore: cast_nullable_to_non_nullable
+      No: freezed == No
+          ? _value.No
+          : No // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -77,8 +75,7 @@ abstract class _$$_LanduageModelCopyWith<$Res>
       __$$_LanduageModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? apartment, @JsonKey(name: 'office_space') String? officeSpace});
+  $Res call({String? Yes, String? No});
 }
 
 /// @nodoc
@@ -92,17 +89,17 @@ class __$$_LanduageModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? apartment = freezed,
-    Object? officeSpace = freezed,
+    Object? Yes = freezed,
+    Object? No = freezed,
   }) {
     return _then(_$_LanduageModel(
-      freezed == apartment
-          ? _value.apartment
-          : apartment // ignore: cast_nullable_to_non_nullable
+      freezed == Yes
+          ? _value.Yes
+          : Yes // ignore: cast_nullable_to_non_nullable
               as String?,
-      freezed == officeSpace
-          ? _value.officeSpace
-          : officeSpace // ignore: cast_nullable_to_non_nullable
+      freezed == No
+          ? _value.No
+          : No // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -111,23 +108,19 @@ class __$$_LanduageModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_LanduageModel implements _LanduageModel {
-  _$_LanduageModel(
-      [this.apartment = 'Apartment',
-      @JsonKey(name: 'office_space') this.officeSpace = 'Office Space']);
+  _$_LanduageModel([this.Yes, this.No]);
 
   factory _$_LanduageModel.fromJson(Map<String, dynamic> json) =>
       _$$_LanduageModelFromJson(json);
 
   @override
-  @JsonKey()
-  final String? apartment;
+  final String? Yes;
   @override
-  @JsonKey(name: 'office_space')
-  final String? officeSpace;
+  final String? No;
 
   @override
   String toString() {
-    return 'LanduageModel(apartment: $apartment, officeSpace: $officeSpace)';
+    return 'LanduageModel(Yes: $Yes, No: $No)';
   }
 
   @override
@@ -135,15 +128,13 @@ class _$_LanduageModel implements _LanduageModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LanduageModel &&
-            (identical(other.apartment, apartment) ||
-                other.apartment == apartment) &&
-            (identical(other.officeSpace, officeSpace) ||
-                other.officeSpace == officeSpace));
+            (identical(other.Yes, Yes) || other.Yes == Yes) &&
+            (identical(other.No, No) || other.No == No));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, apartment, officeSpace);
+  int get hashCode => Object.hash(runtimeType, Yes, No);
 
   @JsonKey(ignore: true)
   @override
@@ -160,19 +151,16 @@ class _$_LanduageModel implements _LanduageModel {
 }
 
 abstract class _LanduageModel implements LanduageModel {
-  factory _LanduageModel(
-          [final String? apartment,
-          @JsonKey(name: 'office_space') final String? officeSpace]) =
+  factory _LanduageModel([final String? Yes, final String? No]) =
       _$_LanduageModel;
 
   factory _LanduageModel.fromJson(Map<String, dynamic> json) =
       _$_LanduageModel.fromJson;
 
   @override
-  String? get apartment;
+  String? get Yes;
   @override
-  @JsonKey(name: 'office_space')
-  String? get officeSpace;
+  String? get No;
   @override
   @JsonKey(ignore: true)
   _$$_LanduageModelCopyWith<_$_LanduageModel> get copyWith =>
