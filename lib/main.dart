@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:global_configuration/global_configuration.dart';
-import 'package:sos_mobile/homeScreen.dart';
 import 'package:sos_mobile/utils/helpers/conllection_controller.dart/collection_controller.dart';
-
+import 'configs/route/route.dart';
 import 'configs/theme/theme.dart';
 
 void main() async {
@@ -15,14 +14,14 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return MaterialApp.router(
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
+      routeInformationProvider: router.routeInformationProvider,
       theme: theme(),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
     );
   }
 }
