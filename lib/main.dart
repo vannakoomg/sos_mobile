@@ -7,7 +7,7 @@ import 'configs/theme/theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalConfiguration().loadFromAsset('app_settings');
-  configureDependencies();
+  declareController();
   runApp(const MyApp());
 }
 

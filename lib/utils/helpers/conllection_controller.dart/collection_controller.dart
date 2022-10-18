@@ -5,4 +5,4 @@ import 'collection_controller.config.dart';
 
 GetIt getIt = GetIt.instance;
 @InjectableInit()
-void configureDependencies() => $initGetIt(getIt);
+void declareController() => $initGetIt(getIt);

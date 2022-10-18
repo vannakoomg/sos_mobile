@@ -8,9 +8,9 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../../cores/setting/controller/setting_controller.dart' as _i4;
-import '../../controller/language_controller.dart'
-    as _i3; // ignore_for_file: unnecessary_lambdas
+import '../../../cores/setting/controller/setting_controller.dart' as _i3;
+import '../../controller/utils_controller.dart'
+    as _i4; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -24,7 +24,7 @@ _i1.GetIt $initGetIt(
     environment,
     environmentFilter,
   );
-  gh.factory<_i3.LanguageController>(() => _i3.LanguageController.init());
-  gh.factory<_i4.SettingController>(() => _i4.SettingController.init());
+  gh.factory<_i3.SettingController>(() => _i3.SettingController.init());
+  gh.factory<_i4.UtilsController>(() => _i4.UtilsController.init());
   return get;
 }

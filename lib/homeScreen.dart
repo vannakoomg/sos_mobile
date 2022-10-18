@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:sos_mobile/cores/setting/controller/setting_controller.dart';
-import 'package:sos_mobile/utils/controller/language_controller.dart';
+import 'package:sos_mobile/utils/controller/utils_controller.dart';
 import 'package:sos_mobile/utils/helpers/conllection_controller.dart/collection_controller.dart';
 import 'package:sos_mobile/utils/helpers/language_singleeton.dart';
 
@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    getIt<LanguageController>().fetchLanguage();
+    getIt<UtilsController>().fetchLanguage();
     super.initState();
   }
 
@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: Obx(
-        () => getIt<LanguageController>().loadingFetchLanguage.value == true
+        () => getIt<UtilsController>().loadingFetchLanguage.value == true
             ? Center(
                 child: Container(
                   height: 100,
@@ -33,13 +33,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.green,
                   child: Center(
                     child: Text(
-                        "${getIt<LanguageController>().loadingFetchLanguage.value}"),
+                        "${getIt<UtilsController>().loadingFetchLanguage.value}"),
                   ),
                 ),
               )
             : Center(
                 child: Text(
-                  "${getIt<LanguageController>().loadingFetchLanguage.value}",
+                  "${getIt<UtilsController>().loadingFetchLanguage.value}",
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
