@@ -24,7 +24,7 @@ _i1.GetIt $initGetIt(
     environment,
     environmentFilter,
   );
-  gh.factory<_i3.LanguageController>(() => _i3.LanguageController());
-  gh.factory<_i4.SettingController>(() => _i4.SettingController());
+  gh.factory<_i3.LanguageController>(() => _i3.LanguageController.init());
+  gh.factory<_i4.SettingController>(() => _i4.SettingController.init());
   return get;
 }

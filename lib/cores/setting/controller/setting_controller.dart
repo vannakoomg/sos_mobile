@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class SettingController extends GetxController {
+  @factoryMethod
   static init() => Get.put(SettingController());
   final i = ''.obs;
 }
