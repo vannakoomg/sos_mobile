@@ -9,13 +9,11 @@ class SlashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getIt<UtilsController>().fetchLanguage(lang: "kh");
+    getIt<UtilsController>().fetchLanguage(lang: "en");
     getIt<UtilsController>().fetchSlashScreen();
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
-      body: Container(
-        child: Center(child: Text("nice to meet ")),
-      ),
+      body: const Center(child: Text("nice to meet ")),
     );
   }
 }

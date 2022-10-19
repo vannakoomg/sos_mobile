@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:sos_mobile/cores/setting/controller/setting_controller.dart';
 import 'package:sos_mobile/utils/controller/utils_controller.dart';
 import 'package:sos_mobile/utils/helpers/conllection_controller.dart/collection_controller.dart';
-import 'package:sos_mobile/utils/helpers/language_singleeton.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

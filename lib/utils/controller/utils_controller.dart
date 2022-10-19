@@ -1,21 +1,23 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sos_mobile/cores/walk_though/slash_screen/slash_screen_model/slash_screen_model.dart';
+import 'package:sos_mobile/interface/interface_utils_controller.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
 import 'package:sos_mobile/utils/helpers/language_singleeton.dart';
 import 'package:sos_mobile/utils/model/language_model/language_model.dart';
 
 @injectable
-class UtilsController extends GetxController {
+class UtilsController extends GetxController
+    implements InterfaceUtilsController {
   @factoryMethod
   static init() => Get.put(UtilsController());
   final _apibaseHelper = ApiBaseHelperGetConnect();
   var slashScreen = SlashScreenModel();
   var loadingFetchLanguage = true.obs;
-  void fetchLanguage({String lang = "kh"}) async {
+
+  @override
+  void fetchLanguage({String lang = "en"}) async {
     await _apibaseHelper
         .fetchData(
       url: "language?lang=$lang",
@@ -31,6 +33,7 @@ class UtilsController extends GetxController {
     });
   }
 
+  @override
   void fetchSlashScreen() async {
     await _apibaseHelper.fetchData(url: 'slashscreen').then(
       (response) {

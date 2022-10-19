@@ -7,7 +7,7 @@ final router = GoRouter(
       path: '/',
       name: 'slash-screen',
       pageBuilder: (context, state) =>
-          NoTransitionPage(key: state.pageKey, child: SlashScreen()),
+          NoTransitionPage(key: state.pageKey, child: const SlashScreen()),
     ),
   ],
 );
