@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/utils/controller/utils_controller_api.dart';
-import 'package:sos_mobile/utils/controller/utils_controller_function.dart';
+import 'package:sos_mobile/utils/controller/utils_controller/utils_controller_api.dart';
+import 'package:sos_mobile/utils/controller/utils_controller/utils_controller_function.dart';
 import 'package:sos_mobile/utils/helpers/conllection_controller.dart/collection_controller.dart';
 
 class HomeScreen extends StatefulWidget {

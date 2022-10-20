@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sos_mobile/configs/const/app_colors.dart';
 import 'package:sos_mobile/utils/helpers/conllection_controller.dart/collection_controller.dart';
 
-import '../../../utils/controller/utils_controller_api.dart';
+import '../../../utils/controller/utils_controller/utils_controller_api.dart';
 
 class SlashScreen extends StatelessWidget {
   const SlashScreen({super.key});

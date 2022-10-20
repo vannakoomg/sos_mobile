@@ -8,9 +8,9 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../../cores/setting/controller/setting_controller.dart' as _i4;
-import '../../controller/utils_controller_api.dart' as _i5;
-import '../../controller/utils_controller_function.dart' as _i6;
+import '../../controller/utils_controller/utils_controller_api.dart' as _i4;
+import '../../controller/utils_controller/utils_controller_function.dart'
+    as _i5;
 import '../api_base_helper/api_base_helper.dart'
     as _i3; // ignore_for_file: unnecessary_lambdas
 
@@ -28,9 +28,8 @@ _i1.GetIt $initGetIt(
   );
   gh.factory<_i3.ApiBaseHelperGetConnect>(
       () => _i3.ApiBaseHelperGetConnect.init());
-  gh.factory<_i4.SettingController>(() => _i4.SettingController.init());
-  gh.factory<_i5.UtilsControllerApi>(() => _i5.UtilsControllerApi.init());
-  gh.factory<_i6.UtilsControllerFunction>(
-      () => _i6.UtilsControllerFunction.init());
+  gh.factory<_i4.UtilsControllerApi>(() => _i4.UtilsControllerApi.init());
+  gh.factory<_i5.UtilsControllerFunction>(
+      () => _i5.UtilsControllerFunction.init());
   return get;
 }

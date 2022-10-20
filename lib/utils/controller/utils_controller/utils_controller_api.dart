@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sos_mobile/cores/walk_though/slash_screen/slash_screen_model/slash_screen_model.dart';
 import 'package:sos_mobile/interface/interface_utils_controller.dart';
-import 'package:sos_mobile/utils/controller/utils_controller_function.dart';
+import 'package:sos_mobile/utils/controller/utils_controller/utils_controller_function.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
 import 'package:sos_mobile/utils/helpers/conllection_controller.dart/collection_controller.dart';
 import 'package:sos_mobile/utils/helpers/language_singleeton.dart';
