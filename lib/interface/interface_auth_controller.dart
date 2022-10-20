@@ -1,5 +1,6 @@
-class InterfaceAuthController {
-  login() {}
-  singin() {}
-  forgetPassword() {}
+abstract class InterfaceAuthController {
+  // InterfaceAuthController._con();
+  login();
+  singin();
+  forgetPassword();
 }

@@ -1,11 +1,17 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_connect.dart';
 import 'package:global_configuration/global_configuration.dart';
+import 'package:injectable/injectable.dart';
 
 import '../local_data/local_data.dart';
 
+@injectable
 class ApiBaseHelperGetConnect extends GetConnect {
+  @factoryMethod
+  static init() => Get.put(ApiBaseHelperGetConnect());
+
   final String _baseUrl = GlobalConfiguration().get('api_base_url');
   Future<dynamic> fetchData({
     String? url,

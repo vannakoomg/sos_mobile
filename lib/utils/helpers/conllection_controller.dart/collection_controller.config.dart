@@ -8,9 +8,11 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../../cores/setting/controller/setting_controller.dart' as _i3;
-import '../../controller/utils_controller.dart'
-    as _i4; // ignore_for_file: unnecessary_lambdas
+import '../../../cores/setting/controller/setting_controller.dart' as _i4;
+import '../../controller/utils_controller_api.dart' as _i5;
+import '../../controller/utils_controller_function.dart' as _i6;
+import '../api_base_helper/api_base_helper.dart'
+    as _i3; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -24,7 +26,11 @@ _i1.GetIt $initGetIt(
     environment,
     environmentFilter,
   );
-  gh.factory<_i3.SettingController>(() => _i3.SettingController.init());
-  gh.factory<_i4.UtilsController>(() => _i4.UtilsController.init());
+  gh.factory<_i3.ApiBaseHelperGetConnect>(
+      () => _i3.ApiBaseHelperGetConnect.init());
+  gh.factory<_i4.SettingController>(() => _i4.SettingController.init());
+  gh.factory<_i5.UtilsControllerApi>(() => _i5.UtilsControllerApi.init());
+  gh.factory<_i6.UtilsControllerFunction>(
+      () => _i6.UtilsControllerFunction.init());
   return get;
 }

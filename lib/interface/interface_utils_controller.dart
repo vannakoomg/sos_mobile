@@ -1,4 +1,4 @@
-class InterfaceUtilsController {
-  fetchLanguage() {}
-  fetchSlashScreen() {}
+abstract class InterfaceUtilsController {
+  fetchLanguage();
+  fetchSlashScreen();
 }
