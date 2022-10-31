@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect.dart';
 import 'package:global_configuration/global_configuration.dart';
 import 'package:injectable/injectable.dart';
 

@@ -13,7 +13,6 @@ import 'package:sos_mobile/utils/model/language_model/language_model.dart';
 class UtilsControllerApi implements InterfaceUtilsController {
   @factoryMethod
   static init() => Get.put(UtilsControllerApi());
-
   @override
   void fetchLanguage({String lang = "kh"}) async {
     await getIt<ApiBaseHelperGetConnect>()
