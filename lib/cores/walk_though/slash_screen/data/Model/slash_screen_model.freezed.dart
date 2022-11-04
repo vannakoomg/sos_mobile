@@ -86,7 +86,7 @@ class __$$_SlashScreenModelCopyWithImpl<$Res>
     Object? title = freezed,
   }) {
     return _then(_$_SlashScreenModel(
-      freezed == title
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -97,7 +97,7 @@ class __$$_SlashScreenModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SlashScreenModel implements _SlashScreenModel {
-  _$_SlashScreenModel([this.title]);
+  _$_SlashScreenModel({this.title});
 
   factory _$_SlashScreenModel.fromJson(Map<String, dynamic> json) =>
       _$$_SlashScreenModelFromJson(json);
@@ -137,7 +137,7 @@ class _$_SlashScreenModel implements _SlashScreenModel {
 }
 
 abstract class _SlashScreenModel implements SlashScreenModel {
-  factory _SlashScreenModel([final String? title]) = _$_SlashScreenModel;
+  factory _SlashScreenModel({final String? title}) = _$_SlashScreenModel;
 
   factory _SlashScreenModel.fromJson(Map<String, dynamic> json) =
       _$_SlashScreenModel.fromJson;
