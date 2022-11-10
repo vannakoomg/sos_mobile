@@ -17,7 +17,6 @@ class UtilsController {
       url: "language?lang=$lang",
     )
         .then((response) {
-      debugPrint("languages have been fetched : $response");
       loadingFetchLanguage(false);
       LanduageSingleton.instance.landuageModel =
           LanduageModel.fromJson(response);

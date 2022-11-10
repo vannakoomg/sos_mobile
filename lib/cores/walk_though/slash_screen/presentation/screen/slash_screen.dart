@@ -6,28 +6,34 @@ import 'package:sos_mobile/utils/helpers/conllection_controller.dart/collection_
 import '../../../../../utils/controller/utils_controller_api.dart';
 import '../../../../../utils/helpers/storge_local.dart';
 
-class SlashScreen extends StatelessWidget {
+class SlashScreen extends StatefulWidget {
   const SlashScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<SlashScreen> createState() => _SlashScreenState();
+}
+
+class _SlashScreenState extends State<SlashScreen> {
+  @override
+  void initState() {
     getIt<UtilsController>().fetchLanguage(lang: "en");
     getIt<SlashScreenController>().fetchSlashScreen().then((value) async {
-      await StorageDataLocal.storeData(
-          "slashScreen", "${getIt<SlashScreenController>().slashScreen}");
-      getIt<SlashScreenController>().slashScreen.value =
-          await StorageDataLocal.getData('slashScreen');
+      getIt<SlashScreenController>().slashScreenDataStorageLocal.add(value);
       debugPrint(
-          "dataStorge  : ${getIt<SlashScreenController>().slashScreen.value}");
+          "value ${getIt<SlashScreenController>().slashScreenDataStorageLocal}");
+      await StorageDataLocal.storeStringList('slash_screen',
+          "${getIt<SlashScreenController>().slashScreenDataStorageLocal.toList()}");
+      // getIt<SlashScreenController>().slashScreenDataStorageLocal.value =
+      //     await StorageDataLocal.getStringList('slashScreen');
+      // debugPrint(
+      //     "dataStorge  : ${getIt<SlashScreenController>().slashScreen.value}");
     });
-    // //getIt<SlashScreenController>().fetchSlashScreen().then((value) async {
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.backgroundColor,
-        body: Obx(
-          () => Center(
-            child: Text("${getIt<SlashScreenController>().slashScreen}"),
-          ),
-        ));
+        backgroundColor: AppColor.backgroundColor, body: Container());
   }
 }

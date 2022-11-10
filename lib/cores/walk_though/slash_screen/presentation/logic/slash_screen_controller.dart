@@ -13,9 +13,13 @@ class SlashScreenController extends GetxController
   static init() => Get.put(SlashScreenController());
   var slashScreenModel = SlashScreenModel();
   var slashScreen = ''.obs;
+  var slashScreenDataStorageLocal = <String>[].obs;
   var title = ''.obs;
   @override
-  Future fetchSlashScreen() async {
+  Future<String> fetchSlashScreen() async {
     slashScreen.value = await _slashScreenRepository.fetchSlashScreen();
+    return slashScreen.value;
   }
+
+  Future storageDataLocal() async {}
 }
