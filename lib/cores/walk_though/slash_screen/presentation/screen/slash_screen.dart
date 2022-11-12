@@ -17,23 +17,46 @@ class _SlashScreenState extends State<SlashScreen> {
   @override
   void initState() {
     getIt<UtilsController>().fetchLanguage(lang: "en");
-    getIt<SlashScreenController>().fetchSlashScreen().then((value) async {
-      getIt<SlashScreenController>().slashScreenDataStorageLocal.add(value);
-      debugPrint(
-          "value ${getIt<SlashScreenController>().slashScreenDataStorageLocal}");
-      await StorageDataLocal.storeStringList('slash_screen',
-          "${getIt<SlashScreenController>().slashScreenDataStorageLocal.toList()}");
-      // getIt<SlashScreenController>().slashScreenDataStorageLocal.value =
-      //     await StorageDataLocal.getStringList('slashScreen');
-      // debugPrint(
-      //     "dataStorge  : ${getIt<SlashScreenController>().slashScreen.value}");
+    getIt<SlashScreenController>().fetchStorgeLocal().then((value) {
+      getIt<SlashScreenController>().fetchSlashScreen().then((value) async {
+        getIt<SlashScreenController>().slashScreenDataStorageLocal.add(value);
+
+        // getIt<SlashScreenController>().slashScreenDataStorageLocal.value =
+        //     await StorageDataLocal.getStringList('slash_screen');
+
+        // getIt<SlashScreenController>()
+        //     .slashScreenDataStorageLocal
+        //     .add("ok bro let do it ");
+        // debugPrint(
+        //     "value ${getIt<SlashScreenController>().slashScreenDataStorageLocal}");
+        // await StorageDataLocal.storeStringList('slash_screen',
+        //     getIt<SlashScreenController>().slashScreenDataStorageLocal);
+
+        debugPrint(
+            "vannak : ${getIt<SlashScreenController>().slashScreenDataStorageLocal}");
+      });
     });
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.backgroundColor, body: Container());
+      backgroundColor: AppColor.backgroundColor,
+      body: Container(
+          // child: Center(
+          //     child: getIt<SlashScreenController>()
+          //             .slashScreenDataStorageLocal
+          //             .isEmpty
+          //         ? Container(
+          //             height: 30,
+          //             width: 30,
+          //             color: Colors.red,
+          //           )
+          //         : Text(
+          //             "${getIt<SlashScreenController>().slashScreenDataStorageLocal.value}")),
+          ),
+    );
   }
 }
