@@ -5,58 +5,45 @@ import 'package:sos_mobile/cores/walk_though/slash_screen/presentation/logic/sla
 import 'package:sos_mobile/utils/helpers/conllection_controller.dart/collection_controller.dart';
 import '../../../../../utils/controller/utils_controller_api.dart';
 import '../../../../../utils/helpers/storge_local.dart';
+import 'package:go_router/go_router.dart';
 
-class SlashScreen extends StatefulWidget {
+class SlashScreen extends StatelessWidget {
   const SlashScreen({super.key});
 
   @override
-  State<SlashScreen> createState() => _SlashScreenState();
-}
-
-class _SlashScreenState extends State<SlashScreen> {
-  @override
-  void initState() {
-    getIt<UtilsController>().fetchLanguage(lang: "en");
+  Widget build(BuildContext context) {
     getIt<SlashScreenController>().fetchStorgeLocal().then((value) {
-      getIt<SlashScreenController>().fetchSlashScreen().then((value) async {
-        getIt<SlashScreenController>().slashScreenDataStorageLocal.add(value);
-
-        // getIt<SlashScreenController>().slashScreenDataStorageLocal.value =
-        //     await StorageDataLocal.getStringList('slash_screen');
-
-        // getIt<SlashScreenController>()
-        //     .slashScreenDataStorageLocal
-        //     .add("ok bro let do it ");
-        // debugPrint(
-        //     "value ${getIt<SlashScreenController>().slashScreenDataStorageLocal}");
-        // await StorageDataLocal.storeStringList('slash_screen',
-        //     getIt<SlashScreenController>().slashScreenDataStorageLocal);
-
-        debugPrint(
-            "vannak : ${getIt<SlashScreenController>().slashScreenDataStorageLocal}");
+      getIt<UtilsController>().fetchLanguage(lang: "en").then((value) {
+        getIt<SlashScreenController>().fetchSlashScreen().then((value) async {
+          getIt<SlashScreenController>()
+              .slashScreenDataStorageLocal
+              .removeAt(0);
+          getIt<SlashScreenController>().slashScreenDataStorageLocal.add(value);
+          await StorageDataLocal.storeStringList('slash_screen',
+              getIt<SlashScreenController>().slashScreenDataStorageLocal);
+          Future.delayed(const Duration(milliseconds: 500), () {
+            context.go('/home');
+            debugPrint("ncie bro your did it ");
+          });
+        });
       });
     });
-
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
-      body: Container(
-          // child: Center(
-          //     child: getIt<SlashScreenController>()
-          //             .slashScreenDataStorageLocal
-          //             .isEmpty
-          //         ? Container(
-          //             height: 30,
-          //             width: 30,
-          //             color: Colors.red,
-          //           )
-          //         : Text(
-          //             "${getIt<SlashScreenController>().slashScreenDataStorageLocal.value}")),
-          ),
+      body: Obx(
+        (() => Center(
+              child: getIt<SlashScreenController>().isFetchStorgeLocal.value
+                  ? Container(
+                      height: 30,
+                      width: 30,
+                      color: Colors.red,
+                    )
+                  : GestureDetector(
+                      child: Text(
+                          "${getIt<SlashScreenController>().slashScreenDataStorageLocal[0]}"),
+                    ),
+            )),
+      ),
     );
   }
 }

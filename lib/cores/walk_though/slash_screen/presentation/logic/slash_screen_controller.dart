@@ -14,21 +14,20 @@ class SlashScreenController extends GetxController
     implements SlashScreenBaseRepository {
   @factoryMethod
   static init() => Get.put(SlashScreenController());
+  var isFetchStorgeLocal = true.obs;
   var slashScreenModel = SlashScreenModel();
   var slashScreen = ''.obs;
   var slashScreenDataStorageLocal = [];
-  var title = ''.obs;
   @override
   Future<String> fetchSlashScreen() async {
     slashScreen.value = await _slashScreenRepository.fetchSlashScreen();
     return slashScreen.value;
   }
 
-  Future storageDataLocal() async {}
   Future fetchStorgeLocal() async {
     slashScreenDataStorageLocal =
         await StorageDataLocal.getStringList('slash_screen');
-
+    isFetchStorgeLocal.value = false;
     return 0;
   }
 }
