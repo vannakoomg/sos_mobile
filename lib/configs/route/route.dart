@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/cores/walk_though/slash_screen/presentation/screen/slash_screen.dart';
-import 'package:sos_mobile/homeScreen.dart';
+
+import '../../modules/home/logic/screen/home_screen.dart';
 
 final router = GoRouter(
+  // initialLocation: '/slash-screen',
   routes: [
     GoRoute(
       path: '/',
@@ -16,9 +17,7 @@ final router = GoRouter(
     GoRoute(
       path: '/home',
       name: 'home',
-      builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen();
-      },
+      builder: (_, state) => const HomeScreen(),
     ),
   ],
 );

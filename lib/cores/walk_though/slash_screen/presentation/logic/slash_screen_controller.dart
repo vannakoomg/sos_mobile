@@ -27,6 +27,7 @@ class SlashScreenController extends GetxController
   Future fetchStorgeLocal() async {
     slashScreenDataStorageLocal =
         await StorageDataLocal.getStringList('slash_screen');
+    debugPrint("${slashScreenDataStorageLocal}");
     isFetchStorgeLocal.value = false;
     return 0;
   }

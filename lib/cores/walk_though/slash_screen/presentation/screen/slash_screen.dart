@@ -23,7 +23,6 @@ class SlashScreen extends StatelessWidget {
               getIt<SlashScreenController>().slashScreenDataStorageLocal);
           Future.delayed(const Duration(milliseconds: 500), () {
             context.go('/home');
-            debugPrint("ncie bro your did it ");
           });
         });
       });
@@ -38,10 +37,8 @@ class SlashScreen extends StatelessWidget {
                       width: 30,
                       color: Colors.red,
                     )
-                  : GestureDetector(
-                      child: Text(
-                          "${getIt<SlashScreenController>().slashScreenDataStorageLocal[0]}"),
-                    ),
+                  : Text(
+                      "${getIt<SlashScreenController>().slashScreenDataStorageLocal[0]}"),
             )),
       ),
     );
