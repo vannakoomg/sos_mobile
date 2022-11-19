@@ -1,10 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/cores/walk_though/slash_screen/presentation/screen/slash_screen.dart';
 
-import '../../modules/home/logic/screen/home_screen.dart';
+import '../../modules/home/presentation/screen/home_screen.dart';
 
 final router = GoRouter(
-  // initialLocation: '/slash-screen',
   routes: [
     GoRoute(
       path: '/',
