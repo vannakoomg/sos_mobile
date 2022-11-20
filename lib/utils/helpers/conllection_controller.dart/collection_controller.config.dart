@@ -9,8 +9,9 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../../../cores/walk_though/slash_screen/presentation/logic/slash_screen_controller.dart'
-    as _i4;
-import '../../controller/utils_controller_api.dart' as _i5;
+    as _i5;
+import '../../../modules/home/presentation/logic/home_controller.dart' as _i4;
+import '../../controller/utils_controller_api.dart' as _i6;
 import '../api_base_helper/api_base_helper.dart'
     as _i3; // ignore_for_file: unnecessary_lambdas
 
@@ -28,7 +29,8 @@ _i1.GetIt $initGetIt(
   );
   gh.factory<_i3.ApiBaseHelperGetConnect>(
       () => _i3.ApiBaseHelperGetConnect.init());
-  gh.factory<_i4.SlashScreenController>(() => _i4.SlashScreenController.init());
-  gh.factory<_i5.UtilsController>(() => _i5.UtilsController.init());
+  gh.factory<_i4.HomeContoller>(() => _i4.HomeContoller.init());
+  gh.factory<_i5.SlashScreenController>(() => _i5.SlashScreenController.init());
+  gh.factory<_i6.UtilsController>(() => _i6.UtilsController.init());
   return get;
 }
