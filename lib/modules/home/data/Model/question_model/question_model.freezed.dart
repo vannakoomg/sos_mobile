@@ -25,6 +25,7 @@ mixin _$QuestionModel {
   String? get description => throw _privateConstructorUsedError;
   String? get answer => throw _privateConstructorUsedError;
   String? get votes => throw _privateConstructorUsedError;
+  dynamic get key => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $QuestionModelCopyWith<$Res> {
       List<dynamic>? image,
       String? description,
       String? answer,
-      String? votes});
+      String? votes,
+      dynamic key});
 }
 
 /// @nodoc
@@ -64,6 +66,7 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
     Object? description = freezed,
     Object? answer = freezed,
     Object? votes = freezed,
+    Object? key = null,
   }) {
     return _then(_value.copyWith(
       title: freezed == title
@@ -86,6 +89,10 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.votes
           : votes // ignore: cast_nullable_to_non_nullable
               as String?,
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 }
@@ -103,7 +110,8 @@ abstract class _$$_QuestionModelCopyWith<$Res>
       List<dynamic>? image,
       String? description,
       String? answer,
-      String? votes});
+      String? votes,
+      dynamic key});
 }
 
 /// @nodoc
@@ -122,6 +130,7 @@ class __$$_QuestionModelCopyWithImpl<$Res>
     Object? description = freezed,
     Object? answer = freezed,
     Object? votes = freezed,
+    Object? key = null,
   }) {
     return _then(_$_QuestionModel(
       title: freezed == title
@@ -144,6 +153,10 @@ class __$$_QuestionModelCopyWithImpl<$Res>
           ? _value.votes
           : votes // ignore: cast_nullable_to_non_nullable
               as String?,
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -156,7 +169,8 @@ class _$_QuestionModel implements _QuestionModel {
       final List<dynamic>? image,
       this.description,
       this.answer,
-      this.votes})
+      this.votes,
+      this.key})
       : _image = image;
 
   factory _$_QuestionModel.fromJson(Map<String, dynamic> json) =>
@@ -179,10 +193,12 @@ class _$_QuestionModel implements _QuestionModel {
   final String? answer;
   @override
   final String? votes;
+  @override
+  final dynamic key;
 
   @override
   String toString() {
-    return 'QuestionModel(title: $title, image: $image, description: $description, answer: $answer, votes: $votes)';
+    return 'QuestionModel(title: $title, image: $image, description: $description, answer: $answer, votes: $votes, key: $key)';
   }
 
   @override
@@ -195,13 +211,20 @@ class _$_QuestionModel implements _QuestionModel {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.answer, answer) || other.answer == answer) &&
-            (identical(other.votes, votes) || other.votes == votes));
+            (identical(other.votes, votes) || other.votes == votes) &&
+            const DeepCollectionEquality().equals(other.key, key));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title,
-      const DeepCollectionEquality().hash(_image), description, answer, votes);
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      const DeepCollectionEquality().hash(_image),
+      description,
+      answer,
+      votes,
+      const DeepCollectionEquality().hash(key));
 
   @JsonKey(ignore: true)
   @override
@@ -223,7 +246,8 @@ abstract class _QuestionModel implements QuestionModel {
       final List<dynamic>? image,
       final String? description,
       final String? answer,
-      final String? votes}) = _$_QuestionModel;
+      final String? votes,
+      final dynamic key}) = _$_QuestionModel;
 
   factory _QuestionModel.fromJson(Map<String, dynamic> json) =
       _$_QuestionModel.fromJson;
@@ -238,6 +262,8 @@ abstract class _QuestionModel implements QuestionModel {
   String? get answer;
   @override
   String? get votes;
+  @override
+  dynamic get key;
   @override
   @JsonKey(ignore: true)
   _$$_QuestionModelCopyWith<_$_QuestionModel> get copyWith =>

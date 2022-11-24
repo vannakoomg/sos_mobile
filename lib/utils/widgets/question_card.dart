@@ -7,6 +7,9 @@ class QuestionCard extends StatelessWidget {
   final List image;
   final String answer;
   final String votes;
+  final Function onLongPress;
+  final bool isShow;
+  final GlobalKey keyQ;
   const QuestionCard({
     super.key,
     required this.title,
@@ -14,150 +17,181 @@ class QuestionCard extends StatelessWidget {
     required this.image,
     required this.answer,
     required this.votes,
+    required this.onLongPress,
+    required this.keyQ,
+    this.isShow = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
-      decoration: BoxDecoration(
-        color: AppColor.backgroundColor,
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: AppColor.mainColor),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: () {
+        debugPrint("bro");
+      },
+      onLongPressDown: (value) {
+        debugPrint("${keyQ.currentContext!.size!.height}");
+      },
+      onLongPress: () {
+        onLongPress();
+      },
+      child: Stack(
         children: [
-          Text(
-            title,
-            style: const TextStyle(color: Colors.black),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          if (image.length == 1)
-            Container(
-              width: MediaQuery.of(context).size.width / 2 - 40,
-              height: 240,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    color: AppColor.mainColor,
-                  ),
-                  image: DecorationImage(
-                    image: NetworkImage(image[0]),
-                    fit: BoxFit.cover,
-                  )),
-            ),
-          if (image.length >= 2)
-            Stack(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                        child: Container(
-                      height: 240,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: AppColor.mainColor,
-                          ),
-                          image: DecorationImage(
-                            image: NetworkImage(image[0]),
-                            fit: BoxFit.cover,
-                          )),
-                    )),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Expanded(
-                        child: Container(
-                      height: 240,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: AppColor.mainColor,
-                          ),
-                          image: DecorationImage(
-                            image: NetworkImage(image[1]),
-                            fit: BoxFit.cover,
-                          )),
-                    )),
-                  ],
-                ),
-                if (image.length > 2)
-                  Positioned(
-                    right: 0,
-                    child: Container(
-                      height: 240,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        color: AppColor.mainColor.withOpacity(0.2),
-                      ),
-                      child: Center(child: Text("+${image.length - 2}")),
-                    ),
-                  )
-              ],
-            ),
           Container(
-            padding: EdgeInsets.only(
-              left: 10,
-              right: 10,
-              top: image.isNotEmpty ? 10 : 0,
-            ),
+            key: keyQ,
+            // width: double.infinity,
+            padding:
+                const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
             decoration: BoxDecoration(
-                border: Border(
-                    left: BorderSide(color: AppColor.mainColor, width: 1.1))),
+              color: AppColor.backgroundColor,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: AppColor.mainColor),
+            ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(description),
-                const SizedBox(
-                  height: 15,
+                Text(
+                  title,
+                  style: const TextStyle(color: Colors.black),
                 ),
-                Row(
-                  children: [
-                    Container(
-                      height: 20,
-                      padding: const EdgeInsets.only(
-                        left: 10,
-                        right: 10,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color(0xff1EA133),
+                const SizedBox(
+                  height: 10,
+                ),
+                if (image.length == 1)
+                  Container(
+                    width: MediaQuery.of(context).size.width / 2 - 40,
+                    height: 240,
+                    decoration: BoxDecoration(
                         border: Border.all(
                           color: AppColor.mainColor,
                         ),
+                        image: DecorationImage(
+                          image: NetworkImage(image[0]),
+                          fit: BoxFit.cover,
+                        )),
+                  ),
+                if (image.length >= 2)
+                  Stack(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                              child: Container(
+                            height: 240,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: AppColor.mainColor,
+                                ),
+                                image: DecorationImage(
+                                  image: NetworkImage(image[0]),
+                                  fit: BoxFit.cover,
+                                )),
+                          )),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                              child: Container(
+                            height: 240,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: AppColor.mainColor,
+                                ),
+                                image: DecorationImage(
+                                  image: NetworkImage(image[1]),
+                                  fit: BoxFit.cover,
+                                )),
+                          )),
+                        ],
                       ),
-                      child: Center(
-                          child: Text(
-                        "$answer answer",
-                        style: TextStyle(color: Colors.white),
-                      )),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      height: 20,
-                      padding: const EdgeInsets.only(
-                        left: 10,
-                        right: 10,
+                      if (image.length > 2)
+                        Positioned(
+                          right: 0,
+                          child: Container(
+                            height: 240,
+                            width: 60,
+                            decoration: BoxDecoration(
+                              color: AppColor.mainColor.withOpacity(0.2),
+                            ),
+                            child: Center(
+                                child: Text(
+                              "+${image.length - 2}",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                          ),
+                        )
+                    ],
+                  ),
+                Container(
+                  padding: EdgeInsets.only(
+                    left: 10,
+                    right: 10,
+                    top: image.isNotEmpty ? 10 : 0,
+                  ),
+                  decoration: BoxDecoration(
+                      border: Border(
+                          left: BorderSide(
+                              color: AppColor.mainColor, width: 1.1))),
+                  child: Column(
+                    children: [
+                      Text(description),
+                      const SizedBox(
+                        height: 15,
                       ),
-                      decoration: BoxDecoration(
-                        color: const Color(0xffE9853D),
-                        border: Border.all(
-                          color: AppColor.mainColor,
-                        ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 20,
+                            padding: const EdgeInsets.only(
+                              left: 10,
+                              right: 10,
+                            ),
+                            decoration: BoxDecoration(
+                              color: const Color(0xff1EA133),
+                              border: Border.all(
+                                color: AppColor.mainColor,
+                              ),
+                            ),
+                            child: Center(
+                                child: Text(
+                              "$answer answer",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Container(
+                            height: 20,
+                            padding: const EdgeInsets.only(
+                              left: 10,
+                              right: 10,
+                            ),
+                            decoration: BoxDecoration(
+                              color: const Color(0xffE9853D),
+                              border: Border.all(
+                                color: AppColor.mainColor,
+                              ),
+                            ),
+                            child: Center(
+                                child: Text(
+                              "$votes votes",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                          ),
+                        ],
                       ),
-                      child: Center(
-                          child: Text(
-                        "$votes votes",
-                        style: TextStyle(color: Colors.white),
-                      )),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
+          if (isShow == true)
+            Container(
+              height: keyQ.currentContext!.size!.height,
+              width: 1000,
+              color: Colors.red,
+            ),
         ],
       ),
     );

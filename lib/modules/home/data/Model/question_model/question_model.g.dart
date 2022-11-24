@@ -13,6 +13,7 @@ _$_QuestionModel _$$_QuestionModelFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       answer: json['answer'] as String?,
       votes: json['votes'] as String?,
+      key: json['key'],
     );
 
 Map<String, dynamic> _$$_QuestionModelToJson(_$_QuestionModel instance) =>
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$_QuestionModelToJson(_$_QuestionModel instance) =>
       'description': instance.description,
       'answer': instance.answer,
       'votes': instance.votes,
+      'key': instance.key,
     };

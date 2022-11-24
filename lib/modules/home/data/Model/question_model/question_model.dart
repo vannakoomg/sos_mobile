@@ -11,6 +11,7 @@ class QuestionModel with _$QuestionModel {
     String? description,
     String? answer,
     String? votes,
+    dynamic key,
   }) = _QuestionModel;
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) =>
