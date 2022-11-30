@@ -29,7 +29,7 @@ class QuestionCard extends StatelessWidget {
         debugPrint("bro");
       },
       onLongPressDown: (value) {
-        debugPrint("${keyQ.currentContext!.size!.height}");
+        
       },
       onLongPress: () {
         onLongPress();
@@ -186,12 +186,14 @@ class QuestionCard extends StatelessWidget {
               ],
             ),
           ),
-          if (isShow == true)
-            Container(
+          Visibility(
+            visible: !isShow,
+            child: Container(
               height: keyQ.currentContext!.size!.height,
               width: 1000,
               color: Colors.red,
             ),
+          ),
         ],
       ),
     );

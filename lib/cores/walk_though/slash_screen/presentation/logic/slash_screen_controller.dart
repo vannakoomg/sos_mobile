@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sos_mobile/cores/walk_though/slash_screen/data/Model/slash_screen_model.dart';
 import 'package:sos_mobile/cores/walk_though/slash_screen/data/repository/slash_screen_repository.dart';
-import 'package:sos_mobile/cores/walk_though/slash_screen/domain/slash_screen_base_repository.dart';
+import 'package:sos_mobile/cores/walk_though/slash_screen/domain/repository/slash_screen_base_repository.dart';
 
 import '../../../../../utils/helpers/storge_local.dart';
 
