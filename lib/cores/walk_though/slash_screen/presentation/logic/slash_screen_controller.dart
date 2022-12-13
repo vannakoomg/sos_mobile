@@ -17,7 +17,7 @@ class SlashScreenController extends GetxController
   var isFetchStorgeLocal = true.obs;
   var slashScreenModel = SlashScreenModel();
   var slashScreen = ''.obs;
-  var slashScreenDataStorageLocal = [];
+  var slashScreenDataStorageLocal = [].obs;
   @override
   Future<String> fetchSlashScreen() async {
     slashScreen.value = await _slashScreenRepository.fetchSlashScreen();
@@ -25,9 +25,11 @@ class SlashScreenController extends GetxController
   }
 
   Future fetchStorgeLocal() async {
-    slashScreenDataStorageLocal =
-        await StorageDataLocal.getStringList('slash_screen');
-    debugPrint("${slashScreenDataStorageLocal}");
+    await StorageDataLocal.storeStringList('slash_screen', []);
+    var n = await StorageDataLocal.getStringList('slash_screen');
+    // slashScreenDataStorageLocal =
+    //     await StorageDataLocal.getStringList('slash_screen');
+    debugPrint("data :${n}");
     isFetchStorgeLocal.value = false;
     return 0;
   }

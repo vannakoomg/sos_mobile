@@ -9,7 +9,7 @@ class QuestionCard extends StatelessWidget {
   final String votes;
   final Function onLongPress;
   final bool isShow;
-  final GlobalKey keyQ;
+  // final GlobalKey keyQ;
   const QuestionCard({
     super.key,
     required this.title,
@@ -18,7 +18,7 @@ class QuestionCard extends StatelessWidget {
     required this.answer,
     required this.votes,
     required this.onLongPress,
-    required this.keyQ,
+    // required this.keyQ,
     this.isShow = false,
   });
 
@@ -28,16 +28,14 @@ class QuestionCard extends StatelessWidget {
       onTap: () {
         debugPrint("bro");
       },
-      onLongPressDown: (value) {
-        
-      },
+      onLongPressDown: (value) {},
       onLongPress: () {
         onLongPress();
       },
       child: Stack(
         children: [
           Container(
-            key: keyQ,
+            // key: keyQ,
             // width: double.infinity,
             padding:
                 const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
@@ -115,7 +113,7 @@ class QuestionCard extends StatelessWidget {
                             child: Center(
                                 child: Text(
                               "+${image.length - 2}",
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                             )),
                           ),
                         )
@@ -189,7 +187,7 @@ class QuestionCard extends StatelessWidget {
           Visibility(
             visible: !isShow,
             child: Container(
-              height: keyQ.currentContext!.size!.height,
+              // height: keyQ.currentContext!.size!.height,
               width: 1000,
               color: Colors.red,
             ),

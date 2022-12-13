@@ -12,21 +12,24 @@ class SlashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getIt<SlashScreenController>().fetchStorgeLocal().then((value) {
-      getIt<UtilsController>().fetchLanguage(lang: "en").then((value) {
-        getIt<SlashScreenController>().fetchSlashScreen().then((value) async {
-          getIt<SlashScreenController>()
-              .slashScreenDataStorageLocal
-              .removeAt(0);
-          getIt<SlashScreenController>().slashScreenDataStorageLocal.add(value);
-          await StorageDataLocal.storeStringList('slash_screen',
-              getIt<SlashScreenController>().slashScreenDataStorageLocal);
-          Future.delayed(const Duration(milliseconds: 500), () {
-            context.go('/home');
-          });
-        });
-      });
+    // getIt<SlashScreenController>().fetchStorgeLocal().then((value) {
+    //   getIt<UtilsController>().fetchLanguage(lang: "en").then((value) {
+    //     getIt<SlashScreenController>().fetchSlashScreen().then((value) async {
+    //       getIt<SlashScreenController>()
+    //           .slashScreenDataStorageLocal
+    //           .removeAt(0);
+    //       getIt<SlashScreenController>().slashScreenDataStorageLocal.add(value);
+    //       await StorageDataLocal.storeStringList('slash_screen',
+    //           getIt<SlashScreenController>().slashScreenDataStorageLocal);
+    //       Future.delayed(const Duration(milliseconds: 500), () {
+    //         context.go('/home');
+    //       });
+    //     });
+    //   });
+    Future.delayed(const Duration(milliseconds: 500), () {
+      context.go('/home');
     });
+    // });
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       body: Obx(
