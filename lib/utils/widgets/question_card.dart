@@ -1,196 +1,54 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:sos_mobile/configs/const/app_colors.dart';
 
 class QuestionCard extends StatelessWidget {
-  final String title;
-  final String description;
-  final List image;
-  final String answer;
-  final String votes;
-  final Function onLongPress;
-  final bool isShow;
-  // final GlobalKey keyQ;
-  const QuestionCard({
-    super.key,
-    required this.title,
-    required this.description,
-    required this.image,
-    required this.answer,
-    required this.votes,
-    required this.onLongPress,
-    // required this.keyQ,
-    this.isShow = false,
-  });
+  const QuestionCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        debugPrint("bro");
-      },
-      onLongPressDown: (value) {},
-      onLongPress: () {
-        onLongPress();
-      },
-      child: Stack(
+    return Container(
+      height: 300,
+      decoration: const BoxDecoration(
+        color: Colors.transparent,
+      ),
+      child: Column(
         children: [
-          Container(
-            // key: keyQ,
-            // width: double.infinity,
-            padding:
-                const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
-            decoration: BoxDecoration(
-              color: AppColor.backgroundColor,
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(color: AppColor.mainColor),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(color: Colors.black),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                if (image.length == 1)
-                  Container(
-                    width: MediaQuery.of(context).size.width / 2 - 40,
-                    height: 240,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: AppColor.mainColor,
-                        ),
-                        image: DecorationImage(
-                          image: NetworkImage(image[0]),
-                          fit: BoxFit.cover,
-                        )),
-                  ),
-                if (image.length >= 2)
-                  Stack(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                              child: Container(
-                            height: 240,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: AppColor.mainColor,
-                                ),
-                                image: DecorationImage(
-                                  image: NetworkImage(image[0]),
-                                  fit: BoxFit.cover,
-                                )),
-                          )),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Expanded(
-                              child: Container(
-                            height: 240,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: AppColor.mainColor,
-                                ),
-                                image: DecorationImage(
-                                  image: NetworkImage(image[1]),
-                                  fit: BoxFit.cover,
-                                )),
-                          )),
-                        ],
-                      ),
-                      if (image.length > 2)
-                        Positioned(
-                          right: 0,
-                          child: Container(
-                            height: 240,
-                            width: 60,
-                            decoration: BoxDecoration(
-                              color: AppColor.mainColor.withOpacity(0.2),
-                            ),
-                            child: Center(
-                                child: Text(
-                              "+${image.length - 2}",
-                              style: const TextStyle(color: Colors.white),
-                            )),
-                          ),
-                        )
-                    ],
-                  ),
-                Container(
-                  padding: EdgeInsets.only(
-                    left: 10,
-                    right: 10,
-                    top: image.isNotEmpty ? 10 : 0,
-                  ),
-                  decoration: BoxDecoration(
-                      border: Border(
-                          left: BorderSide(
-                              color: AppColor.mainColor, width: 1.1))),
-                  child: Column(
-                    children: [
-                      Text(description),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 20,
-                            padding: const EdgeInsets.only(
-                              left: 10,
-                              right: 10,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color(0xff1EA133),
-                              border: Border.all(
-                                color: AppColor.mainColor,
-                              ),
-                            ),
-                            child: Center(
-                                child: Text(
-                              "$answer answer",
-                              style: TextStyle(color: Colors.white),
-                            )),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Container(
-                            height: 20,
-                            padding: const EdgeInsets.only(
-                              left: 10,
-                              right: 10,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color(0xffE9853D),
-                              border: Border.all(
-                                color: AppColor.mainColor,
-                              ),
-                            ),
-                            child: Center(
-                                child: Text(
-                              "$votes votes",
-                              style: TextStyle(color: Colors.white),
-                            )),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 10,
+              ),
+              const Text("ហេតុអ្វីបានជាទាវស្រលាញ់នេនទុំ"),
+              const Spacer(),
+              const Text("២០"),
+              Container(
+                margin:
+                    const EdgeInsets.only(bottom: 8, top: 8, left: 8, right: 8),
+                height: 15,
+                width: 0.6,
+                color: Colors.black,
+              ),
+              const Text("៤០"),
+              const SizedBox(
+                width: 10,
+              ),
+            ],
           ),
-          Visibility(
-            visible: !isShow,
-            child: Container(
-              // height: keyQ.currentContext!.size!.height,
-              width: 1000,
-              color: Colors.red,
+          CachedNetworkImage(
+            imageUrl:
+                "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2022/08/Math_anxiety_GettyImages621738804_Thumb-732x549.jpg",
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
+            height: 264,
+            width: MediaQuery.of(context).size.height,
+            placeholder: (context, url) => const CircularProgressIndicator(),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
         ],
       ),

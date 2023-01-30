@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sos_mobile/cores/walk_though/slash_screen/data/Model/slash_screen_model.dart';
@@ -26,10 +25,6 @@ class SlashScreenController extends GetxController
 
   Future fetchStorgeLocal() async {
     await StorageDataLocal.storeStringList('slash_screen', []);
-    var n = await StorageDataLocal.getStringList('slash_screen');
-    // slashScreenDataStorageLocal =
-    //     await StorageDataLocal.getStringList('slash_screen');
-    debugPrint("data :${n}");
     isFetchStorgeLocal.value = false;
     return 0;
   }
