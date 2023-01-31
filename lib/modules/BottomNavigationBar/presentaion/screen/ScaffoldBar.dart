@@ -11,28 +11,42 @@ class ScaffoldWithNavBar extends StatelessWidget {
       body: child,
       bottomNavigationBar: Container(
           height: 60,
-          color: Colors.green,
+          color: Colors.black,
           child: Row(
             children: [
-              SizedBox(
-                width: 20,
+              const SizedBox(
+                width: 100,
               ),
               GestureDetector(
                 onTap: () {
                   context.go('/home');
                 },
-                child: Icon(
+                child: const Icon(
                   Icons.home,
+                  color: Colors.white,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
+              GestureDetector(
+                onTap: () {
+                  context.go('/home');
+                },
+                child: const Icon(
+                  Icons.home,
+                  color: Colors.white,
+                ),
+              ),
+              const Spacer(),
               GestureDetector(
                   onTap: () {
                     context.go('/profile');
                   },
-                  child: Icon(Icons.propane_outlined)),
-              SizedBox(
-                width: 20,
+                  child: const Icon(
+                    Icons.propane_outlined,
+                    color: Colors.white,
+                  )),
+              const SizedBox(
+                width: 100,
               ),
             ],
           )),

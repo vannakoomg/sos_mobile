@@ -13,15 +13,14 @@ class HomeContoller extends GetxController {
         image: [
           "https://i.discogs.com/YCopd9B5j4KEu0_mA-L8GirzXpRoHKAFJjDEkntsRTM/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTIyMjYz/MDYtMTU5NzMzMjM5/Mi03MzMwLmpwZWc.jpeg",
         ],
-        description: "okia.com/phones website is operated by HMD Global Oy",
         answer: "1",
         votes: "10",
         key: GlobalKey()),
     QuestionModel(
         title: "What is Nokai",
-        image: [],
-        description:
-            "Nokia.com/phones website is operated by HMD Global Oy, the exclusive licensee of the Nokia brand for phones and tablets. We use cookies and similar technologies to improve and personalize your experience and to display ads. By clicking, you agree to the use of cookies and similar technologies. You can change your settings at any time by selecting at the bottom of the site. Learn more about our",
+        image: [
+          "https://i.pinimg.com/736x/d5/cb/83/d5cb8311c9d8f7f076c0475726c4913f.jpg"
+        ],
         answer: "1",
         votes: "10",
         key: GlobalKey()),
@@ -32,10 +31,8 @@ class HomeContoller extends GetxController {
           "https://lh3.googleusercontent.com/ko-8mYfcfSnchhRooI2uiffFX3AuDOkrP2IP5pjsarK5euObVCUu26W5vQPhfwM-nL3XKJDHVnBroiOHgV45DjuZZrHb6KAQzw=w960-rj-nu-e365",
           "https://data.whicdn.com/images/326957173/original.jpg",
         ],
-        description:
-            "Nokia.com/phones website is operated by HMD Global Oy, the exclusive licensee of the Nokia brand for phones and tablets. We use cookies and similar technologies to improve and personalize your experience and to display ads. By clicking, you agree to the use of cookies and similar technologies. You can change your settings at any time by selecting at the bottom of the site. Learn more about our",
         answer: "10",
-        votes: "",
+        votes: "0",
         key: GlobalKey()),
   ];
 
