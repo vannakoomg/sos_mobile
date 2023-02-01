@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/cores/walk_though/slash_screen/presentation/screen/slash_screen.dart';
 import 'package:sos_mobile/modules/home/presentation/screen/home_screen.dart';
 import 'package:sos_mobile/modules/profile/presentation/screen/profile_screen.dart';
+import 'package:sos_mobile/modules/question/presentaion/screen/question_detail.dart';
 
 import '../../modules/BottomNavigationBar/presentaion/screen/ScaffoldBar.dart';
 
@@ -26,15 +27,22 @@ final router = GoRouter(
         },
         routes: [
           GoRoute(
-            path: '/home',
-            builder: (context, state) {
-              return const HomeScreen();
-            },
-            pageBuilder: (context, state) => NoTransitionPage<void>(
-              key: state.pageKey,
-              child: const HomeScreen(),
-            ),
-          ),
+              path: '/home',
+              builder: (context, state) {
+                return const HomeScreen();
+              },
+              pageBuilder: (context, state) => NoTransitionPage<void>(
+                    key: state.pageKey,
+                    child: const HomeScreen(),
+                  ),
+              routes: [
+                GoRoute(
+                  path: 'question-detail',
+                  builder: (context, state) {
+                    return const QuestionDetail();
+                  },
+                ),
+              ]),
           GoRoute(
             path: '/profile',
             builder: (context, state) {

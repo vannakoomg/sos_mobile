@@ -15,7 +15,7 @@ class SlashScreen extends StatefulWidget {
 class _SlashScreenState extends State<SlashScreen> {
   @override
   void initState() {
-    Future.delayed(const Duration(milliseconds: 2000), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       context.go('/home');
     });
     super.initState();

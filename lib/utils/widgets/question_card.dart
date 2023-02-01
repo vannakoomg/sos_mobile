@@ -6,23 +6,53 @@ class QuestionCard extends StatelessWidget {
   String? vote;
   String? answer;
   List? image;
+  GestureTapCallback? ontap;
+  GestureTapCallback? onLongPress;
+  GestureTapCallback? onLongPressEnd;
+
+  Function? onLongPressDown;
+
   QuestionCard({
     super.key,
     this.title,
     this.answer,
     this.image,
     this.vote,
+    required this.ontap,
+    required this.onLongPress,
+    required this.onLongPressEnd,
+    required this.onLongPressDown,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
-      child: Container(
-        height: 300,
+      onTap: () {
+        ontap!();
+      },
+      onLongPressDown: (value) {
+        onLongPressDown!(value);
+      },
+      onLongPress: () {
+        onLongPress!();
+      },
+      onLongPressEnd: (s) {
+        onLongPressEnd!();
+      },
+      onLongPressMoveUpdate: (value) {
+        debugPrint(
+            "M [${value.globalPosition.dx} , ${value.globalPosition.dy}]");
+      },
+      onTapDown: (va) {
+        debugPrint("ddd");
+      },
+      child: AnimatedContainer(
+        padding: const EdgeInsets.all(3),
+        height: 304,
         decoration: const BoxDecoration(
           color: Colors.transparent,
         ),
+        duration: const Duration(milliseconds: 200),
         child: Column(
           children: [
             Row(
@@ -73,7 +103,6 @@ class QuestionCard extends StatelessWidget {
                   );
                 },
                 itemCount: image!.length,
-                // controller: controllers[1],
               ),
             ),
           ],
