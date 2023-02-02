@@ -57,6 +57,7 @@ class HomeContoller extends GetxController {
         key: GlobalKey()),
   ];
   var scrollPixel = 0.0.obs;
+
   var oldScrollPixel = 0.0.obs;
   OverlayState? overlayState; //require
   OverlayEntry? overlayEntry; //require

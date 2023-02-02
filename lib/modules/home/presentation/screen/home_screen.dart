@@ -29,40 +29,44 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.black,
-        height: double.infinity,
-        width: double.infinity,
-        child: ListView.builder(
-          controller: scrollController,
-          itemCount: getIt<HomeContoller>().question.length,
-          itemBuilder: (context, i) {
-            return Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              child: QuestionCard(
-                key: getIt<HomeContoller>().question[i].key,
-                ontap: () {
-                  context.go('/home/question-detail');
-                },
-                onLongPress: () {
-                  getIt<HomeContoller>().showOverlay(
-                      context, getIt<HomeContoller>().question[i].key);
-                },
-                onLongPressDown: (value) {
-                  debugPrint("${value.globalPosition.dx}");
-                  debugPrint("${value.globalPosition.dy}");
-                },
-                onLongPressEnd: () {
-                  getIt<HomeContoller>().overlayEntry?.remove();
-                },
-                title: getIt<HomeContoller>().question[i].title!,
-                vote: getIt<HomeContoller>().question[i].votes,
-                answer: getIt<HomeContoller>().question[i].answer!,
-                image: getIt<HomeContoller>().question[i].image,
-              ),
-            );
-          },
-        ),
+      body: Stack(
+        children: [
+          Container(
+            color: Colors.black,
+            height: double.infinity,
+            width: double.infinity,
+            child: ListView.builder(
+              controller: scrollController,
+              itemCount: getIt<HomeContoller>().question.length,
+              itemBuilder: (context, i) {
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  child: QuestionCard(
+                    key: getIt<HomeContoller>().question[i].key,
+                    ontap: () {
+                      context.go('/home/question-detail');
+                    },
+                    onLongPress: () {
+                      getIt<HomeContoller>().showOverlay(
+                          context, getIt<HomeContoller>().question[i].key);
+                    },
+                    onLongPressDown: (value) {
+                      debugPrint("${value.globalPosition.dx}");
+                      debugPrint("${value.globalPosition.dy}");
+                    },
+                    onLongPressEnd: () {
+                      getIt<HomeContoller>().overlayEntry?.remove();
+                    },
+                    title: getIt<HomeContoller>().question[i].title!,
+                    vote: getIt<HomeContoller>().question[i].votes,
+                    answer: getIt<HomeContoller>().question[i].answer!,
+                    image: getIt<HomeContoller>().question[i].image,
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
