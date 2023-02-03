@@ -64,9 +64,8 @@ class _QuestionCardState extends State<QuestionCard> {
             : const EdgeInsets.only(left: 3, right: 3, top: 1, bottom: 1),
         curve: Curves.ease,
         height: 310,
-        decoration: const BoxDecoration(
-          color: Colors.transparent,
-        ),
+        decoration: BoxDecoration(
+            color: Colors.transparent, borderRadius: BorderRadius.circular(20)),
         duration: const Duration(milliseconds: 80),
         child: Column(
           children: [
@@ -77,20 +76,29 @@ class _QuestionCardState extends State<QuestionCard> {
                 ),
                 Text(
                   "${widget.title}",
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16),
                 ),
                 const Spacer(),
                 Text("${widget.answer}",
-                    style: const TextStyle(color: Colors.green)),
+                    style: const TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 17)),
                 Container(
                   margin: const EdgeInsets.only(
                       bottom: 8, top: 8, left: 8, right: 8),
-                  height: 15,
+                  height: 22,
                   width: 0.6,
                   color: Colors.white,
                 ),
                 Text("${widget.vote}",
-                    style: const TextStyle(color: Colors.orange)),
+                    style: const TextStyle(
+                        color: Colors.orange,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 17)),
                 const SizedBox(
                   width: 10,
                 ),
@@ -105,6 +113,7 @@ class _QuestionCardState extends State<QuestionCard> {
                     imageUrl: widget.image![page],
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
                           image: imageProvider,
                           fit: BoxFit.cover,

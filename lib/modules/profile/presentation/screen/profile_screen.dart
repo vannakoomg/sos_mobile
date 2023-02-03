@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sos_mobile/configs/const/app_colors.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -6,10 +7,27 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          child: const Center(
-        child: Text("Profile Screen"),
-      )),
+      backgroundColor: AppColor.backgroundColor,
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(top: 100),
+              height: 140,
+              width: 140,
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle, color: Colors.yellow),
+            ),
+            const Text(
+              "Vannak",
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

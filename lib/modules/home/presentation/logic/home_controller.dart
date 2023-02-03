@@ -11,7 +11,7 @@ class HomeContoller extends GetxController {
     QuestionModel(
       title: "What is mother of Tom",
       image: [
-        "https://i.discogs.com/YCopd9B5j4KEu0_mA-L8GirzXpRoHKAFJjDEkntsRTM/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTIyMjYz/MDYtMTU5NzMzMjM5/Mi03MzMwLmpwZWc.jpeg",
+        "http://www.sciencefriday.com/wp-content/uploads/2016/08/Artboard-1.png",
       ],
       answer: "1",
       votes: "10",
@@ -20,7 +20,8 @@ class HomeContoller extends GetxController {
     QuestionModel(
         title: "What is Nokai",
         image: [
-          "https://i.pinimg.com/736x/d5/cb/83/d5cb8311c9d8f7f076c0475726c4913f.jpg"
+          "https://marvel-b1-cdn.bc0a.com/f00000000026007/resilienteducator.com/wp-content/uploads/2012/11/AdobeStock_60467600_cup.jpg",
+          "https://t3.ftcdn.net/jpg/04/83/90/18/360_F_483901821_46VsNR67uJC3xIKQN4aaxR6GtAZhx9G8.jpg"
         ],
         answer: "1",
         votes: "10",
@@ -28,9 +29,9 @@ class HomeContoller extends GetxController {
     QuestionModel(
         title: "What is the IU",
         image: [
-          "https://hashtaglegend.com/wp-content/uploads/2022/05/fullsizephoto1073124-edited.jpg",
-          "https://lh3.googleusercontent.com/ko-8mYfcfSnchhRooI2uiffFX3AuDOkrP2IP5pjsarK5euObVCUu26W5vQPhfwM-nL3XKJDHVnBroiOHgV45DjuZZrHb6KAQzw=w960-rj-nu-e365",
-          "https://data.whicdn.com/images/326957173/original.jpg",
+          "https://t3.ftcdn.net/jpg/04/83/90/18/360_F_483901821_46VsNR67uJC3xIKQN4aaxR6GtAZhx9G8.jpg",
+          "https://t3.ftcdn.net/jpg/04/83/90/18/360_F_483901821_46VsNR67uJC3xIKQN4aaxR6GtAZhx9G8.jpg",
+          "https://media.istockphoto.com/vectors/drawing-saying-i-love-math-with-pictures-vector-id471025938",
         ],
         answer: "10",
         votes: "0",
@@ -38,9 +39,9 @@ class HomeContoller extends GetxController {
     QuestionModel(
         title: "What is the IU",
         image: [
-          "https://data.whicdn.com/images/326957173/original.jpg",
-          "https://lh3.googleusercontent.com/ko-8mYfcfSnchhRooI2uiffFX3AuDOkrP2IP5pjsarK5euObVCUu26W5vQPhfwM-nL3XKJDHVnBroiOHgV45DjuZZrHb6KAQzw=w960-rj-nu-e365",
-          "https://data.whicdn.com/images/326957173/original.jpg",
+          "https://www.shutterstock.com/image-vector/math-horizontal-banner-presentation-website-260nw-1859813464.jpg",
+          "https://www.teahub.io/photos/full/211-2112308_hq-math-wallpapers-math-elementary.jpg",
+          "https://www.teahub.io/photos/full/211-2112308_hq-math-wallpapers-math-elementary.jpg",
         ],
         answer: "3",
         votes: "500",
@@ -48,9 +49,9 @@ class HomeContoller extends GetxController {
     QuestionModel(
         title: "What is the IU",
         image: [
-          "https://pbs.twimg.com/media/E8EO82GVcAAN7H3.jpg",
-          "https://lh3.googleusercontent.com/ko-8mYfcfSnchhRooI2uiffFX3AuDOkrP2IP5pjsarK5euObVCUu26W5vQPhfwM-nL3XKJDHVnBroiOHgV45DjuZZrHb6KAQzw=w960-rj-nu-e365",
-          "https://data.whicdn.com/images/326957173/original.jpg",
+          "https://t3.ftcdn.net/jpg/04/72/09/24/360_F_472092463_biXCSvYsRVE8S05Ph7LbrxglfDr66MBE.jpg",
+          "https://res.cloudinary.com/dk-find-out/image/upload/q_70,c_pad,w_1200,h_630,f_auto/maths_icon_varwhq.jpg",
+          "https://www.incimages.com/uploaded_files/image/1920x1080/getty_470493341_20001333200092800_398689.jpg",
         ],
         answer: "3",
         votes: "500",

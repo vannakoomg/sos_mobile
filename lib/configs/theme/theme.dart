@@ -4,9 +4,6 @@ import 'package:sos_mobile/configs/const/app_colors.dart';
 ThemeData theme() {
   return ThemeData(
     primaryColor: AppColor.backgroundColor,
-
-    // textTheme: TextTheme(
-
-    // ),
+    brightness: Brightness.light,
   );
 }

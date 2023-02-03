@@ -19,6 +19,7 @@ dependencies:
   go_router: ^5.1.0
   cached_network_image: ^3.2.3
   flutter_native_splash: ^2.2.17
+  flutter_statusbarcolor_ns: ^0.5.0
 
 # dev_dependencies
 dev_dependencies:
