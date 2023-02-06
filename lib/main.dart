@@ -8,13 +8,6 @@ import 'configs/theme/theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalConfiguration().loadFromAsset('app_settings');
-// change the status bar color to material color [green-400]
-  // await FlutterStatusbarcolor.setStatusBarColor(Colors.white);
-  // if (useWhiteForeground(Colors.white)) {
-  //   FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
-  // } else {
-  //   FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
-  // }
   declareController();
   runApp(const MyApp());
 }

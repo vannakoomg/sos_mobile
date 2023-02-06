@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sos_mobile/configs/const/app_colors.dart';
 import 'package:sos_mobile/modules/home/data/Model/question_model/question_model.dart';
 import 'package:injectable/injectable.dart';
 
@@ -19,10 +20,7 @@ class HomeContoller extends GetxController {
     ),
     QuestionModel(
         title: "What is Nokai",
-        image: [
-          "https://marvel-b1-cdn.bc0a.com/f00000000026007/resilienteducator.com/wp-content/uploads/2012/11/AdobeStock_60467600_cup.jpg",
-          "https://t3.ftcdn.net/jpg/04/83/90/18/360_F_483901821_46VsNR67uJC3xIKQN4aaxR6GtAZhx9G8.jpg"
-        ],
+        image: [],
         answer: "1",
         votes: "10",
         key: GlobalKey()),
@@ -82,8 +80,8 @@ class HomeContoller extends GetxController {
               Stack(
                 children: [
                   ColorFiltered(
-                    colorFilter: const ColorFilter.mode(
-                      Colors.black, //background
+                    colorFilter: ColorFilter.mode(
+                      AppColor.backgroundColor, //background
                       BlendMode.srcOut, //require
                     ),
                     child: Stack(
