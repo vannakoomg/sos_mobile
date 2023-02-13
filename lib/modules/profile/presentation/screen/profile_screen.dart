@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sos_mobile/configs/const/app_colors.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -14,12 +15,21 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              margin: const EdgeInsets.only(top: 100),
-              height: 140,
-              width: 140,
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: Colors.yellow),
+            GestureDetector(
+              onTap: () async {
+                final ImagePicker picker = ImagePicker();
+                var file = picker.pickMultiImage();
+                // final XFile? image =
+                //     await picker.pickImage(source: ImageSource.gallery);
+                // debugPrint("file $image");
+              },
+              child: Container(
+                margin: const EdgeInsets.only(top: 100),
+                height: 140,
+                width: 140,
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.yellow),
+              ),
             ),
             const Text(
               "Vannak",
