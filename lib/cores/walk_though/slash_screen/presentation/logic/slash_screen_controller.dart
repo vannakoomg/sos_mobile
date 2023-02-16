@@ -4,7 +4,7 @@ import 'package:sos_mobile/cores/walk_though/slash_screen/data/Model/slash_scree
 import 'package:sos_mobile/cores/walk_though/slash_screen/data/repository/slash_screen_repository.dart';
 import 'package:sos_mobile/cores/walk_though/slash_screen/domain/repository/slash_screen_base_repository.dart';
 
-import '../../../../../utils/helpers/storge_local.dart';
+import '../../../../../utils/helpers/local_data/storge_local.dart';
 
 SlashScreenRepository _slashScreenRepository = SlashScreenRepository();
 
@@ -17,15 +17,12 @@ class SlashScreenController extends GetxController
   var slashScreenModel = SlashScreenModel();
   var slashScreen = ''.obs;
   var slashScreenDataStorageLocal = [].obs;
+  
   @override
-  Future<String> fetchSlashScreen() async {
-    slashScreen.value = await _slashScreenRepository.fetchSlashScreen();
-    return slashScreen.value;
+  fetchSlashScreen() {
+    // TODO: implement fetchSlashScreen
+    throw UnimplementedError();
   }
 
-  Future fetchStorgeLocal() async {
-    await StorageDataLocal.storeStringList('slash_screen', []);
-    isFetchStorgeLocal.value = false;
-    return 0;
-  }
-}
+ 
+    }

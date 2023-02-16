@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../utils/helpers/conllection_controller.dart/collection_controller.dart';
 import '../../../home/presentation/logic/home_controller.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
@@ -11,10 +10,11 @@ class ScaffoldWithNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(HomeContoller());
     return Scaffold(
         body: child,
         bottomNavigationBar: Obx(
-          () => getIt<HomeContoller>().scrollPixel.value < 50
+          () => _controller.scrollPixel.value < 250
               ? Container(
                   height: 60,
                   color: Colors.black,

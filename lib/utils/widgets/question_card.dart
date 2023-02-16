@@ -153,34 +153,50 @@ class _QuestionCardState extends State<QuestionCard> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 264,
-                    width: double.infinity,
-                    child: PageView.builder(
-                      itemBuilder: (context, page) {
-                        return CachedNetworkImage(
-                          imageUrl: widget.image![page],
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
+                  Stack(
+                    children: [
+                      SizedBox(
+                        height: 264,
+                        width: double.infinity,
+                        child: PageView.builder(
+                          itemBuilder: (context, page) {
+                            return CachedNetworkImage(
+                              imageUrl: widget.image![page],
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          height: 264,
-                          width: MediaQuery.of(context).size.height,
-                          placeholder: (context, url) => Container(
-                            height: 264,
-                            color: Colors.red,
-                          ),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        );
-                      },
-                      itemCount: widget.image!.length,
-                    ),
+                              height: 264,
+                              width: MediaQuery.of(context).size.height,
+                              placeholder: (context, url) => Container(
+                                height: 264,
+                                color: Colors.red,
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                            );
+                          },
+                          itemCount: widget.image!.length,
+                        ),
+                      ),
+                      Positioned(
+                        left: 20,
+                        bottom: 10,
+                        child: Container(
+                          height: 30,
+                          width: 50,
+                          decoration: BoxDecoration(
+                              color: const Color(0xffced4da),
+                              borderRadius: BorderRadius.circular(15),),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

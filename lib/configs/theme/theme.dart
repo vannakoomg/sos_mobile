@@ -5,5 +5,12 @@ ThemeData theme() {
   return ThemeData(
     primaryColor: AppColor.backgroundColor,
     brightness: Brightness.light,
+    textTheme: const TextTheme(
+      titleLarge: TextStyle(
+          color: Colors.white,
+          fontFamily: 'preahvihear',
+          fontSize: 26,
+          fontWeight: FontWeight.w500),
+    ),
   );
 }

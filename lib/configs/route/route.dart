@@ -55,11 +55,11 @@ final router = GoRouter(
           GoRoute(
             path: '/profile',
             builder: (context, state) {
-              return const ProfileScreen();
+              return  ProfileScreen();
             },
             pageBuilder: (context, state) => NoTransitionPage<void>(
               key: state.pageKey,
-              child: const ProfileScreen(),
+              child:  ProfileScreen(),
             ),
           ),
         ])

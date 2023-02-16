@@ -40,8 +40,8 @@ flutter_native_splash:
 flutter:
   uses-material-design: true
   fonts:
-    - family: hanuman
+    - family: preahvihear
       fonts:
-        - asset: assets/font/hanuman.ttf
+        - asset: assets/font/preahvihear.ttf
   assets:
     - assets/cfg/

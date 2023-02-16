@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:global_configuration/global_configuration.dart';
-import 'package:sos_mobile/utils/helpers/conllection_controller.dart/collection_controller.dart';
+import 'package:sos_mobile/utils/helpers/local_data/storge_local.dart';
 import 'configs/route/route.dart';
 import 'configs/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalConfiguration().loadFromAsset('app_settings');
-  declareController();
+  LocalStorage.init();
   runApp(const MyApp());
 }
 
