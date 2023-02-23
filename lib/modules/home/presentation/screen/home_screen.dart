@@ -18,18 +18,21 @@ class _HomeScreenState extends State<HomeScreen> {
   final _controller = Get.put(HomeContoller());
   @override
   void initState() {
+    _controller.getQuestion();
     scrollController.addListener(() {
       _controller.scrollPixel.value = scrollController.offset;
+      if(_controller.scrollPixel.value>100){
+         _controller.getQuestion();
+      }
       _controller.oldScrollPixel.value = _controller.scrollPixel.value;
       debugPrint("${scrollController.offset}");
     });
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body:Obx(() =>  Container(
         color: AppColor.backgroundColor,
         child: SafeArea(
           child: Stack(
@@ -40,16 +43,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: double.infinity,
                 child: ListView.builder(
                   controller: scrollController,
-                  itemCount: _controller.question.length,
+                  itemCount: _controller.listPropertyData.length,
                   itemBuilder: (context, i) {
                     return QuestionCard(
-                      key: _controller.question[i].key,
+                      // key: _controller.question[0].key,
                       ontap: () {
                         context.go('/home/question-detail');
                       },
                       onLongPress: () {
                         _controller.showOverlay(
-                            context, _controller.question[i].key);
+                            context, _controller.question[0].key);
                       },
                       onLongPressDown: (value) {
                         debugPrint("${value.globalPosition.dx}");
@@ -58,10 +61,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       onLongPressEnd: () {
                         _controller.overlayEntry?.remove();
                       },
-                      title: _controller.question[i].title!,
-                      vote: _controller.question[i].votes,
-                      answer: _controller.question[i].answer!,
-                      image: _controller.question[i].image,
+                      indexPage: i,
+                      title: _controller.question[0].title!,
+                      vote: _controller.question[0].votes,
+                      answer: _controller.question[0].answer!,
+                      image: _controller.question[0].image,
                     );
                   },
                 ),
@@ -69,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 }

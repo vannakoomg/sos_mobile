@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'question_model.dart';
 
@@ -66,7 +66,7 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
     Object? description = freezed,
     Object? answer = freezed,
     Object? votes = freezed,
-    Object? key = null,
+    Object? key = freezed,
   }) {
     return _then(_value.copyWith(
       title: freezed == title
@@ -89,7 +89,7 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.votes
           : votes // ignore: cast_nullable_to_non_nullable
               as String?,
-      key: null == key
+      key: freezed == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -130,7 +130,7 @@ class __$$_QuestionModelCopyWithImpl<$Res>
     Object? description = freezed,
     Object? answer = freezed,
     Object? votes = freezed,
-    Object? key = null,
+    Object? key = freezed,
   }) {
     return _then(_$_QuestionModel(
       title: freezed == title
@@ -153,7 +153,7 @@ class __$$_QuestionModelCopyWithImpl<$Res>
           ? _value.votes
           : votes // ignore: cast_nullable_to_non_nullable
               as String?,
-      key: null == key
+      key: freezed == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -183,6 +183,7 @@ class _$_QuestionModel implements _QuestionModel {
   List<dynamic>? get image {
     final value = _image;
     if (value == null) return null;
+    if (_image is EqualUnmodifiableListView) return _image;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }

@@ -11,6 +11,16 @@ ThemeData theme() {
           fontFamily: 'preahvihear',
           fontSize: 26,
           fontWeight: FontWeight.w500),
+      titleSmall: TextStyle(
+          color: Colors.white,
+          fontFamily: 'preahvihear',
+          fontSize: 14,
+          fontWeight: FontWeight.w400),
+      bodySmall: TextStyle(
+          color: Colors.white,
+          fontFamily: 'preahvihear',
+          fontSize: 10,
+          fontWeight: FontWeight.w500),
     ),
   );
 }

@@ -1,23 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sos_mobile/modules/home/presentation/logic/home_controller.dart';
 
-class QuestionCard extends StatefulWidget {
+class QuestionCard extends StatelessWidget {
   final String? title;
   final String? vote;
   final String? answer;
   final List? image;
+  final int? indexPage;
   final GestureTapCallback? ontap;
   final GestureTapCallback? onLongPress;
   final GestureTapCallback? onLongPressEnd;
 
   final Function? onLongPressDown;
-
   const QuestionCard({
     super.key,
     this.title,
     this.answer,
     this.image,
     this.vote,
+    this.indexPage,
     required this.ontap,
     required this.onLongPress,
     required this.onLongPressEnd,
@@ -25,40 +28,31 @@ class QuestionCard extends StatefulWidget {
   });
 
   @override
-  State<QuestionCard> createState() => _QuestionCardState();
-}
-
-bool isTap = false;
-
-class _QuestionCardState extends State<QuestionCard> {
-  @override
   Widget build(BuildContext context) {
+    final controller = Get.put(HomeContoller());
     return GestureDetector(
       onTap: () {
-        widget.ontap!();
+        ontap!();
       },
       onLongPressDown: (value) {
-        widget.onLongPressDown!(value);
+        onLongPressDown!(value);
       },
       onLongPress: () {
-        widget.onLongPress!();
+        onLongPress!();
       },
       onLongPressEnd: (s) {
-        widget.onLongPressEnd!();
-        setState(() {
-          isTap = false;
-        });
+        onLongPressEnd!();
+
+        controller.isTapcard.value = false;
       },
       onLongPressMoveUpdate: (value) {
         debugPrint(
             "M [${value.globalPosition.dx} , ${value.globalPosition.dy}]");
       },
       onTapDown: (va) {
-        setState(() {
-          isTap = true;
-        });
+        controller.isTapcard.value = true;
       },
-      child: widget.image!.isEmpty
+      child: image!.isEmpty
           ? Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: Container(
@@ -74,14 +68,14 @@ class _QuestionCardState extends State<QuestionCard> {
                       width: 10,
                     ),
                     Text(
-                      "${widget.title}",
+                      "$title",
                       style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                           fontSize: 16),
                     ),
                     const Spacer(),
-                    Text("${widget.answer}",
+                    Text("$answer",
                         style: const TextStyle(
                             color: Colors.green,
                             fontWeight: FontWeight.w600,
@@ -93,7 +87,7 @@ class _QuestionCardState extends State<QuestionCard> {
                       width: 0.6,
                       color: Colors.white,
                     ),
-                    Text("${widget.vote}",
+                    Text("$vote",
                         style: const TextStyle(
                             color: Colors.orange,
                             fontWeight: FontWeight.w600,
@@ -107,11 +101,11 @@ class _QuestionCardState extends State<QuestionCard> {
             )
           : AnimatedContainer(
               margin: const EdgeInsets.only(bottom: 10),
-              padding: isTap == false
+              padding: controller.isTapcard.value == false
                   ? const EdgeInsets.all(0)
                   : const EdgeInsets.only(left: 3, right: 3, top: 1, bottom: 1),
               curve: Curves.ease,
-              height: 310,
+              height: 410,
               decoration: BoxDecoration(
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(20)),
@@ -124,14 +118,11 @@ class _QuestionCardState extends State<QuestionCard> {
                         width: 10,
                       ),
                       Text(
-                        "${widget.title}",
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16),
+                        "$title",
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                       const Spacer(),
-                      Text("${widget.answer}",
+                      Text("$answer",
                           style: const TextStyle(
                               color: Colors.green,
                               fontWeight: FontWeight.w600,
@@ -143,7 +134,7 @@ class _QuestionCardState extends State<QuestionCard> {
                         width: 0.6,
                         color: Colors.white,
                       ),
-                      Text("${widget.vote}",
+                      Text("$vote",
                           style: const TextStyle(
                               color: Colors.orange,
                               fontWeight: FontWeight.w600,
@@ -156,12 +147,12 @@ class _QuestionCardState extends State<QuestionCard> {
                   Stack(
                     children: [
                       SizedBox(
-                        height: 264,
+                        height: 364,
                         width: double.infinity,
                         child: PageView.builder(
                           itemBuilder: (context, page) {
                             return CachedNetworkImage(
-                              imageUrl: widget.image![page],
+                              imageUrl: image![page],
                               imageBuilder: (context, imageProvider) =>
                                   Container(
                                 decoration: BoxDecoration(
@@ -182,18 +173,46 @@ class _QuestionCardState extends State<QuestionCard> {
                                   const Icon(Icons.error),
                             );
                           },
-                          itemCount: widget.image!.length,
+                          itemCount: image!.length,
+                          onPageChanged: (index) {
+                            controller.indexPage.value = index + 1;
+                          },
                         ),
                       ),
                       Positioned(
                         left: 20,
                         bottom: 10,
                         child: Container(
-                          height: 30,
-                          width: 50,
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10, top: 2, bottom: 2),
                           decoration: BoxDecoration(
-                              color: const Color(0xffced4da),
-                              borderRadius: BorderRadius.circular(15),),
+                            color: Colors.black.withOpacity(0.6),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Row(
+                            children: [
+                              Obx(
+                                () => Text(
+                                  "${controller.indexPage.value}",
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 2,
+                              ),
+                              Text(
+                                "/",
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                              const SizedBox(
+                                width: 2,
+                              ),
+                              Text(
+                                "${image!.length}",
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

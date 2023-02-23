@@ -19,10 +19,14 @@ enum METHODE {
 
 @injectable
 class ApiBaseHelper extends GetConnect {
+ 
+  static final ApiBaseHelper apiBaseHelper = ApiBaseHelper._internal();
+  ApiBaseHelper._internal();
+  static ApiBaseHelper get obj => apiBaseHelper;
+
   ApiBaseHelper() {
     timeout = const Duration(seconds: 90);
   }
-
   String? baseurl = '';
   Future<dynamic> onNetworkRequesting({
     required String url,

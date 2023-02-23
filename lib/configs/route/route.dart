@@ -6,6 +6,7 @@ import 'package:sos_mobile/modules/profile/presentation/screen/profile_screen.da
 import 'package:sos_mobile/modules/question/presentaion/screen/question_detail.dart';
 
 import '../../modules/BottomNavigationBar/presentaion/screen/ScaffoldBar.dart';
+import '../../modules/listing/screen/lising_screen.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 GlobalKey<NavigatorState> _shellNaigationkey =
@@ -55,11 +56,11 @@ final router = GoRouter(
           GoRoute(
             path: '/profile',
             builder: (context, state) {
-              return  ProfileScreen();
+              return ProfileScreen();
             },
             pageBuilder: (context, state) => NoTransitionPage<void>(
               key: state.pageKey,
-              child:  ProfileScreen(),
+              child: ProfileScreen(),
             ),
           ),
         ])

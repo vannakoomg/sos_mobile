@@ -8,7 +8,7 @@ import 'configs/theme/theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GlobalConfiguration().loadFromAsset('app_settings');
-  LocalStorage.init();
+  await LocalStorage.init();
   runApp(const MyApp());
 }
 
