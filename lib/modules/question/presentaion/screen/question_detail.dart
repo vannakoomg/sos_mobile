@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class QuestionDetail extends StatelessWidget {
-  const QuestionDetail({super.key});
+ final int? id ;
+  const QuestionDetail({super.key,this.id });
 
   @override
   Widget build(BuildContext context) {

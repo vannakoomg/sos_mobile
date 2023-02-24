@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     return QuestionCard(
                       // key: _controller.question[0].key,
                       ontap: () {
-                        context.go('/home/question-detail');
+                        context.go('/home/question-detail/100 ');
                       },
                       onLongPress: () {
                         _controller.showOverlay(

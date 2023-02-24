@@ -38,7 +38,7 @@ final router = GoRouter(
                   ),
               routes: [
                 GoRoute(
-                  path: 'question-detail',
+                  path: 'question-detail/:id',
                   builder: (context, state) {
                     return const QuestionDetail();
                   },
