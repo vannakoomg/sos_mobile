@@ -5,16 +5,16 @@ import 'package:go_router/go_router.dart';
 import '../../../home/presentation/logic/home_controller.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
-  Widget? child;
-  ScaffoldWithNavBar({super.key, this.child});
+  final Widget? child;
+ const ScaffoldWithNavBar({super.key, this.child});
 
   @override
   Widget build(BuildContext context) {
-    final _controller = Get.put(HomeContoller());
+    final controller = Get.put(HomeContoller());
     return Scaffold(
         body: child,
         bottomNavigationBar: Obx(
-          () => _controller.scrollPixel.value < 250
+          () => controller.scrollPixel.value < 250
               ? Container(
                   height: 60,
                   color: Colors.black,

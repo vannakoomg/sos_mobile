@@ -10,6 +10,7 @@ final con = Get.put(HomeContoller());
 class HomeRepository extends GetxController implements HomeRepositoryBase {
   @override
   Future<void> getQuestion() async {
+    debugPrint("343434");
     con.isLoading.value = true;
     await ApiBaseHelper.obj
         .onNetworkRequesting(

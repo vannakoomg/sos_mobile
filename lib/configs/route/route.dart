@@ -6,7 +6,6 @@ import 'package:sos_mobile/modules/profile/presentation/screen/profile_screen.da
 import 'package:sos_mobile/modules/question/presentaion/screen/question_detail.dart';
 
 import '../../modules/BottomNavigationBar/presentaion/screen/ScaffoldBar.dart';
-import '../../modules/listing/screen/lising_screen.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 GlobalKey<NavigatorState> _shellNaigationkey =

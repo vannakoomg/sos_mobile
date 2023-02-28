@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:sos_mobile/configs/const/app_colors.dart';
-import 'package:sos_mobile/cores/walk_though/slash_screen/presentation/logic/slash_screen_controller.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/utils/helpers/local_data/storge_local.dart';
 
@@ -23,6 +21,7 @@ class _SlashScreenState extends State<SlashScreen> {
   void initState() {
   storeData();
     Future.delayed(const Duration(milliseconds: 100), () {
+      debugPrint("Go to home ");
       context.go('/home');
     });
     super.initState();
