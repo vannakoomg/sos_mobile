@@ -13,7 +13,7 @@ class QuestionCard extends StatelessWidget {
   final GestureTapCallback? onLongPress;
   final GestureTapCallback? onLongPressEnd;
 
-  final Function? onLongPressDown;
+  final Function? onLongPressStart;
   const QuestionCard({
     super.key,
     this.title,
@@ -24,7 +24,7 @@ class QuestionCard extends StatelessWidget {
     required this.ontap,
     required this.onLongPress,
     required this.onLongPressEnd,
-    required this.onLongPressDown,
+    required this.onLongPressStart,
   });
 
   @override
@@ -34,11 +34,13 @@ class QuestionCard extends StatelessWidget {
       onTap: () {
         ontap!();
       },
-      onLongPressDown: (value) {
-        onLongPressDown!(value);
-      },
+    
       onLongPress: () {
         onLongPress!();
+      },
+      onLongPressStart: (value){
+       
+         onLongPressStart!(value);
       },
       onLongPressEnd: (s) {
         onLongPressEnd!();

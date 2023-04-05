@@ -6,7 +6,7 @@ import '../../../home/presentation/logic/home_controller.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
   final Widget? child;
- const ScaffoldWithNavBar({super.key, this.child});
+  const ScaffoldWithNavBar({super.key, this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
                           context.go('/home');
                         },
                         child: const Icon(
-                          Icons.home,
+                          Icons.add,
                           color: Colors.white,
                         ),
                       ),

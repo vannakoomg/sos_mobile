@@ -51,6 +51,9 @@ class HomeContoller extends HomeRepository {
   final isTapcard = false.obs;
   final indexPage = 1.obs;
   final oldScrollPixel = 0.0.obs;
+  final isLongPress =false.obs;
+  final dx = 0.0.obs;
+  final dy = 0.0.obs;
   OverlayState? overlayState; //require
   OverlayEntry? overlayEntry; //require
   void showOverlay(BuildContext context, GlobalKey key) async {
@@ -121,7 +124,7 @@ class HomeContoller extends HomeRepository {
     overlayState
         ?.insert(overlayEntry!); //insert overlay eg. showDialog, showOvelay
   }
-
+  
 
   var currentPage = 1.obs;
   var lastPage = 2.obs;
