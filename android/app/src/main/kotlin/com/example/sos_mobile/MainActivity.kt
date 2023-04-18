@@ -1,4 +1,4 @@
-package com.example.sos_mobile
+package com.kh.sos
 
 import io.flutter.embedding.android.FlutterActivity
 

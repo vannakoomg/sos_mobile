@@ -11,7 +11,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>My description about why I need this capability</string>
 	<key>CFBundleDisplayName</key>
-	<string>Sos Mobile</string>
+	<string>SOS</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

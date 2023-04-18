@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sos_mobile">
+    package="com.kh.sos">
    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="sos_mobile"
+        android:label="SOS"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

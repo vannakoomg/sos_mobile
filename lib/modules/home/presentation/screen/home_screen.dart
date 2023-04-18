@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     scrollController.addListener(() {
       _controller.scrollPixel.value = scrollController.offset;
       if (_controller.scrollPixel.value > 100) {
+        debugPrint("ncie to meet you ");
         _controller.getQuestion();
       }
       _controller.oldScrollPixel.value = _controller.scrollPixel.value;

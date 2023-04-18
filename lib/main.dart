@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:global_configuration/global_configuration.dart';
@@ -7,6 +8,7 @@ import 'configs/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
   await GlobalConfiguration().loadFromAsset('app_settings');
   await LocalStorage.init();
   runApp(const MyApp());
