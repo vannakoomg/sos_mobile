@@ -193,23 +193,7 @@ class QuestionCard extends StatelessWidget {
                           ),
                           child: Row(
                             children: [
-                              Obx(
-                                () => Text(
-                                  "${controller.indexPage.value}",
-                                  style: Theme.of(context).textTheme.bodySmall,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 2,
-                              ),
-                              Text(
-                                "/",
-                                style: Theme.of(context).textTheme.bodySmall,
-                              ),
-                              const SizedBox(
-                                width: 2,
-                              ),
-                              Text(
+                            Text(
                                 "${image!.length}",
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
