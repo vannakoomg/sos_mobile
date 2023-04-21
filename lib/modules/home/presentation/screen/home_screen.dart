@@ -60,12 +60,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       onLongPressStart: (value) {
                         _controller.dx.value = value.globalPosition.dx - 25;
                         _controller.dy.value = value.globalPosition.dy - 100;
-                       
                       },
                       onLongPressEnd: () {
                         _controller.overlayEntry?.remove();
                         _controller.isLongPress.value = false;
-                      },  
+                      },
                       title: _controller.question[i].title!,
                       vote: _controller.question[i].votes,
                       answer: _controller.question[i].answer!,

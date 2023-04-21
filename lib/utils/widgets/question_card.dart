@@ -34,13 +34,11 @@ class QuestionCard extends StatelessWidget {
       onTap: () {
         ontap!();
       },
-    
       onLongPress: () {
         onLongPress!();
       },
-      onLongPressStart: (value){
-       
-         onLongPressStart!(value);
+      onLongPressStart: (value) {
+        onLongPressStart!(value);
       },
       onLongPressEnd: (s) {
         onLongPressEnd!();
@@ -102,15 +100,15 @@ class QuestionCard extends StatelessWidget {
               ),
             )
           : AnimatedContainer(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: controller.isTapcard.value == false
-                  ? const EdgeInsets.all(0)
-                  : const EdgeInsets.only(left: 3, right: 3, top: 1, bottom: 1),
+              margin: const EdgeInsets.only(bottom: 20),
+              // padding: controller.isTapcard.value == false
+              //     ? const EdgeInsets.all(0)
+              //     : const EdgeInsets.only(left: 3, right: 3, top: 1, bottom: 1),
               curve: Curves.ease,
               height: 410,
               decoration: BoxDecoration(
                   color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(0)),
               duration: const Duration(milliseconds: 80),
               child: Column(
                 children: [
@@ -158,7 +156,7 @@ class QuestionCard extends StatelessWidget {
                               imageBuilder: (context, imageProvider) =>
                                   Container(
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(0),
                                   image: DecorationImage(
                                     image: imageProvider,
                                     fit: BoxFit.cover,
@@ -193,7 +191,7 @@ class QuestionCard extends StatelessWidget {
                           ),
                           child: Row(
                             children: [
-                            Text(
+                              Text(
                                 "${image!.length}",
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),

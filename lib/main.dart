@@ -13,15 +13,16 @@ import 'configs/theme/theme.dart';
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print("Handling a background message: ${message.notification!.title}");
 }
+
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_cannel', 'high Importance Notification',
     importance: Importance.high, playSound: true);
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
- FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   if (Platform.isIOS) {
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
@@ -40,14 +41,13 @@ void main() async {
     provisional: false,
     sound: true,
   );
-  String? token = await FirebaseMessaging.instance.getToken();
-  debugPrint(" your get token $token");
+  // String? token = await FirebaseMessaging.instance.getToken();
+  // debugPrint(" your get token $token");
   if (messaging.isAutoInitEnabled) {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       debugPrint("you have been get notification from firebase ");
       RemoteNotification? notification = message.notification;
       if (message.notification != null) {
-      
         if (Platform.isAndroid) {
           await flutterLocalNotificationsPlugin
               .resolvePlatformSpecificImplementation<
