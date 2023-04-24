@@ -11,18 +11,18 @@ class SlashScreen extends StatefulWidget {
 }
 
 class _SlashScreenState extends State<SlashScreen> {
-
-  void storeData()async{
-  await LocalStorage.storeData(key: 'data',value: 'vannak');
-  final name = await LocalStorage.getStringValue(key: 'data');
-  debugPrint("name $name!");
+  void storeData() async {
+    await LocalStorage.storeData(key: 'data', value: 'vannak');
+    final name = await LocalStorage.getStringValue(key: 'data');
+    debugPrint("name $name!");
   }
+
   @override
   void initState() {
-  storeData();
+    storeData();
     Future.delayed(const Duration(milliseconds: 100), () {
       debugPrint("Go to home ");
-      context.go('/home');
+      context.go('/login-screen');
     });
     super.initState();
   }
@@ -31,9 +31,12 @@ class _SlashScreenState extends State<SlashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
-      body:Center(
-              child: Container(height: 40,width: 40,color: Colors.pink,)
-            ,
+      body: Center(
+        child: Container(
+          height: 40,
+          width: 40,
+          color: Colors.pink,
+        ),
       ),
     );
   }
