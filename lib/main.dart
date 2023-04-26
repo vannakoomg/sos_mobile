@@ -4,8 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:global_configuration/global_configuration.dart';
 import 'package:sos_mobile/utils/helpers/local_data/storge_local.dart';
 import 'configs/route/route.dart';
 import 'configs/theme/theme.dart';
@@ -22,6 +22,9 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await dotenv.load(fileName: ".env");
+  String kkk = dotenv.get("base_url");
+  debugPrint("base url $kkk");
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   if (Platform.isIOS) {
     await FirebaseMessaging.instance
@@ -71,7 +74,6 @@ void main() async {
   } else {
     debugPrint('User declined or has not accepted permission');
   }
-  await GlobalConfiguration().loadFromAsset('app_settings');
   await LocalStorage.init();
   runApp(const MyApp());
 }

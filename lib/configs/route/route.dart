@@ -48,15 +48,6 @@ final router = GoRouter(
                   builder: (context, state) {
                     return const QuestionDetail();
                   },
-                  // pageBuilder: (context, state) => CustomTransitionPage<void>(
-                  //   key: state.pageKey,
-                  //   opaque: false,
-                  //   maintainState: false,
-                  //   child: const QuestionDetail(),
-                  //   transitionsBuilder:
-                  //       (context, animation, secondaryAnimation, child) =>
-                  //           FadeTransition(opacity: animation, child: child),
-                  // ),
                 ),
               ]),
           GoRoute(
