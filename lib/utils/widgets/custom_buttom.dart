@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 
 class CustomButtom extends StatelessWidget {
   final String? title;
-  Function? onTap;
-
-  CustomButtom({super.key, this.title, this.onTap});
+  final Function? onTap;
+  final bool disble;
+  const CustomButtom({super.key, this.title, this.onTap, this.disble = false});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap!(),
+      onTap: () {
+        disble == false ? onTap!() : null;
+      },
       child: AnimatedContainer(
         decoration: BoxDecoration(
-            color: Colors.green, borderRadius: BorderRadius.circular(100)),
+            color: disble == false ? Colors.green : Colors.grey,
+            borderRadius: BorderRadius.circular(100)),
         height: 50,
         duration: const Duration(milliseconds: 300),
         child: Center(child: Text("$title")),

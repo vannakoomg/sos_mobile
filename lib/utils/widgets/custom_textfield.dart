@@ -1,19 +1,34 @@
 import 'package:flutter/material.dart';
 
 class CustomTextfield extends StatelessWidget {
-  String? hintText;
-  Function? onChanged;
-  CustomTextfield({super.key, this.hintText, this.onChanged});
+  final double height;
+  final String hintText;
+  final Function? onChanged;
+  final TextInputType textInputType;
+  final TextEditingController? textEditController;
+  final bool autofocus;
+  const CustomTextfield(
+      {super.key,
+      required this.hintText,
+      required this.onChanged,
+      required this.textEditController,
+      this.textInputType = TextInputType.text,
+      this.height = 50,
+      this.autofocus = false});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 55,
+      height: height,
       child: TextFormField(
+        autofocus: autofocus,
+        controller: textEditController,
+        style: const TextStyle(color: Colors.white),
         cursorHeight: 20,
         onChanged: (value) {
           onChanged!(value);
         },
+        keyboardType: textInputType,
         decoration: InputDecoration(
             counterStyle: const TextStyle(color: Colors.white),
             fillColor: Colors.white,
@@ -26,7 +41,7 @@ class CustomTextfield extends StatelessWidget {
               borderSide: const BorderSide(color: Colors.white, width: 1.0),
               borderRadius: BorderRadius.circular(60.0),
             ),
-            hintText: hintText ?? '',
+            hintText: hintText,
             hintStyle: const TextStyle(color: Colors.white, fontSize: 14)),
       ),
     );

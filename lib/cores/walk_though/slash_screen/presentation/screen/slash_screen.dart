@@ -22,7 +22,7 @@ class _SlashScreenState extends State<SlashScreen> {
     storeData();
     Future.delayed(const Duration(milliseconds: 100), () {
       debugPrint("Go to home ");
-      context.go('/login-screen');
+      context.go('/signup-screen');
     });
     super.initState();
   }

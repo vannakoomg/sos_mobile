@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
-import 'package:sos_mobile/utils/widgets/custom_textfield.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -14,21 +13,23 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             children: [
               const Spacer(),
-              CustomTextfield(
-                hintText: "gmail",
-                onChanged: (value) {
-                  debugPrint("value $value");
-                },
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              CustomTextfield(
-                hintText: "passswork",
-                onChanged: (value) {
-                  debugPrint("value $value");
-                },
-              ),
+              // CustomTextfield(
+              //   hintText: "gmail",
+              //   onChanged: (value) {
+              //     debugPrint("value $value");
+              //   },
+              //   textEditController: null,
+              // ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
+              // CustomTextfield(
+              //   hintText: "passswork",
+              //   onChanged: (value) {
+              //     debugPrint("value $value");
+              //   },
+              //   textEditController: null,
+              // ),
               const SizedBox(
                 height: 20,
               ),
