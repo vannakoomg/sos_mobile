@@ -21,12 +21,24 @@ class _HomeScreenState extends State<HomeScreen> {
     // _controller.getQuestion();
     scrollController.addListener(() {
       _controller.scrollPixel.value = scrollController.offset;
-      if (_controller.scrollPixel.value > 100) {
-        debugPrint("ncie to meet you ");
-        _controller.getQuestion();
+
+      if (_controller.oldScrollPixel.value > _controller.scrollPixel.value) {
+        _controller.scrollPixalBack.value =
+            _controller.oldScrollPixel.value - _controller.scrollPixel.value;
+
+        if (_controller.scrollPixalBack.value >
+            _controller.oldScrollback.value) {
+          _controller.oldScrollback.value = _controller.scrollPixalBack.value;
+        } else {
+          _controller.oldScrollPixel.value = _controller.scrollPixel.value;
+        }
+        debugPrint("back : ${_controller.scrollPixalBack.value}");
+      } else {
+        _controller.scrollPixalBack.value = 0;
+        _controller.oldScrollback.value = 0;
+        _controller.oldScrollPixel.value = _controller.scrollPixel.value;
       }
-      _controller.oldScrollPixel.value = _controller.scrollPixel.value;
-      debugPrint("${scrollController.offset}");
+      debugPrint("old ${_controller.oldScrollPixel.value}");
     });
     super.initState();
   }
@@ -74,23 +86,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               if (_controller.isLongPress.value == true)
-                Container(
-                  child: Stack(
-                    children: [
-                      AnimatedPositioned(
-                        left: _controller.dx.value,
-                        top: _controller.dy.value,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.linearToEaseOut,
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          decoration: const BoxDecoration(
-                              color: Colors.green, shape: BoxShape.circle),
-                        ),
+                Stack(
+                  children: [
+                    AnimatedPositioned(
+                      left: _controller.dx.value,
+                      top: _controller.dy.value,
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.linearToEaseOut,
+                      child: Container(
+                        height: 50,
+                        width: 50,
+                        decoration: const BoxDecoration(
+                            color: Colors.green, shape: BoxShape.circle),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 )
             ],
           ),

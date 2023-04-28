@@ -25,7 +25,6 @@ class SignUpScreen extends StatelessWidget {
                 controller.stepsString(),
                 style: Theme.of(context).textTheme.titleSmall,
               ),
-              Text(controller.steps.toString()),
               const SizedBox(
                 height: 20,
               ),

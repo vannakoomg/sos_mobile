@@ -17,6 +17,24 @@ class HomeContoller extends HomeRepository {
       key: GlobalKey(),
     ),
     QuestionModel(
+      title: "ហេតុអ្វី​បានជានេនទំស្រលាញ់ទាវ",
+      image: [
+        "http://www.sciencefriday.com/wp-content/uploads/2016/08/Artboard-1.png",
+      ],
+      answer: "៣៤",
+      votes: "១",
+      key: GlobalKey(),
+    ),
+    QuestionModel(
+      title: "ហេតុអ្វី​បានជានេនទំស្រលាញ់ទាវ",
+      image: [
+        "http://www.sciencefriday.com/wp-content/uploads/2016/08/Artboard-1.png",
+      ],
+      answer: "៣៤",
+      votes: "១",
+      key: GlobalKey(),
+    ),
+    QuestionModel(
         title: "អ្វីទៅជាចលនាអក្សរសិស្សះ",
         image: [
           "https://t3.ftcdn.net/jpg/04/83/90/18/360_F_483901821_46VsNR67uJC3xIKQN4aaxR6GtAZhx9G8.jpg",
@@ -47,11 +65,11 @@ class HomeContoller extends HomeRepository {
         votes: "២០",
         key: GlobalKey()),
   ];
-  final scrollPixel = 0.0.obs;
+
   final isTapcard = false.obs;
   final indexPage = 1.obs;
-  final oldScrollPixel = 0.0.obs;
-  final isLongPress =false.obs;
+
+  final isLongPress = false.obs;
   final dx = 0.0.obs;
   final dy = 0.0.obs;
   OverlayState? overlayState; //require
@@ -124,11 +142,13 @@ class HomeContoller extends HomeRepository {
     overlayState
         ?.insert(overlayEntry!); //insert overlay eg. showDialog, showOvelay
   }
-  
 
+  final scrollPixel = 0.0.obs;
+  final oldScrollPixel = 0.0.obs;
+  final oldScrollback = 0.0.obs;
+  final scrollPixalBack = 0.0.obs;
   var currentPage = 1.obs;
   var lastPage = 2.obs;
-  var isLoading=false.obs;
+  var isLoading = false.obs;
   var listPropertyData = <PropertyModel>[].obs;
-  
 }

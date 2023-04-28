@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-
+import 'package:flutter/material.dart';
 import '../../../home/presentation/logic/home_controller.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
@@ -14,7 +13,8 @@ class ScaffoldWithNavBar extends StatelessWidget {
     return Scaffold(
         body: child,
         bottomNavigationBar: Obx(
-          () => controller.scrollPixel.value < 250
+          () => controller.scrollPixel.value < 250 ||
+                  controller.scrollPixalBack.value > 200
               ? Container(
                   height: 60,
                   color: Colors.black,

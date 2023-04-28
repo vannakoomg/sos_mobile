@@ -80,52 +80,44 @@ class ProfileScreen extends StatelessWidget {
                 decoration: const BoxDecoration(color: Colors.white),
                 child: Row(children: [
                   Expanded(
-                    child: Container(
-                      child: Center(
-                          child: Text(
-                        "3",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(color: Colors.black),
-                      )),
-                    ),
+                    child: Center(
+                        child: Text(
+                      "3",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(color: Colors.black),
+                    )),
                   ),
                   Expanded(
-                    child: Container(
-                      child: Center(
-                          child: Text(
-                        "23",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(color: Colors.black),
-                      )),
-                    ),
+                    child: Center(
+                        child: Text(
+                      "23",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(color: Colors.black),
+                    )),
                   ),
                   Expanded(
-                    child: Container(
-                      child: Center(
-                          child: Text(
-                        "43",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(color: Colors.black),
-                      )),
-                    ),
+                    child: Center(
+                        child: Text(
+                      "43",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(color: Colors.black),
+                    )),
                   ),
                   Expanded(
-                    child: Container(
-                      child: Center(
-                          child: Text(
-                        "4",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(color: Colors.black),
-                      )),
-                    ),
+                    child: Center(
+                        child: Text(
+                      "4",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(color: Colors.black),
+                    )),
                   )
                 ]),
               ),
