@@ -14,7 +14,6 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       body: SizedBox(
-        // margin: const EdgeInsets.only(left: 20, right: 20),
         width: double.infinity,
         height: double.infinity,
         child: Obx(
@@ -133,6 +132,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               Container(
+                padding: const EdgeInsets.only(left: 10, right: 10),
                 height: 50,
                 width: double.infinity,
                 decoration: const BoxDecoration(color: Colors.white),
@@ -177,6 +177,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               Container(
                 height: 50,
+                padding: const EdgeInsets.only(left: 10, right: 10),
                 width: double.infinity,
                 decoration: const BoxDecoration(color: Colors.white),
                 child: Row(children: [

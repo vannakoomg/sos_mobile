@@ -17,42 +17,56 @@ class ScaffoldWithNavBar extends StatelessWidget {
                   controller.scrollPixalBack.value > 200
               ? Container(
                   height: 60,
+                  width: double.infinity,
                   color: Colors.black,
                   child: Row(
                     children: [
-                      const SizedBox(
-                        width: 100,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          context.go('/home');
-                        },
-                        child: const Icon(
-                          Icons.home,
-                          color: Colors.white,
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            debugPrint("nice to meet you ");
+                            context.go('/home');
+                          },
+                          child: Container(
+                            height: 60,
+                            color: Colors.transparent,
+                            child: const Icon(
+                              Icons.home,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
-                      const Spacer(),
-                      GestureDetector(
-                        onTap: () {
-                          context.go('/home');
-                        },
-                        child: const Icon(
-                          Icons.add,
-                          color: Colors.white,
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            debugPrint("nice to meet you ");
+                            context.go('/home');
+                          },
+                          child: Container(
+                            height: 60,
+                            color: Colors.transparent,
+                            child: const Icon(
+                              Icons.home,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
-                      const Spacer(),
-                      GestureDetector(
+                      Expanded(
+                        child: GestureDetector(
                           onTap: () {
                             context.go('/profile');
                           },
-                          child: const Icon(
-                            Icons.propane_outlined,
-                            color: Colors.white,
-                          )),
-                      const SizedBox(
-                        width: 100,
+                          child: Container(
+                            height: 60,
+                            color: Colors.transparent,
+                            child: const Icon(
+                              Icons.person,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ))
