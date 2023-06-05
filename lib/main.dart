@@ -2,11 +2,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/helpers/local_data/storge_local.dart';
 import 'package:sos_mobile/utils/helpers/notification/listion_notification.dart';
 import 'configs/route/route.dart';
 import 'configs/theme/theme.dart';
+import 'modules/BottomNavigationBar/screen/BottonNavigettion.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,11 +30,10 @@ class MyApp extends StatelessWidget {
       onTap: () {
         unFocus(context);
       },
-      child: MaterialApp.router(
-        routeInformationParser: router.routeInformationParser,
-        routerDelegate: router.routerDelegate,
-        routeInformationProvider: router.routeInformationProvider,
+      child: GetMaterialApp(
+        routes: router,
         theme: theme(),
+        home: const BottonNavigettion(),
         debugShowCheckedModeBanner: false,
       ),
     );

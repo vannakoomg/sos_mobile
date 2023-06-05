@@ -10,6 +10,7 @@ _$_QuestionModel _$$_QuestionModelFromJson(Map<String, dynamic> json) =>
     _$_QuestionModel(
       title: json['title'] as String?,
       image: json['image'] as List<dynamic>?,
+      tag: json['tag'] as List<dynamic>?,
       description: json['description'] as String?,
       answer: json['answer'] as String?,
       votes: json['votes'] as String?,
@@ -20,6 +21,7 @@ Map<String, dynamic> _$$_QuestionModelToJson(_$_QuestionModel instance) =>
     <String, dynamic>{
       'title': instance.title,
       'image': instance.image,
+      'tag': instance.tag,
       'description': instance.description,
       'answer': instance.answer,
       'votes': instance.votes,

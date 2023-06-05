@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:sos_mobile/cores/auth/login/presentaion/logic/login_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 
-import 'package:go_router/go_router.dart';
 import '../../../../../utils/widgets/custom_textfield.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -43,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                 title: "Login",
                 onTap: () {
                   controller.login();
-                  context.go('/home');
+                  Get.toNamed('home');
                 },
                 disble: controller.disbleBottom.value,
               ),

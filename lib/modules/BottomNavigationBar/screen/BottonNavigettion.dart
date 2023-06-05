@@ -1,31 +1,39 @@
-import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
-import '../../../home/presentation/logic/home_controller.dart';
+import 'package:sos_mobile/configs/const/app_colors.dart';
+import 'package:sos_mobile/modules/home/presentation/screen/home_screen.dart';
+import 'package:sos_mobile/modules/post_question/screen/post_question_screen.dart';
+import 'package:sos_mobile/modules/profile/presentation/screen/profile_screen.dart';
+import '../../home/presentation/logic/home_controller.dart';
+import 'package:get/get.dart';
 
-class ScaffoldWithNavBar extends StatelessWidget {
-  final Widget? child;
-  const ScaffoldWithNavBar({super.key, this.child});
+import '../controller/bottom_navigation_bar.dart';
 
+class BottonNavigettion extends StatelessWidget {
+  const BottonNavigettion({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HomeContoller());
-    return Scaffold(
-        body: child,
-        bottomNavigationBar: Obx(
-          () => controller.scrollPixel.value < 250 ||
+    final bottonNavigetionController = Get.put(BottomNavigatonBar());
+    return Obx(() => Scaffold(
+          body: bottonNavigetionController.index.value == 1
+              ? const HomeScreen()
+              : bottonNavigetionController.index.value == 2
+                  ? const PostQuestionScreen()
+                  : ProfileScreen(),
+          bottomNavigationBar: controller.scrollPixel.value < 250 ||
                   controller.scrollPixalBack.value > 200
               ? Container(
                   height: 60,
                   width: double.infinity,
-                  color: Colors.black,
+                  color: AppColor.mainColor,
                   child: Row(
                     children: [
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            debugPrint("nice to meet you ");
-                            context.go('/home');
+                            bottonNavigetionController.index.value = 1;
                           },
                           child: Container(
                             height: 60,
@@ -40,14 +48,13 @@ class ScaffoldWithNavBar extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            debugPrint("nice to meet you ");
-                            context.go('/home');
+                            bottonNavigetionController.index.value = 2;
                           },
                           child: Container(
                             height: 60,
                             color: Colors.transparent,
                             child: const Icon(
-                              Icons.home,
+                              Icons.add,
                               color: Colors.white,
                             ),
                           ),
@@ -56,7 +63,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            context.go('/profile');
+                            bottonNavigetionController.index.value = 3;
                           },
                           child: Container(
                             height: 60,

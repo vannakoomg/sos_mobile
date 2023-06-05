@@ -8,6 +8,7 @@ class QuestionModel with _$QuestionModel {
   factory QuestionModel({
     String? title,
     List? image,
+    List? tag,
     String? description,
     String? answer,
     String? votes,

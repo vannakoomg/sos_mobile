@@ -8,12 +8,24 @@ import 'package:sos_mobile/modules/home/data/repostiory/home_repository.dart';
 class HomeContoller extends HomeRepository {
   final question = <QuestionModel>[
     QuestionModel(
-      title: "ហេតុអ្វី​បានជានេនទំស្រលាញ់ទាវ",
+      title:
+          "ហេតុអ្វី​បានជាdfjdsfjdsflkjdslfjsfsjfldsjfljdslfjslkfjlkdsfjlkdsjflkdsjflksadjljdslfjsdlkfjldsនេនទំស្រលាញ់ទាវ",
       image: [
         "http://www.sciencefriday.com/wp-content/uploads/2016/08/Artboard-1.png",
       ],
       answer: "៣៤",
       votes: "១",
+      tag: ["សមីការឌឺក្រេទី២", "គណិតវិទ្យា"],
+      key: GlobalKey(),
+    ),
+    QuestionModel(
+      title: "233324324324234324",
+      image: [
+        "http://www.sciencefriday.com/wp-content/uploads/2016/08/Artboard-1.png",
+      ],
+      answer: "៣៤",
+      votes: "១",
+      tag: ["សមីការឌឺក្រេទី២", "គណិតវិទ្យា"],
       key: GlobalKey(),
     ),
     QuestionModel(
@@ -23,25 +35,19 @@ class HomeContoller extends HomeRepository {
       ],
       answer: "៣៤",
       votes: "១",
+      tag: ["សមីការឌឺក្រេទី២", "គណិតវិទ្យា"],
       key: GlobalKey(),
     ),
     QuestionModel(
-      title: "ហេតុអ្វី​បានជានេនទំស្រលាញ់ទាវ",
-      image: [
-        "http://www.sciencefriday.com/wp-content/uploads/2016/08/Artboard-1.png",
-      ],
-      answer: "៣៤",
-      votes: "១",
-      key: GlobalKey(),
-    ),
-    QuestionModel(
-        title: "អ្វីទៅជាចលនាអក្សរសិស្សះ",
+        title:
+            "អ្វីទៅជាចលdfksdhfkhdskfhkdshfkdshfkhdsfkjhdskfhdskhksdfkdskនាអក្សរសិស្សះ",
         image: [
           "https://t3.ftcdn.net/jpg/04/83/90/18/360_F_483901821_46VsNR67uJC3xIKQN4aaxR6GtAZhx9G8.jpg",
           "https://t3.ftcdn.net/jpg/04/83/90/18/360_F_483901821_46VsNR67uJC3xIKQN4aaxR6GtAZhx9G8.jpg",
           "https://media.istockphoto.com/vectors/drawing-saying-i-love-math-with-pictures-vector-id471025938",
         ],
         answer: "២",
+        tag: ["សមីការឌឺក្រេទី២", "គណិតវិទ្យា"],
         votes: "០",
         key: GlobalKey()),
     QuestionModel(
@@ -52,15 +58,18 @@ class HomeContoller extends HomeRepository {
           "https://www.teahub.io/photos/full/211-2112308_hq-math-wallpapers-math-elementary.jpg",
         ],
         answer: "១",
+        tag: ["សមីការឌឺក្រេទី២", "គណិតវិទ្យា"],
         votes: "៥០០",
         key: GlobalKey()),
     QuestionModel(
-        title: "ចលរនាត្រង់ស្មើ",
+        title:
+            "ចលរនាត្jdsjfjdslkfjlkdjflkdsjfjdslkfjlsdjfldsjlfkjdslkfjlksdjflkdsjflkjdslkfjldskfjldsjflkdsjfruoiruoweiruoewuroewiuroiwssadjflksadjfljdsflkjdsalkfjdslkfjldsjflkdsajflsadjflsajflkjdsalfkjdsjflksjlfjdsalkdfjdslfjរង់ស្មើ",
         image: [
-          "https://t3.ftcdn.net/jpg/04/72/09/24/360_F_472092463_biXCSvYsRVE8S05Ph7LbrxglfDr66MBE.jpg",
-          "https://res.cloudinary.com/dk-find-out/image/upload/q_70,c_pad,w_1200,h_630,f_auto/maths_icon_varwhq.jpg",
-          "https://www.incimages.com/uploaded_files/image/1920x1080/getty_470493341_20001333200092800_398689.jpg",
+          // "https://t3.ftcdn.net/jpg/04/72/09/24/360_F_472092463_biXCSvYsRVE8S05Ph7LbrxglfDr66MBE.jpg",
+          // "https://res.cloudinary.com/dk-find-out/image/upload/q_70,c_pad,w_1200,h_630,f_auto/maths_icon_varwhq.jpg",
+          // "https://www.incimages.com/uploaded_files/image/1920x1080/getty_470493341_20001333200092800_398689.jpg",
         ],
+        tag: ["សមីការឌឺក្រេទី២", "គណិតវិទ្យា"],
         answer: "៨",
         votes: "២០",
         key: GlobalKey()),
@@ -118,7 +127,6 @@ class HomeContoller extends HomeRepository {
                           left: offset.dx,
                           duration: const Duration(milliseconds: 200),
                           child: AnimatedContainer(
-                            //normal Container Widget is OK : Container()
                             duration: const Duration(milliseconds: 200),
                             decoration: const BoxDecoration(
                               color: Colors.white, //any color

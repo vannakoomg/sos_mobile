@@ -22,6 +22,7 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) {
 mixin _$QuestionModel {
   String? get title => throw _privateConstructorUsedError;
   List<dynamic>? get image => throw _privateConstructorUsedError;
+  List<dynamic>? get tag => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get answer => throw _privateConstructorUsedError;
   String? get votes => throw _privateConstructorUsedError;
@@ -42,6 +43,7 @@ abstract class $QuestionModelCopyWith<$Res> {
   $Res call(
       {String? title,
       List<dynamic>? image,
+      List<dynamic>? tag,
       String? description,
       String? answer,
       String? votes,
@@ -63,6 +65,7 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
   $Res call({
     Object? title = freezed,
     Object? image = freezed,
+    Object? tag = freezed,
     Object? description = freezed,
     Object? answer = freezed,
     Object? votes = freezed,
@@ -76,6 +79,10 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      tag: freezed == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
       description: freezed == description
           ? _value.description
@@ -108,6 +115,7 @@ abstract class _$$_QuestionModelCopyWith<$Res>
   $Res call(
       {String? title,
       List<dynamic>? image,
+      List<dynamic>? tag,
       String? description,
       String? answer,
       String? votes,
@@ -127,6 +135,7 @@ class __$$_QuestionModelCopyWithImpl<$Res>
   $Res call({
     Object? title = freezed,
     Object? image = freezed,
+    Object? tag = freezed,
     Object? description = freezed,
     Object? answer = freezed,
     Object? votes = freezed,
@@ -140,6 +149,10 @@ class __$$_QuestionModelCopyWithImpl<$Res>
       image: freezed == image
           ? _value._image
           : image // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      tag: freezed == tag
+          ? _value._tag
+          : tag // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
       description: freezed == description
           ? _value.description
@@ -167,11 +180,13 @@ class _$_QuestionModel implements _QuestionModel {
   _$_QuestionModel(
       {this.title,
       final List<dynamic>? image,
+      final List<dynamic>? tag,
       this.description,
       this.answer,
       this.votes,
       this.key})
-      : _image = image;
+      : _image = image,
+        _tag = tag;
 
   factory _$_QuestionModel.fromJson(Map<String, dynamic> json) =>
       _$$_QuestionModelFromJson(json);
@@ -188,6 +203,16 @@ class _$_QuestionModel implements _QuestionModel {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<dynamic>? _tag;
+  @override
+  List<dynamic>? get tag {
+    final value = _tag;
+    if (value == null) return null;
+    if (_tag is EqualUnmodifiableListView) return _tag;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String? description;
   @override
@@ -199,7 +224,7 @@ class _$_QuestionModel implements _QuestionModel {
 
   @override
   String toString() {
-    return 'QuestionModel(title: $title, image: $image, description: $description, answer: $answer, votes: $votes, key: $key)';
+    return 'QuestionModel(title: $title, image: $image, tag: $tag, description: $description, answer: $answer, votes: $votes, key: $key)';
   }
 
   @override
@@ -209,6 +234,7 @@ class _$_QuestionModel implements _QuestionModel {
             other is _$_QuestionModel &&
             (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other._image, _image) &&
+            const DeepCollectionEquality().equals(other._tag, _tag) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.answer, answer) || other.answer == answer) &&
@@ -222,6 +248,7 @@ class _$_QuestionModel implements _QuestionModel {
       runtimeType,
       title,
       const DeepCollectionEquality().hash(_image),
+      const DeepCollectionEquality().hash(_tag),
       description,
       answer,
       votes,
@@ -245,6 +272,7 @@ abstract class _QuestionModel implements QuestionModel {
   factory _QuestionModel(
       {final String? title,
       final List<dynamic>? image,
+      final List<dynamic>? tag,
       final String? description,
       final String? answer,
       final String? votes,
@@ -257,6 +285,8 @@ abstract class _QuestionModel implements QuestionModel {
   String? get title;
   @override
   List<dynamic>? get image;
+  @override
+  List<dynamic>? get tag;
   @override
   String? get description;
   @override

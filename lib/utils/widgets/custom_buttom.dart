@@ -4,7 +4,11 @@ class CustomButtom extends StatelessWidget {
   final String? title;
   final Function? onTap;
   final bool disble;
-  const CustomButtom({super.key, this.title, this.onTap, this.disble = false});
+  const CustomButtom(
+      {super.key,
+      required this.title,
+      required this.onTap,
+      this.disble = false});
 
   @override
   Widget build(BuildContext context) {

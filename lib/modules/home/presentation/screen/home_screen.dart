@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/app_colors.dart';
 import 'package:sos_mobile/modules/home/presentation/logic/home_controller.dart';
 
@@ -48,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Obx(
         () => Container(
-          color: AppColor.backgroundColor,
+          color: AppColor.mainColor,
           child: Stack(
             children: [
               Container(
@@ -62,8 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     return QuestionCard(
                       key: _controller.question[i].key,
                       ontap: () {
-                        context.go('/home/question-detail/100 ');
+                        Get.toNamed("question-detail");
                       },
+                      tag: _controller.question[i].tag!,
                       onLongPress: () {
                         _controller.showOverlay(
                             context, _controller.question[i].key);

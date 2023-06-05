@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
+final ImagePicker picker = ImagePicker();
 bool checkStringIsgmail({required String value}) {
   return RegExp(
           r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -11,4 +13,9 @@ void unFocus(BuildContext context) {
   if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
     FocusManager.instance.primaryFocus!.unfocus();
   }
+}
+
+Future<List> pickMultiImage() async {
+  var listimage = await picker.pickMultiImage();
+  return listimage;
 }

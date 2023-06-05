@@ -12,7 +12,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.mainColor,
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
@@ -37,15 +37,15 @@ class ProfileScreen extends StatelessWidget {
               GestureDetector(
                   onTap: () async {
                     final ImagePicker picker = ImagePicker();
-                    var image =
-                        await picker.pickImage(source: ImageSource.gallery);
+                    // var image =
+                    //     await picker.pickImage(source: ImageSource.gallery);
                     // _profileController.listImage.clear();
-                    // var imagee = await picker.pickMultiImage();
+                    var imagee = await picker.pickMultiImage();
                     // imagee.map((e) {
                     //   _profileController.listImage.add(File(e.path));
                     // }).toList();
 
-                    _profileController.imagePath.value = File(image!.path);
+                    _profileController.imagePath.value = File(imagee[0].path);
                     // debugPrint(
                     //     "image path ${_profileController.listImage[0]}");
                   },
