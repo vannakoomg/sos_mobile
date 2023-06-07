@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sos_mobile/configs/const/app_colors.dart';
 
 class CustomTextfield extends StatelessWidget {
   final String hintText;
@@ -22,26 +23,27 @@ class CustomTextfield extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       padding: const EdgeInsets.only(left: 5, right: 5),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        color: AppColor.primaryColor,
       ),
-      child: TextFormField(
+      child: TextField(
         autofocus: autofocus,
         controller: textEditController,
         style: const TextStyle(color: Colors.black),
-        // cursorHeight: 16,
         onChanged: (value) {
           onChanged!(value);
         },
+        enableSuggestions: false,
+        autocorrect: false,
         keyboardType: textInputType,
         decoration: InputDecoration(
+            border: InputBorder.none,
             counterStyle: const TextStyle(color: Colors.white),
             fillColor: Colors.white,
             focusColor: Colors.white,
             hintText: hintText,
             hintStyle: const TextStyle(color: Colors.black, fontSize: 14)),
         maxLines: maxLines,
-        // textInputAction: TextInputAction.next,
       ),
     );
   }

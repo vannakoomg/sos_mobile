@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/helpers/api_base_helper/api_base_helper.dart';
-import '../../home/data/Model/property_data/property_data.dart';
+import '../../home/Model/property_data/property_data.dart';
 
 class ListingController extends GetxController {
   var isLoding = false.obs;

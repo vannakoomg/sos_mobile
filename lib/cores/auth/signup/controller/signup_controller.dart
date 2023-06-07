@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/cores/auth/signup/data/repository/signup_repostitory.dart';
 
-import '../../../../../utils/helpers/fuction.dart';
+import '../../../../utils/helpers/fuction.dart';
 
-class SignUpController extends SignupRepository {
+class SignUpController extends GetxController {
   final steps = 0.obs;
   final disbleBottom = true.obs;
   final gmailTextEditController = TextEditingController().obs;

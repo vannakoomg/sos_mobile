@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 
 import '../../../configs/const/app_colors.dart';
 
-class CustomCommentCrad extends StatelessWidget {
+class CustomAnswerCrad extends StatelessWidget {
   final bool isYourOwnQuestion;
+  final String avarta;
   final String name;
   final String time;
   final String title;
+  final String description;
   final List<String> image;
   final String commentCount;
   final String likeComment;
@@ -17,11 +19,13 @@ class CustomCommentCrad extends StatelessWidget {
   final Function ontapDislikeComment;
   final Function ontapLikeComment;
 
-  const CustomCommentCrad({
+  const CustomAnswerCrad({
     super.key,
     required this.isYourOwnQuestion,
+    required this.avarta,
     required this.name,
     required this.time,
+    required this.description,
     required this.title,
     required this.image,
     required this.commentCount,
@@ -35,47 +39,59 @@ class CustomCommentCrad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 400),
       padding: const EdgeInsets.only(left: 10, top: 10, bottom: 20, right: 10),
       decoration: BoxDecoration(
         color: AppColor.primaryColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Container(
-                height: 40,
-                width: 40,
-                decoration: const BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(image: NetworkImage(""))),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(name),
-                  Text(time),
-                ],
-              ),
-              const Spacer(),
-              if (isYourOwnQuestion == true)
+          GestureDetector(
+            onTap: () {
+              ontapProfile();
+            },
+            child: Row(
+              children: [
                 Container(
-                  height: 20,
-                  width: 20,
-                  color: Colors.green,
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: NetworkImage(avarta), fit: BoxFit.cover)),
                 ),
-            ],
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(name),
+                    Text(time),
+                  ],
+                ),
+                const Spacer(),
+                if (isYourOwnQuestion == true)
+                  Container(
+                    height: 20,
+                    width: 20,
+                    color: Colors.green,
+                  ),
+              ],
+            ),
+          ),
+          Text(
+            title,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
           const SizedBox(
             height: 10,
           ),
-          Text(title),
+          Text(description),
           if (image.isNotEmpty)
             SizedBox(
               height: 200,
@@ -98,7 +114,7 @@ class CustomCommentCrad extends StatelessWidget {
               Text(likeComment),
               const Text("+")
             ],
-          )
+          ),
         ],
       ),
     );

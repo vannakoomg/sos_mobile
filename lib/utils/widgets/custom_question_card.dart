@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/modules/home/presentation/logic/home_controller.dart';
-import 'package:sos_mobile/utils/widgets/custom_tag_card.dart';
+import 'package:sos_mobile/configs/const/app_colors.dart';
+import 'package:sos_mobile/modules/home/controllers/home_controller.dart';
+
+import 'custom_tag_card.dart';
 
 class QuestionCard extends StatelessWidget {
   final String? title;
@@ -56,82 +58,42 @@ class QuestionCard extends StatelessWidget {
         controller.isTapcard.value = true;
       },
       child: image!.isEmpty
-          ? Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Container(
-                padding: const EdgeInsets.only(
-                    left: 5, right: 5, bottom: 10, top: 10),
-                decoration: const BoxDecoration(
-                  color: Color(0xffdee2e6),
-                ),
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Text(
-                        "$title",
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                        ),
-                        maxLines: 10,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    Text("$answer",
-                        style: const TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 17)),
-                    Container(
-                      margin: const EdgeInsets.only(
-                          bottom: 8, top: 8, left: 8, right: 8),
-                      height: 22,
-                      width: 0.6,
-                      color: Colors.white,
-                    ),
-                    Text(
-                      "$vote",
-                      style: const TextStyle(
-                          color: Colors.orange,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 17),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                ),
-              ),
-            )
-          : AnimatedContainer(
-              margin: const EdgeInsets.only(bottom: 20),
-              curve: Curves.ease,
-              height: title!.length < 30 ? 440 : 450,
+          ? Container(
+              margin: const EdgeInsets.only(bottom: 10),
+              padding: const EdgeInsets.only(
+                  left: 10, right: 10, top: 15, bottom: 10),
               decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(0)),
-              duration: const Duration(milliseconds: 80),
+                borderRadius: BorderRadius.circular(15),
+                color: AppColor.primaryColor,
+              ),
               child: Column(
                 children: [
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        width: 10,
-                      ),
                       Expanded(
                         child: Text(
                           "$title",
                           style: Theme.of(context).textTheme.titleSmall,
+                          maxLines: 10,
                           overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
                         ),
                       ),
-                      const SizedBox(
-                        width: 20,
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Row(
+                          children: tag.map((e) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 5),
+                              child: CustomTapCard(
+                                title: e,
+                              ),
+                            );
+                          }).toList(),
+                        ),
                       ),
                       Text("$answer",
                           style: const TextStyle(
@@ -143,58 +105,77 @@ class QuestionCard extends StatelessWidget {
                             bottom: 8, top: 8, left: 8, right: 8),
                         height: 22,
                         width: 0.6,
-                        color: Colors.white,
                       ),
-                      Text("$vote",
-                          style: const TextStyle(
-                              color: Colors.orange,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 17)),
-                      const SizedBox(
-                        width: 10,
+                      Text(
+                        "$vote",
+                        style: const TextStyle(
+                            color: Colors.orange,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 17),
                       ),
                     ],
                   ),
-                  if (title!.length > 30)
-                    const SizedBox(
-                      height: 10,
-                    ),
+                ],
+              ),
+            )
+          : AnimatedContainer(
+              margin: const EdgeInsets.only(bottom: 10),
+              padding: const EdgeInsets.only(bottom: 15, top: 10),
+              curve: Curves.ease,
+              decoration: BoxDecoration(
+                  color: AppColor.primaryColor,
+                  borderRadius: BorderRadius.circular(15)),
+              duration: const Duration(milliseconds: 80),
+              child: Column(
+                children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 10, bottom: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Row(
-                      children: tag.map((e) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 5),
-                          child: CustomTapCard(
-                            title: e,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "$title",
+                            style: Theme.of(context).textTheme.titleSmall,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                           ),
-                        );
-                      }).toList(),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text("$answer",
+                            style: const TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 17)),
+                        Container(
+                          margin: const EdgeInsets.only(
+                              bottom: 8, top: 8, left: 8, right: 8),
+                          height: 22,
+                          width: 0.6,
+                          color: Colors.white,
+                        ),
+                        Text("$vote",
+                            style: const TextStyle(
+                                color: Colors.orange,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 17)),
+                      ],
                     ),
                   ),
                   Stack(
                     children: [
                       SizedBox(
-                        height: 364,
+                        height: 350,
                         width: double.infinity,
                         child: PageView.builder(
                           itemBuilder: (context, page) {
                             return CachedNetworkImage(
                               imageUrl: image![page],
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(0),
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              height: 264,
+                              fit: BoxFit.cover,
                               width: MediaQuery.of(context).size.height,
                               placeholder: (context, url) => Container(
-                                height: 264,
                                 color: Colors.red,
                               ),
                               errorWidget: (context, url, error) =>
@@ -214,7 +195,7 @@ class QuestionCard extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               left: 10, right: 10, top: 2, bottom: 2),
                           decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.6),
+                            // color: Colors.black.withOpacity(0.6),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Row(
@@ -228,6 +209,19 @@ class QuestionCard extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 10),
+                    child: Row(
+                      children: tag.map((e) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 5),
+                          child: CustomTapCard(
+                            title: e,
+                          ),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ],
               ),

@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/app_colors.dart';
-import 'package:sos_mobile/modules/home/data/Model/property_data/property_data.dart';
-import 'package:sos_mobile/modules/home/data/Model/question_model/question_model.dart';
-import 'package:sos_mobile/modules/home/data/repostiory/home_repository.dart';
+import 'package:sos_mobile/modules/home/Model/property_data/property_data.dart';
+import 'package:sos_mobile/modules/home/Model/question_model/question_model.dart';
 
-class HomeContoller extends HomeRepository {
+class HomeContoller extends GetxController {
   final question = <QuestionModel>[
     QuestionModel(
       title:
           "ហេតុអ្វី​បានជាdfjdsfjdsflkjdslfjsfsjfldsjfljdslfjslkfjlkdsfjlkdsjflkdsjflksadjljdslfjsdlkfjldsនេនទំស្រលាញ់ទាវ",
-      image: [
-        "http://www.sciencefriday.com/wp-content/uploads/2016/08/Artboard-1.png",
-      ],
+      image: [],
       answer: "៣៤",
       votes: "១",
       tag: ["សមីការឌឺក្រេទី២", "គណិតវិទ្យា"],

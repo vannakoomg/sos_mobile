@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/cores/auth/login/data/presentaion/login_repository.dart';
 
-class LoginController extends LoginRepository {
+class LoginController extends GetxController {
   final phoneTextEditController = TextEditingController().obs;
   final passwordTextEditController = TextEditingController().obs;
   final disbleBottom = true.obs;

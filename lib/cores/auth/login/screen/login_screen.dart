@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/cores/auth/login/presentaion/logic/login_controller.dart';
+import 'package:sos_mobile/cores/auth/login/controllers/login_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 
-import '../../../../../utils/widgets/custom_textfield.dart';
+import '../../../../utils/widgets/custom_textfield.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
               CustomButtom(
                 title: "Login",
                 onTap: () {
-                  controller.login();
+                  // controller.login();
                   Get.toNamed('home');
                 },
                 disble: controller.disbleBottom.value,

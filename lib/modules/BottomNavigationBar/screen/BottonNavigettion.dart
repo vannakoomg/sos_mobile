@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sos_mobile/configs/const/app_colors.dart';
-import 'package:sos_mobile/modules/home/presentation/screen/home_screen.dart';
+import 'package:sos_mobile/modules/home/screen/home_screen.dart';
 import 'package:sos_mobile/modules/post_question/screen/post_question_screen.dart';
-import 'package:sos_mobile/modules/profile/presentation/screen/profile_screen.dart';
-import '../../home/presentation/logic/home_controller.dart';
+import 'package:sos_mobile/modules/profile/screen/profile_screen.dart';
+import '../../home/controllers/home_controller.dart';
 import 'package:get/get.dart';
 
 import '../controller/bottom_navigation_bar.dart';

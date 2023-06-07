@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/app_colors.dart';
-import 'package:sos_mobile/modules/home/presentation/logic/home_controller.dart';
+import 'package:sos_mobile/modules/home/controllers/home_controller.dart';
 
-import '../../../../utils/widgets/question_card.dart';
+import '../../../utils/widgets/custom_question_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Stack(
             children: [
               Container(
-                padding: const EdgeInsets.only(left: 0, right: 0),
+                margin: const EdgeInsets.only(top: 40),
                 height: double.infinity,
                 width: double.infinity,
                 child: ListView.builder(

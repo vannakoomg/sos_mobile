@@ -18,10 +18,10 @@ ThemeData theme() {
           fontSize: 16,
           fontWeight: FontWeight.w400),
       titleSmall: TextStyle(
-          color: Colors.white,
-          fontFamily: 'preahvihear',
+          color: Colors.black,
+          // fontFamily: 'preahvihear',
           fontSize: 14,
-          fontWeight: FontWeight.w400),
+          fontWeight: FontWeight.w600),
       bodySmall: TextStyle(
           color: Colors.white,
           fontFamily: 'preahvihear',
