@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/cores/auth/signup/presetation/logic/signup_controller.dart';
+import 'package:sos_mobile/cores/auth/signup/controller/signup_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 import 'package:sos_mobile/utils/widgets/custom_textfield.dart';
 
