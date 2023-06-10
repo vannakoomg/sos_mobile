@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print("Handling a background message: ${message.notification!.title}");
+  debugPrint("Handling a background message: ${message.notification!.title}");
 }
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(

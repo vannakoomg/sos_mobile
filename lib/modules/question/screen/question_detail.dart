@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/app_colors.dart';
 import 'package:sos_mobile/modules/question/controller/question_detail_controller.dart';
 
-import '../../../utils/widgets/custom_comment_crad.dart';
+import '../widgets/answer_card.dart';
 
 class QuestionDetail extends StatelessWidget {
   const QuestionDetail({super.key});
@@ -141,40 +141,91 @@ class QuestionDetail extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                const CustomCommentCrad(
-                    name: "កញ្ញា",
-                    time: '3h ',
-                    title:
-                        "B sl dfdsfkjdslkfjlkdsfjlkdsjflkjdslfkjdslkfjlkdsjflkdsjflkjdslkfjldskfjlkdsjflksdjflkjsdflkjkdjsfkjdskjlsdjljdsljdflkjdsljfjdslfkjdslkjfsdjfsjdsoy "),
-                const SizedBox(
-                  height: 10,
+                CustomAnswerCrad(
+                  isYourOwnQuestion: true,
+                  name: "ចាន់ថា",
+                  time: "១០​ថ្ងៃមុន",
+                  title: "ដោយសារការស្រលាញ់",
+                  description:
+                      "អ្នកបានតាម​តំណភ្ជាប់​ទៅ​ទំព័រដែលមិនទាន់មាននៅឡើយ។ ដើម្បីបង្កើតទំព័រនេះ សូមចាប់ផ្ដើមវាយ​ក្នុងប្រអប់ខាងក្រោម (សូមមើល ទំព័រ​ជំនួយ សម្រាប់​ព័ត៌មានបន្ថែម)។ បើ​អ្នក​មក​ទីនេះដោយអចេតនា សូមចុចប៊ូតុង ត្រឡប់ក្រោយ របស់ឧបករណ៍រាវរករបស់អ្នក។",
+                  image: const [
+                    "https://upload.wikimedia.org/wikipedia/commons/7/72/Angkor_wat_temple.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/6/6c/Angkor_Wat_from_north_pond.JPG"
+                  ],
+                  commentCount: "4",
+                  likeComment: "50",
+                  ontapProfile: () {},
+                  ontapCorrect: () {},
+                  ontapComment: () {},
+                  ontapDislikeComment: () {},
+                  ontapLikeComment: () {},
+                  avarta: '',
                 ),
-                const CustomCommentCrad(
-                    name: "តុលា", time: '3h ', title: "khmer sl khmer "),
-                const SizedBox(
-                  height: 60,
-                )
-                // CustomAnswerCrad(
-                //   isYourOwnQuestion: true,
-                //   name: "ចាន់ថា",
-                //   time: "១០​ថ្ងៃមុន",
-                //   title: "ដោយសារការស្រលាញ់",
-                //   description:
-                //       "អ្នកបានតាម​តំណភ្ជាប់​ទៅ​ទំព័រដែលមិនទាន់មាននៅឡើយ។ ដើម្បីបង្កើតទំព័រនេះ សូមចាប់ផ្ដើមវាយ​ក្នុងប្រអប់ខាងក្រោម (សូមមើល ទំព័រ​ជំនួយ សម្រាប់​ព័ត៌មានបន្ថែម)។ បើ​អ្នក​មក​ទីនេះដោយអចេតនា សូមចុចប៊ូតុង ត្រឡប់ក្រោយ របស់ឧបករណ៍រាវរករបស់អ្នក។",
-                //   image: const [
-                //     "https://upload.wikimedia.org/wikipedia/commons/7/72/Angkor_wat_temple.jpg",
-                //     "https://upload.wikimedia.org/wikipedia/commons/6/6c/Angkor_Wat_from_north_pond.JPG"
+                CustomAnswerCrad(
+                  isYourOwnQuestion: true,
+                  name: "ចាន់ថា",
+                  time: "១០​ថ្ងៃមុន",
+                  title: "ដោយសារការស្រលាញ់",
+                  description:
+                      "អ្នកបានតាម​តំណភ្ជាប់​ទៅ​ទំព័រដែលមិនទាន់មាននៅឡើយ។ ដើម្បីបង្កើតទំព័រនេះ សូមចាប់ផ្ដើមវាយ​ក្នុងប្រអប់ខាងក្រោម (សូមមើល ទំព័រ​ជំនួយ សម្រាប់​ព័ត៌មានបន្ថែម)។ បើ​អ្នក​មក​ទីនេះដោយអចេតនា សូមចុចប៊ូតុង ត្រឡប់ក្រោយ របស់ឧបករណ៍រាវរករបស់អ្នក។",
+                  image: const [
+                    "https://upload.wikimedia.org/wikipedia/commons/7/72/Angkor_wat_temple.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/6/6c/Angkor_Wat_from_north_pond.JPG"
+                  ],
+                  commentCount: "4",
+                  likeComment: "50",
+                  ontapProfile: () {},
+                  ontapCorrect: () {},
+                  ontapComment: () {},
+                  ontapDislikeComment: () {},
+                  ontapLikeComment: () {},
+                  avarta: '',
+                ),
+                // PageView(
+                //   children: [
+                //     const Column(
+                //       children: [
+                //         CustomCommentCrad(
+                //             name: "កញ្ញា",
+                //             time: '3h ',
+                //             title:
+                //                 "B sl dfdsfkjdslkfjlkdsfjlkdsjflkjdslfkjdslkfjlkdsjflkdsjflkjdslkfjldskfjlkdsjflksdjflkjsdflkjkdjsfkjdskjlsdjljdsljdflkjdsljfjdslfkjdslkjfsdjfsjdsoy "),
+                //         SizedBox(
+                //           height: 10,
+                //         ),
+                //         CustomCommentCrad(
+                //             name: "តុលា",
+                //             time: '3h ',
+                //             title: "khmer sl khmer "),
+                //       ],
+                //     ),
+                //     CustomAnswerCrad(
+                //       isYourOwnQuestion: true,
+                //       name: "ចាន់ថា",
+                //       time: "១០​ថ្ងៃមុន",
+                //       title: "ដោយសារការស្រលាញ់",
+                //       description:
+                //           "អ្នកបានតាម​តំណភ្ជាប់​ទៅ​ទំព័រដែលមិនទាន់មាននៅឡើយ។ ដើម្បីបង្កើតទំព័រនេះ សូមចាប់ផ្ដើមវាយ​ក្នុងប្រអប់ខាងក្រោម (សូមមើល ទំព័រ​ជំនួយ សម្រាប់​ព័ត៌មានបន្ថែម)។ បើ​អ្នក​មក​ទីនេះដោយអចេតនា សូមចុចប៊ូតុង ត្រឡប់ក្រោយ របស់ឧបករណ៍រាវរករបស់អ្នក។",
+                //       image: const [
+                //         "https://upload.wikimedia.org/wikipedia/commons/7/72/Angkor_wat_temple.jpg",
+                //         "https://upload.wikimedia.org/wikipedia/commons/6/6c/Angkor_Wat_from_north_pond.JPG"
+                //       ],
+                //       commentCount: "4",
+                //       likeComment: "50",
+                //       ontapProfile: () {},
+                //       ontapCorrect: () {},
+                //       ontapComment: () {},
+                //       ontapDislikeComment: () {},
+                //       ontapLikeComment: () {},
+                //       avarta: '',
+                //     )
                 //   ],
-                //   commentCount: "4",
-                //   likeComment: "50",
-                //   ontapProfile: () {},
-                //   ontapCorrect: () {},
-                //   ontapComment: () {},
-                //   ontapDislikeComment: () {},
-                //   ontapLikeComment: () {},
                 // ),
+                const SizedBox(
+                  height: 100,
+                )
                 // const SizedBox(
-                //   height: 100,
+                //   height: 60,
                 // )
               ],
             ),

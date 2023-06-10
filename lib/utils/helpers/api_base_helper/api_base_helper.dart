@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:get/get_connect.dart';
-import 'package:injectable/injectable.dart';
 
 import '../local_data/storge_local.dart';
 
@@ -17,9 +16,7 @@ enum METHODE {
   update,
 }
 
-@injectable
 class ApiBaseHelper extends GetConnect {
- 
   static final ApiBaseHelper apiBaseHelper = ApiBaseHelper._internal();
   ApiBaseHelper._internal();
   static ApiBaseHelper get obj => apiBaseHelper;

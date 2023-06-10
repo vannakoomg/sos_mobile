@@ -120,7 +120,7 @@ class QuestionCard extends StatelessWidget {
             )
           : AnimatedContainer(
               margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.only(bottom: 15, top: 10),
+              padding: const EdgeInsets.only(bottom: 15, top: 15),
               curve: Curves.ease,
               decoration: BoxDecoration(
                   color: AppColor.primaryColor,
@@ -138,11 +138,11 @@ class QuestionCard extends StatelessWidget {
                             "$title",
                             style: Theme.of(context).textTheme.titleSmall,
                             overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
+                            // maxLines: 2,
                           ),
                         ),
                         const SizedBox(
-                          width: 20,
+                          width: 10,
                         ),
                         Text("$answer",
                             style: const TextStyle(

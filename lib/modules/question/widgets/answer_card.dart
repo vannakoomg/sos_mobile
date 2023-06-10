@@ -39,8 +39,8 @@ class CustomAnswerCrad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 400),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 5, top: 5),
       padding: const EdgeInsets.only(left: 10, top: 10, bottom: 20, right: 10),
       decoration: BoxDecoration(
         color: AppColor.primaryColor,

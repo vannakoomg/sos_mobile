@@ -71,10 +71,8 @@ class HomeContoller extends GetxController {
         votes: "២០",
         key: GlobalKey()),
   ];
-
   final isTapcard = false.obs;
   final indexPage = 1.obs;
-
   final isLongPress = false.obs;
   final dx = 0.0.obs;
   final dy = 0.0.obs;
@@ -156,4 +154,6 @@ class HomeContoller extends GetxController {
   var lastPage = 2.obs;
   var isLoading = false.obs;
   var listPropertyData = <PropertyModel>[].obs;
+  final isForYou = true.obs;
+  final isMovePage = true.obs;
 }

@@ -9,5 +9,5 @@ var router = {
   'slash-screen': (context) => const SlashScreen(),
   'signup-screen': (context) => const SignUpScreen(),
   'question-detail': (context) => const QuestionDetail(),
-  'profile': (context) => ProfileScreen(),
+  'profile': (context) => const ProfileScreen(),
 };

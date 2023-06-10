@@ -21,7 +21,7 @@ class BottonNavigettion extends StatelessWidget {
               ? const HomeScreen()
               : bottonNavigetionController.index.value == 2
                   ? const PostQuestionScreen()
-                  : ProfileScreen(),
+                  : const ProfileScreen(),
           bottomNavigationBar: controller.scrollPixel.value < 250 ||
                   controller.scrollPixalBack.value > 200
               ? Container(
