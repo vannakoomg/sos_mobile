@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/app_colors.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/question/controller/question_detail_controller.dart';
 
 import '../widgets/answer_card.dart';

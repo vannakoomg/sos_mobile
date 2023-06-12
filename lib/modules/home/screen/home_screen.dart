@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/app_colors.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/home/controllers/home_controller.dart';
 import 'package:sos_mobile/modules/save/screens/save_screen.dart';
 

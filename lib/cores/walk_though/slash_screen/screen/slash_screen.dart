@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/app_colors.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/utils/helpers/local_data/storge_local.dart';
 
 class SlashScreen extends StatefulWidget {

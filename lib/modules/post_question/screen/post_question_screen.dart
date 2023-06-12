@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/app_colors.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/post_question/controllers/post_question_controller.dart';
 
 import '../../../utils/widgets/custom_tag_card.dart';

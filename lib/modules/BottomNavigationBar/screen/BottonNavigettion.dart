@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sos_mobile/configs/const/app_colors.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/home/screen/home_screen.dart';
 import 'package:sos_mobile/modules/post_question/screen/post_question_screen.dart';
 import 'package:sos_mobile/modules/profile/screen/profile_screen.dart';
@@ -17,6 +17,7 @@ class BottonNavigettion extends StatelessWidget {
     final controller = Get.put(HomeContoller());
     final bottonNavigetionController = Get.put(BottomNavigatonBar());
     return Obx(() => Scaffold(
+          backgroundColor: AppColor.mainColor,
           body: bottonNavigetionController.index.value == 1
               ? const HomeScreen()
               : bottonNavigetionController.index.value == 2
@@ -25,9 +26,14 @@ class BottonNavigettion extends StatelessWidget {
           bottomNavigationBar: controller.scrollPixel.value < 250 ||
                   controller.scrollPixalBack.value > 200
               ? Container(
+                  margin: const EdgeInsets.only(left: 20, right: 20),
                   height: 60,
                   width: double.infinity,
-                  color: AppColor.mainColor,
+                  decoration: BoxDecoration(
+                      color: AppColor.mainColor,
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20))),
                   child: Row(
                     children: [
                       Expanded(
@@ -48,6 +54,21 @@ class BottonNavigettion extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
+                            bottonNavigetionController.index.value = 1;
+                          },
+                          child: Container(
+                            height: 60,
+                            color: Colors.transparent,
+                            child: const Icon(
+                              Icons.search,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
                             bottonNavigetionController.index.value = 2;
                           },
                           child: Container(
@@ -55,6 +76,21 @@ class BottonNavigettion extends StatelessWidget {
                             color: Colors.transparent,
                             child: const Icon(
                               Icons.add,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            bottonNavigetionController.index.value = 1;
+                          },
+                          child: Container(
+                            height: 60,
+                            color: Colors.transparent,
+                            child: const Icon(
+                              Icons.notifications,
                               color: Colors.white,
                             ),
                           ),

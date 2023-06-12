@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sos_mobile/configs/const/app_colors.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
 class CustomCommentCrad extends StatelessWidget {
   final String name;

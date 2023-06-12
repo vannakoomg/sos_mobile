@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/app_colors.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/home/controllers/home_controller.dart';
 
 import 'custom_tag_card.dart';
@@ -84,16 +84,22 @@ class QuestionCard extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: Row(
-                          children: tag.map((e) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 5),
-                              child: CustomTapCard(
-                                title: e,
-                              ),
-                            );
-                          }).toList(),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: tag.map((e) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 5),
+                                child: CustomTapCard(
+                                  title: e,
+                                ),
+                              );
+                            }).toList(),
+                          ),
                         ),
+                      ),
+                      const SizedBox(
+                        width: 10,
                       ),
                       Text("$answer",
                           style: const TextStyle(
@@ -144,23 +150,6 @@ class QuestionCard extends StatelessWidget {
                         const SizedBox(
                           width: 10,
                         ),
-                        Text("$answer",
-                            style: const TextStyle(
-                                color: Colors.green,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 17)),
-                        Container(
-                          margin: const EdgeInsets.only(
-                              bottom: 8, top: 8, left: 8, right: 8),
-                          height: 22,
-                          width: 0.6,
-                          color: Colors.white,
-                        ),
-                        Text("$vote",
-                            style: const TextStyle(
-                                color: Colors.orange,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 17)),
                       ],
                     ),
                   ),
@@ -195,7 +184,6 @@ class QuestionCard extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               left: 10, right: 10, top: 2, bottom: 2),
                           decoration: BoxDecoration(
-                            // color: Colors.black.withOpacity(0.6),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Row(
@@ -210,18 +198,52 @@ class QuestionCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, top: 10),
-                    child: Row(
-                      children: tag.map((e) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 5),
-                          child: CustomTapCard(
-                            title: e,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10, top: 10),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: tag.map((e) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 5),
+                                  child: CustomTapCard(
+                                    title: e,
+                                  ),
+                                );
+                              }).toList(),
+                            ),
                           ),
-                        );
-                      }).toList(),
-                    ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text("$answer",
+                          style: const TextStyle(
+                              color: Colors.green,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 17)),
+                      Container(
+                        margin: const EdgeInsets.only(
+                            bottom: 8, top: 8, left: 8, right: 8),
+                        height: 22,
+                        width: 0.6,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "$vote",
+                        style: const TextStyle(
+                            color: Colors.orange,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 17),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      )
+                    ],
                   ),
                 ],
               ),

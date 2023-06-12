@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sos_mobile/configs/const/app_colors.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/profile/controllers/profile_controller.dart';
 import 'package:sos_mobile/modules/question/widgets/answer_card.dart';
 
@@ -44,6 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         _profileController.isScroll.value = true;
       }
     });
+
     scrollerController03.addListener(() {
       debugPrint(scrollerController03.offset.toString());
       if (scrollerController03.offset < 1) {

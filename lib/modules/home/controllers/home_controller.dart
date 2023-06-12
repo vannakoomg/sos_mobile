@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/app_colors.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/home/Model/property_data/property_data.dart';
 import 'package:sos_mobile/modules/home/Model/question_model/question_model.dart';
 
@@ -12,7 +12,12 @@ class HomeContoller extends GetxController {
       image: [],
       answer: "៣៤",
       votes: "១",
-      tag: ["សមីការឌឺក្រេទី២", "គណិតវិទ្យា"],
+      tag: [
+        "សមីការឌឺក្រេទី២",
+        "គណិតវិទ្យា",
+        "សមីការឌឺក្រេទី២dfdfdf",
+        "គណិតវិទ្យា"
+      ],
       key: GlobalKey(),
     ),
     QuestionModel(
@@ -22,7 +27,12 @@ class HomeContoller extends GetxController {
       ],
       answer: "៣៤",
       votes: "១",
-      tag: ["សមីការឌឺក្រេទី២", "គណិតវិទ្យា"],
+      tag: [
+        "សមីការឌឺក្រេទី២",
+        "គណិតវិទ្យា",
+        "សមីការឌឺក្រេទី២dfdfdf",
+        "គណិតវិទ្យា"
+      ],
       key: GlobalKey(),
     ),
     QuestionModel(

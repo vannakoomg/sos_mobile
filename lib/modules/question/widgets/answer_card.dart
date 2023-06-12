@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../configs/const/app_colors.dart';
+import '../../../configs/const/Colors/app_colors.dart';
 
 class CustomAnswerCrad extends StatelessWidget {
   final bool isYourOwnQuestion;
