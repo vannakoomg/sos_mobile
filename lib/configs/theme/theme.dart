@@ -8,15 +8,12 @@ ThemeData theme() {
     brightness: Brightness.light,
     textTheme: const TextTheme(
       titleLarge: TextStyle(
-          color: Colors.white,
-          fontFamily: 'preahvihear',
-          fontSize: 26,
-          fontWeight: FontWeight.w500),
+          color: Colors.white, fontSize: 26, fontWeight: FontWeight.w500),
       titleMedium: TextStyle(
-          color: Colors.white,
-          fontFamily: 'preahvihear',
-          fontSize: 16,
-          fontWeight: FontWeight.w400),
+        color: Colors.black,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+      ),
       titleSmall: TextStyle(
           color: Colors.black,
           // fontFamily: 'preahvihear',

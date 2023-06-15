@@ -59,6 +59,7 @@ class QuestionCard extends StatelessWidget {
       },
       child: image!.isEmpty
           ? Container(
+              height: null,
               margin: const EdgeInsets.only(bottom: 10),
               padding: const EdgeInsets.only(
                   left: 10, right: 10, top: 15, bottom: 10),
@@ -90,8 +91,9 @@ class QuestionCard extends StatelessWidget {
                             children: tag.map((e) {
                               return Padding(
                                 padding: const EdgeInsets.only(right: 5),
-                                child: CustomTapCard(
+                                child: CustomTagCard(
                                   title: e,
+                                  ontap: () {},
                                 ),
                               );
                             }).toList(),
@@ -144,7 +146,7 @@ class QuestionCard extends StatelessWidget {
                             "$title",
                             style: Theme.of(context).textTheme.titleSmall,
                             overflow: TextOverflow.ellipsis,
-                            // maxLines: 2,
+                            maxLines: 2,
                           ),
                         ),
                         const SizedBox(
@@ -152,6 +154,9 @@ class QuestionCard extends StatelessWidget {
                         ),
                       ],
                     ),
+                  ),
+                  const SizedBox(
+                    height: 5,
                   ),
                   Stack(
                     children: [
@@ -209,8 +214,9 @@ class QuestionCard extends StatelessWidget {
                               children: tag.map((e) {
                                 return Padding(
                                   padding: const EdgeInsets.only(right: 5),
-                                  child: CustomTapCard(
+                                  child: CustomTagCard(
                                     title: e,
+                                    ontap: () {},
                                   ),
                                 );
                               }).toList(),

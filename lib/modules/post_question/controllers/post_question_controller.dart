@@ -7,10 +7,10 @@ import 'package:sos_mobile/modules/post_question/models/tag_model.dart';
 
 class PostQuestionController extends GetxController {
   final listImage = <File>[].obs;
-  var listTag = <TagModel>[].obs;
+  final listOfTag = ['v'].obs;
   final index = 0.obs;
-  final tagTextfield = TextEditingController().obs;
   final tagtext = ''.obs;
+  final tagTextEditController = TextEditingController().obs;
   void getImage() async {
     final ImagePicker picker2 = ImagePicker();
     var list = await picker2.pickMultiImage();

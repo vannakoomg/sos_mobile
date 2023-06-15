@@ -6,6 +6,7 @@ import 'package:sos_mobile/modules/profile/screen/profile_screen.dart';
 import '../../home/controllers/home_controller.dart';
 import 'package:get/get.dart';
 
+import '../../search/screens/search_screen.dart';
 import '../controller/bottom_navigation_bar.dart';
 
 class BottonNavigettion extends StatelessWidget {
@@ -21,8 +22,12 @@ class BottonNavigettion extends StatelessWidget {
           body: bottonNavigetionController.index.value == 1
               ? const HomeScreen()
               : bottonNavigetionController.index.value == 2
-                  ? const PostQuestionScreen()
-                  : const ProfileScreen(),
+                  ? const SearchScreen()
+                  : bottonNavigetionController.index.value == 3
+                      ? const PostQuestionScreen()
+                      : bottonNavigetionController.index.value == 4
+                          ? const PostQuestionScreen()
+                          : const ProfileScreen(),
           bottomNavigationBar: controller.scrollPixel.value < 250 ||
                   controller.scrollPixalBack.value > 200
               ? Container(
@@ -54,7 +59,7 @@ class BottonNavigettion extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            bottonNavigetionController.index.value = 1;
+                            bottonNavigetionController.index.value = 2;
                           },
                           child: Container(
                             height: 60,
@@ -69,7 +74,7 @@ class BottonNavigettion extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            bottonNavigetionController.index.value = 2;
+                            bottonNavigetionController.index.value = 3;
                           },
                           child: Container(
                             height: 60,
@@ -84,7 +89,7 @@ class BottonNavigettion extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            bottonNavigetionController.index.value = 1;
+                            bottonNavigetionController.index.value = 4;
                           },
                           child: Container(
                             height: 60,
@@ -99,7 +104,7 @@ class BottonNavigettion extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            bottonNavigetionController.index.value = 3;
+                            bottonNavigetionController.index.value = 5;
                           },
                           child: Container(
                             height: 60,

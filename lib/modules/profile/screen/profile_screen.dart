@@ -267,7 +267,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 commentCount: "40",
                                 likeComment: "3",
                                 ontapProfile: () {
-                                  Get.toNamed('profile');
+                                  _profileController.setdefultvalue();
+
+                                  // Get.to(const ProfileScreen());
+                                  // debugPrint("ksk");
+                                  debugPrint("ksk");
+
+                                  Get.offAll(const ProfileScreen());
+
+                                  // Get.toNamed('profile');
                                 },
                                 ontapCorrect: () {},
                                 ontapComment: () {},
