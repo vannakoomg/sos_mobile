@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sos_mobile/modules/post_question/models/tag_model.dart';
 
 class PostQuestionController extends GetxController {
   final listImage = <File>[].obs;

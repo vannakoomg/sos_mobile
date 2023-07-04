@@ -36,14 +36,14 @@ class _ListingScreenState extends State<ListingScreen> {
                     return false;
                   },
                   child: SingleChildScrollView(
-                    child: Column(
-                        children: listingCon.listint.map((element) {
-                      return ListTile(
-                        title: Text(element.price!),
-                        subtitle: Text(element.price!),
-                      );
-                    }).toList()),
-                  ),
+                      // child: Column(
+                      //     children: listingCon.listint.map((element) {
+                      //   return ListTile(
+                      //     title: Text(element.price!),
+                      //     subtitle: Text(element.price!),
+                      //   );
+                      // }).toList()),
+                      ),
                 ),
         )));
   }

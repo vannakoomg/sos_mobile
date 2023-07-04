@@ -38,7 +38,10 @@ class CustomTextfield extends StatelessWidget {
         focusNode: focusNode,
         autofocus: autofocus,
         controller: textEditController,
-        style: const TextStyle(color: Colors.black, fontSize: 12),
+        style: TextStyle(
+          color: Colors.black.withOpacity(0.8),
+          fontSize: 12,
+        ),
         onChanged: (value) {
           onChanged!(value);
         },
@@ -55,7 +58,8 @@ class CustomTextfield extends StatelessWidget {
             focusColor: Colors.white,
             hintText: hintText,
             isDense: true,
-            hintStyle: const TextStyle(color: Colors.black, fontSize: 13)),
+            hintStyle:
+                TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 13)),
         maxLines: maxLines,
       ),
     );

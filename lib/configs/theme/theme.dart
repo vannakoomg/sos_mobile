@@ -10,7 +10,7 @@ ThemeData theme() {
       titleLarge: TextStyle(
           color: Colors.white, fontSize: 26, fontWeight: FontWeight.w500),
       titleMedium: TextStyle(
-        color: Colors.black,
+        color: Colors.white,
         fontSize: 16,
         fontWeight: FontWeight.w500,
       ),

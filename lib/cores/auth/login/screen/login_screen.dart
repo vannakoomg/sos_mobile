@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/cores/auth/login/controllers/login_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 
@@ -12,7 +13,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColor.mainColor,
       body: Obx(() => Container(
           margin: const EdgeInsets.only(left: 10, right: 10),
           child: Column(
@@ -41,8 +42,7 @@ class LoginScreen extends StatelessWidget {
               CustomButtom(
                 title: "Login",
                 onTap: () {
-                  // controller.login();
-                  Get.toNamed('home');
+                  controller.login();
                 },
                 disble: controller.disbleBottom.value,
               ),

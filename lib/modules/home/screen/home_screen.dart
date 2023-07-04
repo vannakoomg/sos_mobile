@@ -21,24 +21,20 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     scrollController.addListener(() {
       _controller.scrollPixel.value = scrollController.offset;
-
       if (_controller.oldScrollPixel.value > _controller.scrollPixel.value) {
         _controller.scrollPixalBack.value =
             _controller.oldScrollPixel.value - _controller.scrollPixel.value;
-
         if (_controller.scrollPixalBack.value >
             _controller.oldScrollback.value) {
           _controller.oldScrollback.value = _controller.scrollPixalBack.value;
         } else {
           _controller.oldScrollPixel.value = _controller.scrollPixel.value;
         }
-        debugPrint("back : ${_controller.scrollPixalBack.value}");
       } else {
         _controller.scrollPixalBack.value = 0;
         _controller.oldScrollback.value = 0;
         _controller.oldScrollPixel.value = _controller.scrollPixel.value;
       }
-      debugPrint("value  ${_controller.scrollPixel.value}");
     });
     super.initState();
   }
@@ -60,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 controller: _pageController,
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(top: 20, right: 8, left: 8),
+                    margin: const EdgeInsets.only(top: 80, right: 8, left: 8),
                     width: double.infinity,
                     child: ListView.builder(
                       controller: scrollController,

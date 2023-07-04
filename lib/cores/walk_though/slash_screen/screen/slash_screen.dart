@@ -11,19 +11,18 @@ class SlashScreen extends StatefulWidget {
 }
 
 class _SlashScreenState extends State<SlashScreen> {
-  void storeData() async {
-    await LocalStorage.storeData(key: 'data', value: 'vannak');
-    final name = await LocalStorage.getStringValue(key: 'data');
-    debugPrint("name $name!");
+  void getToken() async {
+    String token = await LocalStorage.getStringValue(key: "access_token");
+    if (token != '') {
+      Get.toNamed('login-screen');
+    } else {
+      Get.toNamed('login-screen');
+    }
   }
 
   @override
   void initState() {
-    storeData();
-
-    Future.delayed(const Duration(milliseconds: 100), () {
-      Get.toNamed('login-screen');
-    });
+    getToken();
     super.initState();
   }
 

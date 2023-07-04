@@ -39,14 +39,6 @@ class PostQuestionScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Positioned(
-                                right: 10,
-                                child: Container(
-                                  height: 30,
-                                  width: 70,
-                                  decoration:
-                                      const BoxDecoration(color: Colors.blue),
-                                ))
                           ],
                         ),
                         Container(
@@ -128,7 +120,8 @@ class PostQuestionScreen extends StatelessWidget {
                                                       height: 30,
                                                       width: 30,
                                                       decoration: BoxDecoration(
-                                                          color: Colors.grey,
+                                                          color: Colors.black
+                                                              .withOpacity(0.6),
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
@@ -136,7 +129,8 @@ class PostQuestionScreen extends StatelessWidget {
                                                       child: const Center(
                                                           child: Icon(
                                                         Icons.close,
-                                                        size: 20,
+                                                        color: Colors.white,
+                                                        size: 16,
                                                       )),
                                                     ),
                                                   ),
@@ -220,7 +214,8 @@ class PostQuestionScreen extends StatelessWidget {
                                                                           .value
                                                                           .text = '';
                                                                     }
-                                                                  })
+                                                                  },
+                                                                )
                                                               : const SizedBox(),
                                                         ],
                                                       );
@@ -229,15 +224,18 @@ class PostQuestionScreen extends StatelessWidget {
                                               SizedBox(
                                                 width: 150,
                                                 child: CustomTextfield(
-                                                    ishaveColor: false,
-                                                    hintText: "tag",
-                                                    onChanged: (value) {
-                                                      controller.tagtext.value =
-                                                          value;
-                                                    },
-                                                    textEditController: controller
-                                                        .tagTextEditController
-                                                        .value),
+                                                  textInputType: TextInputType
+                                                      .visiblePassword,
+                                                  ishaveColor: false,
+                                                  hintText: "tag",
+                                                  onChanged: (value) {
+                                                    controller.tagtext.value =
+                                                        value;
+                                                  },
+                                                  textEditController: controller
+                                                      .tagTextEditController
+                                                      .value,
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -246,6 +244,15 @@ class PostQuestionScreen extends StatelessWidget {
                                     ),
                                     const SizedBox(
                                       height: 8,
+                                    ),
+                                    Container(
+                                      width:
+                                          MediaQuery.of(context).size.width / 2,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: Colors.white,
+                                      ),
                                     )
                                   ],
                                 ),

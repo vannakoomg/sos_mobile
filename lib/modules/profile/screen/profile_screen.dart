@@ -23,6 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     _profileController.setdefultvalue();
+    _profileController.getProfile();
     scrollerController.addListener(() {
       if (scrollerController.offset > 340) {
         _profileController.isScroll.value = true;
@@ -128,7 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: 60,
                   decoration: BoxDecoration(
                       color: AppColor.primaryColor,
-                      borderRadius: BorderRadius.circular(20)),
+                      borderRadius: BorderRadius.circular(40)),
                   child: Row(children: [
                     Expanded(
                       child: Center(
@@ -268,14 +269,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 likeComment: "3",
                                 ontapProfile: () {
                                   _profileController.setdefultvalue();
-
-                                  // Get.to(const ProfileScreen());
-                                  // debugPrint("ksk");
-                                  debugPrint("ksk");
-
                                   Get.offAll(const ProfileScreen());
-
-                                  // Get.toNamed('profile');
                                 },
                                 ontapCorrect: () {},
                                 ontapComment: () {},

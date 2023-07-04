@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../utils/helpers/api_base_helper/api_base_helper.dart';
-import '../../home/Model/property_data/property_data.dart';
 
 class ListingController extends GetxController {
   var isLoding = false.obs;
-  var listint = <PropertyModel>[].obs;
   var cPage = 1.obs;
   var lPage = 2.obs;
-
   Future<void> getLising() async {
     isLoding(true);
     try {
@@ -21,10 +17,7 @@ class ListingController extends GetxController {
               isAuthorize: false)
           .then((response) {
         if (cPage.value <= lPage.value) {
-          response['data'].map((e) {
-            listint.add(PropertyModel.fromJson(e));
-          }).toList();
-          debugPrint(listint.length.toString());
+          response['data'].map((e) {}).toList();
           lPage.value = response['meta']['last_page'];
           cPage.value++;
         }
