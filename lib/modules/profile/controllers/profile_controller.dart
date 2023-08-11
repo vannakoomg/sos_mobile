@@ -13,6 +13,7 @@ class ProfileController extends GetxController {
   final isScroll = false.obs;
   final isAnswer = true.obs;
   final profileDate = ProfileModel().obs;
+  final isloadingProfile = true.obs;
   void setdefultvalue() {
     isAnswer.value = true;
     isScroll.value = false;
@@ -20,13 +21,14 @@ class ProfileController extends GetxController {
   }
 
   void getProfile() async {
+    isloadingProfile.value = true;
     var data = await ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
       url: "$baseUrl/v1/user/profile",
       methode: METHODE.get,
       isAuthorize: true,
     );
     profileDate.value = ProfileModel.fromJson(data);
-    debugPrint(
-        "data ${profileDate.value.data!.questions![0].description.toString()}");
+    isloadingProfile.value = false;
+    debugPrint("data ${profileDate.value.data!.questions![0].description}");
   }
 }

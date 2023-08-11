@@ -14,41 +14,50 @@ class LoginScreen extends StatelessWidget {
     final controller = Get.put(LoginController());
     return Scaffold(
       backgroundColor: AppColor.mainColor,
-      body: Obx(() => Container(
-          margin: const EdgeInsets.only(left: 10, right: 10),
-          child: Column(
-            children: [
-              const Spacer(),
-              CustomTextfield(
-                hintText: "phone number",
-                onChanged: (value) {
-                  controller.checkValidation();
-                },
-                textEditController: controller.phoneTextEditController.value,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              CustomTextfield(
-                hintText: "passsword",
-                onChanged: (value) {
-                  controller.checkValidation();
-                },
-                textEditController: controller.passwordTextEditController.value,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              CustomButtom(
-                title: "Login",
-                onTap: () {
-                  controller.login();
-                },
-                disble: controller.disbleBottom.value,
-              ),
-              const Spacer(),
-            ],
-          ))),
+      body: Obx(
+        () => Stack(
+          children: [
+            Container(
+                color: Colors.transparent,
+                margin: const EdgeInsets.only(left: 10, right: 10),
+                child: Column(
+                  children: [
+                    const Spacer(),
+                    CustomTextfield(
+                      hintText: "phone number",
+                      onChanged: (value) {
+                        controller.checkValidation();
+                      },
+                      textEditController:
+                          controller.phoneTextEditController.value,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    CustomTextfield(
+                      hintText: "passsword",
+                      onChanged: (value) {
+                        controller.checkValidation();
+                      },
+                      textEditController:
+                          controller.passwordTextEditController.value,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    CustomButtom(
+                      title: "Login",
+                      onTap: () {
+                        controller.login();
+                      },
+                      disble: controller.disbleBottom.value,
+                    ),
+                    const Spacer(),
+                  ],
+                )),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -88,63 +88,66 @@ class _SearchScreenState extends State<SearchScreen> {
                           const SizedBox(
                             height: 5,
                           ),
-                          Wrap(
-                            children: [
-                              SearchCrad(
-                                title: "សំនួរមិនមានអ្នកឆ្លើយ",
-                                image:
-                                    "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
-                                ontap: () {},
-                              ),
-                              SearchCrad(
-                                title: "សំនួរមិនមានអ្នកឆ្លើយ",
-                                image:
-                                    "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
-                                ontap: () {},
-                              ),
-                              SearchCrad(
-                                title: "សំនួរមិនមានអ្នកឆ្លើយ",
-                                image:
-                                    "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
-                                ontap: () {},
-                              ),
-                              SearchCrad(
-                                title: "សំនួរមិនមានអ្នកឆ្លើយ",
-                                image:
-                                    "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
-                                ontap: () {},
-                              ),
-                              SearchCrad(
-                                title: "សំនួរមិនមានអ្នកឆ្លើយ",
-                                image:
-                                    "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
-                                ontap: () {},
-                              ),
-                              SearchCrad(
-                                title: "សំនួរមិនមានអ្នកឆ្លើយ",
-                                image:
-                                    "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
-                                ontap: () {},
-                              ),
-                              SearchCrad(
-                                title: "សំនួរមិនមានអ្នកឆ្លើយ",
-                                image:
-                                    "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
-                                ontap: () {},
-                              ),
-                              SearchCrad(
-                                title: "សំនួរមិនមានអ្នកឆ្លើយ",
-                                image:
-                                    "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
-                                ontap: () {},
-                              ),
-                              SearchCrad(
-                                title: "សំនួរមិនមានអ្នកឆ្លើយ",
-                                image:
-                                    "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
-                                ontap: () {},
-                              ),
-                            ],
+                          Container(
+                            margin: const EdgeInsets.only(left: 5, right: 5),
+                            child: Wrap(
+                              children: [
+                                SearchCrad(
+                                  title: "សំនួរមិនមានអ្នកឆ្លើយ",
+                                  image:
+                                      "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
+                                  ontap: () {},
+                                ),
+                                SearchCrad(
+                                  title: "សំនួរមិនមានអ្នកឆ្លើយ",
+                                  image:
+                                      "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
+                                  ontap: () {},
+                                ),
+                                SearchCrad(
+                                  title: "សំនួរមិនមានអ្នកឆ្លើយ",
+                                  image:
+                                      "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
+                                  ontap: () {},
+                                ),
+                                SearchCrad(
+                                  title: "សំនួរមិនមានអ្នកឆ្លើយ",
+                                  image:
+                                      "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
+                                  ontap: () {},
+                                ),
+                                SearchCrad(
+                                  title: "សំនួរមិនមានអ្នកឆ្លើយ",
+                                  image:
+                                      "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
+                                  ontap: () {},
+                                ),
+                                SearchCrad(
+                                  title: "សំនួរមិនមានអ្នកឆ្លើយ",
+                                  image:
+                                      "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
+                                  ontap: () {},
+                                ),
+                                SearchCrad(
+                                  title: "សំនួរមិនមានអ្នកឆ្លើយ",
+                                  image:
+                                      "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
+                                  ontap: () {},
+                                ),
+                                SearchCrad(
+                                  title: "សំនួរមិនមានអ្នកឆ្លើយ",
+                                  image:
+                                      "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
+                                  ontap: () {},
+                                ),
+                                SearchCrad(
+                                  title: "សំនួរមិនមានអ្នកឆ្លើយ",
+                                  image:
+                                      "https://w0.peakpx.com/wallpaper/143/603/HD-wallpaper-cat-tom-jerry-mouse.jpg",
+                                  ontap: () {},
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),

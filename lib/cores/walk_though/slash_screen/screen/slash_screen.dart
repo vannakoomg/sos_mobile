@@ -14,7 +14,7 @@ class _SlashScreenState extends State<SlashScreen> {
   void getToken() async {
     String token = await LocalStorage.getStringValue(key: "access_token");
     if (token != '') {
-      Get.toNamed('login-screen');
+      Get.toNamed('dasborad');
     } else {
       Get.toNamed('login-screen');
     }

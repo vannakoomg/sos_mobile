@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/home/screen/home_screen.dart';
+import 'package:sos_mobile/modules/notification/screens/notificaition_screen.dart';
 import 'package:sos_mobile/modules/post_question/screen/post_question_screen.dart';
 import 'package:sos_mobile/modules/profile/screen/profile_screen.dart';
 import '../../home/controllers/home_controller.dart';
@@ -28,7 +29,7 @@ class BottonNavigettion extends StatelessWidget {
                   : bottonNavigetionController.index.value == 3
                       ? const PostQuestionScreen()
                       : bottonNavigetionController.index.value == 4
-                          ? const PostQuestionScreen()
+                          ? const NotificationScreen()
                           : const ProfileScreen(),
           bottomNavigationBar: controller.scrollPixel.value < 250 ||
                   controller.scrollPixalBack.value > 200
