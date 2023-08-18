@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 
 class AppController extends GetxController {
   final isOnleft = false.obs;
@@ -26,6 +27,10 @@ class AppController extends GetxController {
     isPress01.value = false;
     isPress02.value = false;
     isPress03.value = false;
+    if (action.value == "ចែករំលែក") {
+      Share.share('check out my website https://example.com');
+      debugPrint("okoko");
+    }
     action.value = '';
   }
 
