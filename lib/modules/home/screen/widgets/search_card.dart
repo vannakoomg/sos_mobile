@@ -15,8 +15,8 @@ class SearchCrad extends StatelessWidget {
     return GestureDetector(
       child: Container(
         height: 80,
-        margin: const EdgeInsets.only(left: 5, right: 5, bottom: 10),
-        width: (MediaQuery.of(context).size.width - 30) / 2,
+        margin: const EdgeInsets.only(left: 2.5, right: 2.5, bottom: 5),
+        width: (MediaQuery.of(context).size.width - 15) / 2,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: Colors.white,

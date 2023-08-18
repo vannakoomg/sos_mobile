@@ -5,17 +5,30 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PostQuestionController extends GetxController {
-  final listImage = <File>[].obs;
-  final listOfTag = ['v'].obs;
+  final image = File('').obs;
+  final listOfTag = [].obs;
   final index = 0.obs;
   final tagtext = ''.obs;
-  final tagTextEditController = TextEditingController().obs;
+  final titleTextEditController = TextEditingController().obs;
+  final descriptionTextController = TextEditingController().obs;
+  final tagTextController = TextEditingController().obs;
+
   void getImage() async {
     final ImagePicker picker2 = ImagePicker();
-    var list = await picker2.pickMultiImage();
-    listImage.clear();
-    for (int i = 0; i < list.length; ++i) {
-      listImage.add(File(list[i].path));
+    var photo = await picker2.pickImage(source: ImageSource.gallery);
+    if (photo != null) {
+      image.value = File(photo.path);
+    }
+  }
+
+  bool validationPost() {
+    if (image.value.path != '' &&
+        listOfTag.isNotEmpty &&
+        titleTextEditController.value.text != '' &&
+        descriptionTextController.value.text != '') {
+      return false;
+    } else {
+      return true;
     }
   }
 

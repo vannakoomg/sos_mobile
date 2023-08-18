@@ -8,16 +8,13 @@ class CustomAnswerCrad extends StatelessWidget {
   final String avarta;
   final String name;
   final String time;
-  final String title;
   final String description;
-  final List<String> image;
+  final String image;
   final String commentCount;
-  final String likeComment;
+  final String likeAnswer;
   final Function ontapProfile;
   final Function ontapCorrect;
   final Function ontapComment;
-  final Function ontapDislikeComment;
-  final Function ontapLikeComment;
 
   const CustomAnswerCrad({
     super.key,
@@ -26,22 +23,20 @@ class CustomAnswerCrad extends StatelessWidget {
     required this.name,
     required this.time,
     required this.description,
-    required this.title,
     required this.image,
     required this.commentCount,
-    required this.likeComment,
+    required this.likeAnswer,
     required this.ontapProfile,
     required this.ontapCorrect,
     required this.ontapComment,
-    required this.ontapDislikeComment,
-    required this.ontapLikeComment,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 5, top: 5),
-      padding: const EdgeInsets.only(left: 10, top: 10, bottom: 20, right: 10),
+      width: double.infinity,
+      padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10, right: 10),
+      margin: const EdgeInsets.only(bottom: 5),
       decoration: BoxDecoration(
         color: AppColor.primaryColor,
         borderRadius: BorderRadius.circular(20),
@@ -59,10 +54,13 @@ class CustomAnswerCrad extends StatelessWidget {
                   height: 40,
                   width: 40,
                   decoration: BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          image: NetworkImage(avarta), fit: BoxFit.cover)),
+                    color: Colors.green,
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: NetworkImage(avarta),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   width: 10,
@@ -70,49 +68,52 @@ class CustomAnswerCrad extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(name),
+                    Text(
+                      name,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
                     Text(time),
                   ],
                 ),
                 const Spacer(),
                 if (isYourOwnQuestion == true)
-                  Container(
-                    height: 20,
-                    width: 20,
+                  const Icon(
+                    Icons.check_circle_sharp,
                     color: Colors.green,
                   ),
               ],
             ),
           ),
-          Text(
-            title,
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
           Text(description),
-          if (image.isNotEmpty)
-            SizedBox(
-              height: 200,
-              width: double.infinity,
-              child: PageView(
-                  children: image.map((e) {
-                return CachedNetworkImage(
-                  imageUrl: e,
-                  height: 180,
+          const SizedBox(
+            height: 5,
+          ),
+          if (image != '')
+            Column(
+              children: [
+                CachedNetworkImage(
+                  imageUrl: image,
+                  height: 200,
                   width: double.infinity,
                   fit: BoxFit.cover,
-                );
-              }).toList()),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+              ],
             ),
           Row(
             children: [
-              Text(" $commentCount comment "),
+              Text(" $commentCount មតិ "),
               const Spacer(),
-              const Text("-"),
-              Text(likeComment),
-              const Text("+")
+              Text(likeAnswer),
+              const SizedBox(
+                width: 10,
+              ),
+              const Text("ពេញចិត្ត")
             ],
           ),
         ],

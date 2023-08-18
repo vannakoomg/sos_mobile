@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sos_mobile/configs/url.dart';
 import 'package:sos_mobile/modules/profile/models/profile_model.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
@@ -30,5 +31,13 @@ class ProfileController extends GetxController {
     profileDate.value = ProfileModel.fromJson(data);
     isloadingProfile.value = false;
     debugPrint("data ${profileDate.value.data!.questions![0].description}");
+  }
+
+  void pickImageProfile() async {
+    final ImagePicker picker = ImagePicker();
+    var image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      imagePath.value = File(image.path);
+    }
   }
 }

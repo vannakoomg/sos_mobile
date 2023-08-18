@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/modules/home/controllers/home_controller.dart';
-import 'package:sos_mobile/modules/save/screens/save_screen.dart';
+import 'package:sos_mobile/utils/controllers/app_controller.dart';
 
 import '../../../utils/widgets/custom_question_card.dart';
+import '../../save/screens/save_screen.dart';
+import '../controllers/home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,25 +16,26 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   ScrollController scrollController = ScrollController();
-  final _controller = Get.put(HomeContoller());
+  final controller = Get.put(HomeContoller());
+  final appController = Get.put(AppController());
   final _pageController = PageController();
   @override
   void initState() {
+    controller.fetchQuestion();
     scrollController.addListener(() {
-      _controller.scrollPixel.value = scrollController.offset;
-      if (_controller.oldScrollPixel.value > _controller.scrollPixel.value) {
-        _controller.scrollPixalBack.value =
-            _controller.oldScrollPixel.value - _controller.scrollPixel.value;
-        if (_controller.scrollPixalBack.value >
-            _controller.oldScrollback.value) {
-          _controller.oldScrollback.value = _controller.scrollPixalBack.value;
+      controller.scrollPixel.value = scrollController.offset;
+      if (controller.oldScrollPixel.value > controller.scrollPixel.value) {
+        controller.scrollPixalBack.value =
+            controller.oldScrollPixel.value - controller.scrollPixel.value;
+        if (controller.scrollPixalBack.value > controller.oldScrollback.value) {
+          controller.oldScrollback.value = controller.scrollPixalBack.value;
         } else {
-          _controller.oldScrollPixel.value = _controller.scrollPixel.value;
+          controller.oldScrollPixel.value = controller.scrollPixel.value;
         }
       } else {
-        _controller.scrollPixalBack.value = 0;
-        _controller.oldScrollback.value = 0;
-        _controller.oldScrollPixel.value = _controller.scrollPixel.value;
+        controller.scrollPixalBack.value = 0;
+        controller.oldScrollback.value = 0;
+        controller.oldScrollPixel.value = controller.scrollPixel.value;
       }
     });
     super.initState();
@@ -44,63 +46,61 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Obx(
         () => Container(
-          // margin: const EdgeInsets.only(left: 4, right: 4),
           color: AppColor.mainColor,
           child: Stack(
             children: [
-              PageView(
-                onPageChanged: (value) {
-                  _controller.isForYou.value = !_controller.isForYou.value;
-                },
-                allowImplicitScrolling: true,
-                controller: _pageController,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 80, right: 8, left: 8),
-                    width: double.infinity,
-                    child: ListView.builder(
-                      controller: scrollController,
-                      itemCount: _controller.question.length,
-                      itemBuilder: (context, i) {
-                        return QuestionCard(
-                          key: _controller.question[i].key,
-                          ontap: () {
-                            Get.toNamed("question-detail");
-                          },
-                          tag: _controller.question[i].tag!,
-                          onLongPress: () {
-                            _controller.showOverlay(
-                                context, _controller.question[i].key);
-                            _controller.isLongPress.value = true;
-                          },
-                          onLongPressStart: (value) {
-                            _controller.dx.value = value.globalPosition.dx - 25;
-                            _controller.dy.value =
-                                value.globalPosition.dy - 100;
-                          },
-                          onLongPressEnd: () {
-                            _controller.overlayEntry?.remove();
-                            _controller.isLongPress.value = false;
-                          },
-                          title: _controller.question[i].title!,
-                          vote: _controller.question[i].votes,
-                          answer: _controller.question[i].answer!,
-                          image: _controller.question[i].image,
-                        );
-                      },
+              if (controller.isLoading.value == false)
+                PageView(
+                  onPageChanged: (value) {
+                    controller.isForYou.value = !controller.isForYou.value;
+                  },
+                  allowImplicitScrolling: true,
+                  controller: _pageController,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: 20, right: 5, left: 5),
+                      width: double.infinity,
+                      child: ListView.builder(
+                        controller: scrollController,
+                        itemCount: 20,
+                        itemBuilder: (context, i) {
+                          return GestureDetector(
+                            onLongPressStart: (value) {
+                              appController.onlongPressStart(
+                                  golbalDx: value.globalPosition.dx,
+                                  golbalDy: value.globalPosition.dy,
+                                  widthScreen:
+                                      MediaQuery.of(context).size.width);
+                            },
+                            onLongPressMoveUpdate: (value) {
+                              appController.onLongPressMoveUpdate(
+                                  globalDx: value.globalPosition.dx,
+                                  globalDy: value.globalPosition.dy);
+                            },
+                            onLongPressEnd: (value) {
+                              appController.onLongPressEnd();
+                            },
+                            child: QuestionCard(
+                              ontap: () {
+                                Get.toNamed("question-detail");
+                              },
+                              questiondata: controller.homeData.value.data![1],
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                  const SaveScreen()
-                ],
-              ),
+                    const SaveScreen()
+                  ],
+                ),
               Container(
                 height: 80,
-                color: AppColor.mainColor,
+                color: AppColor.mainColor.withOpacity(0.95),
                 width: double.infinity,
                 child: Center(
                   child: GestureDetector(
                     onTap: () {
-                      if (_controller.isForYou.value) {
+                      if (controller.isForYou.value) {
                         _pageController.nextPage(
                             duration: const Duration(milliseconds: 200),
                             curve: Curves.ease);
@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           AnimatedContainer(
                             margin: EdgeInsets.only(
-                                left: _controller.isForYou.value ? 2 : 78,
+                                left: controller.isForYou.value ? 2 : 78,
                                 top: 2),
                             duration: const Duration(milliseconds: 200),
                             curve: Curves.easeIn,
@@ -130,37 +130,25 @@ class _HomeScreenState extends State<HomeScreen> {
                             decoration: BoxDecoration(
                                 color: AppColor.mainColor,
                                 borderRadius: BorderRadius.circular(20)),
-                            width: _controller.isForYou.value ? 70 : 40,
+                            width: controller.isForYou.value ? 70 : 40,
                           ),
-                          const Positioned(
-                              left: 10, top: 10, child: Text("សំរាប់អ្នក")),
+                          Positioned(
+                              left: 10,
+                              top: 10,
+                              child: Text(
+                                "សំរាប់អ្នក",
+                                style: Theme.of(context).textTheme.titleSmall,
+                              )),
                           const Positioned(
                               top: 10,
                               right: 10,
-                              child: Icon(Icons.favorite_sharp))
+                              child: Icon(Icons.save_alt_rounded))
                         ],
                       ),
                     ),
                   ),
                 ),
               ),
-              if (_controller.isLongPress.value == true)
-                Stack(
-                  children: [
-                    AnimatedPositioned(
-                      left: _controller.dx.value,
-                      top: _controller.dy.value,
-                      duration: const Duration(milliseconds: 250),
-                      curve: Curves.ease,
-                      child: Container(
-                        height: 50,
-                        width: 50,
-                        decoration: const BoxDecoration(
-                            color: Colors.green, shape: BoxShape.circle),
-                      ),
-                    ),
-                  ],
-                )
             ],
           ),
         ),
