@@ -1,53 +1,33 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/modules/home/screen/home_screen.dart';
-import 'package:sos_mobile/modules/notification/screens/notificaition_screen.dart';
-import 'package:sos_mobile/modules/post_question/screen/post_question_screen.dart';
-import 'package:sos_mobile/modules/profile/screen/profile_screen.dart';
-import '../../home/controllers/home_controller.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
-import '../../search/screens/search_screen.dart';
-import '../controller/bottom_navigation_bar.dart';
+import '../../home/controllers/home_controller.dart';
 
-class BottonNavigettion extends StatelessWidget {
-  const BottonNavigettion({
-    super.key,
-  });
+class ScaffoldWithNavBar extends StatelessWidget {
+  final Widget? child;
+  const ScaffoldWithNavBar({super.key, this.child});
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HomeContoller());
-    final bottonNavigetionController = Get.put(BottomNavigatonBar());
-    return Obx(() => Scaffold(
-          backgroundColor: AppColor.mainColor,
-          body: bottonNavigetionController.index.value == 1
-              ? const HomeScreen()
-              : bottonNavigetionController.index.value == 2
-                  ? const SearchScreen()
-                  : bottonNavigetionController.index.value == 3
-                      ? const PostQuestionScreen()
-                      : bottonNavigetionController.index.value == 4
-                          ? const NotificationScreen()
-                          : const ProfileScreen(),
-          bottomNavigationBar: controller.scrollPixel.value < 250 ||
+    return Scaffold(
+        backgroundColor: AppColor.mainColor,
+        body: child,
+        bottomNavigationBar: Obx(
+          () => controller.scrollPixel.value < 250 ||
                   controller.scrollPixalBack.value > 200
               ? Container(
-                  margin: const EdgeInsets.only(left: 20, right: 20),
                   height: 60,
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: AppColor.mainColor,
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20))),
+                  color: AppColor.mainColor,
                   child: Row(
                     children: [
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            bottonNavigetionController.index.value = 1;
+                            context.go('/home');
                           },
                           child: Container(
                             height: 60,
@@ -60,15 +40,29 @@ class BottonNavigettion extends StatelessWidget {
                         ),
                       ),
                       Expanded(
+                          child: GestureDetector(
+                        onTap: () {
+                          context.go('/save');
+                        },
+                        child: Container(
+                          height: 60,
+                          color: Colors.transparent,
+                          child: const Icon(
+                            Icons.save_alt,
+                            color: Colors.white,
+                          ),
+                        ),
+                      )),
+                      Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            bottonNavigetionController.index.value = 2;
+                            context.go('/post-question');
                           },
                           child: Container(
                             height: 60,
                             color: Colors.transparent,
                             child: const Icon(
-                              Icons.search,
+                              Icons.question_mark_rounded,
                               color: Colors.white,
                             ),
                           ),
@@ -77,22 +71,7 @@ class BottonNavigettion extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            bottonNavigetionController.index.value = 3;
-                          },
-                          child: Container(
-                            height: 60,
-                            color: Colors.transparent,
-                            child: const Icon(
-                              Icons.add,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            bottonNavigetionController.index.value = 4;
+                            context.go('/notification');
                           },
                           child: Container(
                             height: 60,
@@ -107,7 +86,7 @@ class BottonNavigettion extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            bottonNavigetionController.index.value = 5;
+                            context.go('/profile');
                           },
                           child: Container(
                             height: 60,

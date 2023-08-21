@@ -5,13 +5,15 @@ class CustomButtom extends StatelessWidget {
   final String? title;
   final Function? onTap;
   final bool disble;
+  final double fountSize;
   final double height;
   const CustomButtom(
       {super.key,
       required this.title,
       required this.onTap,
       this.height = 40,
-      this.disble = false});
+      this.disble = false,
+      this.fountSize = 16});
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +32,14 @@ class CustomButtom extends StatelessWidget {
         height: height,
         duration: const Duration(milliseconds: 300),
         child: Center(
-            child: Text(
-          "$title",
-          style: Theme.of(context)
-              .textTheme
-              .titleMedium!
-              .copyWith(color: Colors.white),
-        )),
+          child: Text(
+            "$title",
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(color: Colors.white, fontSize: fountSize),
+          ),
+        ),
       ),
     );
   }

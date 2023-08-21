@@ -15,6 +15,7 @@ class Settings extends StatelessWidget {
         title: const Text("ការកំណត់"),
         backgroundColor: AppColor.mainColor,
         centerTitle: true,
+        // leading: const Icon(Icons.arrow_back),
       ),
       body: Container(
         margin: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),

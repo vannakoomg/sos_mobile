@@ -26,7 +26,7 @@ class PrivacyDataScreen extends StatelessWidget {
             )),
       ),
       body: Container(
-        margin: const EdgeInsets.only(left: 10, right: 0),
+        margin: const EdgeInsets.only(left: 10),
         child: Column(children: [
           PrivacyDataCrad(
             title: "Account",

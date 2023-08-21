@@ -18,9 +18,7 @@ class AppController extends GetxController {
   void onLongPressEnd() {
     isLongPress.value = false;
     afterLongPress.value = false;
-    if (isPress01.value == true) {
-      debugPrint("is press $isPress01");
-    }
+
     isPress001.value = false;
     isPress002.value = false;
     isPress003.value = false;

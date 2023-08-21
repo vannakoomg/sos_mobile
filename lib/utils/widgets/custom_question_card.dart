@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/modules/home/controllers/home_controller.dart';
 // import 'package:sos_mobile/modules/profile/models/profile_model.dart';
 
 import '../../modules/home/Model/home_model.dart';
@@ -18,7 +16,6 @@ class QuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeContoller());
     return GestureDetector(
         onTap: () {
           ontap!();

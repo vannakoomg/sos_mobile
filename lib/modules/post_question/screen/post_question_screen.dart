@@ -97,8 +97,6 @@ class PostQuestionScreen extends StatelessWidget {
                                                     right: 10,
                                                     child: GestureDetector(
                                                       onTap: () {
-                                                        debugPrint(
-                                                            "delbugPrint  ");
                                                         controller.image.value =
                                                             File('');
                                                       },
@@ -295,24 +293,5 @@ class PostQuestionScreen extends StatelessWidget {
             ),
           ),
         ));
-  }
-}
-
-class RPSCustomPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paintFill0 = Paint()..color = Colors.red;
-    Path path_0 = Path();
-    path_0.moveTo(size.width * -0.0032714, size.height * 0.9983200);
-    path_0.lineTo(size.width * 1.0021571, size.height * -0.0058223);
-    path_0.lineTo(size.width * 0.9989893, size.height * 0.9985282);
-    path_0.lineTo(size.width * -0.0032714, size.height * 0.9983200);
-    path_0.close();
-    canvas.drawPath(path_0, paintFill0);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
   }
 }

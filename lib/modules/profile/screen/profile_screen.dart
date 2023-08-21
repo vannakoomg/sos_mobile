@@ -2,9 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/profile/controllers/profile_controller.dart';
-import 'package:sos_mobile/modules/settings/screens/setting_screen.dart';
+import 'package:sos_mobile/utils/controllers/app_controller.dart';
 
 import '../../question/widgets/answer_card.dart';
 
@@ -19,6 +20,7 @@ final scrollerController02 = ScrollController();
 final scrollerController03 = ScrollController();
 final _pageController = PageController();
 final _profileController = Get.put(ProfileController());
+final appController = Get.put(AppController());
 
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
@@ -31,10 +33,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       } else {
         _profileController.isScroll.value = false;
       }
-      // scrollerController02.animateTo(0,
-      //     curve: Curves.ease, duration: const Duration(milliseconds: 500));
-      // scrollerController03.animateTo(0,
-      //     curve: Curves.ease, duration: const Duration(milliseconds: 500));
+      scrollerController02.animateTo(0,
+          curve: Curves.ease, duration: const Duration(milliseconds: 500));
+      scrollerController03.animateTo(0,
+          curve: Curves.ease, duration: const Duration(milliseconds: 500));
     });
     scrollerController02.addListener(() {
       debugPrint(scrollerController02.offset.toString());
@@ -64,9 +66,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               : SafeArea(
                   child: SizedBox(
                     child: SingleChildScrollView(
-                      // physics: _profileController.isScroll.value
-                      //     ? const NeverScrollableScrollPhysics()
-                      //     : null,
                       controller: scrollerController01,
                       child: Column(
                         children: [
@@ -74,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             alignment: Alignment.centerRight,
                             child: IconButton(
                               onPressed: () {
-                                Get.to(const SettingScreen());
+                                context.go('/profile/setting');
                               },
                               icon: const Icon(
                                 Icons.settings,
@@ -129,7 +128,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             .titleMedium!
                                             .copyWith(color: Colors.white),
                                       ),
-                                      const Text("ឆ្លើយ")
+                                      const Text(
+                                        "ឆ្លើយ",
+                                      )
                                     ],
                                   ),
                                   Column(
@@ -196,8 +197,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       duration:
                                           const Duration(milliseconds: 400),
                                       curve: Curves.ease);
-                                  // scrollerController02.jumpTo(2);
-                                  // scrollerController03.jumpTo(2);
                                 },
                                 child: Stack(
                                   children: [
@@ -256,7 +255,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Container(
                                   margin:
                                       const EdgeInsets.only(left: 5, right: 5),
-                                  color: Colors.pink,
+                                  // color: Colors.pink,
                                   child: ListView.builder(
                                     physics: _profileController.isScroll.value
                                         ? null
@@ -270,22 +269,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             const SizedBox(
                                               height: 2,
                                             ),
-                                          CustomAnswerCrad(
-                                            avarta:
-                                                "https://leadership.ng/wp-content/uploads/2023/03/davido.png",
-                                            isYourOwnQuestion: false,
-                                            name: "សំណាង",
-                                            time: "២​​ថ្ងៃមុន",
-                                            description: "B sl soyb",
-                                            image:
-                                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1UlqB6vnCeTu-AZ0dzsQrhdWr1h58XOqpUQ&usqp=CAU",
-                                            commentCount: "40",
-                                            likeAnswer: "3",
-                                            ontapProfile: () {
-                                              debugPrint("nice to meet you 01");
+                                          GestureDetector(
+                                            onLongPressStart: (value) {
+                                              appController.onlongPressStart(
+                                                  golbalDx:
+                                                      value.globalPosition.dx,
+                                                  golbalDy:
+                                                      value.globalPosition.dy,
+                                                  widthScreen:
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width);
                                             },
-                                            ontapCorrect: () {},
-                                            ontapComment: () {},
+                                            onLongPressMoveUpdate: (value) {
+                                              appController
+                                                  .onLongPressMoveUpdate(
+                                                      globalDx: value
+                                                          .globalPosition.dx,
+                                                      globalDy: value
+                                                          .globalPosition.dy);
+                                            },
+                                            onLongPressEnd: (value) {
+                                              appController.onLongPressEnd();
+                                            },
+                                            child: CustomAnswerCrad(
+                                              avarta:
+                                                  "https://leadership.ng/wp-content/uploads/2023/03/davido.png",
+                                              isYourOwnQuestion: false,
+                                              name: "សំណាង",
+                                              time: "២​​ថ្ងៃមុន",
+                                              description: "B sl soyb",
+                                              image:
+                                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1UlqB6vnCeTu-AZ0dzsQrhdWr1h58XOqpUQ&usqp=CAU",
+                                              commentCount: "40",
+                                              likeAnswer: "3",
+                                              ontapProfile: () {
+                                                debugPrint(
+                                                    "nice to meet you 01");
+                                              },
+                                              ontapCorrect: () {},
+                                              ontapComment: () {},
+                                            ),
                                           ),
                                         ],
                                       );
@@ -295,7 +319,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Container(
                                   margin:
                                       const EdgeInsets.only(left: 5, right: 5),
-                                  color: Colors.pink,
                                   child: ListView.builder(
                                     physics: _profileController.isScroll.value
                                         ? null

@@ -10,5 +10,5 @@ extension AppColor on Color {
   static var subTextColor = const Color(0xffadb5bd);
   static var warningColor = const Color(0xffAAA505);
   static var dangerColor = const Color(0xff991A2A);
-  static var successColor = const Color(0xff1EA133);
+  static var successColor = const Color.fromARGB(255, 156, 231, 168);
 }

@@ -16,9 +16,23 @@ class HomeContoller extends GetxController {
   var isLoading = true.obs;
   final isForYou = true.obs;
   final isMovePage = true.obs;
+  final isFocus = false.obs;
+  final searchText = ''.obs;
+  final pageController = PageController();
+
+  void onPageChanged() {
+    if (isForYou.value) {
+      pageController.nextPage(
+          duration: const Duration(milliseconds: 200), curve: Curves.ease);
+    } else {
+      pageController.previousPage(
+          duration: const Duration(milliseconds: 200), curve: Curves.ease);
+    }
+  }
 
   Future fetchQuestion() async {
     isLoading.value = true;
+    isForYou.value = true;
     await ApiBaseHelper.apiBaseHelper
         .onNetworkRequesting(
           url: "$baseUrl/v1/question/all",
@@ -30,7 +44,6 @@ class HomeContoller extends GetxController {
               isLoading.value = false,
               homeData.value = HomeModel.fromJson(value),
               debugPrint("value $value"),
-              debugPrint("data response ${homeData.value.data!.length}"),
             });
   }
 }
