@@ -2,6 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
 import '../models/notification_model.dart';
 
@@ -15,12 +16,12 @@ class NotificationCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        margin: const EdgeInsets.only(bottom: 8),
+        margin: const EdgeInsets.only(bottom: 5),
         padding:
             const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColor.primaryColor,
           borderRadius: BorderRadius.circular(30),
         ),
         child: Row(children: [

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sos_mobile/modules/home/controllers/home_controller.dart';
 
 class SaveScreen extends StatefulWidget {
   const SaveScreen({super.key});
@@ -10,41 +12,40 @@ class SaveScreen extends StatefulWidget {
 class _SaveScreenState extends State<SaveScreen> {
   @override
   Widget build(BuildContext context) {
-    // final controller = Get.put(SaveController());
-    return Column(children: [
-      Expanded(
-        child: Container(
-          margin: const EdgeInsets.only(top: 20, right: 8, left: 8),
-          // child: ListView.builder(
-          //   itemCount: controller.question.length,
-          //   itemBuilder: (context, i) {
-          //     return QuestionCard(
-          //       key: controller.question[i].key,
-          //       ontap: () {
-          //         Get.toNamed("question-detail");
-          //       },
-          //       tag: controller.question[i].tag!,
-          //       onLongPress: () {
-          //         // _controller.showOverlay(context, _controller.question[i].key);
-          //         // _controller.isLongPress.value = true;
-          //       },
-          //       onLongPressStart: (value) {
-          //         // _controller.dx.value = value.globalPosition.dx - 25;
-          //         // _controller.dy.value = value.globalPosition.dy - 100;
-          //       },
-          //       onLongPressEnd: () {
-          //         // _controller.overlayEntry?.remove();
-          //         // _controller.isLongPress.value = false;
-          //       },
-          //       title: controller.question[i].title!,
-          //       vote: controller.question[i].votes,
-          //       answer: controller.question[i].answer!,
-          //       image: controller.question[i].image,
-          //     );
-          //   },
-          // ),
-        ),
-      ),
-    ]);
+    final controller = Get.put(HomeContoller());
+    return SafeArea(
+      child: Obx(() => SizedBox(
+            width: double.infinity,
+            child: Column(children: [
+              Container(
+                margin: const EdgeInsets.only(bottom: 10, top: 10),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                child: Text(
+                  "រក្សាទុក",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(color: Colors.white),
+                ),
+              ),
+              Text(controller.isFocus.value.toString()),
+              // Expanded(
+              //   child: Container(
+              //     margin: const EdgeInsets.only(right: 5, left: 5),
+              //     child: ListView.builder(
+              //       itemCount: 30,
+              //       itemBuilder: (context, i) {
+              //         return QuestionCard(
+              //           ontap: () {},
+              //           questiondata: controller.homeData.value.data![1],
+              //         );
+              //       },
+              //     ),
+              //   ),
+              // ),
+            ]),
+          )),
+    );
   }
 }

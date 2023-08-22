@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
 
-class BottomNavigatonBar extends GetxController {
-  final index = 1.obs;
+class BottomNavigatonBarController extends GetxController {
+  final index = 0.obs;
 }

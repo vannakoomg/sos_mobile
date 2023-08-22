@@ -15,7 +15,7 @@ class _SlashScreenState extends State<SlashScreen> {
     String token = await LocalStorage.getStringValue(key: "access_token");
     Future.delayed(const Duration(milliseconds: 600), () {
       if (token != '') {
-        context.go('/home');
+        context.go('/home-screen');
       } else {
         Get.toNamed('login-screen');
       }
@@ -45,7 +45,7 @@ class _SlashScreenState extends State<SlashScreen> {
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
-                  .copyWith(color: Colors.white),
+                  .copyWith(color: AppColor.primaryColor),
             ),
           ],
         ),

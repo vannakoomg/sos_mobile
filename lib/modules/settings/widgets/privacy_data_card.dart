@@ -35,10 +35,8 @@ class PrivacyDataCrad extends StatelessWidget {
                 ontap();
               },
               child: SizedBox(
-                // color: Colors.white,
                 height: 40,
                 width: 80,
-                // color: Colors.white,
                 child: Stack(
                   children: [
                     Center(

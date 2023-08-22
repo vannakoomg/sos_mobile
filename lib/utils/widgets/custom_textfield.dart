@@ -11,27 +11,30 @@ class CustomTextfield extends StatelessWidget {
   final TextEditingController? textEditController;
   final bool autofocus;
   final int maxLines;
-  final bool? ishaveColor;
   final FocusNode? focusNode;
   final TextAlign textAlign;
   final int? maxLength;
-  final int? minliens;
-  const CustomTextfield(
-      {super.key,
-      required this.onChanged,
-      required this.textEditController,
-      this.hintText = '',
-      this.textInputType = TextInputType.text,
-      this.autofocus = false,
-      this.focusNode,
-      this.high = 0,
-      this.ishaveColor = true,
-      this.maxLines = 1,
-      this.subfix,
-      this.maxLength,
-      this.textAlign = TextAlign.start,
-      this.prefixIcon,
-      this.minliens});
+  final Color? color;
+  final TextStyle? textStyle;
+  final TextStyle? hintTextStyle;
+  const CustomTextfield({
+    super.key,
+    required this.onChanged,
+    required this.textEditController,
+    this.textStyle,
+    this.hintText = '',
+    this.textInputType = TextInputType.text,
+    this.autofocus = false,
+    this.focusNode,
+    this.high = 0,
+    this.hintTextStyle,
+    this.maxLines = 1,
+    this.color,
+    this.subfix,
+    this.maxLength,
+    this.textAlign = TextAlign.start,
+    this.prefixIcon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,36 +43,40 @@ class CustomTextfield extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10, right: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: ishaveColor == true ? AppColor.primaryColor : Colors.transparent,
+        color: color ?? AppColor.primaryColor.withOpacity(1),
       ),
       child: TextField(
         textAlign: textAlign,
         focusNode: focusNode,
         autofocus: autofocus,
         controller: textEditController,
-        style: Theme.of(context).textTheme.bodyLarge,
+        style: textStyle ??
+            Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontWeight: FontWeight.w500,
+                color: AppColor.mainColor.withOpacity(0.7)),
         onChanged: (value) {
           onChanged!(value);
         },
-        cursorColor: Colors.white,
+        cursorColor: AppColor.secondnaryColor,
         enableSuggestions: false,
         autocorrect: false,
-        maxLength: maxLength,
+        maxLength: maxLength == 0 ? null : maxLength,
         keyboardType: textInputType,
         decoration: InputDecoration(
             prefixIcon: prefixIcon,
             suffix: subfix,
             prefixIconConstraints: const BoxConstraints(),
             border: InputBorder.none,
-            counterStyle: const TextStyle(color: Colors.white),
             fillColor: Colors.white,
             focusColor: Colors.white,
             hintText: hintText,
             counterText: "",
             isDense: true,
-            hintStyle:
-                TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 13)),
-        maxLines: maxLines,
+            hintStyle: hintTextStyle ??
+                Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: AppColor.mainColor.withOpacity(0.5))),
+        maxLines: maxLines == 0 ? null : maxLines,
       ),
     );
   }

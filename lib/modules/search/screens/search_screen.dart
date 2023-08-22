@@ -84,7 +84,10 @@ class _SearchScreenState extends State<SearchScreen> {
                         children: [
                           Text(
                             "ពេញនិយមក្នុងការស្វ័យរក ",
-                            style: Theme.of(context).textTheme.titleMedium,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(color: Colors.white),
                           ),
                           const SizedBox(
                             height: 10,

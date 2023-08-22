@@ -21,9 +21,9 @@ class QuestionCard extends StatelessWidget {
           ontap!();
         },
         child: Container(
-          margin: const EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 5),
           padding:
-              const EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 10),
+              const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: AppColor.primaryColor,

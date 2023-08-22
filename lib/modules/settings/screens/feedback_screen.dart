@@ -89,6 +89,7 @@ class FeedBackScreen extends StatelessWidget {
                                   textEditController: controller
                                       .descriptionTextController.value,
                                   maxLines: 4,
+                                  textInputType: TextInputType.multiline,
                                 ),
                               ),
                             ],

@@ -10,36 +10,34 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NotificationController());
-    return Scaffold(
-        backgroundColor: AppColor.mainColor,
-        body: SafeArea(
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
-                "Notification",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(color: Colors.white),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 40,
-                  itemBuilder: (context, i) {
-                    return NotificationCard(
-                      notification: controller.notificationData[0],
-                    );
-                  },
-                ),
-              ),
-            ]),
+    return SafeArea(
+      child: Container(
+        color: AppColor.mainColor,
+        width: double.infinity,
+        padding: const EdgeInsets.only(left: 5, right: 5, top: 10),
+        child: Column(children: [
+          Text(
+            "សារជូនដំណឹង",
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge!
+                .copyWith(color: AppColor.primaryColor),
           ),
-        ));
+          const SizedBox(
+            height: 10,
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 40,
+              itemBuilder: (context, i) {
+                return NotificationCard(
+                  notification: controller.notificationData[0],
+                );
+              },
+            ),
+          ),
+        ]),
+      ),
+    );
   }
 }

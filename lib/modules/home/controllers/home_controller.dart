@@ -19,7 +19,8 @@ class HomeContoller extends GetxController {
   final isFocus = false.obs;
   final searchText = ''.obs;
   final pageController = PageController();
-
+  final scrollController = ScrollController().obs;
+  final fetchData = true.obs;
   void onPageChanged() {
     if (isForYou.value) {
       pageController.nextPage(
@@ -31,19 +32,22 @@ class HomeContoller extends GetxController {
   }
 
   Future fetchQuestion() async {
-    isLoading.value = true;
-    isForYou.value = true;
-    await ApiBaseHelper.apiBaseHelper
-        .onNetworkRequesting(
-          url: "$baseUrl/v1/question/all",
-          methode: METHODE.get,
-          isAuthorize: true,
-        )
-        .onError((error, stackTrace) => {debugPrint("data")})
-        .then((value) => {
-              isLoading.value = false,
-              homeData.value = HomeModel.fromJson(value),
-              debugPrint("value $value"),
-            });
+    if (fetchData.value) {
+      isLoading.value = true;
+      isForYou.value = true;
+      await ApiBaseHelper.apiBaseHelper
+          .onNetworkRequesting(
+            url: "$baseUrl/v1/question/all",
+            methode: METHODE.get,
+            isAuthorize: true,
+          )
+          .onError((error, stackTrace) => {debugPrint("data")})
+          .then((value) => {
+                isLoading.value = false,
+                homeData.value = HomeModel.fromJson(value),
+                debugPrint("value $value"),
+              });
+      fetchData.value = false;
+    }
   }
 }

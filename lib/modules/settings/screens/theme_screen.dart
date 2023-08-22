@@ -56,7 +56,7 @@ class ThemeScreen extends StatelessWidget {
                           Expanded(
                               child: CustomTextfield(
                             maxLength: 4,
-                            ishaveColor: false,
+                            color: Colors.transparent,
                             subfix: const Text("ms"),
                             textAlign: TextAlign.right,
                             hintText: '',

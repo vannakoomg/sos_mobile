@@ -37,7 +37,7 @@ class Settings extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: Colors.white),
+                        color: AppColor.primaryColor),
                     child: Text(
                       e.value,
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(

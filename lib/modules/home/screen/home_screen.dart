@@ -95,7 +95,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           left: 2, right: 2, top: 2),
                                       height: 36,
                                       decoration: BoxDecoration(
-                                          color: AppColor.mainColor,
+                                          color: AppColor.secondnaryColor
+                                              .withOpacity(0.9),
                                           borderRadius:
                                               BorderRadius.circular(20)),
                                       width: 70,
@@ -104,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           "សំរាប់អ្នក",
                                           style: Theme.of(context)
                                               .textTheme
-                                              .titleSmall,
+                                              .titleSmall!,
                                         ),
                                       )),
                                 ),
@@ -112,6 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               AnimatedPositioned(
                                 duration: const Duration(milliseconds: 400),
                                 left: controller.isForYou.value ? 85 : 10,
+                                top: 3,
                                 child: Row(
                                   children: [
                                     const Padding(
@@ -132,13 +134,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                             const Duration(milliseconds: 300),
                                         child: CustomTextfield(
                                           focusNode: myfocus,
-                                          ishaveColor: false,
                                           hintText: "ស្វែងរក",
+                                          color: Colors.transparent,
                                           onChanged: (value) {},
-                                          minliens: 3,
                                           textEditController: null,
                                         ),
                                       ),
+                                    ),
+                                    const Icon(
+                                      Icons.filter_list,
+                                      color: Colors.black,
                                     ),
                                     GestureDetector(
                                       onTap: () {},
@@ -146,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     )
                                   ],
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -188,7 +193,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                   child: QuestionCard(
                                     ontap: () {
-                                      context.go('/home/question-detail');
+                                      context
+                                          .go('/home-screen/question-detail');
                                     },
                                     questiondata:
                                         controller.homeData.value.data![1],

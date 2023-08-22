@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
 class SearchCrad extends StatelessWidget {
   final String title;
@@ -19,13 +20,16 @@ class SearchCrad extends StatelessWidget {
         width: (MediaQuery.of(context).size.width - 15) / 2,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Colors.white,
+          color: AppColor.primaryColor,
           // image: DecorationImage(
           //   image: NetworkImage(image),
           // ),
         ),
         child: Center(
-          child: Text(title),
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.titleSmall!,
+          ),
         ),
       ),
     );

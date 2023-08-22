@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -18,4 +20,10 @@ void unFocus(BuildContext context) {
 Future<List> pickMultiImage() async {
   var listimage = await picker.pickMultiImage();
   return listimage;
+}
+
+Future<File> pickImage() async {
+  var image = await picker.pickImage(source: ImageSource.gallery);
+  debugPrint("iamge ${image!.path}");
+  return File(image.path);
 }

@@ -1,12 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/profile/controllers/profile_controller.dart';
 import 'package:sos_mobile/utils/controllers/app_controller.dart';
-
 import '../../question/widgets/answer_card.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -73,7 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             alignment: Alignment.centerRight,
                             child: IconButton(
                               onPressed: () {
-                                context.go('/profile/setting');
+                                context.go('/home-screen/setting');
                               },
                               icon: const Icon(
                                 Icons.settings,
@@ -86,24 +83,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 _profileController.pickImageProfile();
                               },
                               child: Container(
-                                height: 120,
-                                width: 120,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.black,
-                                  image:
+                                  height: 120,
+                                  width: 120,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColor.secondnaryColor,
+                                  ),
+                                  child:
                                       _profileController.imagePath.value.path ==
                                               ''
-                                          ? null
-                                          : DecorationImage(
-                                              image: FileImage(
-                                                File(_profileController
-                                                    .imagePath.value.path),
-                                              ),
-                                              fit: BoxFit.cover,
-                                            ),
-                                ),
-                              )),
+                                          ? Center(
+                                              child: Text(_profileController
+                                                  .profileDate
+                                                  .value
+                                                  .data!
+                                                  .fullNameKh![0]),
+                                            )
+                                          : Image.network(""))),
                           Text(
                             "${_profileController.profileDate.value.data!.fullNameKh}",
                             style: Theme.of(context).textTheme.titleLarge,
@@ -126,7 +122,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleMedium!
-                                            .copyWith(color: Colors.white),
+                                            .copyWith(
+                                                color: AppColor.primaryColor),
                                       ),
                                       const Text(
                                         "ឆ្លើយ",
@@ -140,7 +137,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleMedium!
-                                            .copyWith(color: Colors.white),
+                                            .copyWith(
+                                                color: AppColor.primaryColor),
                                       ),
                                       const Text("សំនួរ")
                                     ],
@@ -152,7 +150,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleMedium!
-                                            .copyWith(color: Colors.white),
+                                            .copyWith(
+                                                color: AppColor.primaryColor),
                                       ),
                                       const Text("ចូលចិត្ត")
                                     ],
@@ -164,7 +163,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleMedium!
-                                            .copyWith(color: Colors.white),
+                                            .copyWith(
+                                                color: AppColor.primaryColor),
                                       ),
                                       const Text("ចម្លើយត្រូវ")
                                     ],
@@ -204,7 +204,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       height: 40,
                                       width: 120,
                                       decoration: BoxDecoration(
-                                          color: Colors.white,
+                                          color: AppColor.primaryColor,
                                           borderRadius:
                                               BorderRadius.circular(20)),
                                     ),
@@ -222,16 +222,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ? 60
                                           : 50,
                                       decoration: BoxDecoration(
-                                        color: AppColor.mainColor,
+                                        color: AppColor.secondnaryColor,
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                     ),
-                                    const Positioned(
+                                    Positioned(
                                         top: 10,
                                         left: 20,
-                                        child: Text("ឆ្លើយ")),
-                                    const Positioned(
-                                        right: 20, top: 10, child: Text("សួរ")),
+                                        child: Text(
+                                          "ឆ្លើយ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleSmall,
+                                        )),
+                                    Positioned(
+                                        right: 20,
+                                        top: 10,
+                                        child: Text(
+                                          "សួរ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleSmall,
+                                        )),
                                   ],
                                 ),
                               ),

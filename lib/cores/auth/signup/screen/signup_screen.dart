@@ -74,7 +74,7 @@ class SignUpScreen extends StatelessWidget {
                                   TypewriterAnimatedText(
                                     'Password a less 6 charater ',
                                     textStyle:
-                                        const TextStyle(color: Colors.white),
+                                        TextStyle(color: AppColor.primaryColor),
                                     cursor: '',
                                   ),
                                 ],

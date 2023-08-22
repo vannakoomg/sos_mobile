@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
+import 'package:sos_mobile/modules/BottomNavigationBar/controller/bottom_navigation_bar.dart';
+import 'package:sos_mobile/modules/home/screen/home_screen.dart';
+import 'package:sos_mobile/modules/profile/screen/profile_screen.dart';
 
 import '../../home/controllers/home_controller.dart';
+import '../../notification/screens/notificaition_screen.dart';
+import '../../post_question/screen/post_question_screen.dart';
+import '../../save/screens/save_screen.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
   final Widget? child;
@@ -11,90 +16,101 @@ class ScaffoldWithNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeContoller());
-    return Scaffold(
-        backgroundColor: AppColor.mainColor,
-        body: child,
-        bottomNavigationBar: Obx(
-          () => controller.scrollPixel.value < 250 ||
-                  controller.scrollPixalBack.value > 200
+    final controller = Get.put(BottomNavigatonBarController());
+    final homeController = Get.put(HomeContoller());
+    return Obx(() => Scaffold(
+          backgroundColor: AppColor.mainColor,
+          body: IndexedStack(
+            index: controller.index.value,
+            children: const [
+              HomeScreen(),
+              SaveScreen(),
+              PostQuestionScreen(),
+              NotificationScreen(),
+              ProfileScreen(),
+            ],
+          ),
+          bottomNavigationBar: homeController.scrollPixel.value < 250 ||
+                  homeController.scrollPixalBack.value > 200
               ? Container(
                   height: 60,
-                  width: double.infinity,
-                  color: AppColor.mainColor,
+                  width: MediaQuery.of(context).size.width,
+                  color: controller.index.value == 2
+                      ? AppColor.mainColor.withOpacity(0.6)
+                      : AppColor.mainColor,
                   child: Row(
                     children: [
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            context.go('/home');
+                            controller.index.value = 0;
                           },
                           child: Container(
                             height: 60,
                             color: Colors.transparent,
-                            child: const Icon(
-                              Icons.home,
-                              color: Colors.white,
-                            ),
+                            child: Icon(Icons.home_filled,
+                                color: controller.index.value == 0
+                                    ? AppColor.secondnaryColor
+                                    : AppColor.primaryColor),
                           ),
                         ),
                       ),
                       Expanded(
                           child: GestureDetector(
                         onTap: () {
-                          context.go('/save');
+                          controller.index.value = 1;
                         },
                         child: Container(
                           height: 60,
                           color: Colors.transparent,
-                          child: const Icon(
-                            Icons.save_alt,
-                            color: Colors.white,
-                          ),
+                          child: Icon(Icons.save_alt,
+                              color: controller.index.value == 1
+                                  ? AppColor.secondnaryColor
+                                  : AppColor.primaryColor),
                         ),
                       )),
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            context.go('/post-question');
+                            controller.index.value = 2;
                           },
                           child: Container(
                             height: 60,
                             color: Colors.transparent,
-                            child: const Icon(
-                              Icons.question_mark_rounded,
-                              color: Colors.white,
-                            ),
+                            child: Icon(Icons.question_mark_rounded,
+                                color: controller.index.value == 2
+                                    ? AppColor.secondnaryColor
+                                    : AppColor.primaryColor),
                           ),
                         ),
                       ),
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            context.go('/notification');
+                            controller.index.value = 3;
                           },
                           child: Container(
                             height: 60,
                             color: Colors.transparent,
-                            child: const Icon(
-                              Icons.notifications,
-                              color: Colors.white,
-                            ),
+                            child: Icon(Icons.notifications,
+                                color: controller.index.value == 3
+                                    ? AppColor.secondnaryColor
+                                    : AppColor.primaryColor),
                           ),
                         ),
                       ),
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            context.go('/profile');
+                            controller.index.value = 4;
                           },
                           child: Container(
                             height: 60,
                             color: Colors.transparent,
-                            child: const Icon(
-                              Icons.person,
-                              color: Colors.white,
-                            ),
+                            child: Icon(Icons.person,
+                                color: controller.index.value == 4
+                                    ? AppColor.secondnaryColor
+                                    : AppColor.primaryColor),
                           ),
                         ),
                       ),

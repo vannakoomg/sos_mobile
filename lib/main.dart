@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/utils/controllers/app_controller.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/helpers/local_data/storge_local.dart';
@@ -91,8 +92,8 @@ class MyApp extends StatelessWidget {
                                 width: controller.isPress01.value ? 57 : 50,
                                 decoration: BoxDecoration(
                                   color: controller.isPress01.value
-                                      ? Colors.pink
-                                      : Colors.white,
+                                      ? AppColor.secondnaryColor
+                                      : AppColor.primaryColor,
                                   shape: BoxShape.circle,
                                 ),
                                 child:
@@ -122,8 +123,8 @@ class MyApp extends StatelessWidget {
                             width: controller.isPress02.value ? 57 : 50,
                             decoration: BoxDecoration(
                               color: controller.isPress02.value
-                                  ? Colors.pink
-                                  : Colors.white,
+                                  ? AppColor.secondnaryColor
+                                  : AppColor.primaryColor,
                               shape: BoxShape.circle,
                             ),
                             child: const Center(
@@ -145,8 +146,8 @@ class MyApp extends StatelessWidget {
                             width: controller.isPress03.value ? 57 : 50,
                             decoration: BoxDecoration(
                               color: controller.isPress03.value
-                                  ? Colors.pink
-                                  : Colors.white,
+                                  ? AppColor.secondnaryColor
+                                  : AppColor.primaryColor,
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(Icons.send_rounded),
