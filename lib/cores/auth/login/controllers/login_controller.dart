@@ -17,9 +17,9 @@ class LoginController extends GetxController {
       }, headers: {
         "Accept": "application/json"
       }).then((value) async {
+        debugPrint("access token ${value.body["access_token"]}");
         await LocalStorage.storeData(
             key: 'access_token', value: value.body["access_token"]);
-        Get.toNamed('dasborad');
       });
     } catch (value) {
       debugPrint("you have been catch $value");

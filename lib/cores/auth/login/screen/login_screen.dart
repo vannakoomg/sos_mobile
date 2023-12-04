@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/cores/auth/login/controllers/login_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
@@ -21,8 +22,16 @@ class LoginScreen extends StatelessWidget {
                 color: Colors.transparent,
                 margin: const EdgeInsets.only(left: 10, right: 10),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Spacer(),
+                    Container(
+                      height: 50,
+                      width: 50,
+                      color: Colors.green,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     CustomTextfield(
                       hintText: "phone number",
                       onChanged: (value) {
@@ -48,11 +57,12 @@ class LoginScreen extends StatelessWidget {
                     CustomButtom(
                       title: "Login",
                       onTap: () {
-                        controller.login();
+                        controller
+                            .login()
+                            .then((value) => {context.go('/home-screen')});
                       },
                       disble: controller.disbleBottom.value,
                     ),
-                    const Spacer(),
                   ],
                 )),
           ],

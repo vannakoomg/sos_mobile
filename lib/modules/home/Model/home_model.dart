@@ -1,15 +1,17 @@
-class HomeModel {
-  List<Data>? data;
+class QuestionModelData {
+  List<QuestionModel>? data;
+  Meta? meta;
 
-  HomeModel({this.data});
+  QuestionModelData({this.data, this.meta});
 
-  HomeModel.fromJson(Map<String, dynamic> json) {
+  QuestionModelData.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <QuestionModel>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(QuestionModel.fromJson(v));
       });
     }
+    meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -17,11 +19,14 @@ class HomeModel {
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
+    if (meta != null) {
+      data['meta'] = meta!.toJson();
+    }
     return data;
   }
 }
 
-class Data {
+class QuestionModel {
   int? id;
   String? title;
   String? description;
@@ -31,7 +36,7 @@ class Data {
   int? amountComments;
   String? createdAt;
 
-  Data(
+  QuestionModel(
       {this.id,
       this.title,
       this.description,
@@ -41,7 +46,7 @@ class Data {
       this.amountComments,
       this.createdAt});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  QuestionModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     description = json['description'];
@@ -62,6 +67,22 @@ class Data {
     data['amount_answers'] = amountAnswers;
     data['amount_comments'] = amountComments;
     data['created_at'] = createdAt;
+    return data;
+  }
+}
+
+class Meta {
+  int? lastPage;
+
+  Meta({this.lastPage});
+
+  Meta.fromJson(Map<String, dynamic> json) {
+    lastPage = json['last_page'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['last_page'] = lastPage;
     return data;
   }
 }

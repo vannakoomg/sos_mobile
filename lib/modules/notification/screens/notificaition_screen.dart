@@ -12,7 +12,6 @@ class NotificationScreen extends StatelessWidget {
     final controller = Get.put(NotificationController());
     return SafeArea(
       child: Container(
-        color: AppColor.mainColor,
         width: double.infinity,
         padding: const EdgeInsets.only(left: 5, right: 5, top: 10),
         child: Column(children: [

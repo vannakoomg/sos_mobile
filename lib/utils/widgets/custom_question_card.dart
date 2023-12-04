@@ -6,7 +6,7 @@ import '../../modules/home/Model/home_model.dart';
 import 'custom_tag_card.dart';
 
 class QuestionCard extends StatelessWidget {
-  final Data? questiondata;
+  final QuestionModel? questiondata;
   final GestureTapCallback? ontap;
   const QuestionCard({
     super.key,

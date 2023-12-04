@@ -19,6 +19,7 @@ class CustomTagCard extends StatelessWidget {
         }
       },
       child: Container(
+        margin: const EdgeInsets.only(right: 5, bottom: 5),
         padding: const EdgeInsets.only(left: 6, right: 6, top: 4, bottom: 4),
         decoration: BoxDecoration(
             color: const Color(0xffa9def9),
@@ -28,7 +29,7 @@ class CustomTagCard extends StatelessWidget {
                 title,
                 style: const TextStyle(fontSize: 11),
               )
-            : Row(children: [
+            : Wrap(children: [
                 Text(
                   title,
                   style: const TextStyle(fontSize: 11),

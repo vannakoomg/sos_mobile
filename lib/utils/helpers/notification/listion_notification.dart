@@ -34,7 +34,7 @@ void listNotification() async {
     sound: true,
   );
   String? token = await FirebaseMessaging.instance.getToken();
-  debugPrint(" your get token $token");
+  debugPrint("your get device token $token");
   if (messaging.isAutoInitEnabled) {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       debugPrint("you have been get notification from firebase ");

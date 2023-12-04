@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/home/screen/widgets/search_card.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
-
 import '../controller/search_controller.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -21,6 +20,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
+    debugPrint("app ${widget.searchText}");
     super.initState();
   }
 
@@ -28,50 +28,10 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Obx(
       () => Container(
-        height: double.infinity,
-        width: double.infinity,
-        margin: const EdgeInsets.only(),
+        margin: const EdgeInsets.only(top: 10),
         color: AppColor.mainColor,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: const Stack(
-                children: [
-                  // AnimatedContainer(
-                  //   width:widget. isFocus
-                  //       ? MediaQuery.of(context).size.width - 50
-                  //       : MediaQuery.of(context).size.width - 16,
-                  //   duration: const Duration(milliseconds: 200),
-                  //   margin: const EdgeInsets.only(left: 8, right: 8, top: 20),
-                  //   child: CustomTextfield(
-                  //     focusNode: myfocus,
-                  //     hintText: "Search",
-                  //     onChanged: (value) {
-                  //       controller.searchText.value = value;
-                  //     },
-                  //     textEditController:
-                  //         controller.searchTextEditController.value,
-                  //   ),
-                  // ),
-                  // AnimatedPositioned(
-                  //   top: 25,
-                  //   right: controller.isFocus.value ? 10 : -22,
-                  //   duration: const Duration(milliseconds: 200),
-                  //   curve: Curves.ease,
-                  //   child: GestureDetector(
-                  //       onTap: () {
-                  //         controller.delete();
-                  //       },
-                  //       child: const Text("លុប")),
-                  // ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
             Expanded(
               child: Stack(
                 children: [
@@ -165,9 +125,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       opacity:
                           widget.isFocus && widget.searchText == '' ? 1 : 0,
                       child: Container(
-                        padding: const EdgeInsets.only(
-                          left: 8,
-                        ),
+                        padding: const EdgeInsets.only(left: 10),
                         height: MediaQuery.of(context).size.height,
                         width: double.infinity,
                         color: AppColor.mainColor,
@@ -176,19 +134,21 @@ class _SearchScreenState extends State<SearchScreen> {
                             height: 40,
                             child: Row(
                               children: [
-                                const Icon(Icons.search),
-                                const SizedBox(
-                                  width: 10,
-                                ),
                                 Text(
-                                    "សមីការឌឺក្រេទីពីរ ${controller.searchTextEditController.value.text}"),
+                                  "សមីការឌឺក្រេទីពីរ ${controller.searchTextEditController.value.text}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(color: Colors.white),
+                                ),
                                 const Spacer(),
                                 IconButton(
                                     onPressed: () {
                                       unFocus(context);
                                       controller.deleteSaveSearch();
                                     },
-                                    icon: const Icon(Icons.close))
+                                    icon: Icon(Icons.close,
+                                        color: AppColor.primaryColor))
                               ],
                             ),
                           )
@@ -219,7 +179,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                   SizedBox(
                                     width: 10,
                                   ),
-                                  Text("សមីការឌឺក្រេទីពីរ"),
+                                  Text("សមីការឌឺក្រេទីពីរsssss"),
                                 ],
                               ),
                             ),

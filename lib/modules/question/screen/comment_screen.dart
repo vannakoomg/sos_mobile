@@ -47,7 +47,6 @@ class CommentScreen extends StatelessWidget {
                               alignment: Alignment.centerLeft,
                               height: 35,
                               width: double.infinity,
-                              // margin: const EdgeInsets.only,
                               decoration: BoxDecoration(
                                   color: AppColor.primaryColor,
                                   borderRadius: BorderRadius.circular(30)),

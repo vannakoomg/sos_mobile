@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/utils/helpers/local_data/storge_local.dart';
@@ -17,7 +16,7 @@ class _SlashScreenState extends State<SlashScreen> {
       if (token != '') {
         context.go('/home-screen');
       } else {
-        Get.toNamed('login-screen');
+        context.go('/login-screen');
       }
     });
   }

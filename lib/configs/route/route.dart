@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:sos_mobile/cores/walk_though/singin/screens/singin_screen.dart';
 import 'package:sos_mobile/modules/question/screen/question_detail.dart';
 import 'package:sos_mobile/modules/settings/screens/setting_screen.dart';
 
@@ -18,6 +19,12 @@ final router = GoRouter(
       path: '/slash-screen',
       builder: (context, state) {
         return const SlashScreen();
+      },
+    ),
+    GoRoute(
+      path: '/singin',
+      builder: (context, state) {
+        return const SingInScreen();
       },
     ),
     GoRoute(

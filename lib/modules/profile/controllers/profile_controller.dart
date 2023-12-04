@@ -15,22 +15,28 @@ class ProfileController extends GetxController {
   final isAnswer = true.obs;
   final profileDate = ProfileModel().obs;
   final isloadingProfile = true.obs;
-  void setdefultvalue() {
-    isAnswer.value = true;
-    isScroll.value = false;
-    page.value = 0;
-  }
 
   void getProfile() async {
+    debugPrint("value 888888888888888888");
     isloadingProfile.value = true;
-    var data = await ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
-      url: "$baseUrl/v1/user/profile",
-      methode: METHODE.get,
-      isAuthorize: true,
-    );
-    profileDate.value = ProfileModel.fromJson(data);
-    isloadingProfile.value = false;
-    debugPrint("data ${profileDate.value.data!.questions![0].description}");
+    try {
+      await ApiBaseHelper.apiBaseHelper
+          .onNetworkRequesting(
+        url: "$baseUrl/v1/user/profile",
+        methode: METHODE.get,
+        isAuthorize: true,
+      )
+          .then((value) {
+        debugPrint("dddd");
+        profileDate.value = ProfileModel.fromJson(value);
+        isloadingProfile.value = false;
+        debugPrint("data ${profileDate.value.data!.questions![0].description}");
+      }).onError((error, stackTrace) {
+        debugPrint("on error ");
+      });
+    } catch (e) {
+      debugPrint("on catch ");
+    }
   }
 
   void pickImageProfile() async {

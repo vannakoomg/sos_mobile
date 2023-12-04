@@ -17,6 +17,7 @@ class CustomTextfield extends StatelessWidget {
   final Color? color;
   final TextStyle? textStyle;
   final TextStyle? hintTextStyle;
+  final bool isDense;
   const CustomTextfield({
     super.key,
     required this.onChanged,
@@ -34,6 +35,7 @@ class CustomTextfield extends StatelessWidget {
     this.maxLength,
     this.textAlign = TextAlign.start,
     this.prefixIcon,
+    this.isDense = true,
   });
 
   @override
@@ -51,9 +53,9 @@ class CustomTextfield extends StatelessWidget {
         autofocus: autofocus,
         controller: textEditController,
         style: textStyle ??
-            Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontWeight: FontWeight.w500,
-                color: AppColor.mainColor.withOpacity(0.7)),
+            Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
         onChanged: (value) {
           onChanged!(value);
         },
@@ -63,6 +65,7 @@ class CustomTextfield extends StatelessWidget {
         maxLength: maxLength == 0 ? null : maxLength,
         keyboardType: textInputType,
         decoration: InputDecoration(
+            contentPadding: const EdgeInsets.only(bottom: 8, top: 8),
             prefixIcon: prefixIcon,
             suffix: subfix,
             prefixIconConstraints: const BoxConstraints(),
@@ -71,11 +74,12 @@ class CustomTextfield extends StatelessWidget {
             focusColor: Colors.white,
             hintText: hintText,
             counterText: "",
-            isDense: true,
+            isDense: isDense,
             hintStyle: hintTextStyle ??
-                Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppColor.mainColor.withOpacity(0.5))),
+                Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontWeight: FontWeight.w600, color: Colors.grey)),
         maxLines: maxLines == 0 ? null : maxLines,
       ),
     );

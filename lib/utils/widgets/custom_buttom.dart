@@ -26,10 +26,11 @@ class CustomButtom extends StatelessWidget {
         decoration: BoxDecoration(
           color: disble == false
               ? AppColor.buttonColor
-              : AppColor.buttonColor.withOpacity(0.7),
+              : AppColor.buttonColor.withOpacity(0.4),
           borderRadius: BorderRadius.circular(100),
         ),
         height: height,
+        curve: Curves.easeIn,
         duration: const Duration(milliseconds: 300),
         child: Center(
           child: Text(

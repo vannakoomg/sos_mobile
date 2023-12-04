@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
         unFocus(context);
       },
       child: MaterialApp.router(
-        // routerConfig: router,
         routeInformationParser: router.routeInformationParser,
         routerDelegate: router.routerDelegate,
         routeInformationProvider: router.routeInformationProvider,
@@ -48,11 +47,12 @@ class MyApp extends StatelessWidget {
                     duration: const Duration(milliseconds: 250),
                     opacity: controller.isLongPress.value ? 1 : 0,
                     child: Container(
-                        height: double.infinity,
-                        width: double.infinity,
-                        color: controller.isLongPress.value
-                            ? Colors.black.withOpacity(0.90)
-                            : null),
+                      height: double.infinity,
+                      width: double.infinity,
+                      color: controller.isLongPress.value
+                          ? Colors.black.withOpacity(0.90)
+                          : null,
+                    ),
                   ),
                   if (controller.isLongPress.value == true)
                     Stack(

@@ -19,7 +19,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
     final controller = Get.put(BottomNavigatonBarController());
     final homeController = Get.put(HomeContoller());
     return Obx(() => Scaffold(
-          backgroundColor: AppColor.mainColor,
+          backgroundColor: Colors.black,
           body: IndexedStack(
             index: controller.index.value,
             children: const [
@@ -43,7 +43,20 @@ class ScaffoldWithNavBar extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            controller.index.value = 0;
+                            if (controller.index.value == 0) {
+                              if (homeController.scrollPixel.value < 10) {
+                                homeController.fetchQuestion(1);
+                              } else {
+                                homeController.scrollController.value.animateTo(
+                                    0,
+                                    duration:
+                                        const Duration(milliseconds: 1000),
+                                    curve: Curves.ease);
+                              }
+                            } else {
+                              controller.index.value = 0;
+                            }
+                            debugPrint("ddsssd");
                           },
                           child: Container(
                             height: 60,

@@ -6,7 +6,6 @@ import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/post_question/controllers/post_question_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 import 'package:sos_mobile/utils/widgets/custom_tag_card.dart';
-
 import '../../../utils/widgets/custom_textfield.dart';
 
 class PostQuestionScreen extends StatelessWidget {
@@ -19,7 +18,7 @@ class PostQuestionScreen extends StatelessWidget {
     return SafeArea(
         child: Obx(
       () => Container(
-        padding: const EdgeInsets.only(left: 5, right: 5, top: 10),
+        padding: const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
         child: Column(
           children: [
             Expanded(
@@ -86,8 +85,8 @@ class PostQuestionScreen extends StatelessWidget {
                                                   ),
                                                 )),
                                             Positioned(
-                                              top: 10,
-                                              right: 10,
+                                              top: 5,
+                                              right: 5,
                                               child: GestureDetector(
                                                 onTap: () {
                                                   controller.image.value =
@@ -150,94 +149,62 @@ class PostQuestionScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(20),
                                     color: AppColor.primaryColor,
                                   ),
-                                  child: Container(
-                                    margin: controller.listOfTag.isNotEmpty
-                                        ? const EdgeInsets.only(
-                                            left: 10,
-                                            right: 10,
-                                          )
-                                        : null,
-                                    child: SingleChildScrollView(
-                                      controller: scrollController,
-                                      scrollDirection: Axis.horizontal,
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                              child: Row(
-                                                children: controller.listOfTag
-                                                    .asMap()
-                                                    .entries
-                                                    .map((element) {
-                                                  return Row(
-                                                    children: [
-                                                      if (element.key >= 1)
-                                                        const SizedBox(
-                                                          width: 4,
-                                                        ),
-                                                      element.key >= 0
-                                                          ? CustomTagCard(
-                                                              isOnSearch: false,
-                                                              title:
-                                                                  'math ដសហ្ថក្ដសហថ្ក- k',
-                                                              ontap: () {
-                                                                controller
-                                                                    .listOfTag
-                                                                    .removeAt(
-                                                                        element
-                                                                            .key);
-                                                                if (controller
-                                                                    .listOfTag
-                                                                    .isEmpty) {
-                                                                  controller
-                                                                      .tagtext
-                                                                      .value = '';
-                                                                  controller
-                                                                      .tagTextController
-                                                                      .value
-                                                                      .text = '';
-                                                                }
-                                                              },
-                                                            )
-                                                          : const SizedBox(),
-                                                    ],
-                                                  );
-                                                }).toList(),
-                                              )),
-                                          SizedBox(
-                                            width: 150,
-                                            child: CustomTextfield(
-                                              textInputType:
-                                                  TextInputType.visiblePassword,
-                                              color: Colors.transparent,
-                                              hintText: "tag",
-                                              onChanged: (value) {
-                                                controller.tagtext.value =
-                                                    value;
-                                              },
-                                              textEditController: controller
-                                                  .tagTextController.value,
-                                            ),
-                                          ),
-                                        ],
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        width: double.infinity,
+                                        child: CustomTextfield(
+                                          textInputType:
+                                              TextInputType.visiblePassword,
+                                          hintText: "ពាក្យសម្គាល់",
+                                          onChanged: (value) {
+                                            controller.tagtext.value = value;
+                                          },
+                                          textEditController: controller
+                                              .tagTextController.value,
+                                        ),
                                       ),
-                                    ),
+                                      Container(
+                                          margin: const EdgeInsets.only(
+                                              left: 5, right: 5),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: Wrap(
+                                            children: controller.listOfTag
+                                                .asMap()
+                                                .entries
+                                                .map((element) {
+                                              return CustomTagCard(
+                                                isOnSearch: false,
+                                                title:
+                                                    'math math ${element.key}',
+                                                ontap: () {
+                                                  controller.listOfTag
+                                                      .removeAt(element.key);
+                                                  if (controller
+                                                      .listOfTag.isEmpty) {
+                                                    controller.tagtext.value =
+                                                        '';
+                                                    controller.tagTextController
+                                                            .value =
+                                                        TextEditingController();
+                                                  }
+                                                },
+                                              );
+                                            }).toList(),
+                                          )),
+                                    ],
                                   ),
                                 ),
                                 const SizedBox(
                                   height: 8,
                                 ),
-                                CustomButtom(
-                                  disble: controller.validationPost(),
-                                  title: "Post",
-                                  onTap: () {
-                                    debugPrint(
-                                        "nice to meet you ${controller.listOfTag} ");
-                                  },
-                                )
+                                const SizedBox(
+                                  height: 30,
+                                ),
                               ],
                             ),
                           ),
@@ -252,7 +219,6 @@ class PostQuestionScreen extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(
                   top: 5,
-                  bottom: 5,
                 ),
                 width: double.infinity,
                 child: Wrap(children: [
@@ -263,12 +229,22 @@ class PostQuestionScreen extends StatelessWidget {
                           duration: const Duration(milliseconds: 3000),
                           curve: Curves.ease);
                       controller.tagtext.value = '';
-                      controller.tagTextController.value.text = ' ';
+                      controller.tagTextController.value.text = '';
                       controller.listOfTag.add('ddd');
                     },
                   ),
                 ]),
               ),
+            const SizedBox(
+              height: 10,
+            ),
+            CustomButtom(
+              disble: controller.validationPost(),
+              title: "បង្កើតសំនួរ",
+              onTap: () {
+                debugPrint("nice to meet you ${controller.listOfTag} ");
+              },
+            ),
           ],
         ),
       ),
