@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   const Padding(
                                     padding: EdgeInsets.only(
-                                      top: 3,
+                                      top: 0,
                                     ),
                                     child: Icon(Icons.search_rounded),
                                   ),
@@ -167,8 +167,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                   onLongPressMoveUpdate: (value) {
                                     appController.onLongPressMoveUpdate(
-                                        globalDx: value.globalPosition.dx,
-                                        globalDy: value.globalPosition.dy);
+                                        globalDx: value.globalPosition.dx - 22,
+                                        globalDy: value.globalPosition.dy - 22);
                                   },
                                   onLongPressEnd: (value) {
                                     appController.onLongPressEnd();

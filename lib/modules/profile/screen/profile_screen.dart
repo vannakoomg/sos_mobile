@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/profile/controllers/profile_controller.dart';
 import 'package:sos_mobile/utils/controllers/app_controller.dart';
+import 'package:sos_mobile/utils/widgets/custom_loading.dart';
 import '../../question/widgets/answer_card.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -57,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Obx(
       () => _profileController.isloadingProfile.value == true
-          ? const Center(child: CircularProgressIndicator())
+          ? const CustomLoading()
           : SafeArea(
               child: SizedBox(
                 child: SingleChildScrollView(
@@ -290,6 +291,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           appController.onLongPressEnd();
                                         },
                                         child: CustomAnswerCrad(
+                                          isCorrect: false,
                                           avarta:
                                               "https://leadership.ng/wp-content/uploads/2023/03/davido.png",
                                           isYourOwnQuestion: false,
@@ -328,6 +330,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           height: 2,
                                         ),
                                       CustomAnswerCrad(
+                                        isCorrect: false,
                                         avarta:
                                             "https://leadership.ng/wp-content/uploads/2023/03/davido.png",
                                         isYourOwnQuestion: false,

@@ -70,8 +70,9 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                   height:
                                       MediaQuery.of(context).size.height * 0.6,
                                   width: MediaQuery.of(context).size.height,
-                                  placeholder: (context, url) =>
-                                      const CircularProgressIndicator(),
+                                  placeholder: (context, url) => Container(
+                                    color: Colors.red,
+                                  ),
                                   errorWidget: (context, url, error) =>
                                       const Icon(Icons.error),
                                 ),
@@ -80,7 +81,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                   child: Row(children: [
                                     IconButton(
                                         onPressed: () {
-                                          unFocus(context);
+                                          controller.isAnswer.value = false;
                                           context.pop();
                                           debugPrint("nice to meet you ");
                                         },
@@ -176,6 +177,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                       itemCount: 40,
                                       itemBuilder: (context, i) {
                                         return CustomAnswerCrad(
+                                          isCorrect: false,
                                           isYourOwnQuestion: true,
                                           name: "ចាន់ថា",
                                           time: "១០​ថ្ងៃមុន",

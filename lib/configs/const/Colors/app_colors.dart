@@ -5,7 +5,7 @@ extension AppColor on Color {
   static var secondnaryColor = const Color(0xffff0a54);
   static var mainColor = const Color(0xff000000);
 
-  static var textColor = const Color(0xff000000);
+  static var textColor = Colors.white;
   static var buttonColor = const Color(0xffff0a54);
 
   static var maintextColor = const Color.fromARGB(255, 255, 255, 255);

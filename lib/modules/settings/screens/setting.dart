@@ -33,7 +33,7 @@ class Settings extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     margin: const EdgeInsets.only(bottom: 10),
                     width: double.infinity,
-                    height: 45,
+                    height: 40,
                     padding: const EdgeInsets.only(left: 10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),

@@ -11,18 +11,16 @@ ThemeData theme() {
       backgroundColor: AppColor.mainColor,
       titleTextStyle: TextStyle(
         fontSize: 20,
-        color: AppColor.primaryColor,
+        color: AppColor.textColor,
         fontWeight: FontWeight.w500,
       ),
     ),
     useMaterial3: true,
-    primaryColor: AppColor.primaryColor,
+    primaryColor: AppColor.textColor,
     brightness: Brightness.light,
     textTheme: TextTheme(
       titleLarge: TextStyle(
-          color: AppColor.primaryColor,
-          fontSize: 22,
-          fontWeight: FontWeight.w500),
+          color: AppColor.textColor, fontSize: 22, fontWeight: FontWeight.w500),
       titleMedium: TextStyle(
         color: AppColor.textColor,
         fontSize: 18,
@@ -33,7 +31,10 @@ ThemeData theme() {
         fontSize: 14,
         fontWeight: FontWeight.w500,
       ),
-      bodyLarge: TextStyle(color: AppColor.textColor, fontSize: 15),
+      bodyLarge: TextStyle(
+        color: AppColor.textColor,
+        fontSize: 15,
+      ),
       bodyMedium: TextStyle(color: AppColor.textColor, fontSize: 13),
       bodySmall: TextStyle(
         color: AppColor.textColor,

@@ -5,6 +5,7 @@ import '../../../configs/const/Colors/app_colors.dart';
 
 class CustomAnswerCrad extends StatelessWidget {
   final bool isYourOwnQuestion;
+  final bool isCorrect;
   final String avarta;
   final String name;
   final String time;
@@ -18,6 +19,7 @@ class CustomAnswerCrad extends StatelessWidget {
 
   const CustomAnswerCrad({
     super.key,
+    required this.isCorrect,
     required this.isYourOwnQuestion,
     required this.avarta,
     required this.name,
@@ -51,10 +53,9 @@ class CustomAnswerCrad extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  height: 40,
-                  width: 40,
+                  height: 35,
+                  width: 35,
                   decoration: BoxDecoration(
-                    color: Colors.green,
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       image: NetworkImage(avarta),
@@ -76,11 +77,17 @@ class CustomAnswerCrad extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                if (isYourOwnQuestion == true)
-                  const Icon(
-                    Icons.check_circle_sharp,
-                    color: Colors.green,
-                  ),
+                isCorrect == true
+                    ? const Icon(
+                        Icons.check_circle_sharp,
+                        color: Colors.green,
+                      )
+                    : isYourOwnQuestion == true
+                        ? const Icon(
+                            Icons.check_circle_sharp,
+                            color: Colors.grey,
+                          )
+                        : const SizedBox()
               ],
             ),
           ),

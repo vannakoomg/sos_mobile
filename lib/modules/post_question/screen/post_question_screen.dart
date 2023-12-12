@@ -58,91 +58,6 @@ class PostQuestionScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 5,
                                 ),
-                                GestureDetector(
-                                  onTap: () async {
-                                    controller.getImage();
-                                  },
-                                  child: controller.image.value.path != ''
-                                      ? Stack(
-                                          children: [
-                                            Container(
-                                                height: 300,
-                                                clipBehavior: Clip.antiAlias,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  color: AppColor.primaryColor,
-                                                ),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    color:
-                                                        AppColor.primaryColor,
-                                                    image: DecorationImage(
-                                                        image: FileImage(
-                                                            controller
-                                                                .image.value),
-                                                        fit: BoxFit.cover),
-                                                  ),
-                                                )),
-                                            Positioned(
-                                              top: 5,
-                                              right: 5,
-                                              child: GestureDetector(
-                                                onTap: () {
-                                                  controller.image.value =
-                                                      File('');
-                                                },
-                                                child: Container(
-                                                  height: 30,
-                                                  width: 30,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.black
-                                                          .withOpacity(0.6),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20)),
-                                                  child: const Center(
-                                                      child: Icon(
-                                                    Icons.close,
-                                                    color: Colors.white,
-                                                    size: 16,
-                                                  )),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      : Container(
-                                          clipBehavior: Clip.antiAlias,
-                                          padding: const EdgeInsets.only(
-                                              top: 5, left: 10),
-                                          height: 300,
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              color: AppColor.primaryColor),
-                                          child: Column(children: [
-                                            const Spacer(),
-                                            Icon(
-                                              Icons.photo,
-                                              color: AppColor.mainColor
-                                                  .withOpacity(0.6),
-                                              size: 60,
-                                            ),
-                                            Text(
-                                              "រូបភាពអត់ដាក់ក៏បានដែល",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium!,
-                                            ),
-                                            const Spacer(),
-                                          ]),
-                                        ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
                                 Container(
                                   width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
@@ -198,6 +113,85 @@ class PostQuestionScreen extends StatelessWidget {
                                           )),
                                     ],
                                   ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                GestureDetector(
+                                  onTap: () async {
+                                    controller.getImage();
+                                  },
+                                  child: controller.image.value.path != ''
+                                      ? Stack(
+                                          children: [
+                                            Container(
+                                                height: 300,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  color: AppColor.primaryColor,
+                                                ),
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                        AppColor.primaryColor,
+                                                    image: DecorationImage(
+                                                        image: FileImage(
+                                                            controller
+                                                                .image.value),
+                                                        fit: BoxFit.cover),
+                                                  ),
+                                                )),
+                                            Positioned(
+                                              top: 5,
+                                              right: 5,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  controller.image.value =
+                                                      File('');
+                                                },
+                                                child: Container(
+                                                  height: 30,
+                                                  width: 30,
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.black
+                                                          .withOpacity(0.6),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20)),
+                                                  child: const Center(
+                                                      child: Icon(
+                                                    Icons.close,
+                                                    color: Colors.white,
+                                                    size: 16,
+                                                  )),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      : Container(
+                                          alignment: Alignment.center,
+                                          clipBehavior: Clip.antiAlias,
+                                          padding: const EdgeInsets.only(
+                                              top: 5, left: 10),
+                                          height: 300,
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              color: AppColor.primaryColor),
+                                          child: Icon(
+                                            Icons.photo,
+                                            color: AppColor.mainColor
+                                                .withOpacity(0.6),
+                                            size: 60,
+                                          ),
+                                        ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
                                 ),
                                 const SizedBox(
                                   height: 8,

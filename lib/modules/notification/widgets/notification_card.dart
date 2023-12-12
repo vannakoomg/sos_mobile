@@ -16,9 +16,8 @@ class NotificationCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        margin: const EdgeInsets.only(bottom: 5),
-        padding:
-            const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
         width: double.infinity,
         decoration: BoxDecoration(
           color: AppColor.primaryColor,

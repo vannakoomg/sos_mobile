@@ -8,20 +8,15 @@ class AppController extends GetxController {
   final dy = 0.0.obs;
   final isLongPress = false.obs;
   final afterLongPress = false.obs;
-  final isPress001 = false.obs;
-  final isPress002 = false.obs;
-  final isPress003 = false.obs;
   final isPress01 = false.obs;
   final isPress02 = false.obs;
   final isPress03 = false.obs;
+  final isPress04 = false.obs;
   final action = ''.obs;
   void onLongPressEnd() {
     isLongPress.value = false;
     afterLongPress.value = false;
 
-    isPress001.value = false;
-    isPress002.value = false;
-    isPress003.value = false;
     isPress01.value = false;
     isPress02.value = false;
     isPress03.value = false;
@@ -51,33 +46,41 @@ class AppController extends GetxController {
 
   void onLongPressMoveUpdate(
       {required double globalDx, required double globalDy}) {
-    if (isOnleft.value
-        ? globalDx > dx.value + 60 && globalDy > dy.value
-        : globalDx < dx.value && globalDy > dy.value) {
-      action.value = "ពេញចិត្ត";
+    // debugPrint("$globalDx , ${dx.value}");
+    // if (isOnleft.value
+    //     ? (globalDx > dx.value - 40 && globalDx < dx.value + 20) &&
+    //         (globalDy < dy.value - 50 && globalDy > dy.value - 120)
+    //     : globalDx < dx.value && globalDy > dy.value) {
+    //   action.value = "ពេញចិត្ត";
+    //   isPress01.value = true;
+    //   isPress02.value = false;
+    //   isPress03.value = false;
+    //   isPress04.value = false;
+    // } else if (isOnleft.value
+    //     ? (globalDx > dx.value - 80 && globalDx < dx.value + 80) &&
+    //         (globalDy < dy.value - 40 && globalDy > dy.value - 100)
+    //     : globalDx < dx.value && globalDy < dy.value) {
+    //   action.value = "រក្សាទុក";
+    //   isPress01.value = false;
+    //   isPress02.value = true;
+    //   isPress03.value = false;
+    //   isPress04.value = false;
+    // } else if (globalDy < dy.value) {
+    //   action.value = "ចែករំលែក";
+    //   isPress01.value = false;
+    //   isPress02.value = false;
+    //   isPress03.value = true;
+    // } else if (globalDy < dy.value) {
+    //   action.value = "ព្រមាន";
 
-      isPress01.value = true;
-      isPress02.value = false;
-      isPress03.value = false;
-    } else if (isOnleft.value
-        ? globalDx > dx.value + 50 && globalDy < dy.value
-        : globalDx < dx.value && globalDy < dy.value) {
-      action.value = "រក្សាទុក";
-
-      isPress01.value = false;
-      isPress02.value = true;
-      isPress03.value = false;
-    } else if (globalDy < dy.value) {
-      action.value = "ចែករំលែក";
-
-      isPress01.value = false;
-      isPress02.value = false;
-      isPress03.value = true;
-    } else {
-      action.value = '';
-      isPress01.value = false;
-      isPress02.value = false;
-      isPress03.value = false;
-    }
+    //   isPress01.value = false;
+    //   isPress02.value = false;
+    //   isPress03.value = true;
+    // } else {
+    //   action.value = '';
+    //   isPress01.value = false;
+    //   isPress02.value = false;
+    //   isPress03.value = false;
+    // }
   }
 }

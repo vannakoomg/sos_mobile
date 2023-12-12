@@ -34,4 +34,4 @@ flutter:
         - asset: assets/font/preahvihear.ttf
   assets:
     - .env
-    - image/
+    - assets/image/
