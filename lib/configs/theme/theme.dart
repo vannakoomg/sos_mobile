@@ -20,7 +20,7 @@ ThemeData theme() {
     brightness: Brightness.light,
     textTheme: TextTheme(
       titleLarge: TextStyle(
-          color: AppColor.textColor, fontSize: 22, fontWeight: FontWeight.w500),
+          color: AppColor.textColor, fontSize: 25, fontWeight: FontWeight.w500),
       titleMedium: TextStyle(
         color: AppColor.textColor,
         fontSize: 18,

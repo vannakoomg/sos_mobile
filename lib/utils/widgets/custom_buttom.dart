@@ -7,11 +7,13 @@ class CustomButtom extends StatelessWidget {
   final bool disble;
   final double fountSize;
   final double height;
+  final Color colors;
   const CustomButtom(
       {super.key,
       required this.title,
       required this.onTap,
-      this.height = 40,
+      this.height = 45,
+      this.colors = Colors.pink,
       this.disble = false,
       this.fountSize = 16});
 
@@ -24,9 +26,7 @@ class CustomButtom extends StatelessWidget {
       child: AnimatedContainer(
         padding: const EdgeInsets.only(left: 10, right: 10),
         decoration: BoxDecoration(
-          color: disble == false
-              ? AppColor.buttonColor
-              : AppColor.buttonColor.withOpacity(0.4),
+          color: disble == false ? colors : AppColor.buttonColor.withOpacity(1),
           borderRadius: BorderRadius.circular(100),
         ),
         height: height,

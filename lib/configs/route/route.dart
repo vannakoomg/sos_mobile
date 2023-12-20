@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:sos_mobile/cores/auth/hello/screens/hello_screen.dart';
 import 'package:sos_mobile/cores/walk_though/singin/screens/singin_screen.dart';
 import 'package:sos_mobile/modules/question/screen/question_detail.dart';
 import 'package:sos_mobile/modules/settings/screens/setting_screen.dart';
@@ -22,15 +23,22 @@ final router = GoRouter(
       },
     ),
     GoRoute(
+        path: '/hello',
+        builder: (context, state) {
+          return const HelloScreen();
+        },
+        routes: [
+          GoRoute(
+            path: 'login-screen',
+            builder: (context, state) {
+              return const LoginScreen();
+            },
+          ),
+        ]),
+    GoRoute(
       path: '/singin',
       builder: (context, state) {
         return const SingInScreen();
-      },
-    ),
-    GoRoute(
-      path: '/login-screen',
-      builder: (context, state) {
-        return const LoginScreen();
       },
     ),
     GoRoute(

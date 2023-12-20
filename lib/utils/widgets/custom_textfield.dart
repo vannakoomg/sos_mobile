@@ -41,45 +41,53 @@ class CustomTextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: high == 0 ? null : high,
-      padding: const EdgeInsets.only(left: 10, right: 8),
+      // color: Colors.red,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: color ?? AppColor.primaryColor.withOpacity(1),
-      ),
-      child: TextField(
+          borderRadius: BorderRadius.circular(200),
+          color: AppColor.primaryColor.withOpacity(0.7)),
+      child: TextFormField(
         textAlign: textAlign,
         focusNode: focusNode,
         autofocus: autofocus,
         controller: textEditController,
-        style: textStyle ??
-            Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+        style: textStyle ?? Theme.of(context).textTheme.bodyMedium!,
         onChanged: (value) {
           onChanged!(value);
         },
-        cursorColor: AppColor.secondnaryColor,
+        cursorColor: AppColor.mainColor,
         enableSuggestions: false,
+        // cursorHeight: 10,
         autocorrect: false,
         maxLength: maxLength == 0 ? null : maxLength,
         keyboardType: textInputType,
         decoration: InputDecoration(
-            contentPadding: const EdgeInsets.only(bottom: 8, top: 8),
+            contentPadding:
+                const EdgeInsets.only(bottom: 8, top: 8, left: 15, right: 15),
             prefixIcon: prefixIcon,
             suffix: subfix,
             prefixIconConstraints: const BoxConstraints(),
             border: InputBorder.none,
-            fillColor: Colors.white,
-            focusColor: Colors.white,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(300),
+              borderSide: BorderSide(
+                color: Colors.black.withOpacity(0.8),
+              ),
+            ),
+            fillColor: Colors.green,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(300),
+              borderSide: BorderSide(
+                color: Colors.black.withOpacity(0.8),
+              ),
+            ),
             hintText: hintText,
             counterText: "",
             isDense: isDense,
             hintStyle: hintTextStyle ??
-                Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .copyWith(fontWeight: FontWeight.w600, color: Colors.grey)),
+                Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black.withOpacity(0.5),
+                    fontSize: 14)),
         maxLines: maxLines == 0 ? null : maxLines,
       ),
     );

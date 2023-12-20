@@ -16,7 +16,7 @@ class _SlashScreenState extends State<SlashScreen> {
       if (token != '') {
         context.go('/home-screen');
       } else {
-        context.go('/login-screen');
+        context.go('/hello');
       }
     });
   }
