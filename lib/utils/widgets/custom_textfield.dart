@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
 class CustomTextfield extends StatelessWidget {
+  final bool isBorder;
   final double high;
   final String hintText;
   final Function? onChanged;
@@ -15,6 +16,7 @@ class CustomTextfield extends StatelessWidget {
   final TextAlign textAlign;
   final int? maxLength;
   final Color? color;
+  final double radius;
   final TextStyle? textStyle;
   final TextStyle? hintTextStyle;
   final bool isDense;
@@ -23,6 +25,7 @@ class CustomTextfield extends StatelessWidget {
     required this.onChanged,
     required this.textEditController,
     this.textStyle,
+    this.isBorder = true,
     this.hintText = '',
     this.textInputType = TextInputType.text,
     this.autofocus = false,
@@ -31,6 +34,7 @@ class CustomTextfield extends StatelessWidget {
     this.hintTextStyle,
     this.maxLines = 1,
     this.color,
+    this.radius = 200,
     this.subfix,
     this.maxLength,
     this.textAlign = TextAlign.start,
@@ -41,10 +45,9 @@ class CustomTextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Colors.red,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(200),
-          color: AppColor.primaryColor.withOpacity(0.7)),
+        borderRadius: BorderRadius.circular(200),
+      ),
       child: TextFormField(
         textAlign: textAlign,
         focusNode: focusNode,
@@ -52,7 +55,7 @@ class CustomTextfield extends StatelessWidget {
         controller: textEditController,
         style: textStyle ?? Theme.of(context).textTheme.bodyMedium!,
         onChanged: (value) {
-          onChanged!(value);
+          onChanged!(value.toString());
         },
         cursorColor: AppColor.mainColor,
         enableSuggestions: false,
@@ -68,16 +71,20 @@ class CustomTextfield extends StatelessWidget {
             prefixIconConstraints: const BoxConstraints(),
             border: InputBorder.none,
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(300),
+              borderRadius: BorderRadius.circular(radius),
               borderSide: BorderSide(
-                color: Colors.black.withOpacity(0.8),
+                color: isBorder
+                    ? Colors.black.withOpacity(0.8)
+                    : Colors.transparent,
               ),
             ),
             fillColor: Colors.green,
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(300),
+              borderRadius: BorderRadius.circular(radius),
               borderSide: BorderSide(
-                color: Colors.black.withOpacity(0.8),
+                color: isBorder
+                    ? Colors.black.withOpacity(0.8)
+                    : Colors.transparent,
               ),
             ),
             hintText: hintText,

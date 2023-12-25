@@ -10,7 +10,7 @@ bool checkStringIsgmail({required String value}) {
       .hasMatch(value);
 }
 
-void unFocus(BuildContext context) {
+Future unFocus(BuildContext context) async {
   final FocusScopeNode currentFocus = FocusScope.of(context);
   if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
     FocusManager.instance.primaryFocus!.unfocus();

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
@@ -19,115 +21,61 @@ class ScaffoldWithNavBar extends StatelessWidget {
     final controller = Get.put(BottomNavigatonBarController());
     final homeController = Get.put(HomeContoller());
     return Obx(() => Scaffold(
-          backgroundColor: Colors.black,
-          body: IndexedStack(
-            index: controller.index.value,
-            children: const [
-              HomeScreen(),
-              SaveScreen(),
-              PostQuestionScreen(),
-              NotificationScreen(),
-              ProfileScreen(),
+          backgroundColor: AppColor.backgroundColor,
+          body: Column(
+            children: [
+              Expanded(
+                child: IndexedStack(
+                  index: controller.index.value,
+                  children: const [
+                    HomeScreen(),
+                    SaveScreen(),
+                    PostQuestionScreen(),
+                    NotificationScreen(),
+                    ProfileScreen(),
+                  ],
+                ),
+              ),
             ],
           ),
           bottomNavigationBar: homeController.scrollPixel.value < 250 ||
                   homeController.scrollPixalBack.value > 200
               ? Container(
+                  decoration: BoxDecoration(
+                    color: AppColor.mainColor,
+                  ),
                   height: 60,
                   width: MediaQuery.of(context).size.width,
-                  color: controller.index.value == 2
-                      ? AppColor.mainColor.withOpacity(0.6)
-                      : AppColor.mainColor,
                   child: Row(
-                    children: [
-                      Expanded(
+                    children: controller.icon.asMap().entries.map((e) {
+                      return Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            if (controller.index.value == 0) {
-                              if (homeController.scrollPixel.value < 10) {
-                                homeController.fetchQuestion(1);
-                              } else {
-                                homeController.scrollController.value.animateTo(
-                                    0,
-                                    duration:
-                                        const Duration(milliseconds: 1000),
-                                    curve: Curves.ease);
-                              }
+                            controller.index.value = e.key;
+                            if (homeController.scrollPixel.value < 10) {
+                              homeController.fetchQuestion(1);
                             } else {
-                              controller.index.value = 0;
+                              homeController.scrollController.value.animateTo(0,
+                                  duration: const Duration(milliseconds: 1000),
+                                  curve: Curves.ease);
                             }
-                            debugPrint("ddsssd");
                           },
-                          child: Container(
-                            height: 60,
-                            color: Colors.transparent,
-                            child: Icon(Icons.home_filled,
-                                color: controller.index.value == 0
-                                    ? AppColor.secondnaryColor
-                                    : AppColor.primaryColor),
+                          child: Transform.rotate(
+                            angle: 0,
+                            child: Container(
+                              height: 60,
+                              color: Colors.transparent,
+                              child: Icon(e.value,
+                                  size: 25,
+                                  color: controller.index.value == e.key
+                                      ? AppColor.secondnaryColor
+                                      : const Color.fromARGB(
+                                          255, 255, 255, 255)),
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                          child: GestureDetector(
-                        onTap: () {
-                          controller.index.value = 1;
-                        },
-                        child: Container(
-                          height: 60,
-                          color: Colors.transparent,
-                          child: Icon(Icons.save_alt,
-                              color: controller.index.value == 1
-                                  ? AppColor.secondnaryColor
-                                  : AppColor.primaryColor),
-                        ),
-                      )),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            controller.index.value = 2;
-                          },
-                          child: Container(
-                            height: 60,
-                            color: Colors.transparent,
-                            child: Icon(Icons.question_mark_rounded,
-                                color: controller.index.value == 2
-                                    ? AppColor.secondnaryColor
-                                    : AppColor.primaryColor),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            controller.index.value = 3;
-                          },
-                          child: Container(
-                            height: 60,
-                            color: Colors.transparent,
-                            child: Icon(Icons.notifications,
-                                color: controller.index.value == 3
-                                    ? AppColor.secondnaryColor
-                                    : AppColor.primaryColor),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            controller.index.value = 4;
-                          },
-                          child: Container(
-                            height: 60,
-                            color: Colors.transparent,
-                            child: Icon(Icons.person,
-                                color: controller.index.value == 4
-                                    ? AppColor.secondnaryColor
-                                    : AppColor.primaryColor),
-                          ),
-                        ),
-                      ),
-                    ],
+                      );
+                    }).toList(),
                   ))
               : const SizedBox(),
         ));

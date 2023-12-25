@@ -3,6 +3,7 @@ import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
 ThemeData theme() {
   return ThemeData(
+    scaffoldBackgroundColor: AppColor.mainColor,
     textSelectionTheme: TextSelectionThemeData(
       selectionColor: AppColor.secondnaryColor.withOpacity(0.6),
       selectionHandleColor: const Color(0xff64b5f6),
@@ -11,33 +12,33 @@ ThemeData theme() {
       backgroundColor: AppColor.mainColor,
       titleTextStyle: TextStyle(
         fontSize: 20,
-        color: AppColor.textColor,
+        color: AppColor.textFirst,
         fontWeight: FontWeight.w500,
       ),
     ),
     useMaterial3: true,
-    primaryColor: AppColor.textColor,
+    primaryColor: AppColor.textFirst,
     brightness: Brightness.light,
     textTheme: TextTheme(
       titleLarge: TextStyle(
-          color: AppColor.textColor, fontSize: 25, fontWeight: FontWeight.w500),
+          color: AppColor.textFirst, fontSize: 25, fontWeight: FontWeight.bold),
       titleMedium: TextStyle(
-        color: AppColor.textColor,
+        color: AppColor.textFirst,
         fontSize: 18,
         fontWeight: FontWeight.w500,
       ),
       titleSmall: TextStyle(
-        color: AppColor.textColor,
+        color: AppColor.textFirst,
         fontSize: 14,
         fontWeight: FontWeight.w500,
       ),
       bodyLarge: TextStyle(
-        color: AppColor.textColor,
+        color: AppColor.textFirst,
         fontSize: 15,
       ),
-      bodyMedium: TextStyle(color: AppColor.textColor, fontSize: 13),
+      bodyMedium: TextStyle(color: AppColor.textFirst, fontSize: 12),
       bodySmall: TextStyle(
-        color: AppColor.textColor,
+        color: AppColor.textFirst,
         fontSize: 11,
       ),
     ),

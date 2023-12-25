@@ -11,10 +11,11 @@ class PrivacyDataScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(PrivacyDataController());
     return Scaffold(
-      backgroundColor: AppColor.mainColor,
+      backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
         title: const Text("Privacy and Data"),
         leadingWidth: 40,
+        backgroundColor: AppColor.backgroundColor,
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
@@ -22,7 +23,6 @@ class PrivacyDataScreen extends StatelessWidget {
             },
             icon: const Icon(
               Icons.close,
-              color: Colors.white,
             )),
       ),
       body: Container(
@@ -32,7 +32,7 @@ class PrivacyDataScreen extends StatelessWidget {
             title: "Account",
             subTitle: "Public",
             ontap: () {},
-            isTrue: true,
+            isShow: true,
             description:
                 "Allow every one see your profile photo and everything you ask post ",
           ),
@@ -43,7 +43,7 @@ class PrivacyDataScreen extends StatelessWidget {
             title: "CSCC",
             subTitle: "On",
             ontap: () {},
-            isTrue: true,
+            isShow: false,
             description: "Allow every one see your count ",
           ),
           const SizedBox(
@@ -53,7 +53,7 @@ class PrivacyDataScreen extends StatelessWidget {
             title: "Answer",
             subTitle: "On",
             ontap: () {},
-            isTrue: true,
+            isShow: true,
             description: "Allow every one see your the Question You Answer ",
           ),
           const SizedBox(
@@ -63,7 +63,7 @@ class PrivacyDataScreen extends StatelessWidget {
             title: "Ask",
             subTitle: "On",
             ontap: () {},
-            isTrue: true,
+            isShow: true,
             description: "Allow every one see your the Question You Ask ",
           ),
         ]),

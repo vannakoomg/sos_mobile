@@ -38,24 +38,14 @@ class MyApp extends StatelessWidget {
         theme: theme(),
         debugShowCheckedModeBanner: false,
         builder: (context, child) {
-          return Obx(() => Scaffold(
-                  body: Stack(
-                children: [
-                  child!,
-                  AnimatedOpacity(
-                    curve: Curves.ease,
-                    duration: const Duration(milliseconds: 250),
-                    opacity: controller.isLongPress.value ? 1 : 0,
-                    child: Container(
-                      height: double.infinity,
-                      width: double.infinity,
-                      color: controller.isLongPress.value
-                          ? Colors.black.withOpacity(0.90)
-                          : null,
-                    ),
-                  ),
-                  if (controller.isLongPress.value == true)
-                    Stack(
+          return Obx(
+            () => Stack(
+              children: [
+                child!,
+                if (controller.isLongPress.value == true)
+                  Scaffold(
+                    backgroundColor: Colors.black.withOpacity(0.96),
+                    body: Stack(
                       children: [
                         Positioned(
                             top: controller.dy.value + 25,
@@ -81,51 +71,44 @@ class MyApp extends StatelessWidget {
                         ),
                         AnimatedPositioned(
                           left: controller.afterLongPress.value
-                              ? controller.dx.value - 10
+                              ? controller.isPress01.value
+                                  ? controller.dx.value -
+                                      (controller.isOnleft.value ? 15 : -5)
+                                  : controller.dx.value -
+                                      (controller.isOnleft.value ? 10 : -10)
                               : controller.dx.value + 5,
                           top: controller.afterLongPress.value
                               ? controller.isPress01.value
-                                  ? controller.dy.value - 90
+                                  ? controller.dy.value - 99
                                   : controller.dy.value - 75
                               : controller.dy.value + 5,
                           duration: const Duration(milliseconds: 250),
                           curve: Curves.easeInOutQuint,
-                          child: MouseRegion(
-                            onEnter: (event) {
-                              debugPrint("sdfdsfsfd");
-                            },
-                            onHover: (value) {
-                              debugPrint("sdfdsfsfd");
-                            },
-                            onExit: (value) {
-                              debugPrint("sdfdsfsfd");
-                            },
-                            child: AnimatedContainer(
-                              duration: const Duration(milliseconds: 250),
-                              height: controller.isPress01.value ? 57 : 45,
-                              width: controller.isPress01.value ? 57 : 45,
-                              decoration: BoxDecoration(
-                                color: controller.isPress01.value
-                                    ? AppColor.secondnaryColor
-                                    : AppColor.primaryColor,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Icon(Icons.favorite),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 250),
+                            height: controller.isPress01.value ? 57 : 45,
+                            width: controller.isPress01.value ? 57 : 45,
+                            decoration: BoxDecoration(
+                              color: controller.isPress01.value
+                                  ? AppColor.secondnaryColor
+                                  : AppColor.primaryColor,
+                              shape: BoxShape.circle,
                             ),
+                            child: const Icon(Icons.favorite),
                           ),
                         ),
                         AnimatedPositioned(
                           left: controller.afterLongPress.value
                               ? controller.isPress02.value
                                   ? controller.dx.value +
-                                      (controller.isOnleft.value ? 70 : -70)
+                                      (controller.isOnleft.value ? 45 : -50)
                                   : controller.dx.value +
-                                      (controller.isOnleft.value ? 40 : -60)
+                                      (controller.isOnleft.value ? 40 : -40)
                               : controller.dx.value + 5,
                           top: controller.afterLongPress.value
                               ? controller.isPress02.value
-                                  ? controller.dy.value - 60
-                                  : controller.dy.value - 65
+                                  ? controller.dy.value - 90
+                                  : controller.dy.value - 70
                               : controller.dy.value + 7,
                           duration: const Duration(milliseconds: 250),
                           curve: Curves.easeInOutQuint,
@@ -147,12 +130,15 @@ class MyApp extends StatelessWidget {
                           left: controller.afterLongPress.value
                               ? controller.isPress03.value
                                   ? controller.dx.value +
-                                      (controller.isOnleft.value ? 95 : -95)
+                                      (controller.isOnleft.value ? 85 : -95)
                                   : controller.dx.value +
-                                      (controller.isOnleft.value ? 70 : -60)
+                                      (controller.isOnleft.value ? 70 : -75)
                               : controller.dx.value,
                           top: controller.afterLongPress.value
-                              ? controller.dy.value - 40
+                              ? controller.isPress03.value
+                                  ? controller.dy.value - 50
+                                  : controller.dy.value -
+                                      (controller.isOnleft.value ? 40 : 37.5)
                               : controller.dy.value,
                           duration: const Duration(milliseconds: 250),
                           curve: Curves.easeInOutQuint,
@@ -179,12 +165,14 @@ class MyApp extends StatelessWidget {
                           left: controller.afterLongPress.value
                               ? controller.isPress04.value
                                   ? controller.dx.value +
-                                      (controller.isOnleft.value ? 80 : -85)
+                                      (controller.isOnleft.value ? 100 : -100)
                                   : controller.dx.value +
                                       (controller.isOnleft.value ? 75 : -75)
                               : controller.dx.value,
                           top: controller.afterLongPress.value
-                              ? controller.dy.value + 10
+                              ? controller.isPress04.value
+                                  ? controller.dy.value + 10
+                                  : controller.dy.value + 10
                               : controller.dy.value,
                           duration: const Duration(milliseconds: 250),
                           curve: Curves.easeInOutQuint,
@@ -209,8 +197,10 @@ class MyApp extends StatelessWidget {
                         ),
                       ],
                     ),
-                ],
-              )));
+                  )
+              ],
+            ),
+          );
         },
       ),
     );

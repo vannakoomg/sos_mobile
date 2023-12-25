@@ -1,4 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
@@ -65,21 +64,6 @@ class SignUpScreen extends StatelessWidget {
                             const SizedBox(
                               height: 10,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: AnimatedTextKit(
-                                totalRepeatCount: 1,
-                                pause: const Duration(seconds: 8),
-                                animatedTexts: [
-                                  TypewriterAnimatedText(
-                                    'Password a less 6 charater ',
-                                    textStyle:
-                                        TextStyle(color: AppColor.primaryColor),
-                                    cursor: '',
-                                  ),
-                                ],
-                              ),
-                            )
                           ],
                         ),
               const Spacer(),

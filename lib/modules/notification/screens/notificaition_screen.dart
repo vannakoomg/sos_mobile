@@ -10,32 +10,43 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NotificationController());
-    return SafeArea(
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.only(left: 5, right: 5, top: 10),
-        child: Column(children: [
-          Text(
-            "សារជូនដំណឹង",
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge!
-                .copyWith(color: AppColor.primaryColor),
+    return Container(
+      color: AppColor.mainColor,
+      child: SafeArea(
+        child: Container(
+          color: AppColor.backgroundColor,
+          width: double.infinity,
+          height: double.infinity,
+          padding: const EdgeInsets.only(
+            left: 5,
+            right: 5,
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 40,
-              itemBuilder: (context, i) {
-                return NotificationCard(
-                  notification: controller.notificationData[0],
-                );
-              },
+          child: Column(children: [
+            // const Gap(10),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 40,
+                itemBuilder: (context, i) {
+                  return Column(
+                    children: [
+                      if (i == 0)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5, bottom: 5),
+                          child: Text("សារជូនដំណឹង",
+                              style: Theme.of(context).textTheme.titleLarge!
+                              // .copyWith(color: AppColor.primaryColor),
+                              ),
+                        ),
+                      NotificationCard(
+                        notification: controller.notificationData[0],
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
-          ),
-        ]),
+          ]),
+        ),
       ),
     );
   }

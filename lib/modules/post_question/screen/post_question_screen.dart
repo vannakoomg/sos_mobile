@@ -15,23 +15,38 @@ class PostQuestionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ScrollController scrollController = ScrollController();
     final controller = Get.put(PostQuestionController());
-    return SafeArea(
-        child: Obx(
-      () => Container(
-        padding: const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Text(
-                      "សំនួរ",
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 10),
-                      child: Column(
+    return Container(
+      color: AppColor.mainColor,
+      child: SafeArea(
+          child: Obx(
+        () => Container(
+          color: AppColor.primaryColor,
+          padding: const EdgeInsets.only(left: 5, right: 5, bottom: 10),
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(vertical: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "ខ្ញុំបាទ​",
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            CustomButtom(
+                              title: "សូមសួរមួយ",
+                              onTap: () {},
+                              fountSize: 15,
+                              height: 35,
+                            )
+                          ],
+                        ),
+                      ),
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SingleChildScrollView(
@@ -48,6 +63,7 @@ class PostQuestionScreen extends StatelessWidget {
                                   height: 5,
                                 ),
                                 CustomTextfield(
+                                  radius: 20,
                                   hintText: "អត្តន័យ",
                                   onChanged: (value) {},
                                   textEditController: controller
@@ -58,12 +74,14 @@ class PostQuestionScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 5,
                                 ),
-                                Container(
+                                AnimatedContainer(
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.ease,
                                   width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: AppColor.primaryColor,
-                                  ),
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: AppColor.primaryColor,
+                                      border: Border.all()),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -71,6 +89,7 @@ class PostQuestionScreen extends StatelessWidget {
                                       SizedBox(
                                         width: double.infinity,
                                         child: CustomTextfield(
+                                          isBorder: false,
                                           textInputType:
                                               TextInputType.visiblePassword,
                                           hintText: "ពាក្យសម្គាល់",
@@ -83,7 +102,10 @@ class PostQuestionScreen extends StatelessWidget {
                                       ),
                                       Container(
                                           margin: const EdgeInsets.only(
-                                              left: 5, right: 5),
+                                              left: 15,
+                                              right: 5,
+                                              top: 0,
+                                              bottom: 4),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(20)),
@@ -117,85 +139,71 @@ class PostQuestionScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 5,
                                 ),
-                                GestureDetector(
-                                  onTap: () async {
-                                    controller.getImage();
-                                  },
-                                  child: controller.image.value.path != ''
-                                      ? Stack(
-                                          children: [
-                                            Container(
-                                                height: 300,
-                                                clipBehavior: Clip.antiAlias,
+                                controller.image.value.path != ''
+                                    ? Stack(
+                                        children: [
+                                          Container(
+                                              height: 300,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: AppColor.primaryColor,
+                                              ),
+                                              child: Container(
                                                 decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
                                                   color: AppColor.primaryColor,
+                                                  image: DecorationImage(
+                                                      image: FileImage(
+                                                          controller
+                                                              .image.value),
+                                                      fit: BoxFit.cover),
                                                 ),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    color:
-                                                        AppColor.primaryColor,
-                                                    image: DecorationImage(
-                                                        image: FileImage(
-                                                            controller
-                                                                .image.value),
-                                                        fit: BoxFit.cover),
-                                                  ),
+                                              )),
+                                          Positioned(
+                                            top: 5,
+                                            right: 5,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                controller.image.value =
+                                                    File('');
+                                              },
+                                              child: Container(
+                                                height: 30,
+                                                width: 30,
+                                                decoration: BoxDecoration(
+                                                    color: AppColor
+                                                        .secondnaryColor
+                                                        .withOpacity(0.6),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
+                                                child: const Center(
+                                                    child: Icon(
+                                                  Icons.close,
+                                                  color: Colors.white,
+                                                  size: 16,
                                                 )),
-                                            Positioned(
-                                              top: 5,
-                                              right: 5,
-                                              child: GestureDetector(
-                                                onTap: () {
-                                                  controller.image.value =
-                                                      File('');
-                                                },
-                                                child: Container(
-                                                  height: 30,
-                                                  width: 30,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.black
-                                                          .withOpacity(0.6),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20)),
-                                                  child: const Center(
-                                                      child: Icon(
-                                                    Icons.close,
-                                                    color: Colors.white,
-                                                    size: 16,
-                                                  )),
-                                                ),
                                               ),
                                             ),
-                                          ],
-                                        )
-                                      : Container(
-                                          alignment: Alignment.center,
-                                          clipBehavior: Clip.antiAlias,
-                                          padding: const EdgeInsets.only(
-                                              top: 5, left: 10),
-                                          height: 300,
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              color: AppColor.primaryColor),
-                                          child: Icon(
-                                            Icons.photo,
-                                            color: AppColor.mainColor
-                                                .withOpacity(0.6),
-                                            size: 60,
                                           ),
-                                        ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
+                                        ],
+                                      )
+                                    : Row(
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {
+                                                controller.getImageGallery();
+                                              },
+                                              icon: const Icon(Icons.photo)),
+                                          IconButton(
+                                              onPressed: () {
+                                                controller.getImageCamera();
+                                              },
+                                              icon:
+                                                  const Icon(Icons.camera_alt))
+                                        ],
+                                      ),
                                 const SizedBox(
                                   height: 30,
                                 ),
@@ -204,44 +212,34 @@ class PostQuestionScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            if (controller.tagtext.value != '')
-              Container(
-                margin: const EdgeInsets.only(
-                  top: 5,
-                ),
-                width: double.infinity,
-                child: Wrap(children: [
-                  CustomTagCard(
-                    title: 'សមីការ',
-                    ontap: () {
-                      scrollController.animateTo(500,
-                          duration: const Duration(milliseconds: 3000),
-                          curve: Curves.ease);
-                      controller.tagtext.value = '';
-                      controller.tagTextController.value.text = '';
-                      controller.listOfTag.add('ddd');
-                    },
+                    ],
                   ),
-                ]),
+                ),
               ),
-            const SizedBox(
-              height: 10,
-            ),
-            CustomButtom(
-              disble: controller.validationPost(),
-              title: "បង្កើតសំនួរ",
-              onTap: () {
-                debugPrint("nice to meet you ${controller.listOfTag} ");
-              },
-            ),
-          ],
+              if (controller.tagtext.value != '')
+                Container(
+                  margin: const EdgeInsets.only(
+                    top: 5,
+                  ),
+                  width: double.infinity,
+                  child: Wrap(children: [
+                    CustomTagCard(
+                      title: 'សមីការ',
+                      ontap: () {
+                        scrollController.animateTo(500,
+                            duration: const Duration(milliseconds: 3000),
+                            curve: Curves.ease);
+                        controller.tagtext.value = '';
+                        controller.tagTextController.value.text = '';
+                        controller.listOfTag.add('ddd');
+                      },
+                    ),
+                  ]),
+                ),
+            ],
+          ),
         ),
-      ),
-    ));
+      )),
+    );
   }
 }

@@ -12,8 +12,8 @@ class LoginController extends GetxController {
     debugPrint("url $url ");
     try {
       await ApiBaseHelper.apiBaseHelper.post(url, {
-        "phone": "+85577777777",
-        "password": "12345678",
+        "phone": "+85555557779",
+        "password": "77777777",
       }, headers: {
         "Accept": "application/json"
       }).then((value) async {

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
 class PrivacyDataCrad extends StatelessWidget {
   final String title;
   final String subTitle;
   final Function ontap;
-  final bool isTrue;
+  final bool isShow;
   final String description;
   const PrivacyDataCrad({
     super.key,
     required this.title,
     required this.subTitle,
     required this.ontap,
-    required this.isTrue,
+    required this.isShow,
     required this.description,
   });
 
@@ -24,10 +25,9 @@ class PrivacyDataCrad extends StatelessWidget {
           children: [
             Text(
               title,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(color: Colors.white.withOpacity(0.9)),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    fontSize: 19,
+                  ),
             ),
             const Spacer(),
             GestureDetector(
@@ -43,14 +43,22 @@ class PrivacyDataCrad extends StatelessWidget {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: Colors.white.withOpacity(0.9),
+                              color: !isShow
+                                  ? AppColor.mainColor.withOpacity(0.9)
+                                  : AppColor.secondnaryColor,
                             ),
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   left: 8, right: 8, top: 5, bottom: 5),
-                              child: Text(subTitle),
+                              child: Text(
+                                subTitle,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(color: AppColor.primaryColor),
+                              ),
                             ))),
-                    if (isTrue)
+                    if (!isShow)
                       Center(
                         child: Transform(
                           transform: Matrix4.identity()..rotateZ(2.5),
@@ -58,7 +66,7 @@ class PrivacyDataCrad extends StatelessWidget {
                           child: Container(
                             height: 2,
                             width: 60,
-                            color: Colors.red.withOpacity(0.8),
+                            color: AppColor.secondnaryColor,
                           ),
                         ),
                       ),
@@ -76,7 +84,7 @@ class PrivacyDataCrad extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium!
-                    .copyWith(color: Colors.white.withOpacity(0.5)),
+                    .copyWith(color: AppColor.textThird),
               ),
             ),
             const SizedBox(

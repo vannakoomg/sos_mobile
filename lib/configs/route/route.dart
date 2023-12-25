@@ -1,4 +1,6 @@
 import 'package:go_router/go_router.dart';
+import 'package:sos_mobile/cores/auth/create_account/screens/create_account_screen.dart';
+import 'package:sos_mobile/cores/auth/create_account/screens/select_subject_scree.dart';
 import 'package:sos_mobile/cores/auth/hello/screens/hello_screen.dart';
 import 'package:sos_mobile/cores/walk_though/singin/screens/singin_screen.dart';
 import 'package:sos_mobile/modules/question/screen/question_detail.dart';
@@ -34,6 +36,19 @@ final router = GoRouter(
               return const LoginScreen();
             },
           ),
+          GoRoute(
+              path: 'create-account',
+              builder: (context, state) {
+                return const CreateAccountScreen();
+              },
+              routes: [
+                GoRoute(
+                  path: 'select-subject',
+                  builder: (context, state) {
+                    return const SeletctSubjectScreen();
+                  },
+                ),
+              ]),
         ]),
     GoRoute(
       path: '/singin',

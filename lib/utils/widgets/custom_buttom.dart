@@ -8,14 +8,15 @@ class CustomButtom extends StatelessWidget {
   final double fountSize;
   final double height;
   final Color colors;
-  const CustomButtom(
-      {super.key,
-      required this.title,
-      required this.onTap,
-      this.height = 45,
-      this.colors = Colors.pink,
-      this.disble = false,
-      this.fountSize = 16});
+  const CustomButtom({
+    super.key,
+    required this.title,
+    required this.onTap,
+    this.height = 45,
+    this.colors = Colors.pink,
+    this.disble = false,
+    this.fountSize = 16,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,8 @@ class CustomButtom extends StatelessWidget {
       child: AnimatedContainer(
         padding: const EdgeInsets.only(left: 10, right: 10),
         decoration: BoxDecoration(
-          color: disble == false ? colors : AppColor.buttonColor.withOpacity(1),
+          border: Border.all(color: AppColor.primaryColor),
+          color: disble == false ? colors : AppColor.mainColor,
           borderRadius: BorderRadius.circular(100),
         ),
         height: height,

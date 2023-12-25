@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
 class CustomTagCard extends StatelessWidget {
   final String title;
@@ -22,17 +23,23 @@ class CustomTagCard extends StatelessWidget {
         margin: const EdgeInsets.only(right: 5, bottom: 5),
         padding: const EdgeInsets.only(left: 6, right: 6, top: 4, bottom: 4),
         decoration: BoxDecoration(
-            color: const Color(0xffa9def9),
-            borderRadius: BorderRadius.circular(20)),
+            color: AppColor.secondnaryColor.withOpacity(0.9),
+            borderRadius: BorderRadius.circular(8)),
         child: isOnSearch == true
             ? Text(
                 title,
-                style: const TextStyle(fontSize: 11),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall!
+                    .copyWith(color: Colors.white),
               )
             : Wrap(children: [
                 Text(
                   title,
-                  style: const TextStyle(fontSize: 11),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall!
+                      .copyWith(color: Colors.white),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -42,10 +49,11 @@ class CustomTagCard extends StatelessWidget {
                     height: 15,
                     width: 15,
                     color: Colors.transparent,
-                    child: const Icon(
+                    child: Icon(
                       Icons.close,
                       weight: 500,
                       size: 12,
+                      color: Colors.white.withOpacity(0.6),
                     ),
                   ),
                 )

@@ -10,49 +10,63 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(SettingController());
     return Scaffold(
-      backgroundColor: AppColor.mainColor,
+      backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
-        title: const Text("ការកំណត់"),
-        backgroundColor: AppColor.mainColor,
-        centerTitle: true,
-        // leading: const Icon(Icons.arrow_back),
-      ),
-      body: Container(
-        margin: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
-        child: Column(
-          children: [
-            Expanded(
-              child: Column(
-                  children: controller.settiondata.asMap().entries.map((e) {
-                return GestureDetector(
-                  onTap: () {
-                    controller.index.value = e.key;
-                    debugPrint("id ${controller.index.value}");
-                  },
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    margin: const EdgeInsets.only(bottom: 10),
-                    width: double.infinity,
-                    height: 40,
-                    padding: const EdgeInsets.only(left: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: AppColor.primaryColor),
-                    child: Text(
-                      e.value,
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          fontSize: 17, color: Colors.black.withOpacity(0.8)),
-                    ),
-                  ),
-                );
-              }).toList()),
-            ),
-            Text(
-              "កម្មវិធីកំណែ 1.0.0",
-              style: Theme.of(context).textTheme.bodyLarge,
-            )
-          ],
+        title: Text(
+          "ការកំណត់",
+          style: Theme.of(context).textTheme.titleLarge,
         ),
+        backgroundColor: AppColor.backgroundColor,
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Column(
+                      children: controller.settiondata.asMap().entries.map((e) {
+                    return Column(
+                      children: [
+                        if (e.key == 6)
+                          Container(
+                            margin: const EdgeInsets.only(bottom: 10, top: 10),
+                            height: 0.1,
+                            color: AppColor.mainColor,
+                          ),
+                        GestureDetector(
+                          onTap: () {
+                            controller.index.value = e.key;
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(
+                                left: 10, right: 10, bottom: 5),
+                            alignment: Alignment.centerLeft,
+                            width: double.infinity,
+                            height: 40,
+                            padding: const EdgeInsets.only(left: 10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Text(
+                              e.value,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      fontSize: 18, color: AppColor.textThird),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  }).toList()),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

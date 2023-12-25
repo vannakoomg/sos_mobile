@@ -20,6 +20,8 @@ class AppController extends GetxController {
     isPress01.value = false;
     isPress02.value = false;
     isPress03.value = false;
+    isPress04.value = false;
+
     if (action.value == "ចែករំលែក") {
       Share.share('check out my website https://example.com');
       debugPrint("okoko");
@@ -46,41 +48,53 @@ class AppController extends GetxController {
 
   void onLongPressMoveUpdate(
       {required double globalDx, required double globalDy}) {
-    // debugPrint("$globalDx , ${dx.value}");
-    // if (isOnleft.value
-    //     ? (globalDx > dx.value - 40 && globalDx < dx.value + 20) &&
-    //         (globalDy < dy.value - 50 && globalDy > dy.value - 120)
-    //     : globalDx < dx.value && globalDy > dy.value) {
-    //   action.value = "ពេញចិត្ត";
-    //   isPress01.value = true;
-    //   isPress02.value = false;
-    //   isPress03.value = false;
-    //   isPress04.value = false;
-    // } else if (isOnleft.value
-    //     ? (globalDx > dx.value - 80 && globalDx < dx.value + 80) &&
-    //         (globalDy < dy.value - 40 && globalDy > dy.value - 100)
-    //     : globalDx < dx.value && globalDy < dy.value) {
-    //   action.value = "រក្សាទុក";
-    //   isPress01.value = false;
-    //   isPress02.value = true;
-    //   isPress03.value = false;
-    //   isPress04.value = false;
-    // } else if (globalDy < dy.value) {
-    //   action.value = "ចែករំលែក";
-    //   isPress01.value = false;
-    //   isPress02.value = false;
-    //   isPress03.value = true;
-    // } else if (globalDy < dy.value) {
-    //   action.value = "ព្រមាន";
-
-    //   isPress01.value = false;
-    //   isPress02.value = false;
-    //   isPress03.value = true;
-    // } else {
-    //   action.value = '';
-    //   isPress01.value = false;
-    //   isPress02.value = false;
-    //   isPress03.value = false;
-    // }
+    debugPrint("$globalDx , ${dx.value}");
+    if (isOnleft.value
+        ? (globalDx > dx.value - 40 && globalDx < dx.value + 20) &&
+            (globalDy < dy.value - 50 && globalDy > dy.value - 120)
+        : (globalDx < dx.value + 50 && globalDx > dx.value - 20) &&
+            (globalDy < dy.value - 50 && globalDy > dy.value - 120)) {
+      action.value = "ពេញចិត្ត";
+      isPress01.value = true;
+      isPress02.value = false;
+      isPress03.value = false;
+      isPress04.value = false;
+    } else if (isOnleft.value
+        ? (globalDx > dx.value - 80 && globalDx < dx.value + 80) &&
+            (globalDy < dy.value - 40 && globalDy > dy.value - 100)
+        : (globalDx < dx.value - 10 && globalDx > dx.value - 80) &&
+            (globalDy < dy.value - 40 && globalDy > dy.value - 100)) {
+      action.value = "រក្សាទុក";
+      isPress01.value = false;
+      isPress02.value = true;
+      isPress03.value = false;
+      isPress04.value = false;
+    } else if (isOnleft.value
+        ? (globalDx > dx.value + 40 && globalDx < dx.value + 120) &&
+            (globalDy < dy.value - 10 && globalDy > dy.value - 60)
+        : (globalDx < dx.value - 40 && globalDx > dx.value - 120) &&
+            (globalDy < dy.value - 15 && globalDy > dy.value - 80)) {
+      action.value = "ចែករំលែក";
+      isPress01.value = false;
+      isPress02.value = false;
+      isPress03.value = true;
+      isPress04.value = false;
+    } else if (isOnleft.value
+        ? (globalDx > dx.value + 40 && globalDx < dx.value + 120) &&
+            (globalDy > dy.value + 0 && globalDy < dy.value + 45)
+        : (globalDx < dx.value - 40 && globalDx > dx.value - 120) &&
+            (globalDy > dy.value - 10 && globalDy < dy.value + 40)) {
+      action.value = "ព្រមាន";
+      isPress01.value = false;
+      isPress02.value = false;
+      isPress03.value = false;
+      isPress04.value = true;
+    } else {
+      action.value = '';
+      isPress01.value = false;
+      isPress02.value = false;
+      isPress03.value = false;
+      isPress04.value = false;
+    }
   }
 }

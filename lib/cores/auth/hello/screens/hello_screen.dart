@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/cores/auth/hello/widgets/paint.dart';
+import 'package:sos_mobile/utils/widgets/custom_back.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 
 class HelloScreen extends StatelessWidget {
@@ -11,6 +11,7 @@ class HelloScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.backgroundColor,
       body: SizedBox(
         height: MediaQuery.sizeOf(context).height,
         width: MediaQuery.sizeOf(context).width,
@@ -20,14 +21,23 @@ class HelloScreen extends StatelessWidget {
               child: CustomPaint(
                 painter: Paint01(),
                 child: Container(
-                  padding: const EdgeInsets.only(left: 30, top: 80),
+                  padding: const EdgeInsets.only(left: 15, top: 50),
                   width: MediaQuery.sizeOf(context).width * 0.7,
                   height: MediaQuery.sizeOf(context).width * 0.9,
-                  child: Text("សួស្ដី",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(color: AppColor.primaryColor)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const CustomBack(),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: Text("សួស្ដី",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(color: AppColor.primaryColor)),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -45,8 +55,10 @@ class HelloScreen extends StatelessWidget {
                 ),
                 CustomButtom(
                   title: "Create Account",
-                  onTap: () {},
-                  colors: Colors.black,
+                  onTap: () {
+                    context.go('/hello/create-account');
+                  },
+                  colors: Colors.white,
                 ),
                 const SizedBox(
                   height: 25,

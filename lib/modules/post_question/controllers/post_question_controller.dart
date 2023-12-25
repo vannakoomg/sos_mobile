@@ -13,9 +13,17 @@ class PostQuestionController extends GetxController {
   final descriptionTextController = TextEditingController().obs;
   final tagTextController = TextEditingController().obs;
 
-  void getImage() async {
+  void getImageGallery() async {
     final ImagePicker picker2 = ImagePicker();
     var photo = await picker2.pickImage(source: ImageSource.gallery);
+    if (photo != null) {
+      image.value = File(photo.path);
+    }
+  }
+
+  void getImageCamera() async {
+    final ImagePicker picker2 = ImagePicker();
+    var photo = await picker2.pickImage(source: ImageSource.camera);
     if (photo != null) {
       image.value = File(photo.path);
     }
