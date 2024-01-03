@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/modules/settings/controllers/setting_controller.dart';
 
-class FeedBackController extends GetxController {
+class ThemeController extends GetxController {
   final controller = Get.put(SettingController());
-
+  final fountSize = 0.0.obs;
+  final duration = ''.obs;
+  final durationTextController = TextEditingController(text: "2000").obs;
   void resetIndex() {
-    controller.index.value = 0;
+    controller.index.value = -1;
   }
-
-  final descriptionTextController = TextEditingController().obs;
-  final description = ''.obs;
-  void submit() {}
 }

@@ -22,7 +22,7 @@ class ProfileController extends GetxController {
     try {
       await ApiBaseHelper.apiBaseHelper
           .onNetworkRequesting(
-        url: "$baseUrl/v1/user/profile",
+        url: "/v1/user/profile",
         methode: METHODE.get,
         isAuthorize: true,
       )

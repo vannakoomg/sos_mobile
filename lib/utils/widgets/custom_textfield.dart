@@ -14,6 +14,7 @@ class CustomTextfield extends StatelessWidget {
   final int maxLines;
   final FocusNode? focusNode;
   final TextAlign textAlign;
+  final Function? validator;
   final int? maxLength;
   final Color? color;
   final double radius;
@@ -25,6 +26,7 @@ class CustomTextfield extends StatelessWidget {
     required this.onChanged,
     required this.textEditController,
     this.textStyle,
+    this.validator,
     this.isBorder = true,
     this.hintText = '',
     this.textInputType = TextInputType.text,
@@ -46,7 +48,8 @@ class CustomTextfield extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(200),
+        color: color ?? AppColor.primaryColor,
+        borderRadius: BorderRadius.circular(radius),
       ),
       child: TextFormField(
         textAlign: textAlign,
@@ -56,6 +59,9 @@ class CustomTextfield extends StatelessWidget {
         style: textStyle ?? Theme.of(context).textTheme.bodyMedium!,
         onChanged: (value) {
           onChanged!(value.toString());
+        },
+        validator: (value) {
+          return null;
         },
         cursorColor: AppColor.mainColor,
         enableSuggestions: false,
@@ -72,19 +78,13 @@ class CustomTextfield extends StatelessWidget {
             border: InputBorder.none,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radius),
-              borderSide: BorderSide(
-                color: isBorder
-                    ? Colors.black.withOpacity(0.8)
-                    : Colors.transparent,
-              ),
+              borderSide: const BorderSide(color: Colors.transparent),
             ),
             fillColor: Colors.green,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(radius),
-              borderSide: BorderSide(
-                color: isBorder
-                    ? Colors.black.withOpacity(0.8)
-                    : Colors.transparent,
+              borderSide: const BorderSide(
+                color: Colors.transparent,
               ),
             ),
             hintText: hintText,

@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
-void customshowDialog(context, String title) {
-  Get.dialog(
-      Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Center(
-            child: Container(
-          height: 90,
-          width: 90,
-          decoration:
-              const BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
-          child: Center(
+void customshowDialog(BuildContext context, String title) {
+  showDialog<void>(
+    barrierDismissible: false,
+    useSafeArea: false,
+    context: context,
+    builder: (BuildContext context) {
+      return Center(
+        child: AlertDialog(
+          backgroundColor: AppColor.secondnaryColor,
+          alignment: Alignment.center,
+          title: Center(
               child: Text(
             title,
             style: Theme.of(context)
                 .textTheme
-                .titleSmall!
-                .copyWith(color: Colors.white),
+                .titleMedium!
+                .copyWith(color: AppColor.backgroundColor, fontSize: 22),
           )),
-        )),
-      ),
-      barrierColor: Colors.transparent);
+        ),
+      );
+    },
+  );
 }

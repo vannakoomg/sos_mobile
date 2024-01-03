@@ -6,6 +6,7 @@ import 'package:sos_mobile/cores/auth/create_account/controllers/create_account_
 import 'package:sos_mobile/cores/auth/hello/widgets/paint.dart';
 import 'package:sos_mobile/utils/widgets/custom_back.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
+import 'package:sos_mobile/utils/widgets/custom_loading.dart';
 
 class SeletctSubjectScreen extends StatelessWidget {
   const SeletctSubjectScreen({super.key});
@@ -14,6 +15,7 @@ class SeletctSubjectScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(CreateAccountController());
     return Scaffold(
+      backgroundColor: AppColor.backgroundColor,
       body: Obx(() => SizedBox(
             height: MediaQuery.sizeOf(context).height,
             width: MediaQuery.sizeOf(context).width,
@@ -41,11 +43,7 @@ class SeletctSubjectScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomBack(
-                        ontap: () {
-                          controller.clearValue();
-                        },
-                      ),
+                      const CustomBack(),
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text("រើសមុខវិជ្ជាដែលអ្នកចូលចិត្ត",
@@ -65,7 +63,7 @@ class SeletctSubjectScreen extends StatelessWidget {
                               Wrap(
                                   spacing: 15,
                                   runSpacing: 15,
-                                  children: controller.subject
+                                  children: controller.subject.value.data!
                                       .asMap()
                                       .entries
                                       .map((e) {
@@ -76,10 +74,12 @@ class SeletctSubjectScreen extends StatelessWidget {
                                           controller.numberSelect.value++;
                                           controller.selectedSucject[e.key] =
                                               e.key;
-                                          debugPrint(
-                                              "${controller.numberSelect.value}");
+                                          controller.selectSubjectSubmit
+                                              .add(e.value.id);
                                         } else {
                                           controller.numberSelect.value--;
+                                          controller.selectSubjectSubmit
+                                              .remove(e.value.id);
                                           controller.selectedSucject[e.key] =
                                               -1;
                                         }
@@ -116,13 +116,14 @@ class SeletctSubjectScreen extends StatelessWidget {
                                               MainAxisAlignment.center,
                                           children: [
                                             Text(
-                                              e.value,
+                                              e.value.title!,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .titleMedium!
                                                   .copyWith(
-                                                      color: AppColor
-                                                          .primaryColor),
+                                                      color:
+                                                          AppColor.primaryColor,
+                                                      fontSize: 17),
                                             ),
                                           ],
                                         ),
@@ -142,13 +143,15 @@ class SeletctSubjectScreen extends StatelessWidget {
                                 : true,
                             title: "យល់ព្រម",
                             onTap: () {
-                              router.go('/home-screen');
+                              controller.createAccount();
                             },
                             // colors: AppColor.mainColor,
                           ))
                     ],
                   ),
                 ),
+                if (controller.isloading.value)
+                  const Center(child: CustomLoading())
               ],
             ),
           )),

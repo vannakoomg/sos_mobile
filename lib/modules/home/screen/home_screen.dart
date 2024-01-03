@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             decoration: BoxDecoration(
                               border:
                                   Border.all(color: AppColor.secondnaryColor),
-                              color: AppColor.primaryColor.withOpacity(0.5),
+                              // color: AppColor.primaryColor.withOpacity(0.5),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Stack(

@@ -1,9 +1,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/cores/auth/create_account/screens/create_account_screen.dart';
+import 'package:sos_mobile/cores/auth/create_account/screens/otp_screen.dart';
 import 'package:sos_mobile/cores/auth/create_account/screens/select_subject_scree.dart';
 import 'package:sos_mobile/cores/auth/hello/screens/hello_screen.dart';
 import 'package:sos_mobile/cores/walk_though/singin/screens/singin_screen.dart';
 import 'package:sos_mobile/modules/question/screen/question_detail.dart';
+import 'package:sos_mobile/modules/settings/modules/privacy_data/screen/setting_privacy_data_screen.dart';
 import 'package:sos_mobile/modules/settings/screens/setting_screen.dart';
 
 import '../../cores/auth/login/screen/login_screen.dart';
@@ -43,11 +45,18 @@ final router = GoRouter(
               },
               routes: [
                 GoRoute(
-                  path: 'select-subject',
-                  builder: (context, state) {
-                    return const SeletctSubjectScreen();
-                  },
-                ),
+                    path: 'otp',
+                    builder: (context, state) {
+                      return OtpScreen();
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'select-subject',
+                        builder: (context, state) {
+                          return const SeletctSubjectScreen();
+                        },
+                      ),
+                    ]),
               ]),
         ]),
     GoRoute(
@@ -75,11 +84,18 @@ final router = GoRouter(
             },
           ),
           GoRoute(
-            path: 'setting',
-            builder: (context, state) {
-              return const SettingScreen();
-            },
-          ),
+              path: 'setting',
+              builder: (context, state) {
+                return const SettingScreen();
+              },
+              routes: [
+                GoRoute(
+                  path: 'privacy-data',
+                  builder: (context, state) {
+                    return const PrivacyDataScreen();
+                  },
+                ),
+              ]),
         ]),
   ],
 );

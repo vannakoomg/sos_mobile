@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:sos_mobile/modules/home/Model/home_model.dart';
 import 'package:sos_mobile/utils/controllers/app_controller.dart';
 
-import '../../../configs/url.dart';
 import '../../../utils/helpers/api_base_helper/api_base_helper.dart';
 
 class HomeContoller extends GetxController {
@@ -67,7 +66,7 @@ class HomeContoller extends GetxController {
     isForYou.value = true;
     await ApiBaseHelper.apiBaseHelper
         .onNetworkRequesting(
-          url: "$baseUrl/v1/question?page=$page",
+          url: "/v1/question?page=$page",
           methode: METHODE.get,
           isAuthorize: true,
         )

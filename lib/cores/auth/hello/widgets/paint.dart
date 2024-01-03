@@ -333,3 +333,118 @@ class Paint06 extends CustomPainter {
     return true;
   }
 }
+
+class Paint07 extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Layer 1
+
+    Paint paintFill0 = Paint()
+      ..color = AppColor.secondnaryColor
+      ..style = PaintingStyle.fill
+      ..strokeWidth = size.width * 0.00
+      ..strokeCap = StrokeCap.butt
+      ..strokeJoin = StrokeJoin.miter;
+
+    Path path_0 = Path();
+    path_0.moveTo(size.width * -0.0127833, size.height * 0.9961800);
+    path_0.quadraticBezierTo(size.width * 0.3046500, size.height * 0.9964200,
+        size.width * 0.3856667, size.height * 0.7947400);
+    path_0.cubicTo(
+        size.width * 0.4246667,
+        size.height * 0.7069400,
+        size.width * 0.4331167,
+        size.height * 0.6269000,
+        size.width * 0.5076833,
+        size.height * 0.5580200);
+    path_0.cubicTo(
+        size.width * 0.5961333,
+        size.height * 0.4841400,
+        size.width * 0.6501667,
+        size.height * 0.5386200,
+        size.width * 0.8097500,
+        size.height * 0.4584400);
+    path_0.cubicTo(
+        size.width * 0.8946833,
+        size.height * 0.4133000,
+        size.width * 0.8737833,
+        size.height * 0.2667800,
+        size.width * 0.8746500,
+        size.height * 0.2061200);
+    path_0.quadraticBezierTo(size.width * 0.8777833, size.height * 0.0634000,
+        size.width * 0.9987333, size.height * -0.0020000);
+    path_0.lineTo(size.width * -0.0409667, size.height * -0.0239400);
+    path_0.lineTo(size.width * -0.0127833, size.height * 0.9961800);
+    path_0.close();
+
+    canvas.drawPath(path_0, paintFill0);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
+
+class PaintOtp extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Layer 1
+
+    Paint paintFill0 = Paint()
+      ..color = AppColor.secondnaryColor
+      ..style = PaintingStyle.fill
+      ..strokeWidth = size.width * 0.00
+      ..strokeCap = StrokeCap.butt
+      ..strokeJoin = StrokeJoin.miter;
+
+    Path path_0 = Path();
+    path_0.moveTo(size.width * -0.0010667, size.height * 1.0029800);
+    path_0.quadraticBezierTo(size.width * 0.0982833, size.height * 0.7669000,
+        size.width * 0.1971500, size.height * 0.7050200);
+    path_0.cubicTo(
+        size.width * 0.3494333,
+        size.height * 0.6296200,
+        size.width * 0.5590333,
+        size.height * 0.8076400,
+        size.width * 0.6850500,
+        size.height * 0.5741200);
+    path_0.cubicTo(
+        size.width * 0.7465667,
+        size.height * 0.4458800,
+        size.width * 0.5992000,
+        size.height * 0.3402400,
+        size.width * 0.6514167,
+        size.height * 0.2144200);
+    path_0.cubicTo(
+        size.width * 0.7155000,
+        size.height * 0.0971400,
+        size.width * 0.8371833,
+        size.height * 0.1865400,
+        size.width * 0.9206667,
+        size.height * 0.1468600);
+    path_0.quadraticBezierTo(size.width * 0.9852833, size.height * 0.1166000,
+        size.width * 1.0061167, size.height * -0.0110400);
+    path_0.lineTo(size.width * -0.0033333, size.height * -0.0120000);
+    path_0.lineTo(size.width * -0.0010667, size.height * 1.0029800);
+    path_0.close();
+
+    canvas.drawPath(path_0, paintFill0);
+
+    // Layer 1
+
+    Paint paintStroke0 = Paint()
+      ..color = const Color.fromARGB(255, 33, 150, 243)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = size.width * 0.00
+      ..strokeCap = StrokeCap.butt
+      ..strokeJoin = StrokeJoin.miter;
+
+    canvas.drawPath(path_0, paintStroke0);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}

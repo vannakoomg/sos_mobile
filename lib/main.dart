@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       onTap: () {
         unFocus(context);
       },
-      child: MaterialApp.router(
+      child: GetMaterialApp.router(
         routeInformationParser: router.routeInformationParser,
         routerDelegate: router.routerDelegate,
         routeInformationProvider: router.routeInformationProvider,

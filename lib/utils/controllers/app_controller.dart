@@ -16,12 +16,10 @@ class AppController extends GetxController {
   void onLongPressEnd() {
     isLongPress.value = false;
     afterLongPress.value = false;
-
     isPress01.value = false;
     isPress02.value = false;
     isPress03.value = false;
     isPress04.value = false;
-
     if (action.value == "ចែករំលែក") {
       Share.share('check out my website https://example.com');
       debugPrint("okoko");

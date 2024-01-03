@@ -16,11 +16,11 @@ class PostQuestionScreen extends StatelessWidget {
     ScrollController scrollController = ScrollController();
     final controller = Get.put(PostQuestionController());
     return Container(
-      color: AppColor.mainColor,
+      color: AppColor.backgroundColor,
       child: SafeArea(
           child: Obx(
         () => Container(
-          color: AppColor.primaryColor,
+          color: AppColor.backgroundColor,
           padding: const EdgeInsets.only(left: 5, right: 5, bottom: 10),
           child: Column(
             children: [
@@ -105,7 +105,7 @@ class PostQuestionScreen extends StatelessWidget {
                                               left: 15,
                                               right: 5,
                                               top: 0,
-                                              bottom: 4),
+                                              bottom: 0),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(20)),

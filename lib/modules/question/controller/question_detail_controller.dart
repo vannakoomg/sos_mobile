@@ -17,7 +17,7 @@ class QuestionDetailController extends GetxController {
   void fetchQuestionDetail({required int id}) async {
     await ApiBaseHelper.apiBaseHelper
         .onNetworkRequesting(
-          url: "$baseUrl/v1/question/all",
+          url: "/v1/question/all",
           methode: METHODE.get,
           isAuthorize: true,
         )

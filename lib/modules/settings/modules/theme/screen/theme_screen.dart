@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/modules/settings/controllers/theme_controller.dart';
+import 'package:sos_mobile/modules/settings/modules/profile_information/controller/theme_controller.dart';
 import 'package:sos_mobile/modules/settings/widgets/theme_card.dart';
 import 'package:sos_mobile/utils/widgets/custom_textfield.dart';
 

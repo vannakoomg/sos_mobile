@@ -27,8 +27,8 @@ class CustomButtom extends StatelessWidget {
       child: AnimatedContainer(
         padding: const EdgeInsets.only(left: 10, right: 10),
         decoration: BoxDecoration(
-          border: Border.all(color: AppColor.primaryColor),
-          color: disble == false ? colors : AppColor.mainColor,
+          // border: Border.all(color: AppColor.primaryColor),
+          color: disble == false ? colors : Colors.grey,
           borderRadius: BorderRadius.circular(100),
         ),
         height: height,

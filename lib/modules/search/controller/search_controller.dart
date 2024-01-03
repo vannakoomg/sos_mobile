@@ -18,14 +18,10 @@ class Searchcontroller extends GetxController {
   void fetchPopular() async {
     await ApiBaseHelper.apiBaseHelper
         .onNetworkRequesting(
-            url: "$baseUrl/v1/popular-search",
-            methode: METHODE.get,
-            isAuthorize: false)
+            url: "/v1/popular-search", methode: METHODE.get, isAuthorize: false)
         .then((value) {
-      if (value['statusCode'] == 200) {
-        debugPrint('data from api $value');
-        popular.value = PopularModel.fromJson(value);
-      } else {}
+      debugPrint('data from api $value');
+      popular.value = PopularModel.fromJson(value);
     }).onError((error, stackTrace) {
       debugPrint("error server");
     });

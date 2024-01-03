@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
-class PrivacyDataCrad extends StatelessWidget {
+class OffOnSettingCard extends StatelessWidget {
   final String title;
   final String subTitle;
   final Function ontap;
-  final bool isShow;
+  final int isShow;
   final String description;
-  const PrivacyDataCrad({
+  const OffOnSettingCard({
     super.key,
     required this.title,
     required this.subTitle,
@@ -43,7 +43,7 @@ class PrivacyDataCrad extends StatelessWidget {
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: !isShow
+                              color: isShow == 0
                                   ? AppColor.mainColor.withOpacity(0.9)
                                   : AppColor.secondnaryColor,
                             ),
@@ -58,7 +58,7 @@ class PrivacyDataCrad extends StatelessWidget {
                                     .copyWith(color: AppColor.primaryColor),
                               ),
                             ))),
-                    if (!isShow)
+                    if (isShow == 0)
                       Center(
                         child: Transform(
                           transform: Matrix4.identity()..rotateZ(2.5),

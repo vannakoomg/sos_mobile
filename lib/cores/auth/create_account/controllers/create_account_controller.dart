@@ -1,27 +1,26 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/route/route.dart';
+import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
+
+import '../../../../utils/helpers/local_data/storge_local.dart';
+import '../models/subject_model.dart';
 
 class CreateAccountController extends GetxController {
   final gmailtext = TextEditingController().obs;
   final nametext = TextEditingController().obs;
   final passwordtext = TextEditingController().obs;
-  final isotp = false.obs;
-  final isShowOtp = false.obs;
-  final isShowForm = true.obs;
-  final title = "បង្កើតគណនី".obs;
+  final gmail = ''.obs;
   final otp = TextEditingController().obs;
   final disable = true.obs;
+  final isloading = false.obs;
   void clearValue() {
     gmailtext.value = TextEditingController();
     nametext.value = TextEditingController();
     passwordtext.value = TextEditingController();
     otp.value = TextEditingController();
-    isotp.value = false;
-    isShowOtp.value = false;
-    isShowForm.value = true;
-    title.value = "បង្កើតគណនី";
-    disable.value = true;
     router.pop();
   }
 
@@ -35,58 +34,51 @@ class CreateAccountController extends GetxController {
     }
   }
 
-  void ontap() {
-    isotp.value = !isotp.value;
-    Future.delayed(const Duration(milliseconds: 100), () {
-      isShowForm.value = !isShowForm.value;
-      Future.delayed(const Duration(milliseconds: 500), () {
-        isShowOtp.value = !isShowOtp.value;
-        Future.delayed(const Duration(milliseconds: 100), () {
-          title.value =
-              "Otp ត្រូវផ្ញើរទៅកាន់គណនី [ ${gmailtext.value.text} ]សូមចូលទៅក្នុងប្រអប់សារដើម្បីធ្វើការផ្ទៀងផ្ទត់";
-        });
-      });
+  void onChanged({String value = '', required BuildContext context}) {
+    if (value.length == 4) {
+      clearValue();
+      router.go('/hello/create-account/otp/select-subject');
+    }
+  }
+
+  final numberSelect = 0.obs;
+  final selectedSucject = [].obs;
+  final selectSubjectSubmit = [];
+  final subject = SubjectModel().obs;
+  Future fetchSubject() async {
+    ApiBaseHelper.apiBaseHelper
+        .onNetworkRequesting(
+            url: "/v1/subject", methode: METHODE.get, isAuthorize: false)
+        .then((value) {
+      subject.value = SubjectModel.fromJson(value);
+      for (int i = 0; i < subject.value.data!.length; ++i) {
+        selectedSucject.add(-1);
+      }
     });
   }
 
-  void onChanged({String value = '', required BuildContext context}) {
-    if (value.length == 4) {
-      debugPrint("Go to subject ");
-      clearValue();
-      router.go('/hello/create-account/select-subject');
-    }
-  }
-
-  void ontapBack() {
-    if (isotp.value) {
-      isotp.value = !isotp.value;
-      Future.delayed(const Duration(milliseconds: 300), () {
-        isShowOtp.value = !isShowOtp.value;
-        Future.delayed(const Duration(milliseconds: 300), () {
-          isShowForm.value = !isShowForm.value;
-          Future.delayed(const Duration(milliseconds: 100), () {
-            title.value = "បង្កើតគណនី";
-          });
-        });
+  Future createAccount() async {
+    isloading.value = true;
+    ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
+        url: "/register",
+        methode: METHODE.post,
+        isAuthorize: false,
+        body: {
+          "name": "wyuhjddk",
+          "user_subject": selectSubjectSubmit,
+          "phone": "+852221165",
+          "password": "12345678",
+          "email": "aaaa2222aa4@gmail.com"
+        }).then((value) async {
+      debugPrint("token $value");
+      await LocalStorage.storeData(
+              key: 'access_token', value: value['access_token'])
+          .then((value) {
+        isloading.value = false;
+        router.go('/home-screen');
       });
-    } else {
-      debugPrint("pppppp");
-      router.pop();
-    }
+    }).onError((error, stackTrace) {
+      isloading.value = false;
+    });
   }
-
-  final subject = [
-    "គណិត",
-    "រូប",
-    "ខ្មែរ",
-    "គីមី",
-    "ជីវិះ",
-    "ផែនដី",
-    "ប្រវត្តិសាស្រ្ត",
-    "ពលរដ្ឋសីលធម៍",
-    "ភាសារ",
-  ];
-  final numberSelect = 0.obs;
-  final selectedSucject = [-1, -1, -1, -1, -1, -1, -1, -1, -1].obs;
-  void fetchSubject() {}
 }

@@ -10,7 +10,8 @@ class CustomLoading extends StatelessWidget {
         padding: const EdgeInsets.all(3),
         height: 50,
         width: 50,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
+            border: Border.all(width: 0.5),
             // color: AppColor.secondnaryColor.withOpacity(0.3),
             shape: BoxShape.circle),
         child: Image.asset(

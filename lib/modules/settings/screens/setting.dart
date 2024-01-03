@@ -53,7 +53,7 @@ class Settings extends StatelessWidget {
                               e.value,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyMedium!
+                                  .titleMedium!
                                   .copyWith(
                                       fontSize: 18, color: AppColor.textThird),
                             ),
