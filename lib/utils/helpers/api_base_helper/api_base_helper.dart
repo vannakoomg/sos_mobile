@@ -37,7 +37,7 @@ class ApiBaseHelper {
     // if (baseUrl != '') baseurl = baseUrl;
     final token = await LocalStorage.getStringValue(key: 'access_token');
     final fullUrl = base == '' ? baseUrl + url : base + url;
-    debugPrint("url $fullUrl");
+    debugPrint("url $token");
     Map<String, String> headerDefault = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

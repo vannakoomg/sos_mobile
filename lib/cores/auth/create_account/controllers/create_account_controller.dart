@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/route/route.dart';
@@ -13,6 +11,8 @@ class CreateAccountController extends GetxController {
   final nametext = TextEditingController().obs;
   final passwordtext = TextEditingController().obs;
   final gmail = ''.obs;
+  final password = ''.obs;
+  final name = ''.obs;
   final otp = TextEditingController().obs;
   final disable = true.obs;
   final isloading = false.obs;
@@ -64,13 +64,11 @@ class CreateAccountController extends GetxController {
         methode: METHODE.post,
         isAuthorize: false,
         body: {
-          "name": "wyuhjddk",
+          "name": name.value,
           "user_subject": selectSubjectSubmit,
-          "phone": "+852221165",
-          "password": "12345678",
-          "email": "aaaa2222aa4@gmail.com"
+          "password": password.value,
+          "email": gmail.value
         }).then((value) async {
-      debugPrint("token $value");
       await LocalStorage.storeData(
               key: 'access_token', value: value['access_token'])
           .then((value) {

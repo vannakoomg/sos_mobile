@@ -5,7 +5,10 @@ import 'package:sos_mobile/cores/auth/create_account/screens/select_subject_scre
 import 'package:sos_mobile/cores/auth/hello/screens/hello_screen.dart';
 import 'package:sos_mobile/cores/walk_though/singin/screens/singin_screen.dart';
 import 'package:sos_mobile/modules/question/screen/question_detail.dart';
+import 'package:sos_mobile/modules/settings/modules/feedback/screen/feedback_screen.dart';
+import 'package:sos_mobile/modules/settings/modules/notification/screens/setting_notification_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/privacy_data/screen/setting_privacy_data_screen.dart';
+import 'package:sos_mobile/modules/settings/modules/profile_information/screen/profile_info_screen.dart';
 import 'package:sos_mobile/modules/settings/screens/setting_screen.dart';
 
 import '../../cores/auth/login/screen/login_screen.dart';
@@ -47,7 +50,7 @@ final router = GoRouter(
                 GoRoute(
                     path: 'otp',
                     builder: (context, state) {
-                      return OtpScreen();
+                      return const OtpScreen();
                     },
                     routes: [
                       GoRoute(
@@ -90,9 +93,27 @@ final router = GoRouter(
               },
               routes: [
                 GoRoute(
-                  path: 'privacy-data',
+                  path: 'profile-info',
                   builder: (context, state) {
-                    return const PrivacyDataScreen();
+                    return const ProfileInfoScreen();
+                  },
+                ),
+                GoRoute(
+                  path: 'setting-privacy',
+                  builder: (context, state) {
+                    return const SettingPricacyData();
+                  },
+                ),
+                GoRoute(
+                  path: 'setting-notification',
+                  builder: (context, state) {
+                    return const SettingNotificationScreen();
+                  },
+                ),
+                GoRoute(
+                  path: 'feedback',
+                  builder: (context, state) {
+                    return const FeedBackScreen();
                   },
                 ),
               ]),

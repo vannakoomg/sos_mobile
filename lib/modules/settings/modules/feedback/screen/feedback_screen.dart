@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/settings/modules/feedback/controller/feedback_controller.dart';
-import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
-import 'package:sos_mobile/utils/widgets/custom_dialog.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
 
 import '../../../../../utils/widgets/custom_textfield.dart';
@@ -22,16 +20,6 @@ class FeedBackScreen extends StatelessWidget {
             title: const Text("មតិកែលម្អ"),
             leadingWidth: 40,
             centerTitle: true,
-            leading: IconButton(
-              onPressed: () {
-                unFocus(context);
-                controller.resetIndex();
-              },
-              icon: const Icon(
-                Icons.close,
-                // color: Colors.white,
-              ),
-            ),
             actions: [
               Padding(
                 padding: const EdgeInsets.only(right: 10),
@@ -73,7 +61,7 @@ class FeedBackScreen extends StatelessWidget {
                               duration: const Duration(milliseconds: 200),
                               child: CustomTextfield(
                                 radius: 15,
-                                hintText: "រ៉ារាប់មក",
+                                hintText: "សូមរ៉ារាប់មក",
                                 onChanged: (value) {
                                   controller.description.value = value;
                                 },

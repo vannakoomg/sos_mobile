@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/post_question/controllers/post_question_controller.dart';
+import 'package:sos_mobile/modules/post_question/models/tag_model.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 import 'package:sos_mobile/utils/widgets/custom_tag_card.dart';
 import '../../../utils/widgets/custom_textfield.dart';
@@ -13,7 +14,6 @@ class PostQuestionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScrollController scrollController = ScrollController();
     final controller = Get.put(PostQuestionController());
     return Container(
       color: AppColor.backgroundColor,
@@ -21,7 +21,7 @@ class PostQuestionScreen extends StatelessWidget {
           child: Obx(
         () => Container(
           color: AppColor.backgroundColor,
-          padding: const EdgeInsets.only(left: 5, right: 5, bottom: 10),
+          padding: const EdgeInsets.only(left: 5, right: 5, bottom: 5),
           child: Column(
             children: [
               Expanded(
@@ -38,10 +38,12 @@ class PostQuestionScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             CustomButtom(
-                              title: "សូមសួរមួយ",
-                              onTap: () {},
-                              fountSize: 15,
-                              height: 35,
+                              title: "សូមសួរមួយ ?",
+                              onTap: () {
+                                controller.postQuestion();
+                              },
+                              fountSize: 14,
+                              height: 30,
                             )
                           ],
                         ),
@@ -74,62 +76,74 @@ class PostQuestionScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 5,
                                 ),
-                                AnimatedContainer(
-                                  duration: const Duration(milliseconds: 300),
-                                  curve: Curves.ease,
+                                Container(
                                   width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: AppColor.primaryColor,
-                                      border: Border.all()),
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: AppColor.primaryColor,
+                                    // border: Border.all(),
+                                  ),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      SizedBox(
-                                        width: double.infinity,
-                                        child: CustomTextfield(
-                                          isBorder: false,
-                                          textInputType:
-                                              TextInputType.visiblePassword,
-                                          hintText: "ពាក្យសម្គាល់",
-                                          onChanged: (value) {
-                                            controller.tagtext.value = value;
-                                          },
-                                          textEditController: controller
-                                              .tagTextController.value,
-                                        ),
+                                      CustomTextfield(
+                                        readOnly:
+                                            controller.selectTags.length < 3
+                                                ? false
+                                                : true,
+                                        textInputType:
+                                            TextInputType.visiblePassword,
+                                        hintTextStyle:
+                                            controller.selectTags.length < 3
+                                                ? null
+                                                : Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .copyWith(
+                                                        color: AppColor
+                                                            .warningColor,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                        hintText:
+                                            controller.selectTags.length < 3
+                                                ? "ពាក្យសម្គាល់"
+                                                : "ពាក្យសម្គាល់គ្រាប់ហើយ",
+                                        onChanged: (value) {
+                                          controller.tagtext.value = value;
+                                          controller.fetchTag(value);
+                                        },
+                                        textEditController:
+                                            controller.tagTextController.value,
                                       ),
                                       Container(
-                                          margin: const EdgeInsets.only(
+                                          margin: EdgeInsets.only(
                                               left: 15,
                                               right: 5,
-                                              top: 0,
-                                              bottom: 0),
+                                              bottom: controller
+                                                      .selectTags.isNotEmpty
+                                                  ? 10
+                                                  : 0),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(20)),
                                           child: Wrap(
-                                            children: controller.listOfTag
+                                            children: controller.selectTags
                                                 .asMap()
                                                 .entries
                                                 .map((element) {
-                                              return CustomTagCard(
-                                                isOnSearch: false,
-                                                title:
-                                                    'math math ${element.key}',
-                                                ontap: () {
-                                                  controller.listOfTag
-                                                      .removeAt(element.key);
-                                                  if (controller
-                                                      .listOfTag.isEmpty) {
-                                                    controller.tagtext.value =
-                                                        '';
-                                                    controller.tagTextController
-                                                            .value =
-                                                        TextEditingController();
-                                                  }
-                                                },
+                                              return Container(
+                                                margin: const EdgeInsets.only(
+                                                    bottom: 0),
+                                                child: CustomTagCard(
+                                                  isOnSearch: false,
+                                                  title:
+                                                      '${element.value.name}',
+                                                  ontap: () {
+                                                    controller
+                                                        .removeTag(element.key);
+                                                  },
+                                                ),
                                               );
                                             }).toList(),
                                           )),
@@ -172,9 +186,8 @@ class PostQuestionScreen extends StatelessWidget {
                                                 height: 30,
                                                 width: 30,
                                                 decoration: BoxDecoration(
-                                                    color: AppColor
-                                                        .secondnaryColor
-                                                        .withOpacity(0.6),
+                                                    color: AppColor.mainColor
+                                                        .withOpacity(0.4),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             20)),
@@ -216,25 +229,23 @@ class PostQuestionScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              if (controller.tagtext.value != '')
-                Container(
-                  margin: const EdgeInsets.only(
-                    top: 5,
-                  ),
+              if (controller.tagsData.value.tags != null &&
+                  controller.tagtext.value != '')
+                SizedBox(
                   width: double.infinity,
-                  child: Wrap(children: [
-                    CustomTagCard(
-                      title: 'សមីការ',
+                  child: Wrap(
+                      children: controller.tagsData.value.tags!
+                          .asMap()
+                          .entries
+                          .map((e) {
+                    return CustomTagCard(
+                      title: e.value.name!,
                       ontap: () {
-                        scrollController.animateTo(500,
-                            duration: const Duration(milliseconds: 3000),
-                            curve: Curves.ease);
-                        controller.tagtext.value = '';
-                        controller.tagTextController.value.text = '';
-                        controller.listOfTag.add('ddd');
+                        controller.onSelectTag(
+                            Tags(id: e.value.id, name: e.value.name));
                       },
-                    ),
-                  ]),
+                    );
+                  }).toList()),
                 ),
             ],
           ),

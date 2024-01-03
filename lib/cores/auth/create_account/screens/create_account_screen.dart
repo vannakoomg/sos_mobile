@@ -3,9 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/configs/route/route.dart';
 import 'package:sos_mobile/cores/auth/create_account/controllers/create_account_controller.dart';
-import 'package:sos_mobile/cores/auth/create_account/screens/otp_screen.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/widgets/custom_back.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
@@ -86,6 +84,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         high: 60,
                         hintText: "ឈ្មោះ",
                         onChanged: (value) {
+                          controller.name.value = value;
                           controller.checkValidation();
                         },
                         textEditController: controller.nametext.value,
@@ -95,6 +94,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         high: 60,
                         hintText: "ពាក្យសម្ងាត់",
                         onChanged: (value) {
+                          controller.password.value = value;
                           controller.checkValidation();
                         },
                         textEditController: controller.passwordtext.value,

@@ -118,17 +118,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       ? 800
                                                       : 500),
                                           padding: const EdgeInsets.all(5),
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: controller.isForYou.value
-                                                ? Colors.white
-                                                : AppColor.secondnaryColor,
-                                          ),
                                           child: Icon(
                                             Icons.search_rounded,
-                                            color: controller.isForYou.value
-                                                ? AppColor.secondnaryColor
-                                                : Colors.white,
+                                            color: AppColor.secondnaryColor,
                                           ),
                                         ),
                                       ),

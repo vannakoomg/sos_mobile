@@ -27,17 +27,10 @@ class _SettingNotificationScreenState extends State<SettingNotificationScreen> {
     return Scaffold(
         backgroundColor: AppColor.backgroundColor,
         appBar: AppBar(
-          title: const Text("Privacy and Data"),
+          title: const Text("Notification"),
           leadingWidth: 40,
           backgroundColor: AppColor.backgroundColor,
           centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                settingController.resetIndex();
-              },
-              icon: const Icon(
-                Icons.close,
-              )),
         ),
         body: Obx(
           () => Container(

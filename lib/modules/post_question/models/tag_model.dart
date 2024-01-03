@@ -1,18 +1,41 @@
-class TagModel {
-  String? id;
-  String? title;
+class TagsModel {
+  List<Tags>? tags;
 
-  TagModel({this.id, this.title});
+  TagsModel({this.tags});
 
-  TagModel.fromJson(Map<String, dynamic> json) {
+  TagsModel.fromJson(Map<String, dynamic> json) {
+    if (json['tags'] != null) {
+      tags = <Tags>[];
+      json['tags'].forEach((v) {
+        tags!.add(Tags.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (tags != null) {
+      data['tags'] = tags!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Tags {
+  int? id;
+  String? name;
+
+  Tags({this.id, this.name});
+
+  Tags.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    title = json['title'];
+    name = json['name'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['title'] = title;
+    data['name'] = name;
     return data;
   }
 }

@@ -4,7 +4,7 @@ extension AppColor on Color {
   // for widget
   static var primaryColor = Colors.white;
   static var secondnaryColor = const Color.fromARGB(255, 219, 22, 81);
-  static var backgroundColor = const Color.fromARGB(255, 253, 245, 248);
+  static var backgroundColor = const Color.fromARGB(255, 223, 223, 223);
   static var mainColor = Colors.black;
 
   //for font

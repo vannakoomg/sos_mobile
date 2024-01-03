@@ -20,7 +20,7 @@ class CustomTagCard extends StatelessWidget {
         }
       },
       child: Container(
-        margin: const EdgeInsets.only(right: 5, bottom: 5),
+        margin: const EdgeInsets.only(right: 5, top: 5),
         padding: const EdgeInsets.only(left: 6, right: 6, top: 4, bottom: 4),
         decoration: BoxDecoration(
             color: AppColor.secondnaryColor.withOpacity(0.9),

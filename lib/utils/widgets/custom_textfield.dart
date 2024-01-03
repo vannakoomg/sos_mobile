@@ -21,8 +21,10 @@ class CustomTextfield extends StatelessWidget {
   final TextStyle? textStyle;
   final TextStyle? hintTextStyle;
   final bool isDense;
+  final bool readOnly;
   const CustomTextfield({
     super.key,
+    this.readOnly = false,
     required this.onChanged,
     required this.textEditController,
     this.textStyle,
@@ -52,6 +54,7 @@ class CustomTextfield extends StatelessWidget {
         borderRadius: BorderRadius.circular(radius),
       ),
       child: TextFormField(
+        readOnly: readOnly,
         textAlign: textAlign,
         focusNode: focusNode,
         autofocus: autofocus,

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/cores/auth/create_account/controllers/create_account_controller.dart';
 import 'package:sos_mobile/cores/auth/hello/widgets/paint.dart';
 import 'package:sos_mobile/utils/widgets/custom_back.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
@@ -13,7 +11,6 @@ class HelloScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CreateAccountController());
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       body: Stack(

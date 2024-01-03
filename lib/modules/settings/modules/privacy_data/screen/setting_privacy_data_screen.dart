@@ -6,14 +6,14 @@ import 'package:sos_mobile/modules/settings/modules/privacy_data/controller/priv
 import 'package:sos_mobile/modules/settings/controllers/setting_controller.dart';
 import 'package:sos_mobile/modules/settings/widgets/setting_off_on_card.dart';
 
-class PrivacyDataScreen extends StatefulWidget {
-  const PrivacyDataScreen({super.key});
+class SettingPricacyData extends StatefulWidget {
+  const SettingPricacyData({super.key});
 
   @override
-  State<PrivacyDataScreen> createState() => _PrivacyDataScreenState();
+  State<SettingPricacyData> createState() => _SettingPricacyDataState();
 }
 
-class _PrivacyDataScreenState extends State<PrivacyDataScreen> {
+class _SettingPricacyDataState extends State<SettingPricacyData> {
   final controller = Get.put(PrivacyDataController());
   final settingController = Get.put(SettingController());
   @override
@@ -30,13 +30,6 @@ class _PrivacyDataScreenState extends State<PrivacyDataScreen> {
           leadingWidth: 40,
           backgroundColor: AppColor.backgroundColor,
           centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                settingController.resetIndex();
-              },
-              icon: const Icon(
-                Icons.close,
-              )),
         ),
         body: Obx(
           () => Container(

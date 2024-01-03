@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/cores/auth/hello/widgets/paint.dart';
 import 'package:sos_mobile/utils/widgets/custom_back.dart';

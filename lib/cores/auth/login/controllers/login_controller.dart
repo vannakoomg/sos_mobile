@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
-import '../../../../configs/url.dart';
 import '../../../../utils/helpers/local_data/storge_local.dart';
 
 class LoginController extends GetxController {
