@@ -37,7 +37,6 @@ class ApiBaseHelper {
     // if (baseUrl != '') baseurl = baseUrl;
     final token = await LocalStorage.getStringValue(key: 'access_token');
     final fullUrl = base == '' ? baseUrl + url : base + url;
-    debugPrint("url $token");
     Map<String, String> headerDefault = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -46,10 +45,11 @@ class ApiBaseHelper {
     try {
       switch (methode) {
         case METHODE.get:
-          final response = await dio.get(
-            fullUrl,
-            options: Options(headers: header ?? headerDefault),
-          );
+          final response = await dio.get(fullUrl,
+              options: Options(
+                headers: header ?? headerDefault,
+              ),
+              data: body);
           return _returnResponse(response);
         case METHODE.post:
           if (body != null) {

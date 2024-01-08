@@ -5,11 +5,14 @@ class CustomTagCard extends StatelessWidget {
   final String title;
   final Function ontap;
   final bool isOnSearch;
-  const CustomTagCard(
-      {super.key,
-      required this.title,
-      this.isOnSearch = true,
-      required this.ontap});
+  final bool isTheSame;
+  const CustomTagCard({
+    super.key,
+    required this.title,
+    this.isOnSearch = true,
+    this.isTheSame = false,
+    required this.ontap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +23,11 @@ class CustomTagCard extends StatelessWidget {
         }
       },
       child: Container(
-        margin: const EdgeInsets.only(right: 5, top: 5),
         padding: const EdgeInsets.only(left: 6, right: 6, top: 4, bottom: 4),
         decoration: BoxDecoration(
-            color: AppColor.secondnaryColor.withOpacity(0.9),
+            color: isTheSame == true
+                ? const Color.fromARGB(255, 11, 120, 150)
+                : AppColor.secondnaryColor.withOpacity(0.9),
             borderRadius: BorderRadius.circular(8)),
         child: isOnSearch == true
             ? Text(

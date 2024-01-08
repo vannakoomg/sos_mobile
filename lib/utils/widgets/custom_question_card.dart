@@ -1,222 +1,209 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-// import 'package:sos_mobile/modules/profile/models/profile_model.dart';
+import 'package:sos_mobile/utils/widgets/custom_tag_card.dart';
 
-import '../../modules/home/Model/home_model.dart';
-import 'custom_tag_card.dart';
+import '../../configs/const/Colors/app_colors.dart';
 
-class QuestionCard extends StatelessWidget {
-  final QuestionModel? questiondata;
-  final GestureTapCallback? ontap;
-  const QuestionCard({
+class CsutomQuestionCard extends StatelessWidget {
+  final List<String> tags;
+  final bool isCorrect;
+  final String avarta;
+  final String name;
+  final String time;
+  final String title;
+  final String image;
+  final String commentCount;
+  final String answerCount;
+  final String likeCount;
+  final Function ontapProfile;
+  final Function ontapQuestion;
+
+  const CsutomQuestionCard({
     super.key,
-    this.questiondata,
-    required this.ontap,
+    required this.isCorrect,
+    required this.tags,
+    required this.avarta,
+    required this.name,
+    required this.time,
+    required this.image,
+    required this.commentCount,
+    required this.ontapProfile,
+    required this.title,
+    required this.likeCount,
+    required this.answerCount,
+    required this.ontapQuestion,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
-          ontap!();
-        },
-        child: Container(
-          margin: const EdgeInsets.only(bottom: 5),
-          padding:
-              const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 5),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: AppColor.primaryColor,
-          ),
-          child: Column(
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      onTap: () {
+        ontapQuestion();
+      },
+      child: Container(
+        width: double.infinity,
+        padding:
+            const EdgeInsets.only(left: 10, top: 10, bottom: 10, right: 10),
+        margin: const EdgeInsets.only(bottom: 5),
+        decoration: BoxDecoration(
+          color: AppColor.primaryColor,
+          border: Border.all(width: 0.5),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GestureDetector(
+              onTap: () {
+                ontapProfile();
+              },
+              child: Row(
                 children: [
-                  Expanded(
-                    child: Text(
-                      "${questiondata!.title}",
-                      style: Theme.of(context).textTheme.titleSmall,
-                      maxLines: 10,
-                      overflow: TextOverflow.ellipsis,
+                  CachedNetworkImage(
+                    imageUrl: avarta,
+                    imageBuilder: (context, imageProvider) => Container(
+                      height: 35,
+                      width: 35,
+                      decoration: BoxDecoration(
+                        color: AppColor.secondnaryColor,
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: NetworkImage(avarta),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: questiondata!.tags!.map((e) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 5),
-                            child: CustomTagCard(
-                              title: e,
-                              ontap: () {},
-                            ),
-                          );
-                        }).toList(),
+                    errorWidget: (context, url, error) => Container(
+                      height: 35,
+                      width: 35,
+                      decoration: BoxDecoration(
+                        color: AppColor.secondnaryColor,
+                        shape: BoxShape.circle,
                       ),
                     ),
                   ),
                   const SizedBox(
                     width: 10,
                   ),
-                  Text("${questiondata!.amountAnswers}",
-                      style: const TextStyle(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      Text(time),
+                    ],
+                  ),
+                  const Spacer(),
+                  isCorrect == true
+                      ? const Icon(
+                          Icons.check_circle_sharp,
                           color: Colors.green,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 17)),
-                  Container(
-                    margin: const EdgeInsets.only(
-                        bottom: 8, top: 8, left: 8, right: 8),
-                    height: 22,
-                    width: 0.6,
-                  ),
-                  const Text(
-                    "0",
-                    style: TextStyle(
-                        color: Colors.orange,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 17),
-                  ),
+                        )
+                      : const SizedBox()
                 ],
               ),
-            ],
-          ),
-        )
-
-        //  AnimatedContainer(
-        //     margin: const EdgeInsets.only(bottom: 10),
-        //     padding: const EdgeInsets.only(bottom: 15, top: 15),
-        //     curve: Curves.ease,
-        //     decoration: BoxDecoration(
-        //         color: AppColor.primaryColor,
-        //         borderRadius: BorderRadius.circular(15)),
-        //     duration: const Duration(milliseconds: 80),
-        //     child: Column(
-        //       children: [
-        //         Padding(
-        //           padding: const EdgeInsets.only(left: 10, right: 10),
-        //           child: Row(
-        //             crossAxisAlignment: CrossAxisAlignment.start,
-        //             children: [
-        //               Expanded(
-        //                 child: Text(
-        //                   "$title",
-        //                   style: Theme.of(context).textTheme.titleSmall,
-        //                   overflow: TextOverflow.ellipsis,
-        //                   maxLines: 2,
-        //                 ),
-        //               ),
-        //               const SizedBox(
-        //                 width: 10,
-        //               ),
-        //             ],
-        //           ),
-        //         ),
-        //         const SizedBox(
-        //           height: 5,
-        //         ),
-        //         Stack(
-        //           children: [
-        //             SizedBox(
-        //               height: 350,
-        //               width: double.infinity,
-        //               child: PageView.builder(
-        //                 itemBuilder: (context, page) {
-        //                   return CachedNetworkImage(
-        //                     imageUrl: image![page],
-        //                     fit: BoxFit.cover,
-        //                     width: MediaQuery.of(context).size.height,
-        //                     placeholder: (context, url) => Container(
-        //                       color: Colors.red,
-        //                     ),
-        //                     errorWidget: (context, url, error) =>
-        //                         const Icon(Icons.error),
-        //                   );
-        //                 },
-        //                 itemCount: image!.length,
-        //                 onPageChanged: (index) {
-        //                   controller.indexPage.value = index + 1;
-        //                 },
-        //               ),
-        //             ),
-        //             Positioned(
-        //               left: 20,
-        //               bottom: 10,
-        //               child: Container(
-        //                 padding: const EdgeInsets.only(
-        //                     left: 10, right: 10, top: 2, bottom: 2),
-        //                 decoration: BoxDecoration(
-        //                   borderRadius: BorderRadius.circular(15),
-        //                 ),
-        //                 child: Row(
-        //                   children: [
-        //                     Text(
-        //                       "${image!.length}",
-        //                       style: Theme.of(context).textTheme.bodySmall,
-        //                     ),
-        //                   ],
-        //                 ),
-        //               ),
-        //             ),
-        //           ],
-        //         ),
-        //         Row(
-        //           children: [
-        //             Expanded(
-        //               child: Padding(
-        //                 padding: const EdgeInsets.only(left: 10, top: 10),
-        //                 child: SingleChildScrollView(
-        //                   scrollDirection: Axis.horizontal,
-        //                   child: Row(
-        //                     children: tag.map((e) {
-        //                       return Padding(
-        //                         padding: const EdgeInsets.only(right: 5),
-        //                         child: CustomTagCard(
-        //                           title: e,
-        //                           ontap: () {},
-        //                         ),
-        //                       );
-        //                     }).toList(),
-        //                   ),
-        //                 ),
-        //               ),
-        //             ),
-        //             const SizedBox(
-        //               width: 10,
-        //             ),
-        //             Text("$answer",
-        //                 style: const TextStyle(
-        //                     color: Colors.green,
-        //                     fontWeight: FontWeight.w600,
-        //                     fontSize: 17)),
-        //             Container(
-        //               margin: const EdgeInsets.only(
-        //                   bottom: 8, top: 8, left: 8, right: 8),
-        //               height: 22,
-        //               width: 0.6,
-        //               color: Colors.white,
-        //             ),
-        //             Text(
-        //               "$vote",
-        //               style: const TextStyle(
-        //                   color: Colors.orange,
-        //                   fontWeight: FontWeight.w600,
-        //                   fontSize: 17),
-        //             ),
-        //             const SizedBox(
-        //               width: 10,
-        //             )
-        //           ],
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-
-        );
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              title,
+              maxLines: image == "" ? 6 : 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            if (image != '')
+              CachedNetworkImage(
+                imageUrl: image,
+                height: 200,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(top: 5),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: tags.map((e) {
+                    return Container(
+                      margin: const EdgeInsets.only(right: 5),
+                      padding: const EdgeInsets.only(
+                          left: 4, right: 4, bottom: 2, top: 2),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: AppColor.secondnaryColor,
+                          borderRadius: BorderRadius.circular(6)),
+                      child: Text(
+                        "សមីការឌ៣៤៥៦៧៨",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall!
+                            .copyWith(color: AppColor.textSec, fontSize: 10),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 5),
+              child: Row(
+                children: [
+                  Text(
+                    commentCount,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "មតិ ",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: AppColor.textThird, fontSize: 10),
+                  ),
+                  const Spacer(),
+                  Text(
+                    answerCount,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "ចម្លើយ",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: AppColor.textThird, fontSize: 10),
+                  ),
+                  const Spacer(),
+                  Text(
+                    likeCount,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "ពេញចិត្ត",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: AppColor.textThird, fontSize: 10),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

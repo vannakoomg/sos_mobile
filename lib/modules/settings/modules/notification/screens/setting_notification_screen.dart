@@ -25,7 +25,6 @@ class _SettingNotificationScreenState extends State<SettingNotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.backgroundColor,
         appBar: AppBar(
           title: const Text("Notification"),
           leadingWidth: 40,

@@ -24,7 +24,6 @@ class _SettingPricacyDataState extends State<SettingPricacyData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.backgroundColor,
         appBar: AppBar(
           title: const Text("Privacy and Data"),
           leadingWidth: 40,
@@ -47,7 +46,6 @@ class _SettingPricacyDataState extends State<SettingPricacyData> {
                         } else {
                           settingController.listOfPrivacy[e.key] = 0;
                         }
-
                         settingController.updateSetting('${e.value.columName}',
                             settingController.listOfPrivacy[e.key]);
                       },

@@ -15,6 +15,7 @@ class PostQuestionController extends GetxController {
   final descriptionTextController = TextEditingController().obs;
   final tagTextController = TextEditingController().obs;
   final tagsData = TagsModel().obs;
+  final isFocus = false.obs;
   void onSelectTag(Tags tage) {
     tagtext.value = '';
     tagTextController.value.text = '';
@@ -57,21 +58,46 @@ class PostQuestionController extends GetxController {
   }
 
   Future fetchTag(String name) async {
-    tagsData.value = TagsModel();
+    listSelect.clear();
+    for (int i = 0; i < selectTags.length; ++i) {
+      listSelect.add(selectTags[i].id);
+    }
     if (name != '') {
       ApiBaseHelper.apiBaseHelper
           .onNetworkRequesting(
-        url: "/v1/tags/search?name=$name",
+        url: "/v1/tags/search",
+        body: {"name": name, "oldList": listSelect},
         methode: METHODE.get,
         isAuthorize: false,
       )
           .then((value) {
+        debugPrint("value $value");
         tagsData.value = TagsModel.fromJson(value);
-        debugPrint("value ${tagsData.value.tags!.length}");
       }).onError(
         (error, stackTrace) {},
       );
     }
+  }
+
+  Future createTag(String name) async {
+    debugPrint("niii");
+    ApiBaseHelper.apiBaseHelper
+        .onNetworkRequesting(
+      url: "/v1/tags",
+      methode: METHODE.post,
+      body: {
+        "name": name,
+      },
+      isAuthorize: false,
+    )
+        .then((value) {
+      onSelectTag(Tags(
+        id: value["data"]["id"],
+        name: value["data"]["name"],
+      ));
+    }).onError((error, stackTrace) {
+      debugPrint("tag on errrororoor");
+    });
   }
 
   final listSelect = [];

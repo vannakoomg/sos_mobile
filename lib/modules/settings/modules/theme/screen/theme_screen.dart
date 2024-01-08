@@ -12,7 +12,6 @@ class ThemeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ThemeController());
     return Obx(() => Scaffold(
-          backgroundColor: AppColor.mainColor,
           appBar: AppBar(
             title: const Text("Theme"),
             leadingWidth: 40,

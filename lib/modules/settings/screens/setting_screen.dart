@@ -24,7 +24,6 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
         title: Text(
           "ការកំណត់",

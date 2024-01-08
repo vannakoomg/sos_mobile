@@ -3,7 +3,7 @@ import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
 ThemeData theme() {
   return ThemeData(
-    scaffoldBackgroundColor: AppColor.mainColor,
+    scaffoldBackgroundColor: Colors.white,
     textSelectionTheme: TextSelectionThemeData(
       selectionColor: AppColor.secondnaryColor.withOpacity(0.6),
       selectionHandleColor: const Color(0xff64b5f6),

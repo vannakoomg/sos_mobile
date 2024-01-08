@@ -15,6 +15,7 @@ import '../../cores/auth/login/screen/login_screen.dart';
 import '../../cores/auth/signup/screen/signup_screen.dart';
 import '../../cores/walk_though/slash_screen/screen/slash_screen.dart';
 import '../../modules/BottomNavigationBar/screen/BottonNavigettion.dart';
+import '../../modules/settings/modules/securty_login/screens/security_login.dart';
 
 // final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 // GlobalKey<NavigatorState> _shellNaigationkey =
@@ -114,6 +115,12 @@ final router = GoRouter(
                   path: 'feedback',
                   builder: (context, state) {
                     return const FeedBackScreen();
+                  },
+                ),
+                GoRoute(
+                  path: 'security-login',
+                  builder: (context, state) {
+                    return const SecurityLoginScreen();
                   },
                 ),
               ]),

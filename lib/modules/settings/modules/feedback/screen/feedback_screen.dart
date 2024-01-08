@@ -14,7 +14,6 @@ class FeedBackScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(FeedBackController());
     return Obx(() => Scaffold(
-          backgroundColor: AppColor.backgroundColor,
           appBar: AppBar(
             backgroundColor: AppColor.backgroundColor,
             title: const Text("មតិកែលម្អ"),

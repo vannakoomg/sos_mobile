@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../configs/const/Colors/app_colors.dart';
+import '../../configs/const/Colors/app_colors.dart';
 
 class CustomAnswerCrad extends StatelessWidget {
   final bool isYourOwnQuestion;
@@ -41,6 +41,7 @@ class CustomAnswerCrad extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 5),
       decoration: BoxDecoration(
         color: AppColor.primaryColor,
+        border: Border.all(width: 0.5),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -52,14 +53,26 @@ class CustomAnswerCrad extends StatelessWidget {
             },
             child: Row(
               children: [
-                Container(
-                  height: 35,
-                  width: 35,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: NetworkImage(avarta),
-                      fit: BoxFit.cover,
+                CachedNetworkImage(
+                  imageUrl: avarta,
+                  imageBuilder: (context, imageProvider) => Container(
+                    height: 35,
+                    width: 35,
+                    decoration: BoxDecoration(
+                      color: AppColor.secondnaryColor,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: NetworkImage(avarta),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => Container(
+                    height: 35,
+                    width: 35,
+                    decoration: BoxDecoration(
+                      color: AppColor.secondnaryColor,
+                      shape: BoxShape.circle,
                     ),
                   ),
                 ),
@@ -94,7 +107,11 @@ class CustomAnswerCrad extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          Text(description),
+          Text(
+            description,
+            maxLines: image == "" ? 6 : 1,
+            overflow: TextOverflow.ellipsis,
+          ),
           const SizedBox(
             height: 5,
           ),
@@ -114,13 +131,35 @@ class CustomAnswerCrad extends StatelessWidget {
             ),
           Row(
             children: [
-              Text(" $commentCount មតិ "),
-              const Spacer(),
-              Text(likeAnswer),
+              Text(
+                commentCount,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
               const SizedBox(
                 width: 10,
               ),
-              const Text("ពេញចិត្ត")
+              Text(
+                "មតិ ",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: AppColor.textThird),
+              ),
+              const Spacer(),
+              Text(
+                likeAnswer,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(
+                "ពេញចិត្ត",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: AppColor.textThird),
+              )
             ],
           ),
         ],

@@ -6,6 +6,8 @@ import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/profile/controllers/profile_controller.dart';
 import 'package:sos_mobile/utils/controllers/app_controller.dart';
 
+import '../../../utils/widgets/custom_answer_card.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
   @override
@@ -179,7 +181,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 )
                               ]),
                         ),
-
                         const SizedBox(
                           height: 30,
                         ),
@@ -258,121 +259,126 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
-                        // const SizedBox(
-                        //   height: 10,
-                        // ),
-                        // SizedBox(
-                        //   width: double.infinity,
-                        //   height: MediaQuery.of(context).size.height - 180,
-                        //   child: PageView(
-                        //     allowImplicitScrolling: true,
-                        //     controller: _pageController,
-                        //     onPageChanged: (value) {
-                        //       _profileController.page.value = value;
-                        //       _profileController.isAnswer.value =
-                        //           !_profileController.isAnswer.value;
-                        //     },
-                        //     children: [
-                        //       Container(
-                        //         margin: const EdgeInsets.only(left: 5, right: 5),
-                        //         // color: Colors.pink,
-                        //         child: ListView.builder(
-                        //           physics: _profileController.isScroll.value
-                        //               ? null
-                        //               : const NeverScrollableScrollPhysics(),
-                        //           controller: scrollerController02,
-                        //           itemCount: 40,
-                        //           itemBuilder: (context, i) {
-                        //             return Column(
-                        //               children: [
-                        //                 if (i == 0)
-                        //                   const SizedBox(
-                        //                     height: 2,
-                        //                   ),
-                        //                 GestureDetector(
-                        //                   onLongPressStart: (value) {
-                        //                     appController.onlongPressStart(
-                        //                         golbalDx: value.globalPosition.dx,
-                        //                         golbalDy: value.globalPosition.dy,
-                        //                         widthScreen:
-                        //                             MediaQuery.of(context)
-                        //                                 .size
-                        //                                 .width);
-                        //                   },
-                        //                   onLongPressMoveUpdate: (value) {
-                        //                     appController.onLongPressMoveUpdate(
-                        //                         globalDx: value.globalPosition.dx,
-                        //                         globalDy:
-                        //                             value.globalPosition.dy);
-                        //                   },
-                        //                   onLongPressEnd: (value) {
-                        //                     appController.onLongPressEnd();
-                        //                   },
-                        //                   child: CustomAnswerCrad(
-                        //                     isCorrect: false,
-                        //                     avarta:
-                        //                         "https://leadership.ng/wp-content/uploads/2023/03/davido.png",
-                        //                     isYourOwnQuestion: false,
-                        //                     name: "សំណាង",
-                        //                     time: "២​​ថ្ងៃមុន",
-                        //                     description: "B sl soyb",
-                        //                     image:
-                        //                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1UlqB6vnCeTu-AZ0dzsQrhdWr1h58XOqpUQ&usqp=CAU",
-                        //                     commentCount: "40",
-                        //                     likeAnswer: "3",
-                        //                     ontapProfile: () {
-                        //                       debugPrint("nice to meet you 01");
-                        //                     },
-                        //                     ontapCorrect: () {},
-                        //                     ontapComment: () {},
-                        //                   ),
-                        //                 ),
-                        //               ],
-                        //             );
-                        //           },
-                        //         ),
-                        //       ),
-                        //       Container(
-                        //         margin: const EdgeInsets.only(left: 5, right: 5),
-                        //         child: ListView.builder(
-                        //           physics: _profileController.isScroll.value
-                        //               ? null
-                        //               : const NeverScrollableScrollPhysics(),
-                        //           itemCount: 40,
-                        //           controller: scrollerController03,
-                        //           itemBuilder: (context, i) {
-                        //             return Column(
-                        //               children: [
-                        //                 if (i == 0)
-                        //                   const SizedBox(
-                        //                     height: 2,
-                        //                   ),
-                        //                 CustomAnswerCrad(
-                        //                   isCorrect: false,
-                        //                   avarta:
-                        //                       "https://leadership.ng/wp-content/uploads/2023/03/davido.png",
-                        //                   isYourOwnQuestion: false,
-                        //                   name: "សំណាង",
-                        //                   time: "២​​ថ្ងៃមុន",
-                        //                   description: "B sl soyb",
-                        //                   image:
-                        //                       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1UlqB6vnCeTu-AZ0dzsQrhdWr1h58XOqpUQ&usqp=CAU",
-                        //                   commentCount: "40",
-                        //                   likeAnswer: "3",
-                        //                   ontapProfile: () {
-                        //                     debugPrint("nice to meet you 01");
-                        //                   },
-                        //                   ontapCorrect: () {},
-                        //                   ontapComment: () {},
-                        //                 ),
-                        //               ],
-                        //             );
-                        //           },
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // )
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: MediaQuery.of(context).size.height - 180,
+                          child: PageView(
+                            allowImplicitScrolling: true,
+                            controller: _pageController,
+                            onPageChanged: (value) {
+                              _profileController.page.value = value;
+                              _profileController.isAnswer.value =
+                                  !_profileController.isAnswer.value;
+                            },
+                            children: [
+                              Container(
+                                margin:
+                                    const EdgeInsets.only(left: 5, right: 5),
+                                // color: Colors.pink,
+                                child: ListView.builder(
+                                  physics: _profileController.isScroll.value
+                                      ? null
+                                      : const NeverScrollableScrollPhysics(),
+                                  controller: scrollerController02,
+                                  itemCount: 40,
+                                  itemBuilder: (context, i) {
+                                    return Column(
+                                      children: [
+                                        if (i == 0)
+                                          const SizedBox(
+                                            height: 2,
+                                          ),
+                                        GestureDetector(
+                                          onLongPressStart: (value) {
+                                            appController.onlongPressStart(
+                                                golbalDx:
+                                                    value.globalPosition.dx,
+                                                golbalDy:
+                                                    value.globalPosition.dy,
+                                                widthScreen:
+                                                    MediaQuery.of(context)
+                                                        .size
+                                                        .width);
+                                          },
+                                          onLongPressMoveUpdate: (value) {
+                                            appController.onLongPressMoveUpdate(
+                                                globalDx:
+                                                    value.globalPosition.dx,
+                                                globalDy:
+                                                    value.globalPosition.dy);
+                                          },
+                                          onLongPressEnd: (value) {
+                                            appController.onLongPressEnd();
+                                          },
+                                          child: CustomAnswerCrad(
+                                            isCorrect: false,
+                                            avarta:
+                                                "https://leadership.ng/wp-content/uploads/2023/03/davido.png",
+                                            isYourOwnQuestion: false,
+                                            name: "សំណាង",
+                                            time: "២​​ថ្ងៃមុន",
+                                            description: "B sl soyb",
+                                            image:
+                                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1UlqB6vnCeTu-AZ0dzsQrhdWr1h58XOqpUQ&usqp=CAU",
+                                            commentCount: "40",
+                                            likeAnswer: "3",
+                                            ontapProfile: () {
+                                              debugPrint("nice to meet you 01");
+                                            },
+                                            ontapCorrect: () {},
+                                            ontapComment: () {},
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
+                              Container(
+                                margin:
+                                    const EdgeInsets.only(left: 5, right: 5),
+                                child: ListView.builder(
+                                  physics: _profileController.isScroll.value
+                                      ? null
+                                      : const NeverScrollableScrollPhysics(),
+                                  itemCount: 40,
+                                  controller: scrollerController03,
+                                  itemBuilder: (context, i) {
+                                    return Column(
+                                      children: [
+                                        if (i == 0)
+                                          const SizedBox(
+                                            height: 2,
+                                          ),
+                                        CustomAnswerCrad(
+                                          isCorrect: false,
+                                          avarta:
+                                              "https://leadership.ng/wp-content/uploads/2023/03/davido.png",
+                                          isYourOwnQuestion: false,
+                                          name: "សំណាង",
+                                          time: "២​​ថ្ងៃមុន",
+                                          description: "B sl soyb",
+                                          image:
+                                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1UlqB6vnCeTu-AZ0dzsQrhdWr1h58XOqpUQ&usqp=CAU",
+                                          commentCount: "40",
+                                          likeAnswer: "3",
+                                          ontapProfile: () {
+                                            debugPrint("nice to meet you 01");
+                                          },
+                                          ontapCorrect: () {},
+                                          ontapComment: () {},
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ),

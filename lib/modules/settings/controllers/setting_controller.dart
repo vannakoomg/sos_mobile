@@ -26,7 +26,7 @@ class SettingController extends GetxController {
       title: 'Privacy & Data',
     ),
     SettingRouterModel(
-      router: '/home-screen/setting/',
+      router: '/home-screen/setting/security-login',
       title: 'Security & Login',
     ),
     SettingRouterModel(
