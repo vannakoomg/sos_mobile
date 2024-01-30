@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
@@ -44,10 +45,13 @@ class _QuestionDetailState extends State<QuestionDetail> {
               children: [
                 SingleChildScrollView(
                   child: AnimatedContainer(
-                    margin: controller.isScale.value
+                    decoration: const BoxDecoration(color: Colors.black),
+                    padding: controller.isScale.value
                         ? const EdgeInsets.only(top: 3, left: 3, right: 3)
-                        : const EdgeInsets.all(0),
-                    duration: const Duration(milliseconds: 200),
+                        : const EdgeInsets.only(bottom: 70),
+                    duration: const Duration(
+                      milliseconds: 200,
+                    ),
                     child: Column(
                       children: [
                         Stack(
@@ -81,7 +85,6 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                     onPressed: () {
                                       controller.isAnswer.value = false;
                                       context.pop();
-                                      debugPrint("nice to meet you ");
                                     },
                                     icon: const Icon(
                                       Icons.arrow_back,
@@ -104,9 +107,8 @@ class _QuestionDetailState extends State<QuestionDetail> {
                         Container(
                           padding: const EdgeInsets.only(
                               left: 10, top: 10, bottom: 20),
-                          decoration: BoxDecoration(
-                            color: AppColor.primaryColor,
-                            borderRadius: const BorderRadius.only(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(20),
                               bottomRight: Radius.circular(20),
                             ),
@@ -128,32 +130,58 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  const Column(
+                                  Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("វណ្ណះ"),
-                                      Text("2 day"),
+                                      Text(
+                                        "វណ្ណះ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall,
+                                      ),
+                                      Text(
+                                        "2 day",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .copyWith(
+                                                color: AppColor.textThird),
+                                      ),
                                     ],
                                   )
                                 ],
                               ),
+                              const Gap(10),
                               Text(
                                 "ហេតុអ្វីបានជាទំស្រលាញ់ទាវ",
-                                style: Theme.of(context).textTheme.titleSmall,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .copyWith(color: AppColor.textThird),
                               ),
                               const SizedBox(
-                                height: 10,
+                                height: 0,
                               ),
-                              const Text(
-                                  "ទំព័រនេះត្រូវបានកែចុងក្រោយfdsjflkdsjfljdslfjdslfjdslfjdslfjisfsdjfjdslfsajlfjdsa;lfjsadlkfjនៅម៉ោងម៉ោង១៧:៥៩ ថ្ងៃសៅរ៍ ទី១៧ ខែកុម្ភៈ ឆ្នាំ២០១៨។អត្ថបទ​នេះ​ត្រូវ​បាន​ផ្ដល់​ក្រោម​អាជ្ញាបណ្ណ Creative Commons Attribution-ShareAlike License​ ។ លក្ខខណ្ឌបន្ថែម​ផ្សេងៗទៀតក៏នឹងអាចត្រូវបានអនុវត្ត។​សូមមើល លក្ខខណ្ឌ​ក្នុងការ​ប្រើប្រាស់ សម្រាប់​ព័ត៌មានលម្អិត​។"),
+                              Text(
+                                ":៥៩ ថ្ងៃសៅរ៍ ទី១៧ ខែកុម្ភៈ ឆ្នាំ២០១៨។អត្ថប-ShareAlike Lice",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall!
+                                    .copyWith(color: AppColor.textThird),
+                              ),
                             ],
                           ),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
-                        const PageSliy(),
+                        PageSliy(
+                          ontap: () {
+                            controller.ontapChange();
+                          },
+                          isAnswer: controller.isAnswer.value,
+                        ),
                         const SizedBox(
                           height: 10,
                         ),
@@ -161,8 +189,9 @@ class _QuestionDetailState extends State<QuestionDetail> {
                           height: MediaQuery.of(context).size.height,
                           width: double.infinity,
                           child: PageView(
+                            controller: controller.pageController,
                             onPageChanged: (id) {
-                              controller.onPageChanged(id);
+                              controller.onPageChanged();
                             },
                             children: [
                               Container(
@@ -178,18 +207,21 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                       name: "ចាន់ថា",
                                       time: "១០​ថ្ងៃមុន",
                                       description:
-                                          "អ្នកបានតាម សម្រាប់​ព័ត៌មានបន្ថែម)។ បើ​អ្នក​មក​ទីនេះដោយអចេតនា សូមចុចប៊ូតុង ត្រឡប់ក្រោយ របស់ឧបករណ៍រាវរករបស់អ្នក។",
-                                      image: "",
+                                          "នេះដោយអចេតនា សូមចុចប៊ូតុង ត្រឡប់ក្រោយ របស់ឧបករណ៍រាវរករបស់អ្នក។",
+                                      image:
+                                          "https://www.shareicon.net/data/256x256/2016/05/26/771203_man_512x512.png",
                                       commentCount: "4",
                                       likeAnswer: "50",
                                       ontapProfile: () {
                                         debugPrint("13243");
                                         context.go('/profile');
                                       },
-                                      ontapCorrect: () {},
+                                      ontapCorrect: () {
+                                        debugPrint("khmer sl khmer ");
+                                      },
                                       ontapComment: () {},
                                       avarta:
-                                          'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/640px-Cat03.jpg',
+                                          "https://www.shareicon.net/data/256x256/2016/05/26/771203_man_512x512.png",
                                     );
                                   },
                                 ),
@@ -214,6 +246,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                             ],
                           ),
                         ),
+                        const Gap(90)
                       ],
                     ),
                   ),

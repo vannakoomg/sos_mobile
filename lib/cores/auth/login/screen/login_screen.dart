@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Obx(
         () => Stack(
           children: [
@@ -109,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                         controller.login().then((value) => {
                               if (controller.loginSuccess.value)
                                 {
-                                  context.go('/home-screen'),
+                                  context.go('/home'),
                                 }
                             });
                       },
@@ -124,7 +124,7 @@ class LoginScreen extends StatelessWidget {
                     //       Expanded(
                     //           child: Container(
                     //         height: 1,
-                    //         color: AppColor.mainColor,
+                    //         color: Theme.of(context).colorScheme.primary,
                     //       )),
                     //       const Padding(
                     //         padding: EdgeInsets.all(8.0),
@@ -133,7 +133,7 @@ class LoginScreen extends StatelessWidget {
                     //       Expanded(
                     //           child: Container(
                     //         height: 1,
-                    //         color: AppColor.mainColor,
+                    //         color: Theme.of(context).colorScheme.primary,
                     //       )),
                     //     ],
                     //   ),
@@ -151,12 +151,12 @@ class LoginScreen extends StatelessWidget {
                     //         width: 45,
                     //         decoration: BoxDecoration(
                     //           shape: BoxShape.circle,
-                    //           border: Border.all(color: AppColor.mainColor),
+                    //           border: Border.all(color: Theme.of(context).colorScheme.primary),
                     //         ),
                     //         child: Center(
                     //             child: Icon(
                     //           Icons.email,
-                    //           color: AppColor.mainColor,
+                    //           color: Theme.of(context).colorScheme.primary,
                     //         )),
                     //       ),
                     //     ),
@@ -166,12 +166,12 @@ class LoginScreen extends StatelessWidget {
                     //       width: 45,
                     //       decoration: BoxDecoration(
                     //         shape: BoxShape.circle,
-                    //         border: Border.all(color: AppColor.mainColor),
+                    //         border: Border.all(color: Theme.of(context).colorScheme.primary),
                     //       ),
                     //       child: Center(
                     //           child: Icon(
                     //         Icons.book,
-                    //         color: AppColor.mainColor,
+                    //         color: Theme.of(context).colorScheme.primary,
                     //       )),
                     //     ),
                     //   ],

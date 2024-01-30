@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 import '../../configs/const/Colors/app_colors.dart';
 
@@ -25,7 +26,7 @@ class CustomAnswerCrad extends StatelessWidget {
     required this.name,
     required this.time,
     required this.description,
-    required this.image,
+    this.image = '',
     required this.commentCount,
     required this.likeAnswer,
     required this.ontapProfile,
@@ -47,111 +48,111 @@ class CustomAnswerCrad extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          GestureDetector(
-            onTap: () {
-              ontapProfile();
-            },
-            child: Row(
-              children: [
-                CachedNetworkImage(
-                  imageUrl: avarta,
-                  imageBuilder: (context, imageProvider) => Container(
-                    height: 35,
-                    width: 35,
-                    decoration: BoxDecoration(
-                      color: AppColor.secondnaryColor,
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: NetworkImage(avarta),
-                        fit: BoxFit.cover,
+          Row(
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    CachedNetworkImage(
+                      imageUrl: avarta,
+                      imageBuilder: (context, imageProvider) => Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20)),
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            )),
                       ),
                     ),
-                  ),
-                  errorWidget: (context, url, error) => Container(
-                    height: 35,
-                    width: 35,
-                    decoration: BoxDecoration(
-                      color: AppColor.secondnaryColor,
-                      shape: BoxShape.circle,
+                    const Gap(5),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          name,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(
+                                  color: AppColor.secondnaryColor,
+                                  fontWeight: FontWeight.w600),
+                        ),
+                        Text(
+                          time,
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: AppColor.textThird,
+                                  ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      name,
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                    Text(time),
                   ],
                 ),
-                const Spacer(),
-                isCorrect == true
+              ),
+              GestureDetector(
+                onTap: () {
+                  ontapCorrect();
+                },
+                child: isCorrect == true
                     ? const Icon(
                         Icons.check_circle_sharp,
                         color: Colors.green,
                       )
-                    : isYourOwnQuestion == true
+                    : isYourOwnQuestion
                         ? const Icon(
                             Icons.check_circle_sharp,
-                            color: Colors.grey,
+                            color: Color.fromARGB(255, 124, 107, 96),
                           )
-                        : const SizedBox()
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 5,
+                        : const SizedBox(),
+              )
+            ],
           ),
           Text(
             description,
             maxLines: image == "" ? 6 : 1,
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  color: AppColor.textfourth,
+                ),
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(
             height: 5,
           ),
           if (image != '')
-            Column(
-              children: [
-                CachedNetworkImage(
-                  imageUrl: image,
-                  height: 200,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
+            CachedNetworkImage(
+              imageUrl: image,
+              height: 200,
+              width: double.infinity,
+              fit: BoxFit.cover,
             ),
           Row(
             children: [
-              Text(
-                commentCount,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
+              Text(commentCount,
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        color: AppColor.mainColor,
+                      )),
               const SizedBox(
-                width: 10,
+                width: 5,
               ),
               Text(
-                "មតិ ",
+                "មតិ",
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium!
                     .copyWith(color: AppColor.textThird),
               ),
               const Spacer(),
-              Text(
-                likeAnswer,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
+              Text(likeAnswer,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: AppColor.mainColor,
+                      )),
               const SizedBox(
-                width: 10,
+                width: 5,
               ),
               Text(
                 "ពេញចិត្ត",

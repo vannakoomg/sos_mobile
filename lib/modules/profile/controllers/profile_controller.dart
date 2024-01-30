@@ -16,7 +16,6 @@ class ProfileController extends GetxController {
   final isloadingProfile = true.obs;
 
   void getProfile() async {
-    debugPrint("value 888888888888888888");
     isloadingProfile.value = true;
     try {
       await ApiBaseHelper.apiBaseHelper
@@ -26,7 +25,6 @@ class ProfileController extends GetxController {
         isAuthorize: true,
       )
           .then((value) {
-        debugPrint("dddd");
         profileDate.value = ProfileModel.fromJson(value);
         isloadingProfile.value = false;
         debugPrint("data ${profileDate.value.data!.questions![0].description}");

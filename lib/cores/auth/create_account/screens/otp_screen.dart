@@ -17,7 +17,7 @@ class OtpScreen extends StatelessWidget {
     final controller = Get.put(CreateAccountController());
 
     return Scaffold(
-        backgroundColor: AppColor.backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: Obx(
           () => Stack(
             children: [
@@ -64,7 +64,7 @@ class OtpScreen extends StatelessWidget {
                     },
                     textInputType: TextInputType.number,
                     textEditController: controller.otp.value,
-                    textStyle: Theme.of(context).textTheme.bodyLarge,
+                    // textStyle: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),
               ),

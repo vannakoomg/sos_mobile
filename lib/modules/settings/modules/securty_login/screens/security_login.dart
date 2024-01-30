@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/settings/widgets/setting_off_on_card.dart';
 
 class SecurityLoginScreen extends StatelessWidget {

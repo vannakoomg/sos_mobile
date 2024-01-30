@@ -5,9 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 final ImagePicker picker = ImagePicker();
 bool checkStringIsgmail({required String value}) {
-  return RegExp(
-          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-      .hasMatch(value);
+  return RegExp(r'^[a-zA-Z0-9.]+@gmail\.com$').hasMatch(value);
 }
 
 Future unFocus(BuildContext context) async {

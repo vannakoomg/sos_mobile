@@ -30,7 +30,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: Obx(
           () => SizedBox(
             child: Stack(
@@ -71,6 +71,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       CustomTextfield(
+                        // validator: (value) {
+                        //   if(checkStringIsgmail(value: value))
+                        // }
+                        // ,
                         high: 60,
                         hintText: "Gmail",
                         onChanged: (value) {
@@ -101,6 +105,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       ),
                       const Gap(10),
                       CustomButtom(
+                        // colors: Colors.transparent,
                         disble: controller.disable.value,
                         title: "យល់ព្រម",
                         onTap: () {

@@ -6,6 +6,7 @@ class CustomTextfield extends StatelessWidget {
   final double high;
   final String hintText;
   final Function? onChanged;
+  final Function? onValidate;
   final Widget? prefixIcon;
   final Widget? subfix;
   final TextInputType textInputType;
@@ -22,8 +23,11 @@ class CustomTextfield extends StatelessWidget {
   final TextStyle? hintTextStyle;
   final bool isDense;
   final bool readOnly;
+  final EdgeInsets contentPadding;
   const CustomTextfield({
     super.key,
+    this.contentPadding =
+        const EdgeInsets.only(bottom: 8, top: 8, left: 15, right: 15),
     this.readOnly = false,
     required this.onChanged,
     required this.textEditController,
@@ -38,6 +42,7 @@ class CustomTextfield extends StatelessWidget {
     this.hintTextStyle,
     this.maxLines = 1,
     this.color,
+    this.onValidate,
     this.radius = 200,
     this.subfix,
     this.maxLength,
@@ -59,22 +64,32 @@ class CustomTextfield extends StatelessWidget {
         focusNode: focusNode,
         autofocus: autofocus,
         controller: textEditController,
-        style: textStyle ?? Theme.of(context).textTheme.bodyMedium!,
+        style: textStyle ??
+            Theme.of(context)
+                .textTheme
+                .bodyMedium!
+                .copyWith(color: AppColor.mainColor),
         onChanged: (value) {
-          onChanged!(value.toString());
+          onChanged!(value);
         },
         validator: (value) {
+          // value.gmail;
+          if (onValidate == null) {
+            return null;
+          } else {
+            onValidate!;
+            (value);
+          }
           return null;
         },
-        cursorColor: AppColor.mainColor,
+        cursorColor: AppColor.secondnaryColor,
         enableSuggestions: false,
         // cursorHeight: 10,
         autocorrect: false,
         maxLength: maxLength == 0 ? null : maxLength,
         keyboardType: textInputType,
         decoration: InputDecoration(
-            contentPadding:
-                const EdgeInsets.only(bottom: 8, top: 8, left: 15, right: 15),
+            contentPadding: contentPadding,
             prefixIcon: prefixIcon,
             suffix: subfix,
             prefixIconConstraints: const BoxConstraints(),
@@ -96,7 +111,7 @@ class CustomTextfield extends StatelessWidget {
             hintStyle: hintTextStyle ??
                 Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontWeight: FontWeight.w400,
-                    color: Colors.black.withOpacity(0.5),
+                    color: AppColor.mainColor,
                     fontSize: 14)),
         maxLines: maxLines == 0 ? null : maxLines,
       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/modules/search/model/popular_model.dart';
-import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
 
 class Searchcontroller extends GetxController {
   final isFocus = false.obs;

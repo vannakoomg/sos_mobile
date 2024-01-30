@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../modules/save/screens/save_screen.dart';
+
 class AppController extends GetxController {
+  final questionId = ''.obs;
   final isOnleft = false.obs;
   final dx = 0.0.obs;
   final dy = 0.0.obs;
@@ -13,7 +16,7 @@ class AppController extends GetxController {
   final isPress03 = false.obs;
   final isPress04 = false.obs;
   final action = ''.obs;
-  void onLongPressEnd() {
+  void onLongPressEnd(BuildContext context) {
     isLongPress.value = false;
     afterLongPress.value = false;
     isPress01.value = false;
@@ -22,7 +25,16 @@ class AppController extends GetxController {
     isPress04.value = false;
     if (action.value == "ចែករំលែក") {
       Share.share('check out my website https://example.com');
-      debugPrint("okoko");
+    }
+    if (action.value == "រក្សាទុក") {
+      showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: ((context) {
+            return CreateSave(
+              questionId: questionId.value,
+            );
+          }));
     }
     action.value = '';
   }
@@ -30,7 +42,10 @@ class AppController extends GetxController {
   void onlongPressStart(
       {required double golbalDy,
       required double golbalDx,
-      required double widthScreen}) {
+      required double widthScreen,
+      required String id}) {
+    questionId.value = id;
+    // debugPrint("question Id ${questionId.value}");
     isLongPress.value = true;
     if (golbalDx < widthScreen / 2) {
       isOnleft.value = true;

@@ -20,7 +20,7 @@ class NotificationCard extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: AppColor.primaryColor,
+          color: Theme.of(context).colorScheme.primary,
           border: Border.all(),
           borderRadius: BorderRadius.circular(30),
         ),
@@ -48,7 +48,10 @@ class NotificationCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         notification!.name ?? '',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(color: AppColor.mainColor),
                       ),
                     ),
                     Padding(

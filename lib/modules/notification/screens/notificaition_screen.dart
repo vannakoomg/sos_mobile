@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/notification/controllers/notification_controller.dart';
 import 'package:sos_mobile/modules/notification/widgets/notification_card.dart';
 
@@ -11,10 +10,10 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(NotificationController());
     return Container(
-      color: AppColor.mainColor,
+      color: Theme.of(context).colorScheme.background,
       child: SafeArea(
         child: Container(
-          color: AppColor.backgroundColor,
+          color: Theme.of(context).colorScheme.background,
           width: double.infinity,
           height: double.infinity,
           padding: const EdgeInsets.only(

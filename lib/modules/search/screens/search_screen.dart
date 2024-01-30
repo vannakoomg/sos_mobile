@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/home/screen/widgets/search_card.dart';
 import '../controller/search_controller.dart';
 
@@ -29,10 +28,10 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Obx(
       () => Container(
-        color: AppColor.mainColor,
+        color: Theme.of(context).colorScheme.primary,
         child: SafeArea(
           child: Container(
-            color: AppColor.backgroundColor,
+            color: Theme.of(context).colorScheme.background,
             child: Column(
               children: [
                 Expanded(
@@ -128,7 +127,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       //       ),
                       //       height: MediaQuery.of(context).size.height,
                       //       width: double.infinity,
-                      //       color: AppColor.mainColor,
+                      //       color: Theme.of(context).colorScheme.primary,
                       //       child: const Column(
                       //         children: [
                       //           SizedBox(

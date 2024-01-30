@@ -2,12 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/modules/settings/controllers/setting_controller.dart';
 
+import '../../../../../configs/theme/theme.dart';
+
 class ThemeController extends GetxController {
-  final controller = Get.put(SettingController());
-  final fountSize = 0.0.obs;
-  final duration = ''.obs;
-  final durationTextController = TextEditingController(text: "2000").obs;
-  void resetIndex() {
-    controller.index.value = -1;
+  final settingController = Get.put(SettingController());
+  final mode = "".obs;
+  final theme = darkMode.obs;
+  void changeTheme() {
+    if (settingController.setting.value.mode == "0") {
+      settingController.setting.value.mode = "1";
+    } else {
+      settingController.setting.value.mode = "0";
+    }
+    settingController.update();
+    debugPrint("value ${mode.value}");
+    settingController
+        .updateSetting(key: "mode", value: settingController.setting.value.mode)
+        .then((value) {});
+
+    if (theme.value == lightMode) {
+      theme.value = darkMode;
+    } else {
+      theme.value = lightMode;
+    }
   }
 }

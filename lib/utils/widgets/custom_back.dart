@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/configs/route/route.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 
@@ -24,8 +23,8 @@ class CustomBack extends StatelessWidget {
           Platform.isAndroid
               ? Icons.arrow_back_rounded
               : Icons.arrow_back_ios_new_rounded,
-          color: AppColor.primaryColor,
-          size: 35,
+          color: Theme.of(context).colorScheme.primary,
+          size: 26,
         ));
   }
 }

@@ -3,50 +3,60 @@ import 'package:get/get.dart';
 import 'package:sos_mobile/modules/settings/models/setting_models.dart';
 import 'package:sos_mobile/modules/settings/models/setting_router_model.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
+import 'package:sos_mobile/utils/helpers/local_data/storge_local.dart';
 
 class SettingController extends GetxController {
+  SettingController() {
+    getTheme();
+  }
+  final mode = ''.obs;
+  Future getTheme() async {
+    mode.value = await LocalStorage.getStringValue(key: 'mode');
+    debugPrint(mode.value);
+  }
+
   final setting = SettingModel().obs;
   final listOfPrivacy = [].obs;
   final listOfNotification = [].obs;
   final settiondata = [
     SettingRouterModel(
-      router: '/home-screen/setting/profile-info',
+      router: 'profile-info',
       title: 'ពត័មានផ្ទាល់ខ្លួន',
     ),
     SettingRouterModel(
-      router: '/home-screen/setting/',
+      router: 'theme',
       title: 'Theme',
     ),
     SettingRouterModel(
-      router: '/home-screen/setting/setting-notification',
+      router: 'setting-notification',
       title: 'សេចក្តីជូនដំណឹង',
     ),
     SettingRouterModel(
-      router: '/home-screen/setting/setting-privacy',
+      router: 'setting-privacy',
       title: 'Privacy & Data',
     ),
     SettingRouterModel(
-      router: '/home-screen/setting/security-login',
+      router: 'security-login',
       title: 'Security & Login',
     ),
     SettingRouterModel(
-      router: '/home-screen/setting/',
+      router: '/home/setting/',
       title: 'ភាសា',
     ),
     SettingRouterModel(
-      router: '/home-screen/setting/',
+      router: '/home/setting/',
       title: 'Terms & Privacy',
     ),
     SettingRouterModel(
-      router: '/home-screen/setting/',
+      router: '/home/setting/',
       title: 'ជំនួយ',
     ),
     SettingRouterModel(
-      router: '/home-screen/setting/',
+      router: '/hom/setting/',
       title: 'មតិកែលម្អ',
     ),
     SettingRouterModel(
-      router: '/home-screen/setting/feedback',
+      router: 'feedback',
       title: 'មតិកែលម្អ',
     ),
   ];
@@ -78,18 +88,18 @@ class SettingController extends GetxController {
     });
   }
 
-  Future updateSetting(String key, int value) async {
-    debugPrint(" value ===============>$key $value ");
+  Future updateSetting({String? key, var value}) async {
     ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
         url: "/v1/setting/update",
         methode: METHODE.post,
         isAuthorize: true,
         body: {
-          key: "$value",
+          "key": key,
+          "value": value,
         }).then((value) {
-      debugPrint("$value");
+      debugPrint("update setting ");
     }).onError((error, stackTrace) {
-      debugPrint("erororor $error");
+      debugPrint("update setting 500 $error");
     });
   }
 

@@ -1,82 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
+import 'package:sos_mobile/modules/settings/controllers/setting_controller.dart';
 import 'package:sos_mobile/modules/settings/modules/theme/controller/theme_controller.dart';
 import 'package:sos_mobile/modules/settings/widgets/theme_card.dart';
-import 'package:sos_mobile/utils/widgets/custom_textfield.dart';
+import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
 
-class ThemeScreen extends StatelessWidget {
+class ThemeScreen extends StatefulWidget {
   const ThemeScreen({super.key});
 
   @override
+  State<ThemeScreen> createState() => _ThemeScreenState();
+}
+
+class _ThemeScreenState extends State<ThemeScreen> {
+  final controller = Get.put(ThemeController());
+  final settingController = Get.put(SettingController());
+  @override
+  void initState() {
+    Future.delayed(const Duration(milliseconds: 100), () {
+      controller.mode.value = settingController.setting.value.mode!;
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ThemeController());
-    return Obx(() => Scaffold(
-          appBar: AppBar(
-            title: const Text("Theme"),
-            leadingWidth: 40,
-            centerTitle: true,
-            leading: IconButton(
-                onPressed: () {
-                  controller.resetIndex();
-                },
-                icon: const Icon(
-                  Icons.close,
-                  color: Colors.white,
-                )),
-          ),
-          body: Container(
-            margin: const EdgeInsets.only(left: 5),
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Text(controller.fountSize.value.toString()),
-                ThemeCard(
-                  isTure: true,
-                  ontap: () {},
-                  subtilte: 'បើក',
-                  title: 'ពេញចិត្តពេលចុចពីរដង',
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "ពន្យាលពេល Splas Screen",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                            color: Colors.white.withOpacity(0.9),
-                          ),
-                    ),
-                    const Spacer(),
-                    Container(
-                      margin: const EdgeInsets.only(right: 5),
-                      width: 100,
+    return Scaffold(
+        appBar: const CustomAppBar(title: "Theme"),
+        body: Obx((() => Container(
+              margin: const EdgeInsets.only(left: 10),
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ThemeCard(
+                    isTure: false,
+                    ontap: () {},
+                    subtilte: 'បើក',
+                    title: 'ពេញចិត្តពេលចុចពីរដង',
+                  ),
+                  ThemeCard(
+                    isTure: false,
+                    ontap: () {},
+                    subtilte: 'បើក',
+                    title: 'ពេញចិត្តពេលចុចពីរដង',
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      controller.changeTheme();
+                    },
+                    child: Container(
+                      color: Colors.transparent,
+                      margin: const EdgeInsets.only(right: 15),
                       child: Row(
                         children: [
                           Expanded(
-                              child: CustomTextfield(
-                            maxLength: 4,
-                            color: Colors.transparent,
-                            subfix: const Text("ms"),
-                            textAlign: TextAlign.right,
-                            hintText: '',
-                            onChanged: (value) {
-                              // if (value == '') {
-                              //   controller.durationTextController.value.text =
-                              //       '0';
-                              // }
-                            },
-                            textInputType: TextInputType.number,
-                            textEditController:
-                                controller.durationTextController.value,
-                          )),
+                            child: Text(
+                              "ពេលវេលា",
+                              style: Theme.of(context).textTheme.titleSmall!,
+                            ),
+                          ),
+                          SizedBox(
+                              height: 40,
+                              child: settingController.setting.value.mode == "1"
+                                  ? const Icon(Icons.sunny)
+                                  : const Icon(Icons.nightlight_round_sharp)),
                         ],
                       ),
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
-        ));
+                    ),
+                  )
+                ],
+              ),
+            ))));
   }
 }

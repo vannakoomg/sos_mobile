@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/settings/modules/notification/controller/setting_notification_controller.dart';
 import 'package:sos_mobile/modules/settings/controllers/setting_controller.dart';
 import 'package:sos_mobile/modules/settings/widgets/setting_off_on_card.dart';
+import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
 
 class SettingNotificationScreen extends StatefulWidget {
   const SettingNotificationScreen({super.key});
@@ -25,11 +25,8 @@ class _SettingNotificationScreenState extends State<SettingNotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Notification"),
-          leadingWidth: 40,
-          backgroundColor: AppColor.backgroundColor,
-          centerTitle: true,
+        appBar: const CustomAppBar(
+          title: "Notification",
         ),
         body: Obx(
           () => Container(
@@ -47,8 +44,9 @@ class _SettingNotificationScreenState extends State<SettingNotificationScreen> {
                         } else {
                           settingController.listOfNotification[e.key] = 0;
                         }
-                        settingController.updateSetting('${e.value.columName}',
-                            settingController.listOfNotification[e.key]);
+                        settingController.updateSetting(
+                            key: '${e.value.columName}',
+                            value: settingController.listOfNotification[e.key]);
                       },
                       isShow: settingController.listOfNotification[e.key],
                       description: e.value.description!),

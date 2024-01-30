@@ -12,7 +12,7 @@ class HelloScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Stack(
         children: [
           Positioned(

@@ -76,8 +76,6 @@ class HomeContoller extends GetxController {
         .then((value) => {
               isLoading.value = false,
               questionData.value = QuestionModelData.fromJson(value),
-              debugPrint(
-                  "tage in controller  ${questionData.value.data![0].tags!.length}"),
               for (int i = 0; i < value['data'].length; ++i)
                 {
                   question.add(QuestionModel.fromJson(value['data'][i])),

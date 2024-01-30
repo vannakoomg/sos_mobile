@@ -6,11 +6,12 @@ import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/BottomNavigationBar/controller/bottom_navigation_bar.dart';
 import 'package:sos_mobile/modules/home/screen/home_screen.dart';
 import 'package:sos_mobile/modules/profile/screen/profile_screen.dart';
+import 'package:sos_mobile/modules/save/controller/save_category_controller.dart';
 
 import '../../home/controllers/home_controller.dart';
 import '../../notification/screens/notificaition_screen.dart';
 import '../../post_question/screen/post_question_screen.dart';
-import '../../save/screens/save_screen.dart';
+import '../../save/screens/save_category_screen.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
   final Widget? child;
@@ -20,8 +21,9 @@ class ScaffoldWithNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(BottomNavigatonBarController());
     final homeController = Get.put(HomeContoller());
+    final saveCategoryController = Get.put(SaveCategoryController());
     return Obx(() => Scaffold(
-          backgroundColor: AppColor.backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           body: Column(
             children: [
               Expanded(
@@ -29,7 +31,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
                   index: controller.index.value,
                   children: const [
                     HomeScreen(),
-                    SaveScreen(),
+                    SaveCategoryScreen(),
                     PostQuestionScreen(),
                     NotificationScreen(),
                     ProfileScreen(),
@@ -42,8 +44,11 @@ class ScaffoldWithNavBar extends StatelessWidget {
                   homeController.scrollPixalBack.value > 200
               ? Container(
                   decoration: BoxDecoration(
-                    color: AppColor.mainColor,
-                  ),
+                      color: Theme.of(context).colorScheme.background,
+                      border: Border(
+                          top: BorderSide(
+                              color: Theme.of(context).colorScheme.primary,
+                              width: 0.4))),
                   height: 60,
                   width: MediaQuery.of(context).size.width,
                   child: Row(
@@ -59,6 +64,9 @@ class ScaffoldWithNavBar extends StatelessWidget {
                                   duration: const Duration(milliseconds: 1000),
                                   curve: Curves.ease);
                             }
+                            if (controller.index.value == 1) {
+                              saveCategoryController.fetchSaveCategory();
+                            }
                           },
                           child: Transform.rotate(
                             angle: 0,
@@ -69,8 +77,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
                                   size: 25,
                                   color: controller.index.value == e.key
                                       ? AppColor.secondnaryColor
-                                      : const Color.fromARGB(
-                                          255, 255, 255, 255)),
+                                      : Theme.of(context).colorScheme.primary),
                             ),
                           ),
                         ),

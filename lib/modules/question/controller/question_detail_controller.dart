@@ -4,13 +4,26 @@ import 'package:get/get.dart';
 import '../../../utils/helpers/api_base_helper/api_base_helper.dart';
 
 class QuestionDetailController extends GetxController {
+  final pageController = PageController();
   final isAnswer = true.obs;
   final isScale = false.obs;
   final line = 0.obs;
   final index = 0.obs;
+  final isScroll = false.obs;
   final isLoading = false.obs;
-  void onPageChanged(int id) {
+  void onPageChanged() {
     isAnswer.value = !isAnswer.value;
+    debugPrint("khmer sl khmer ");
+  }
+
+  void ontapChange() {
+    if (isAnswer.value) {
+      pageController.nextPage(
+          duration: const Duration(milliseconds: 300), curve: Curves.ease);
+    } else {
+      pageController.previousPage(
+          duration: const Duration(milliseconds: 300), curve: Curves.ease);
+    }
   }
 
   void fetchQuestionDetail({required int id}) async {

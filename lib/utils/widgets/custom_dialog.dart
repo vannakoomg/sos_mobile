@@ -14,10 +14,8 @@ void customshowDialog(BuildContext context, String title) {
           title: Center(
               child: Text(
             title,
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(color: AppColor.backgroundColor, fontSize: 22),
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                color: Theme.of(context).colorScheme.background, fontSize: 22),
           )),
         ),
       );

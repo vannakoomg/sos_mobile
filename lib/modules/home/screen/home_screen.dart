@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/configs/route/route.dart';
-import 'package:sos_mobile/utils/widgets/custom_answer_card.dart';
-import 'package:sos_mobile/modules/search/screens/search_screen.dart';
 import 'package:sos_mobile/utils/controllers/app_controller.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
@@ -46,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Obx(
         () => SafeArea(
           child: Container(
-            color: AppColor.backgroundColor,
+            color: Theme.of(context).colorScheme.background,
             child: controller.isLoading.value == false ||
                     controller.nextPage.value != 0
                 ? Column(
@@ -185,11 +182,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   return GestureDetector(
                                     onLongPressStart: (value) {
                                       appController.onlongPressStart(
-                                          golbalDx: value.globalPosition.dx,
-                                          golbalDy: value.globalPosition.dy,
-                                          widthScreen: MediaQuery.of(context)
-                                              .size
-                                              .width);
+                                        golbalDx: value.globalPosition.dx,
+                                        golbalDy: value.globalPosition.dy,
+                                        widthScreen:
+                                            MediaQuery.sizeOf(context).width,
+                                        id: controller.question[i].id
+                                            .toString(),
+                                      );
                                     },
                                     onLongPressMoveUpdate: (value) {
                                       appController.onLongPressMoveUpdate(
@@ -199,25 +198,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                               value.globalPosition.dy - 22);
                                     },
                                     onLongPressEnd: (value) {
-                                      appController.onLongPressEnd();
+                                      appController.onLongPressEnd(context);
                                     },
                                     child: CsutomQuestionCard(
+                                      title: "ហេតុអ្វីបានជាទុំស្រលាញ់ទាវ?",
                                       tags: const [
+                                        "dfa2341241344334534534534sfd",
                                         "dfa2341241344334534534534sfd",
                                       ],
                                       answerCount: "0",
                                       ontapQuestion: () {
                                         debugPrint("dfdf");
-                                        router
-                                            .go("/home-screen/question-detail");
+                                        router.go("/home/question-detail");
                                       },
                                       isCorrect: false,
                                       avarta:
                                           'https://hips.hearstapps.com/hmg-prod/images/index-avatar3-1672251913.jpg?crop=0.502xw:1.00xh;0.210xw,0&resize=1200:*',
                                       name: "b nak",
                                       time: '2h ago',
-                                      title:
-                                          'bongdflkjsdfjasofjskfjsakfksafkdsjjsdjdsfjdsafjsadfjsaljlksdjlfjsdlkjdljlskdfjlkdsjldkfgjlkfdgjlkdfgjlkfdjglkfdjglkjgfdlkjgfdjfdjgfdlkjfdfdjfdlkjljkfdfdlkjfdlkjljkvfdlkjfgdbongdflkjsdfjasofjskfjsakfksafkdsjjsdjdsfjdsafjsadfjsaljlksdjlfjsdlkjdljlskdfjlkdsjldkfgjlkfdgjlkdfgjlkfdjglkfdjglkjgfdlkjgfdjfdjgfdlkjfdfdjfdlkjljkfdfdlkjfdlkjljkvfdlkjfgdbongdflkjsdfjasofjskfjsakfksafkdsjjsdjdsfjdsafjsadfjsaljlksdjlfjsdlkjdljlskdfjlkdsjldkfgjlkfdgjlkdfgjlkfdjglkfdjglkjgfdlkjgfdjfdjgfdlkjfdfdjfdlkjljkfdfdlkjfdlkjljkvfdlkjfgdbongdflkjsdfjasofjskfjsakfksafkdsjjsdjdsfjdsafjsadfjsaljlksdjlfjsdlkjdljlskdfjlkdsjldkfgjlkfdgjlkdfgjlkfdjglkfdjglkjgfdlkjgfdjfdjgfdlkjfdfdjfdlkjljkfdfdlkjfdlkjljkvfdlkjfgdbongdflkjsdfjasofjskfjsakfksafkdsjjsdjdsfjdsafjsadfjsaljlksdjlfjsdlkjdljlskdfjlkdsjldkfgjlkfdgjlkdfgjlkfdjglkfdjglkjgfdlkjgfdjfdjgfdlkjfdfdjfdlkjljkfdfdlkjfdlkjljkvfdlkjfgd sl soy',
+                                      descrition:
+                                          'កម្រងសៀវភៅ ប្រជុំរឿងព្រេងខ្មែរ ត្រូវ​បាន​បែង​ចែក​ជា​៩​ភាគ ដោយ​ក្នុង​នោះ​មាន​រឿង​សុរប​២៤៨ ស្ដី​អំពី​រឿង​ព្រេង​នានា​ផ្ដល់​ការ​អប់រំ ទាក់​ទង​នឹង​ភូមិសាស្ត្រ ព្រម​ទាំង​ប្រវត្តិសាស្ត្រ​ក្នុង​ប្រទេស​កម្ពុជា។ សៀវភៅ​ប្រជុំ​រឿង​ព្រេង​នេះ​ត្រូវ​បាន​បោះពុម្ព​លើក​ដំបូង​នៅ​ក្នុង​កំឡុង​ទសវត្សរ៍​ឆ្នាំ​១៩៦០ ដោយ​វិទ្យាស្ថាន​ពុទ្ធសាសនបណ្ឌិត្យ។',
                                       image:
                                           'https://hips.hearstapps.com/hmg-prod/images/index-avatar3-1672251913.jpg?crop=0.502xw:1.00xh;0.210xw,0&resize=1200:*',
                                       commentCount: '0',

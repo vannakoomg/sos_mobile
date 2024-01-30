@@ -18,14 +18,12 @@ class ThemeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          title,
-          style: Theme.of(context)
-              .textTheme
-              .titleMedium!
-              .copyWith(color: Colors.white.withOpacity(0.9)),
+        Expanded(
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.titleSmall!,
+          ),
         ),
-        const Spacer(),
         GestureDetector(
           onTap: () {
             ontap();
@@ -38,28 +36,23 @@ class ThemeCard extends StatelessWidget {
                 Center(
                     child: Container(
                         decoration: BoxDecoration(
+                          border: Border.all(
+                              color: AppColor.primaryColor, width: 0.5),
                           borderRadius: BorderRadius.circular(20),
-                          color: !isTure
-                              ? Colors.white.withOpacity(0.9)
-                              : AppColor.successColor,
+                          color: !isTure ? Colors.black : AppColor.successColor,
                         ),
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              left: 8, right: 8, top: 5, bottom: 5),
-                          child: Text(subtilte),
+                              left: 10, right: 10, top: 5, bottom: 5),
+                          child: Text(
+                            subtilte,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(
+                                    color: AppColor.primaryColor, fontSize: 12),
+                          ),
                         ))),
-                if (!isTure)
-                  Center(
-                    child: Transform(
-                      transform: Matrix4.identity()..rotateZ(2.5),
-                      alignment: Alignment.center,
-                      child: Container(
-                        height: 2,
-                        width: 60,
-                        color: Colors.red.withOpacity(0.8),
-                      ),
-                    ),
-                  ),
               ],
             ),
           ),

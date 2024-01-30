@@ -272,7 +272,7 @@ class Paint06 extends CustomPainter {
     // Layer 1
 
     Paint paintFill0 = Paint()
-      ..color = AppColor.mainColor
+      ..color = AppColor.primaryColor
       ..style = PaintingStyle.fill
       ..strokeWidth = size.width * 0.00
       ..strokeCap = StrokeCap.butt

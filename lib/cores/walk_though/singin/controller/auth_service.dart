@@ -37,7 +37,7 @@ class AuthService {
         .signInWithCredential(credential)
         .then((value) => {
               debugPrint("user : ${value.user}"),
-              router.go('/home-screen'),
+              router.go('/home'),
             });
   }
 

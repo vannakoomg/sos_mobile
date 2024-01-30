@@ -25,9 +25,10 @@ class OffOnSettingCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    fontSize: 19,
-                  ),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(color: Theme.of(context).colorScheme.onTertiary),
             ),
             const Spacer(),
             GestureDetector(
@@ -35,7 +36,7 @@ class OffOnSettingCard extends StatelessWidget {
                 ontap();
               },
               child: SizedBox(
-                height: 40,
+                height: 35,
                 width: 80,
                 child: Stack(
                   children: [
@@ -44,7 +45,10 @@ class OffOnSettingCard extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: isShow == 0
-                                  ? AppColor.mainColor.withOpacity(0.9)
+                                  ? Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withOpacity(0.9)
                                   : AppColor.secondnaryColor,
                             ),
                             child: Padding(
@@ -55,7 +59,10 @@ class OffOnSettingCard extends StatelessWidget {
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!
-                                    .copyWith(color: AppColor.primaryColor),
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary),
                               ),
                             ))),
                     if (isShow == 0)

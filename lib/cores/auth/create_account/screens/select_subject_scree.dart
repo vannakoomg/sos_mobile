@@ -14,7 +14,7 @@ class SeletctSubjectScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(CreateAccountController());
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Obx(() => SizedBox(
             height: MediaQuery.sizeOf(context).height,
             width: MediaQuery.sizeOf(context).width,
@@ -90,7 +90,7 @@ class SeletctSubjectScreen extends StatelessWidget {
                                             boxShadow: [
                                               BoxShadow(
                                                   spreadRadius: 1.9,
-                                                  offset: const Offset(8, 10),
+                                                  offset: const Offset(8, 3),
                                                   color:
                                                       controller.selectedSucject[e
                                                                   .key] ==
@@ -98,7 +98,9 @@ class SeletctSubjectScreen extends StatelessWidget {
                                                           ? AppColor
                                                               .secondnaryColor
                                                               .withOpacity(0.0)
-                                                          : AppColor.mainColor
+                                                          : Theme.of(context)
+                                                              .colorScheme
+                                                              .primary
                                                               .withOpacity(0.5),
                                                   blurRadius: 10)
                                             ],
@@ -106,7 +108,9 @@ class SeletctSubjectScreen extends StatelessWidget {
                                                         e.key] ==
                                                     e.key
                                                 ? AppColor.secondnaryColor
-                                                : AppColor.mainColor,
+                                                : Theme.of(context)
+                                                    .colorScheme
+                                                    .background,
                                             borderRadius:
                                                 BorderRadius.circular(50)),
                                         height: 45,
@@ -144,7 +148,7 @@ class SeletctSubjectScreen extends StatelessWidget {
                             onTap: () {
                               controller.createAccount();
                             },
-                            // colors: AppColor.mainColor,
+                            // colors: Theme.of(context).colorScheme.primary,
                           ))
                     ],
                   ),

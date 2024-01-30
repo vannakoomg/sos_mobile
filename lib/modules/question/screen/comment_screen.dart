@@ -25,11 +25,12 @@ class CommentScreen extends StatelessWidget {
                     controller.isPost.value = true;
                   },
                   child: Container(
-                    color: AppColor.primaryColor,
+                    decoration: BoxDecoration(
+                      color: AppColor.textfourth,
+                    ),
                     child: Container(
                       padding: const EdgeInsets.only(left: 5, right: 5),
                       height: 45,
-                      color: AppColor.mainColor.withOpacity(0.8),
                       child: Row(
                         children: [
                           Container(
@@ -48,7 +49,6 @@ class CommentScreen extends StatelessWidget {
                               height: 35,
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                  color: AppColor.primaryColor,
                                   borderRadius: BorderRadius.circular(30)),
                               child: Text(
                                 isAnswer == false
@@ -59,6 +59,10 @@ class CommentScreen extends StatelessWidget {
                                         ? "ផ្ដល់ចម្លើយ"
                                         : controller.commentText.value,
                                 overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .copyWith(color: AppColor.primaryColor),
                               ),
                             ),
                           ),
@@ -69,15 +73,14 @@ class CommentScreen extends StatelessWidget {
                 )
               : Container(
                   clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                    color: AppColor.primaryColor,
-                    borderRadius: const BorderRadius.only(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20),
                     ),
                   ),
                   child: Container(
-                    color: AppColor.mainColor.withOpacity(0.8),
+                    color: AppColor.textfourth,
                     padding: const EdgeInsets.only(top: 15, bottom: 5),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

@@ -11,12 +11,13 @@ class CustomLoading extends StatelessWidget {
         height: 50,
         width: 50,
         decoration: BoxDecoration(
-            border: Border.all(width: 0.5),
-            // color: AppColor.secondnaryColor.withOpacity(0.3),
+            border: Border.all(
+              width: 0.5,
+              color: Theme.of(context).colorScheme.primary,
+            ),
             shape: BoxShape.circle),
         child: Image.asset(
           "assets/image/loading.gif",
-          // color: Colors.black,
         ),
       ),
     );

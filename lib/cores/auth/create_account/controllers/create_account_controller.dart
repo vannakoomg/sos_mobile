@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/route/route.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
+import 'package:sos_mobile/utils/helpers/fuction.dart';
 
 import '../../../../utils/helpers/local_data/storge_local.dart';
 import '../models/subject_model.dart';
@@ -27,7 +28,8 @@ class CreateAccountController extends GetxController {
   void checkValidation() {
     if (gmailtext.value.text == '' ||
         nametext.value.text == '' ||
-        passwordtext.value.text == '') {
+        passwordtext.value.text == '' ||
+        !checkStringIsgmail(value: gmailtext.value.text)) {
       disable.value = true;
     } else {
       disable.value = false;
@@ -58,6 +60,8 @@ class CreateAccountController extends GetxController {
   }
 
   Future createAccount() async {
+    debugPrint(
+        "${name.value} $selectSubjectSubmit ${password.value} ${gmail.value}");
     isloading.value = true;
     ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
         url: "/register",
@@ -73,9 +77,10 @@ class CreateAccountController extends GetxController {
               key: 'access_token', value: value['access_token'])
           .then((value) {
         isloading.value = false;
-        router.go('/home-screen');
+        router.go('/home');
       });
     }).onError((error, stackTrace) {
+      debugPrint("onchaeafkdf");
       isloading.value = false;
     });
   }

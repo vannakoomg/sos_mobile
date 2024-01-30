@@ -61,11 +61,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         //     ? const CustomLoading()
         //     :
         Obx(() => Container(
-              color: AppColor.mainColor,
+              color: Theme.of(context).colorScheme.background,
               child: SafeArea(
                 child: Container(
                   height: double.infinity,
-                  color: AppColor.backgroundColor,
+                  color: Theme.of(context).colorScheme.background,
                   child: SingleChildScrollView(
                     controller: scrollerController01,
                     child: Column(
@@ -74,11 +74,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           alignment: Alignment.centerRight,
                           child: IconButton(
                             onPressed: () {
-                              context.go('/home-screen/setting');
+                              context.go('/home/setting');
                             },
                             icon: Icon(
                               Icons.settings,
-                              color: AppColor.mainColor,
+                              color: Theme.of(context).colorScheme.primary,
                             ),
                           ),
                         ),
@@ -277,7 +277,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Container(
                                 margin:
                                     const EdgeInsets.only(left: 5, right: 5),
-                                // color: Colors.pink,
                                 child: ListView.builder(
                                   physics: _profileController.isScroll.value
                                       ? null
@@ -301,7 +300,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 widthScreen:
                                                     MediaQuery.of(context)
                                                         .size
-                                                        .width);
+                                                        .width,
+                                                id: "");
                                           },
                                           onLongPressMoveUpdate: (value) {
                                             appController.onLongPressMoveUpdate(
@@ -311,7 +311,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     value.globalPosition.dy);
                                           },
                                           onLongPressEnd: (value) {
-                                            appController.onLongPressEnd();
+                                            appController
+                                                .onLongPressEnd(context);
                                           },
                                           child: CustomAnswerCrad(
                                             isCorrect: false,

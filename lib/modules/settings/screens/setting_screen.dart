@@ -29,7 +29,7 @@ class _SettingScreenState extends State<SettingScreen> {
           "ការកំណត់",
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        backgroundColor: AppColor.backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         centerTitle: true,
       ),
       body: Column(
@@ -46,11 +46,11 @@ class _SettingScreenState extends State<SettingScreen> {
                           Container(
                             margin: const EdgeInsets.only(bottom: 10, top: 10),
                             height: 0.1,
-                            color: AppColor.mainColor,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         GestureDetector(
                           onTap: () {
-                            context.go(e.value.router);
+                            context.goNamed(e.value.router);
                           },
                           child: Container(
                             margin: const EdgeInsets.only(

@@ -5,10 +5,13 @@ import 'package:sos_mobile/cores/auth/create_account/screens/select_subject_scre
 import 'package:sos_mobile/cores/auth/hello/screens/hello_screen.dart';
 import 'package:sos_mobile/cores/walk_though/singin/screens/singin_screen.dart';
 import 'package:sos_mobile/modules/question/screen/question_detail.dart';
+import 'package:sos_mobile/modules/save/screens/create_save_screen.dart';
+import 'package:sos_mobile/modules/save/screens/save_detail_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/feedback/screen/feedback_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/notification/screens/setting_notification_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/privacy_data/screen/setting_privacy_data_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/profile_information/screen/profile_info_screen.dart';
+import 'package:sos_mobile/modules/settings/modules/theme/screen/theme_screen.dart';
 import 'package:sos_mobile/modules/settings/screens/setting_screen.dart';
 
 import '../../cores/auth/login/screen/login_screen.dart';
@@ -76,11 +79,27 @@ final router = GoRouter(
       },
     ),
     GoRoute(
-        path: '/home-screen',
+        path: '/home',
         builder: (context, state) {
           return const ScaffoldWithNavBar();
         },
         routes: [
+          GoRoute(
+            path: 'create-save',
+            builder: (context, state) {
+              return const CreateSaveScreen();
+            },
+          ),
+          GoRoute(
+            name: 'save-detail',
+            path: 'save-detail/:title/:id',
+            builder: (context, state) {
+              return SaveDetailScreen(
+                title: state.pathParameters['title'],
+                id: state.pathParameters['id'],
+              );
+            },
+          ),
           GoRoute(
             path: 'question-detail',
             builder: (context, state) {
@@ -95,30 +114,42 @@ final router = GoRouter(
               routes: [
                 GoRoute(
                   path: 'profile-info',
+                  name: 'profile-info',
                   builder: (context, state) {
                     return const ProfileInfoScreen();
                   },
                 ),
                 GoRoute(
+                  path: 'theme',
+                  name: 'theme',
+                  builder: ((context, state) {
+                    return const ThemeScreen();
+                  }),
+                ),
+                GoRoute(
                   path: 'setting-privacy',
+                  name: 'setting-privacy',
                   builder: (context, state) {
                     return const SettingPricacyData();
                   },
                 ),
                 GoRoute(
                   path: 'setting-notification',
+                  name: 'setting-notification',
                   builder: (context, state) {
                     return const SettingNotificationScreen();
                   },
                 ),
                 GoRoute(
                   path: 'feedback',
+                  name: 'feedback',
                   builder: (context, state) {
                     return const FeedBackScreen();
                   },
                 ),
                 GoRoute(
                   path: 'security-login',
+                  name: 'security-login',
                   builder: (context, state) {
                     return const SecurityLoginScreen();
                   },

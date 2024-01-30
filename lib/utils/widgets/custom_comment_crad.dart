@@ -6,12 +6,13 @@ class CustomCommentCrad extends StatelessWidget {
   final String time;
   final String title;
   final Function ontap;
-  const CustomCommentCrad(
-      {super.key,
-      required this.name,
-      required this.time,
-      required this.title,
-      required this.ontap});
+  const CustomCommentCrad({
+    super.key,
+    required this.name,
+    required this.time,
+    required this.title,
+    required this.ontap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class CustomCommentCrad extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColor.primaryColor,
         borderRadius: BorderRadius.circular(20),
+        border: Border.all(width: 0.5),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(
@@ -31,30 +33,29 @@ class CustomCommentCrad extends StatelessWidget {
               onTap: () {
                 ontap();
               },
-              child: Text(
-                name,
-                style: const TextStyle(
-                  color: Colors.blue,
-                  fontSize: 15,
-                ),
-              ),
+              child: Text(name,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall!
+                      .copyWith(color: Colors.blue)),
             ),
             const Spacer(),
             Text(
               time,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall!
-                  .copyWith(color: Colors.black.withOpacity(0.7)),
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    color: AppColor.textfourth,
+                  ),
             ),
           ],
         ),
         Text(
-          title,
+          "$title dslfjldfsakjfksjflsflkdsjljlsjflsjdlfsdkfslkflksjdflksjfsajdflsadjflsjdaflsadjfjslkdafjlksajflsadjfljsdlkjsdaljsadfljdsalkjadsfljdsaljadslfjsalfjadsljsfljs;ldsfjlksdfjlksjlsdfjlsdfjlsjfl;sdfjdsjfkjdsfjsdlfjsldkfjlskdjs",
           style: Theme.of(context)
               .textTheme
               .bodyMedium!
-              .copyWith(color: Colors.black.withOpacity(0.9)),
+              .copyWith(color: AppColor.textfourth),
+          overflow: TextOverflow.ellipsis,
+          maxLines: 4,
         ),
       ]),
     );

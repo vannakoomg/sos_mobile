@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/settings/modules/feedback/controller/feedback_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
@@ -15,7 +14,7 @@ class FeedBackScreen extends StatelessWidget {
     final controller = Get.put(FeedBackController());
     return Obx(() => Scaffold(
           appBar: AppBar(
-            backgroundColor: AppColor.backgroundColor,
+            backgroundColor: Theme.of(context).colorScheme.background,
             title: const Text("មតិកែលម្អ"),
             leadingWidth: 40,
             centerTitle: true,

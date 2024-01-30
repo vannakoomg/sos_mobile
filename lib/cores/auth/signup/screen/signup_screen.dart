@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/cores/auth/signup/controller/signup_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 import 'package:sos_mobile/utils/widgets/custom_textfield.dart';
@@ -12,7 +11,7 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(SignUpController());
     return Scaffold(
-        backgroundColor: AppColor.mainColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         body: Obx(
           () => Container(
             margin:

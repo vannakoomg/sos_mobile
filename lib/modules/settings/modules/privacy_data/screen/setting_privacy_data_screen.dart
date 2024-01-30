@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/settings/modules/privacy_data/controller/privacy_data_controller.dart';
 import 'package:sos_mobile/modules/settings/controllers/setting_controller.dart';
 import 'package:sos_mobile/modules/settings/widgets/setting_off_on_card.dart';
@@ -27,7 +26,7 @@ class _SettingPricacyDataState extends State<SettingPricacyData> {
         appBar: AppBar(
           title: const Text("Privacy and Data"),
           leadingWidth: 40,
-          backgroundColor: AppColor.backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           centerTitle: true,
         ),
         body: Obx(
@@ -46,8 +45,9 @@ class _SettingPricacyDataState extends State<SettingPricacyData> {
                         } else {
                           settingController.listOfPrivacy[e.key] = 0;
                         }
-                        settingController.updateSetting('${e.value.columName}',
-                            settingController.listOfPrivacy[e.key]);
+                        settingController.updateSetting(
+                            key: '${e.value.columName}',
+                            value: settingController.listOfPrivacy[e.key]);
                       },
                       isShow: settingController.listOfPrivacy[e.key],
                       description: e.value.description!),
