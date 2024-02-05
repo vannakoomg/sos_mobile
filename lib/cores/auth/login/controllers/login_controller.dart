@@ -26,16 +26,17 @@ class LoginController extends GetxController {
           key: 'access_token', value: value["access_token"]);
       loginSuccess.value = true;
     }).onError((error, stackTrace) {
+      loginSuccess.value = false;
       debugPrint("is facking errro$error");
     });
   }
 
-  void checkValidation() {
+  bool checkValidation() {
     if (checkStringIsgmail(value: emailText.value.text) == true &&
         passwordTextEditController.value.text.trim().length > 5) {
-      disbleBottom.value = false;
+      return false;
     } else {
-      disbleBottom.value = true;
+      return true;
     }
   }
 }

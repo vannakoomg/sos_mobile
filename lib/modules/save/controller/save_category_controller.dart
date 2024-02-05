@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
+import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -12,6 +15,11 @@ class SaveCategoryController extends GetxController {
   final saveCategory = SaveCategoryModel().obs;
   final isloading = false.obs;
   final bookName = ''.obs;
+  final coverBook = File('').obs;
+  void getCoverBook() async {
+    coverBook.value = await pickImage();
+    debugPrint("ocver path ${coverBook.value.path}");
+  }
 
   Future fetchSaveCategory() async {
     isloading.value = true;

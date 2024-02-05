@@ -20,8 +20,8 @@ Future<List> pickMultiImage() async {
   return listimage;
 }
 
-Future<File> pickImage() async {
-  var image = await picker.pickImage(source: ImageSource.gallery);
+Future<File> pickImage({ImageSource source = ImageSource.gallery}) async {
+  var image = await picker.pickImage(source: source);
   debugPrint("iamge ${image!.path}");
   return File(image.path);
 }

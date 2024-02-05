@@ -40,111 +40,118 @@ class _SaveCategoryScreenState extends State<SaveCategoryScreen> {
                 const Gap(30),
                 Expanded(
                   child: !controller.isloading.value
-                      ? GridView.builder(
-                          padding: EdgeInsets.zero,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 30,
-                          ),
-                          itemCount: controller.saveCategory.value.data!.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return GestureDetector(
-                              onTap: () {
-                                context.goNamed(
-                                  'save-detail',
-                                  pathParameters: {
-                                    "title": controller.saveCategory.value
-                                            .data![index].name ??
-                                        "",
-                                    "id": controller
-                                        .saveCategory.value.data![index].id
-                                        .toString()
+                      ? controller.saveCategory.value.data != null
+                          ? GridView.builder(
+                              padding: EdgeInsets.zero,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 30,
+                              ),
+                              itemCount:
+                                  controller.saveCategory.value.data!.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    context.goNamed(
+                                      'save-detail',
+                                      pathParameters: {
+                                        "title": controller.saveCategory.value
+                                                .data![index].name ??
+                                            "",
+                                        "id": controller
+                                            .saveCategory.value.data![index].id
+                                            .toString()
+                                      },
+                                    );
                                   },
+                                  child: Center(
+                                    child: Stack(
+                                      children: [
+                                        Transform.rotate(
+                                          angle: 0.12,
+                                          child: Container(
+                                            margin: const EdgeInsets.only(
+                                                left: 12, top: 4),
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width /
+                                                3,
+                                            height: double.infinity,
+                                            decoration: BoxDecoration(
+                                              color: AppColor.mainColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              border: Border.all(
+                                                  color: AppColor.primaryColor),
+                                            ),
+                                          ),
+                                        ),
+                                        Transform.rotate(
+                                          angle: 0.08,
+                                          child: Container(
+                                            margin: const EdgeInsets.only(
+                                                left: 6, top: 2),
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width /
+                                                3,
+                                            height: double.infinity,
+                                            decoration: BoxDecoration(
+                                              color: AppColor.mainColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              border: Border.all(
+                                                  color: AppColor.primaryColor),
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          padding:
+                                              const EdgeInsets.only(top: 10),
+                                          width:
+                                              MediaQuery.sizeOf(context).width /
+                                                  3,
+                                          height: double.infinity,
+                                          decoration: BoxDecoration(
+                                            color: AppColor.mainColor,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            border: Border.all(
+                                                color: AppColor.primaryColor),
+                                          ),
+                                        ),
+                                        Container(
+                                          width:
+                                              MediaQuery.sizeOf(context).width /
+                                                  3,
+                                          margin: const EdgeInsets.only(
+                                            top: 8,
+                                            left: 8,
+                                          ),
+                                          padding: const EdgeInsets.only(
+                                              right: 15, bottom: 2),
+                                          decoration: BoxDecoration(
+                                              // color: Colors.white.withOpacity(0.2),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: Text(
+                                            '${controller.saveCategory.value.data![index].name}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleSmall!
+                                                .copyWith(
+                                                  fontSize: 10,
+                                                  color: AppColor.primaryColor,
+                                                ),
+                                            // overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 );
                               },
-                              child: Center(
-                                child: Stack(
-                                  children: [
-                                    Transform.rotate(
-                                      angle: 0.12,
-                                      child: Container(
-                                        margin: const EdgeInsets.only(
-                                            left: 12, top: 4),
-                                        width:
-                                            MediaQuery.sizeOf(context).width /
-                                                3,
-                                        height: double.infinity,
-                                        decoration: BoxDecoration(
-                                          color: AppColor.mainColor,
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          border: Border.all(
-                                              color: AppColor.primaryColor),
-                                        ),
-                                      ),
-                                    ),
-                                    Transform.rotate(
-                                      angle: 0.08,
-                                      child: Container(
-                                        margin: const EdgeInsets.only(
-                                            left: 6, top: 2),
-                                        width:
-                                            MediaQuery.sizeOf(context).width /
-                                                3,
-                                        height: double.infinity,
-                                        decoration: BoxDecoration(
-                                          color: AppColor.mainColor,
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          border: Border.all(
-                                              color: AppColor.primaryColor),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      width:
-                                          MediaQuery.sizeOf(context).width / 3,
-                                      height: double.infinity,
-                                      decoration: BoxDecoration(
-                                        color: AppColor.mainColor,
-                                        borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(
-                                            color: AppColor.primaryColor),
-                                      ),
-                                    ),
-                                    Container(
-                                      width:
-                                          MediaQuery.sizeOf(context).width / 3,
-                                      margin: const EdgeInsets.only(
-                                        top: 8,
-                                        left: 8,
-                                      ),
-                                      padding: const EdgeInsets.only(
-                                          right: 15, bottom: 2),
-                                      decoration: BoxDecoration(
-                                          // color: Colors.white.withOpacity(0.2),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Text(
-                                        '${controller.saveCategory.value.data![index].name}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(
-                                              fontSize: 10,
-                                              color: AppColor.primaryColor,
-                                            ),
-                                        // overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        )
+                            )
+                          : Container()
                       : const Center(
                           child: CustomLoading(),
                         ),

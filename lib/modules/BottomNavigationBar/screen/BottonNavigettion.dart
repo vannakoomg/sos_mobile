@@ -34,7 +34,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
                     SaveCategoryScreen(),
                     PostQuestionScreen(),
                     NotificationScreen(),
-                    ProfileScreen(),
+                    OwnProfileScreen(),
                   ],
                 ),
               ),

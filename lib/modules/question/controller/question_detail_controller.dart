@@ -4,16 +4,77 @@ import 'package:get/get.dart';
 import '../../../utils/helpers/api_base_helper/api_base_helper.dart';
 
 class QuestionDetailController extends GetxController {
+  QuestionDetailController();
   final pageController = PageController();
+  GlobalKey globalKey = GlobalKey();
+  final scrollerController01 = ScrollController();
+  final scrollerController02 = ScrollController();
+  final scrollerController03 = ScrollController();
+  final hightOfBar = 0.0.obs;
+  final isScroll = false.obs;
   final isAnswer = true.obs;
   final isScale = false.obs;
-  final line = 0.obs;
-  final index = 0.obs;
-  final isScroll = false.obs;
   final isLoading = false.obs;
+  final jumpAll = false.obs;
+
+  void doubleTapScreen() {
+    jumpAll.value = true;
+    scrollerController01.animateTo(0,
+        curve: Curves.ease, duration: const Duration(milliseconds: 500));
+    scrollerController02.animateTo(0,
+        curve: Curves.ease, duration: const Duration(milliseconds: 700));
+    scrollerController03
+        .animateTo(0,
+            curve: Curves.ease, duration: const Duration(milliseconds: 700))
+        .then((value) => {
+              jumpAll.value = false,
+            });
+  }
+
+  void listenScoller() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      hightOfBar.value = globalKey.currentContext!.size!.height;
+    });
+    scrollerController01.addListener(() {
+      if (scrollerController01.offset >=
+          globalKey.currentContext!.size!.height) {
+        isScroll.value = true;
+        scrollerController02.animateTo(1,
+            curve: Curves.ease, duration: const Duration(milliseconds: 100));
+        scrollerController03.animateTo(1,
+            curve: Curves.ease, duration: const Duration(milliseconds: 100));
+        scrollerController01
+            .animateTo(hightOfBar.value,
+                curve: Curves.ease, duration: const Duration(milliseconds: 100))
+            .then((value) {});
+      } else {
+        isScroll.value = false;
+      }
+    });
+    scrollerController02.addListener(() {
+      if (scrollerController02.offset == 0) {
+        isScroll.value = false;
+        scrollerController01.animateTo(0,
+            curve: Curves.ease, duration: const Duration(milliseconds: 500));
+        scrollerController03.jumpTo(0);
+      } else {
+        isScroll.value = true;
+      }
+    });
+    scrollerController03.addListener(() {
+      if (scrollerController03.offset == 0) {
+        isScroll.value = false;
+        scrollerController01.animateTo(0,
+            curve: Curves.ease, duration: const Duration(milliseconds: 500));
+        scrollerController02.jumpTo(0);
+      } else {
+        isScroll.value = true;
+      }
+    });
+  }
+
   void onPageChanged() {
     isAnswer.value = !isAnswer.value;
-    debugPrint("khmer sl khmer ");
   }
 
   void ontapChange() {
@@ -42,4 +103,6 @@ class QuestionDetailController extends GetxController {
               // debugPrint("value ${homeData.value.data!.length}"),
             });
   }
+
+  final showConmment = false.obs;
 }

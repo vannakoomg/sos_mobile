@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/post_question/controllers/post_question_controller.dart';
 import 'package:sos_mobile/modules/post_question/models/tag_model.dart';
+import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 import 'package:sos_mobile/utils/widgets/custom_tag_card.dart';
 import '../../../utils/widgets/custom_textfield.dart';
@@ -21,10 +23,9 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
   FocusNode focusNode = FocusNode();
   @override
   void initState() {
+    controller.isFocus.value = false;
     focusNode.addListener(
       () {
-        debugPrint("initttttt");
-
         if (focusNode.hasFocus) {
           controller.isFocus.value = true;
         } else {
@@ -56,12 +57,14 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "ខ្ញុំបាទ​",
-                              style: Theme.of(context).textTheme.titleMedium,
+                              "ខ្ញុំ​",
+                              style: Theme.of(context).textTheme.titleLarge,
                             ),
                             CustomButtom(
-                              title: "សូមសួរមួយ ?",
+                              disble: controller.validationPost(),
+                              title: "សូមសួរមួយ?",
                               onTap: () {
+                                unFocus(context);
                                 controller.postQuestion();
                               },
                               fountSize: 14,
@@ -83,9 +86,7 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
                                       controller.titleTextEditController.value,
                                   maxLines: 1,
                                 ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
+                                const Gap(5),
                                 CustomTextfield(
                                   radius: 20,
                                   hintText: "អត្តន័យ",
@@ -95,15 +96,12 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
                                   maxLines: 4,
                                   textInputType: TextInputType.multiline,
                                 ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
+                                const Gap(5),
                                 Container(
                                   width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
                                     color: AppColor.primaryColor,
-                                    // border: Border.all(),
                                   ),
                                   child: Column(
                                     crossAxisAlignment:
@@ -319,7 +317,6 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
                               title: "បាទ/ចាស",
                               fountSize: 12,
                               onTap: () {
-                                debugPrint("hhhh");
                                 controller.createTag(
                                   controller.tagtext.value.trim(),
                                 );

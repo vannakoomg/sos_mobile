@@ -5,7 +5,7 @@ import 'package:sos_mobile/cores/auth/create_account/screens/select_subject_scre
 import 'package:sos_mobile/cores/auth/hello/screens/hello_screen.dart';
 import 'package:sos_mobile/cores/walk_though/singin/screens/singin_screen.dart';
 import 'package:sos_mobile/modules/question/screen/question_detail.dart';
-import 'package:sos_mobile/modules/save/screens/create_save_screen.dart';
+import 'package:sos_mobile/modules/save/screens/create_savecatefory_screen.dart';
 import 'package:sos_mobile/modules/save/screens/save_detail_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/feedback/screen/feedback_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/notification/screens/setting_notification_screen.dart';
@@ -13,11 +13,13 @@ import 'package:sos_mobile/modules/settings/modules/privacy_data/screen/setting_
 import 'package:sos_mobile/modules/settings/modules/profile_information/screen/profile_info_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/theme/screen/theme_screen.dart';
 import 'package:sos_mobile/modules/settings/screens/setting_screen.dart';
+import 'package:sos_mobile/modules/user_profile/screens/user_profile_screen.dart';
 
 import '../../cores/auth/login/screen/login_screen.dart';
 import '../../cores/auth/signup/screen/signup_screen.dart';
 import '../../cores/walk_though/slash_screen/screen/slash_screen.dart';
 import '../../modules/BottomNavigationBar/screen/BottonNavigettion.dart';
+import '../../modules/profile/screen/profile_screen.dart';
 import '../../modules/settings/modules/securty_login/screens/security_login.dart';
 
 // final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -34,6 +36,7 @@ final router = GoRouter(
       },
     ),
     GoRoute(
+        name: 'hello',
         path: '/hello',
         builder: (context, state) {
           return const HelloScreen();
@@ -80,6 +83,7 @@ final router = GoRouter(
     ),
     GoRoute(
         path: '/home',
+        name: '/home',
         builder: (context, state) {
           return const ScaffoldWithNavBar();
         },
@@ -101,12 +105,32 @@ final router = GoRouter(
             },
           ),
           GoRoute(
-            path: 'question-detail',
-            builder: (context, state) {
-              return const QuestionDetail();
-            },
-          ),
+              name: 'question-detail',
+              path: 'question-detail',
+              builder: (context, state) {
+                return const QuestionDetail();
+              },
+              routes: [
+                GoRoute(
+                    name: 'user-profile',
+                    path: 'user-profile/:id',
+                    builder: (context, state) {
+                      return UserProfileScreen(
+                        id: state.pathParameters['id']!,
+                      );
+                    },
+                    routes: [
+                      GoRoute(
+                        name: 'question',
+                        path: 'question-detail',
+                        builder: (context, state) {
+                          return const QuestionDetail();
+                        },
+                      )
+                    ]),
+              ]),
           GoRoute(
+              name: 'setting',
               path: 'setting',
               builder: (context, state) {
                 return const SettingScreen();

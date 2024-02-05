@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
 
 import '../../configs/const/Colors/app_colors.dart';
 
@@ -16,7 +17,7 @@ class CustomAnswerCrad extends StatelessWidget {
   final String likeAnswer;
   final Function ontapProfile;
   final Function ontapCorrect;
-  final Function ontapComment;
+  final Function ontap;
 
   const CustomAnswerCrad({
     super.key,
@@ -31,139 +32,137 @@ class CustomAnswerCrad extends StatelessWidget {
     required this.likeAnswer,
     required this.ontapProfile,
     required this.ontapCorrect,
-    required this.ontapComment,
+    required this.ontap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10, right: 10),
-      margin: const EdgeInsets.only(bottom: 5),
-      decoration: BoxDecoration(
-        color: AppColor.primaryColor,
-        border: Border.all(width: 0.5),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Row(
-                  children: [
-                    CachedNetworkImage(
-                      imageUrl: avarta,
-                      imageBuilder: (context, imageProvider) => Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20)),
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
-                            )),
+    return GestureDetector(
+      onTap: () {
+        ontap();
+      },
+      child: Container(
+        width: double.infinity,
+        padding:
+            const EdgeInsets.only(left: 10, top: 10, bottom: 10, right: 10),
+        margin: const EdgeInsets.only(bottom: 5),
+        decoration: BoxDecoration(
+          color: AppColor.primaryColor,
+          border: Border.all(width: 0.5),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                          onTap: () {
+                            ontapProfile();
+                          },
+                          child: CustomCachedImageCircle(image: image)),
+                      const Gap(5),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            name,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(
+                                    color: AppColor.secondnaryColor,
+                                    fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            time,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  color: AppColor.textThird,
+                                ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
-                    ),
-                    const Gap(5),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          name,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall!
-                              .copyWith(
-                                  color: AppColor.secondnaryColor,
-                                  fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          time,
-                          style:
-                              Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    color: AppColor.textThird,
-                                  ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  ontapCorrect();
-                },
-                child: isCorrect == true
-                    ? const Icon(
-                        Icons.check_circle_sharp,
-                        color: Colors.green,
-                      )
-                    : isYourOwnQuestion
-                        ? const Icon(
-                            Icons.check_circle_sharp,
-                            color: Color.fromARGB(255, 124, 107, 96),
-                          )
-                        : const SizedBox(),
-              )
-            ],
-          ),
-          Text(
-            description,
-            maxLines: image == "" ? 6 : 1,
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: AppColor.textfourth,
-                ),
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          if (image != '')
-            CachedNetworkImage(
-              imageUrl: image,
-              height: 200,
-              width: double.infinity,
-              fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: () {
+                    ontapCorrect();
+                  },
+                  child: isCorrect == true
+                      ? const Icon(
+                          Icons.check_circle_sharp,
+                          color: Colors.green,
+                        )
+                      : isYourOwnQuestion
+                          ? const Icon(
+                              Icons.check_circle_sharp,
+                              color: Color.fromARGB(255, 124, 107, 96),
+                            )
+                          : const SizedBox(),
+                )
+              ],
             ),
-          Row(
-            children: [
-              Text(commentCount,
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        color: AppColor.mainColor,
-                      )),
-              const SizedBox(
-                width: 5,
+            Text(
+              description,
+              maxLines: image == "" ? 6 : 1,
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: AppColor.textfourth,
+                  ),
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            if (image != '')
+              CachedNetworkImage(
+                imageUrl: image,
+                height: 200,
+                width: double.infinity,
+                fit: BoxFit.cover,
               ),
-              Text(
-                "មតិ",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(color: AppColor.textThird),
-              ),
-              const Spacer(),
-              Text(likeAnswer,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: AppColor.mainColor,
-                      )),
-              const SizedBox(
-                width: 5,
-              ),
-              Text(
-                "ពេញចិត្ត",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(color: AppColor.textThird),
-              )
-            ],
-          ),
-        ],
+            Row(
+              children: [
+                Text(commentCount,
+                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                          color: AppColor.mainColor,
+                        )),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  "មតិ",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: AppColor.textThird),
+                ),
+                const Spacer(),
+                Text(likeAnswer,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: AppColor.mainColor,
+                        )),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  "ពេញចិត្ត",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: AppColor.textThird),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

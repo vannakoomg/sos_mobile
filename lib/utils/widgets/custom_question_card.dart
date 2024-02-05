@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 import '../../configs/const/Colors/app_colors.dart';
 
@@ -66,7 +65,6 @@ class CsutomQuestionCard extends StatelessWidget {
             if (descrition != '')
               Column(
                 children: [
-                  const Gap(4),
                   Text(
                     descrition,
                     maxLines: image == "" ? 6 : 1,
@@ -123,7 +121,7 @@ class CsutomQuestionCard extends StatelessWidget {
                     commentCount,
                     style: Theme.of(context)
                         .textTheme
-                        .bodyMedium!
+                        .titleSmall!
                         .copyWith(color: AppColor.mainColor),
                   ),
                   const SizedBox(

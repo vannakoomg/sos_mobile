@@ -23,34 +23,29 @@ class LoginScreen extends StatelessWidget {
       body: Obx(
         () => Stack(
           children: [
-            // CustomPaint(
-            //     painter: Paint04(),
-            //     child: SizedBox(
-            //       // color: Colors.black,
-            //       height: MediaQuery.sizeOf(context).width * .9,
-            //       width: MediaQuery.sizeOf(context).width,
-            //     )),
             CustomPaint(
               painter: Paint05(),
-              child: Container(
-                height: MediaQuery.sizeOf(context).width * .88,
-                width: MediaQuery.sizeOf(context).width * .98,
-                padding: const EdgeInsets.only(left: 15, top: 50),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const CustomBack(),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: Text(
-                        "ស្វាគមន៏\nនៃការត្រលប់មកវិញ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(color: AppColor.primaryColor),
+              child: SafeArea(
+                child: Container(
+                  height: MediaQuery.sizeOf(context).width * .88,
+                  width: MediaQuery.sizeOf(context).width * .98,
+                  padding: const EdgeInsets.only(left: 15, top: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const CustomBack(),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: Text(
+                          "ស្វាគមន៏\nនៃការត្រលប់មកវិញ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(color: AppColor.primaryColor),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -65,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                     const Spacer(),
                     CustomTextfield(
                       high: 60,
-                      hintText: "gmail.com",
+                      hintText: "Gmail.com",
                       onChanged: (value) {
                         controller.checkValidation();
                       },
@@ -103,6 +98,7 @@ class LoginScreen extends StatelessWidget {
                       ),
 
                     CustomButtom(
+                      height: 40,
                       title: "Login",
                       onTap: () {
                         unFocus(context);
@@ -113,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                                 }
                             });
                       },
-                      disble: controller.disbleBottom.value,
+                      disble: controller.checkValidation(),
                     ),
 
                     // const Gap(20),

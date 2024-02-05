@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
 class CustomButtom extends StatelessWidget {
   final String? title;
@@ -7,12 +8,14 @@ class CustomButtom extends StatelessWidget {
   final double fountSize;
   final double height;
   final Color colors;
+  final EdgeInsets? padding;
   const CustomButtom({
     super.key,
     required this.title,
     required this.onTap,
     this.height = 45,
     this.colors = Colors.pink,
+    this.padding,
     this.disble = false,
     this.fountSize = 16,
   });
@@ -24,10 +27,10 @@ class CustomButtom extends StatelessWidget {
         disble == false ? onTap!() : null;
       },
       child: AnimatedContainer(
-        padding: const EdgeInsets.only(left: 10, right: 10),
+        padding: padding ?? const EdgeInsets.only(left: 10, right: 10),
         decoration: BoxDecoration(
           // border: Border.all(color: AppColor.primaryColor),
-          color: disble == false ? colors : Colors.grey,
+          color: disble == false ? colors : AppColor.textfourth,
           borderRadius: BorderRadius.circular(100),
         ),
         height: height,

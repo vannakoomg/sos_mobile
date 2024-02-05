@@ -55,13 +55,14 @@ ThemeData lightMode = ThemeData(
 );
 ThemeData darkMode = ThemeData(
   colorScheme: const ColorScheme.dark(
-      background: Colors.black,
-      primary: Colors.white,
-      secondary: Color.fromARGB(255, 0, 0, 0),
-      tertiary: Color.fromARGB(255, 105, 105, 105),
-      onPrimary: Color.fromARGB(255, 252, 252, 252),
-      onSecondary: Color.fromARGB(255, 200, 200, 200),
-      onTertiary: Color.fromARGB(255, 179, 179, 179)),
+    background: Colors.black,
+    primary: Colors.white,
+    secondary: Color.fromARGB(255, 77, 77, 77),
+    tertiary: Color(0xff212529),
+    onPrimary: Color.fromARGB(255, 124, 124, 124),
+    onSecondary: Color.fromARGB(255, 66, 66, 66),
+    onTertiary: Color(0xff495057),
+  ),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: AppColor.secondnaryColor.withOpacity(0.6),
   ),
@@ -69,8 +70,8 @@ ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   textTheme: const TextTheme(
     titleLarge: TextStyle(
-      color: Color.fromARGB(255, 148, 148, 148),
-      fontSize: 22,
+      color: Colors.white,
+      fontSize: 20,
       fontWeight: FontWeight.bold,
       fontFamily: "Siemreap",
     ),

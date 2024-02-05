@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/modules/save/controller/save_category_controller.dart';
 
 class MergeSaveScreen extends StatefulWidget {
@@ -35,9 +36,25 @@ class _MergeSaveScreenState extends State<MergeSaveScreen> {
           child: SafeArea(
             child: Column(
               children: [
-                Text(
-                  "សៀវភៅ",
-                  style: Theme.of(context).textTheme.titleMedium,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                        onTap: () {
+                          context.pop();
+                        },
+                        child: const Icon(
+                          Icons.close,
+                        )),
+                    Text(
+                      "សៀវភៅ",
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const Icon(
+                      Icons.close,
+                      color: Colors.transparent,
+                    )
+                  ],
                 ),
                 const Gap(10),
                 Expanded(

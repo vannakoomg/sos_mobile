@@ -52,13 +52,10 @@ class ApiBaseHelper {
               data: body);
           return _returnResponse(response);
         case METHODE.post:
-          if (body != null) {
-            final response = await dio.post(fullUrl,
-                options: Options(headers: header ?? headerDefault), data: body);
-            return _returnResponse(response);
-          }
-          return Future.error(
-              const ErrorModel(bodyString: 'Body must be included'));
+          final response = await dio.post(fullUrl,
+              options: Options(headers: header ?? headerDefault),
+              data: body ?? {});
+          return _returnResponse(response);
 
         default:
           break;

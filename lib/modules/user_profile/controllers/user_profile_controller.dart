@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sos_mobile/modules/profile/models/profile_model.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
 
-class OwnProfileController extends GetxController {
+class UserProfileController extends GetxController {
   var imagePath = File('').obs;
   var listImage = <File>[].obs;
   final isScroll = false.obs;

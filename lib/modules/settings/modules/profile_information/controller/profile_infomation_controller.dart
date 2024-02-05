@@ -8,7 +8,7 @@ import '../../../../../cores/auth/create_account/models/subject_model.dart';
 import '../../../../../utils/helpers/api_base_helper/api_base_helper.dart';
 
 class ProfileInfoController extends GetxController {
-  final profileController = Get.put(ProfileController());
+  final profileController = Get.put(OwnProfileController());
   final isLoading = false.obs;
   final profile = File('').obs;
   final profileUrl = ''.obs;

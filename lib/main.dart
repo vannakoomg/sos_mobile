@@ -69,7 +69,15 @@ class MyApp extends StatelessWidget {
                                     ? controller.dy.value - 130
                                     : controller.dy.value + 40,
                                 child: Text(
-                                  controller.action.value,
+                                  controller.action.value == 1
+                                      ? "ពេញចិត្ត"
+                                      : controller.action.value == 2
+                                          ? "រក្សាទុក"
+                                          : controller.action.value == 3
+                                              ? "ចែករំលែក"
+                                              : controller.action.value == 4
+                                                  ? "ព្រមាន"
+                                                  : "",
                                   style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 28,

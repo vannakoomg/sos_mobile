@@ -3,7 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/cores/auth/hello/widgets/paint.dart';
-import 'package:sos_mobile/utils/widgets/custom_back.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 
 class HelloScreen extends StatelessWidget {
@@ -26,10 +25,9 @@ class HelloScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CustomBack(),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Text("សួស្ដី",
+                        padding: const EdgeInsets.only(left: 15, top: 10),
+                        child: Text("សួស្ដីមកកាន់នាង​សីតា",
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge!
@@ -56,7 +54,7 @@ class HelloScreen extends StatelessWidget {
                 onTap: () {
                   context.go('/hello/create-account');
                 },
-                colors: AppColor.mainColor,
+                // colors: AppColor.mainColor,
               ),
             ]),
           ),

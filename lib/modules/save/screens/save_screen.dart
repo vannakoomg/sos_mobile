@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/route/route.dart';
 import 'package:sos_mobile/modules/save/controller/save_category_controller.dart';
 import 'package:sos_mobile/modules/save/controller/save_controller.dart';
+import 'package:sos_mobile/utils/helpers/fuction.dart';
+import 'package:sos_mobile/utils/widgets/custom_book.dart';
 
 import '../../../configs/const/Colors/app_colors.dart';
 
@@ -40,11 +43,26 @@ class _CreateSaveState extends State<CreateSave> {
               )),
           child: Column(
             children: [
-              Text(
-                "រក្សាទុក",
-                style: Theme.of(context).textTheme.titleMedium,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                      onTap: () {
+                        unFocus(context);
+                        context.pop();
+                      },
+                      child: const Icon(Icons.close_rounded)),
+                  Text(
+                    "រក្សាទុក",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const Icon(
+                    Icons.close_rounded,
+                    color: Colors.transparent,
+                  ),
+                ],
               ),
-              const Gap(10),
+              const Gap(20),
               if (controller.saveCategory.value.data != null)
                 Expanded(
                   child: Column(
@@ -52,9 +70,10 @@ class _CreateSaveState extends State<CreateSave> {
                     children: [
                       Text(
                         "សៀវភៅរបស់អ្នក",
-                        style: Theme.of(context).textTheme.bodyLarge,
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                            color: Theme.of(context).colorScheme.onTertiary),
                       ),
-                      const Gap(10),
+                      const Gap(20),
                       Expanded(
                           child: SingleChildScrollView(
                         child: Column(
@@ -70,16 +89,13 @@ class _CreateSaveState extends State<CreateSave> {
                                 );
                               },
                               child: Container(
-                                margin: const EdgeInsets.only(bottom: 5),
+                                margin: const EdgeInsets.only(bottom: 10),
                                 child: Row(
                                   children: [
-                                    Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        color: Colors.red,
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
+                                    CustomBook(
+                                      ontap: () {},
+                                      height: 60,
+                                      width: 45,
                                     ),
                                     const Gap(10),
                                     Expanded(
@@ -87,7 +103,11 @@ class _CreateSaveState extends State<CreateSave> {
                                       "${e.value.name}",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .titleMedium,
+                                          .bodyLarge!
+                                          .copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onTertiary),
                                       overflow: TextOverflow.ellipsis,
                                     )),
                                   ],

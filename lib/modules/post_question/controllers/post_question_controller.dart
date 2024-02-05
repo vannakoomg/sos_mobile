@@ -47,10 +47,7 @@ class PostQuestionController extends GetxController {
   }
 
   bool validationPost() {
-    if (image.value.path != '' &&
-        selectTags.isNotEmpty &&
-        titleTextEditController.value.text != '' &&
-        descriptionTextController.value.text != '') {
+    if (selectTags.isNotEmpty && titleTextEditController.value.text != '') {
       return false;
     } else {
       return true;

@@ -4,29 +4,32 @@ import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/configs/route/route.dart';
 import 'package:sos_mobile/modules/profile/controllers/profile_controller.dart';
+import 'package:sos_mobile/modules/user_profile/controllers/user_profile_controller.dart';
 import 'package:sos_mobile/utils/controllers/app_controller.dart';
+import 'package:sos_mobile/utils/widgets/custom_back.dart';
 import 'package:sos_mobile/utils/widgets/custom_question_card.dart';
 
 import '../../../utils/widgets/custom_answer_card.dart';
 
-class OwnProfileScreen extends StatefulWidget {
-  const OwnProfileScreen({super.key});
+class UserProfileScreen extends StatefulWidget {
+  final String id;
+  const UserProfileScreen({super.key, required this.id});
   @override
-  State<OwnProfileScreen> createState() => _OwnProfileScreenState();
+  State<UserProfileScreen> createState() => _UserProfileScreenState();
 }
 
 final scrollerController01 = ScrollController();
 final scrollerController02 = ScrollController();
 final scrollerController03 = ScrollController();
 final pageController = PageController();
-final profileController = Get.put(OwnProfileController());
 final appController = Get.put(AppController());
 
-class _OwnProfileScreenState extends State<OwnProfileScreen> {
+class _UserProfileScreenState extends State<UserProfileScreen> {
+  final profileController = UserProfileController();
+
   @override
   void initState() {
-    // profileController.getProfile();
-
+    debugPrint("user profile id ${widget.id}");
     scrollerController01.addListener(() {
       debugPrint("value : ${scrollerController01.offset}");
       if (scrollerController01.offset >= 320) {
@@ -87,28 +90,9 @@ class _OwnProfileScreenState extends State<OwnProfileScreen> {
                         : null,
                     controller: scrollerController01,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            router.goNamed('setting');
-                          },
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: AppColor.textfourth),
-                            ),
-                            child: Center(
-                              child: Icon(
-                                Icons.settings_rounded,
-                                color: Theme.of(context).colorScheme.onTertiary,
-                                size: 23,
-                              ),
-                            ),
-                          ),
-                        ),
+                        const CustomBack(),
                         const Gap(10),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -356,7 +340,11 @@ class _OwnProfileScreenState extends State<OwnProfileScreen> {
                                                     "nice to meet you 01");
                                               },
                                               ontapCorrect: () {},
-                                              ontap: () {},
+                                              ontap: () {
+                                                debugPrint("khmer sl khmer ");
+                                                router
+                                                    .goNamed('question-detail');
+                                              },
                                             ),
                                           ),
                                         ],

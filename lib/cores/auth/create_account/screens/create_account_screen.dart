@@ -71,12 +71,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       CustomTextfield(
-                        // validator: (value) {
-                        //   if(checkStringIsgmail(value: value))
-                        // }
-                        // ,
                         high: 60,
-                        hintText: "Gmail",
+                        hintText: "អាសយដ្ឋាន gmail",
                         onChanged: (value) {
                           controller.gmail.value = value;
                           controller.checkValidation();
@@ -105,7 +101,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       ),
                       const Gap(10),
                       CustomButtom(
-                        // colors: Colors.transparent,
+                        height: 40,
                         disble: controller.disable.value,
                         title: "យល់ព្រម",
                         onTap: () {

@@ -35,10 +35,8 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
           centerTitle: true,
         ),
         body: Obx(() => controller.isLoading.value
-            ? Container(
-                child: const Center(
-                  child: CustomLoading(),
-                ),
+            ? const Center(
+                child: CustomLoading(),
               )
             : Container(
                 padding: const EdgeInsets.only(
