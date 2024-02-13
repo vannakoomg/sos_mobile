@@ -47,8 +47,8 @@ class ScaffoldWithNavBar extends StatelessWidget {
                       color: Theme.of(context).colorScheme.background,
                       border: Border(
                           top: BorderSide(
-                              color: Theme.of(context).colorScheme.primary,
-                              width: 0.4))),
+                              color: Theme.of(context).colorScheme.onTertiary,
+                              width: 0.5))),
                   height: 60,
                   width: MediaQuery.of(context).size.width,
                   child: Row(
@@ -61,8 +61,8 @@ class ScaffoldWithNavBar extends StatelessWidget {
                               homeController.fetchQuestion(1);
                             } else {
                               homeController.scrollController.value.animateTo(0,
-                                  duration: const Duration(milliseconds: 1000),
-                                  curve: Curves.ease);
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeIn);
                             }
                             if (controller.index.value == 1) {
                               saveCategoryController.fetchSaveCategory();

@@ -93,6 +93,8 @@ class _CreateSaveState extends State<CreateSave> {
                                 child: Row(
                                   children: [
                                     CustomBook(
+                                      size: 2,
+                                      title: "${e.value.name}",
                                       ontap: () {},
                                       height: 60,
                                       width: 45,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
 class CustomCommentCrad extends StatelessWidget {
@@ -6,18 +7,19 @@ class CustomCommentCrad extends StatelessWidget {
   final String time;
   final String title;
   final Function ontap;
+  final Function ontapProfile;
   const CustomCommentCrad({
     super.key,
     required this.name,
     required this.time,
     required this.title,
     required this.ontap,
+    required this.ontapProfile,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: 40,
       width: double.infinity,
       padding: const EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
       margin: const EdgeInsets.only(bottom: 5),
@@ -29,23 +31,41 @@ class CustomCommentCrad extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(
           children: [
+            Expanded(
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      ontapProfile();
+                    },
+                    child: Text(name,
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                              color: AppColor.secondnaryColor,
+                            )),
+                  ),
+                  const Gap(5),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Text(
+                      time,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(color: AppColor.textfourth, fontSize: 9),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             GestureDetector(
               onTap: () {
                 ontap();
               },
-              child: Text(name,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall!
-                      .copyWith(color: Colors.blue)),
-            ),
-            const Spacer(),
-            Text(
-              time,
-              style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    color: AppColor.textfourth,
-                  ),
-            ),
+              child: Icon(
+                Icons.more_horiz,
+                color: AppColor.textfourth,
+              ),
+            )
           ],
         ),
         Text(
@@ -53,7 +73,7 @@ class CustomCommentCrad extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .bodyMedium!
-              .copyWith(color: AppColor.textfourth),
+              .copyWith(color: AppColor.textThird),
           overflow: TextOverflow.ellipsis,
           maxLines: 4,
         ),

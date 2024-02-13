@@ -9,7 +9,7 @@ ThemeData lightMode = ThemeData(
     background: Color.fromARGB(255, 238, 238, 238),
     primary: Colors.black,
     secondary: Colors.white,
-    tertiary: Color.fromARGB(255, 105, 105, 105),
+    tertiary: Color.fromARGB(255, 27, 27, 27),
 
     ///--------------
     onPrimary: Color.fromARGB(255, 67, 67, 67),
@@ -58,10 +58,10 @@ ThemeData darkMode = ThemeData(
     background: Colors.black,
     primary: Colors.white,
     secondary: Color.fromARGB(255, 77, 77, 77),
-    tertiary: Color(0xff212529),
-    onPrimary: Color.fromARGB(255, 124, 124, 124),
-    onSecondary: Color.fromARGB(255, 66, 66, 66),
-    onTertiary: Color(0xff495057),
+    tertiary: Color.fromARGB(255, 207, 207, 207),
+    onPrimary: Color.fromARGB(255, 198, 198, 198),
+    onSecondary: Color.fromARGB(255, 111, 111, 111),
+    onTertiary: Color.fromARGB(255, 51, 51, 51),
   ),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: AppColor.secondnaryColor.withOpacity(0.6),

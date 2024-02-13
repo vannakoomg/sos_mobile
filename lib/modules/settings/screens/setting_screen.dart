@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/settings/controllers/setting_controller.dart';
+import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -24,13 +25,8 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "ការកំណត់",
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-        backgroundColor: Theme.of(context).colorScheme.background,
-        centerTitle: true,
+      appBar: const CustomAppBar(
+        title: "ការកំណត់",
       ),
       body: Column(
         children: [
@@ -54,7 +50,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           },
                           child: Container(
                             margin: const EdgeInsets.only(
-                                left: 10, right: 10, bottom: 5),
+                                left: 5, right: 10, bottom: 5),
                             alignment: Alignment.centerLeft,
                             width: double.infinity,
                             height: 40,
@@ -67,8 +63,7 @@ class _SettingScreenState extends State<SettingScreen> {
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
-                                  .copyWith(
-                                      fontSize: 18, color: AppColor.textThird),
+                                  .copyWith(color: AppColor.textThird),
                             ),
                           ),
                         ),

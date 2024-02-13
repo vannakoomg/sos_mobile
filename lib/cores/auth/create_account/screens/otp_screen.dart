@@ -54,7 +54,7 @@ class OtpScreen extends StatelessWidget {
               ),
               Center(
                 child: SizedBox(
-                  width: 150,
+                  width: 110,
                   child: CustomTextfield(
                     hintText: "Otp",
                     maxLength: 4,
@@ -64,7 +64,6 @@ class OtpScreen extends StatelessWidget {
                     },
                     textInputType: TextInputType.number,
                     textEditController: controller.otp.value,
-                    // textStyle: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),
               ),

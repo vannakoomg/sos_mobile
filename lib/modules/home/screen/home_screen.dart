@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/configs/route/route.dart';
 import 'package:sos_mobile/modules/search/screens/search_screen.dart';
 import 'package:sos_mobile/utils/controllers/app_controller.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       decoration: BoxDecoration(
                         border: Border.all(
                             color: !controller.isForYou.value
-                                ? Theme.of(context).colorScheme.primary
+                                ? Theme.of(context).colorScheme.onTertiary
                                 : AppColor.secondnaryColor),
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -115,8 +115,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     padding: const EdgeInsets.all(5),
                                     child: Icon(
                                       Icons.search_rounded,
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .tertiary,
                                       size: 20,
                                     ),
                                   ),
@@ -145,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           .copyWith(
                                               color: Theme.of(context)
                                                   .colorScheme
-                                                  .primary),
+                                                  .tertiary),
                                       color: Colors.transparent,
                                       onChanged: (value) {
                                         controller.searchText.value = value;
@@ -219,7 +220,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         appController.onLongPressEnd(context);
                                       },
                                       child: CsutomQuestionCard(
-                                        title: "ហេតុអ្វីបានជាទុំស្រលាញ់ទាវ?",
+                                        istall: i % 2 != 0 ? false : true,
+                                        title:
+                                            controller.question[i].title ?? "",
                                         tags: const [
                                           "dfa2341241344334534534534sfd",
                                           "dfa2341241344334534534534sfd",
@@ -227,20 +230,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                         answerCount: "0",
                                         ontapQuestion: () {
                                           debugPrint("dfdf");
-                                          router.go("/home/question-detail");
+                                          context.pushNamed("question-detail",
+                                              pathParameters: {"id": "2312"});
                                         },
                                         isCorrect: false,
-                                        avarta:
-                                            'https://hips.hearstapps.com/hmg-prod/images/index-avatar3-1672251913.jpg?crop=0.502xw:1.00xh;0.210xw,0&resize=1200:*',
-                                        name: "b nak",
                                         time: '2h ago',
-                                        descrition:
-                                            'កម្រងសៀវភៅ ប្រជុំរឿងព្រេងខ្មែរ ត្រូវ​បាន​បែង​ចែក​ជា​៩​ភាគ ដោយ​ក្នុង​នោះ​មាន​រឿង​សុរប​២៤៨ ស្ដី​អំពី​រឿង​ព្រេង​នានា​ផ្ដល់​ការ​អប់រំ ទាក់​ទង​នឹង​ភូមិសាស្ត្រ ព្រម​ទាំង​ប្រវត្តិសាស្ត្រ​ក្នុង​ប្រទេស​កម្ពុជា។ សៀវភៅ​ប្រជុំ​រឿង​ព្រេង​នេះ​ត្រូវ​បាន​បោះពុម្ព​លើក​ដំបូង​នៅ​ក្នុង​កំឡុង​ទសវត្សរ៍​ឆ្នាំ​១៩៦០ ដោយ​វិទ្យាស្ថាន​ពុទ្ធសាសនបណ្ឌិត្យ។',
+                                        descrition: controller
+                                                .question[i].description ??
+                                            "",
                                         image:
                                             'https://hips.hearstapps.com/hmg-prod/images/index-avatar3-1672251913.jpg?crop=0.502xw:1.00xh;0.210xw,0&resize=1200:*',
                                         commentCount: '0',
                                         likeCount: '8',
-                                        ontapProfile: () {},
                                       ),
                                     );
                                   },

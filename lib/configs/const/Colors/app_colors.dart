@@ -16,6 +16,6 @@ extension AppColor on Color {
   // for button
   static var buttonColor = const Color.fromARGB(255, 219, 22, 81);
   static var warningColor = const Color(0xffAAA505);
-  static var dangerColor = const Color(0xff991A2A);
+  static var dangerColor = const Color.fromARGB(255, 240, 38, 65);
   static var successColor = const Color.fromARGB(255, 46, 137, 61);
 }

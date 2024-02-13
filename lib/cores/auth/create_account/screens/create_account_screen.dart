@@ -91,6 +91,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       ),
                       const Gap(10),
                       CustomTextfield(
+                        color: AppColor.textThird.withOpacity(0.5),
                         high: 60,
                         hintText: "ពាក្យសម្ងាត់",
                         onChanged: (value) {
@@ -107,7 +108,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         onTap: () {
                           unFocus(context);
                           controller.disable.value = true;
-                          context.go('/hello/create-account/otp',
+                          context.goNamed('otp',
                               extra: controller.gmailtext.value.text);
                         },
                       ),

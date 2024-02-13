@@ -6,6 +6,8 @@ import '../../../../utils/helpers/local_data/storge_local.dart';
 
 class LoginController extends GetxController {
   final emailText = TextEditingController().obs;
+  final email = ''.obs;
+  final password = ''.obs;
   final passwordTextEditController = TextEditingController().obs;
   final disbleBottom = true.obs;
   final isLoading = false.obs;
@@ -32,8 +34,8 @@ class LoginController extends GetxController {
   }
 
   bool checkValidation() {
-    if (checkStringIsgmail(value: emailText.value.text) == true &&
-        passwordTextEditController.value.text.trim().length > 5) {
+    if (checkStringIsgmail(value: email.value) == true &&
+        password.value.trim().length > 5) {
       return false;
     } else {
       return true;

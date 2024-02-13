@@ -379,17 +379,11 @@ class _OwnProfileScreenState extends State<OwnProfileScreen> {
                                             ),
                                           CsutomQuestionCard(
                                             isCorrect: false,
-                                            avarta:
-                                                "https://imgs.search.brave.com/XGgQMqLFVWda8mtnUZY-l7pMlW21YgLMT9h2kxTpID0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS12ZWN0/b3IvcHJvZmlsZS1p/Y29uLW1hbGUtYXZh/dGFyXzQ4MzY5LTIx/MzEuanBnP3NpemU9/NjI2JmV4dD1qcGc",
-                                            name: "NANANANNANAANANANANA",
                                             time: "២​​ថ្ងៃមុន",
                                             descrition: "B sl soyb",
                                             image:
                                                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1UlqB6vnCeTu-AZ0dzsQrhdWr1h58XOqpUQ&usqp=CAU",
                                             commentCount: "40",
-                                            ontapProfile: () {
-                                              debugPrint("nice to meet you 01");
-                                            },
                                             tags: const ["2", "2", "2"],
                                             title: 'khmer sl khmer',
                                             likeCount: '30k',

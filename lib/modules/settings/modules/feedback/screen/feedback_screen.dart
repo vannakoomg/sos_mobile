@@ -26,6 +26,7 @@ class FeedBackScreen extends StatelessWidget {
                   onTap: () {
                     controller.submit(context);
                   },
+                  padding: const EdgeInsets.only(top: 2, left: 10, right: 10),
                   height: 30,
                   disble:
                       controller.description.value.length > 15 ? false : true,
@@ -48,7 +49,13 @@ class FeedBackScreen extends StatelessWidget {
                           children: [
                             Text(
                                 "សូមធ្វើការផ្តល់មតិកែលម្អដោយរអាម្មរណ៏ធម្មតាតែយ៉ាងហោចណាស់សូមមាន ១០​ពាក្យ ",
-                                style: Theme.of(context).textTheme.bodyLarge!),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary)),
                             const SizedBox(
                               height: 20,
                             ),
@@ -58,7 +65,7 @@ class FeedBackScreen extends StatelessWidget {
                               curve: Curves.ease,
                               duration: const Duration(milliseconds: 200),
                               child: CustomTextfield(
-                                radius: 15,
+                                radius: 25,
                                 hintText: "សូមរ៉ារាប់មក",
                                 onChanged: (value) {
                                   controller.description.value = value;

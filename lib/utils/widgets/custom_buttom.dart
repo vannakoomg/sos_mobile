@@ -8,13 +8,15 @@ class CustomButtom extends StatelessWidget {
   final double fountSize;
   final double height;
   final Color colors;
+  final Color borderColor;
   final EdgeInsets? padding;
   const CustomButtom({
     super.key,
     required this.title,
     required this.onTap,
-    this.height = 45,
+    this.height = 40,
     this.colors = Colors.pink,
+    this.borderColor = Colors.transparent,
     this.padding,
     this.disble = false,
     this.fountSize = 16,
@@ -27,23 +29,21 @@ class CustomButtom extends StatelessWidget {
         disble == false ? onTap!() : null;
       },
       child: AnimatedContainer(
-        padding: padding ?? const EdgeInsets.only(left: 10, right: 10),
+        padding: padding ??
+            const EdgeInsets.only(left: 12, right: 12, top: 6, bottom: 5),
         decoration: BoxDecoration(
-          // border: Border.all(color: AppColor.primaryColor),
-          color: disble == false ? colors : AppColor.textfourth,
-          borderRadius: BorderRadius.circular(100),
-        ),
+            color: disble == false ? colors : AppColor.textfourth,
+            borderRadius: BorderRadius.circular(100),
+            border: Border.all(color: borderColor)),
         height: height,
         curve: Curves.easeIn,
         duration: const Duration(milliseconds: 300),
-        child: Center(
-          child: Text(
-            "$title",
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(color: Colors.white, fontSize: fountSize),
-          ),
+        child: Text(
+          "$title",
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(color: Colors.white, fontSize: fountSize),
         ),
       ),
     );

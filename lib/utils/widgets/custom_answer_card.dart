@@ -65,8 +65,7 @@ class CustomAnswerCrad extends StatelessWidget {
                           },
                           child: CustomCachedImageCircle(image: image)),
                       const Gap(5),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Row(
                         children: [
                           Text(
                             name,
@@ -77,15 +76,17 @@ class CustomAnswerCrad extends StatelessWidget {
                                     color: AppColor.secondnaryColor,
                                     fontWeight: FontWeight.w600),
                           ),
-                          Text(
-                            time,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                  color: AppColor.textThird,
-                                ),
-                            overflow: TextOverflow.ellipsis,
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
+                            child: Text(
+                              time,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      color: AppColor.textThird, fontSize: 9),
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ],
                       ),
@@ -124,7 +125,7 @@ class CustomAnswerCrad extends StatelessWidget {
             if (image != '')
               CachedNetworkImage(
                 imageUrl: image,
-                height: 200,
+                height: MediaQuery.sizeOf(context).width / 2,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),

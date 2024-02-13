@@ -6,8 +6,10 @@ class ProfileInfoCard extends StatelessWidget {
   final TextEditingController title;
   final Function onChanged;
   final int maxlength;
+  final String hintText;
   const ProfileInfoCard({
     super.key,
+    required this.hintText,
     required this.title,
     required this.onChanged,
     required this.maxlength,
@@ -16,6 +18,12 @@ class ProfileInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextfield(
+      hintText: hintText,
+      hintTextStyle: Theme.of(context)
+          .textTheme
+          .titleSmall!
+          .copyWith(color: AppColor.textThird, fontSize: 16),
+      color: Colors.transparent,
       textAlign: TextAlign.center,
       maxLength: maxlength,
       textStyle: Theme.of(context)

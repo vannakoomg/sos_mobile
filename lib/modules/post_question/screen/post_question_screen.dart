@@ -61,6 +61,8 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                             CustomButtom(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, top: 4),
                               disble: controller.validationPost(),
                               title: "សូមសួរមួយ?",
                               onTap: () {
@@ -313,6 +315,8 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
                               ),
                             ),
                             CustomButtom(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, top: 2),
                               colors: const Color.fromARGB(255, 46, 134, 49),
                               title: "បាទ/ចាស",
                               fountSize: 12,

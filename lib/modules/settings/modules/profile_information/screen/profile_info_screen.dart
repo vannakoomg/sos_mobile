@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/settings/modules/profile_information/controller/profile_infomation_controller.dart';
 import 'package:sos_mobile/modules/settings/modules/profile_information/widgets/profile_info_card.dart';
+import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
 
 class ProfileInfoScreen extends StatefulWidget {
@@ -26,13 +27,8 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Profile",
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          backgroundColor: Theme.of(context).colorScheme.background,
-          centerTitle: true,
+        appBar: const CustomAppBar(
+          title: "Profile",
         ),
         body: Obx(() => controller.isLoading.value
             ? const Center(
@@ -57,7 +53,8 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                           width: MediaQuery.sizeOf(context).width / 3.5,
                           decoration: BoxDecoration(
                             border: Border.all(
-                                color: AppColor.secondnaryColor, width: 3),
+                                color: Theme.of(context).colorScheme.primary,
+                                width: 0.5),
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               image: imageProvider,
@@ -70,6 +67,7 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                     const Gap(20),
                     ProfileInfoCard(
                       maxlength: 30,
+                      hintText: "Enter Bio",
                       title: TextEditingController(text: "Bio"),
                       onChanged: (value) {
                         debugPrint("value $value");
@@ -77,6 +75,7 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                     ),
                     const Gap(10),
                     ProfileInfoCard(
+                      hintText: "Enter Name",
                       maxlength: 30,
                       title: TextEditingController(text: "vannak"),
                       onChanged: (value) {
@@ -85,6 +84,7 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                     ),
                     const Gap(10),
                     ProfileInfoCard(
+                      hintText: "Enter Bio",
                       maxlength: 30,
                       title: TextEditingController(text: "vannak123"),
                       onChanged: (value) {

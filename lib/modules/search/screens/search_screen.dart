@@ -54,7 +54,11 @@ class _SearchScreenState extends State<SearchScreen> {
                                         Text("ពេញនិយមក្នុងការស្វ័យរក",
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .titleSmall!),
+                                                .titleSmall!
+                                                .copyWith(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .tertiary)),
                                         Expanded(
                                           child: GridView.builder(
                                             itemCount: controller

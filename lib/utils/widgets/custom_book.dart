@@ -8,12 +8,16 @@ class CustomBook extends StatelessWidget {
   final String image;
   final double height;
   final double width;
+  final double size;
+  final Color? color;
   const CustomBook({
     super.key,
     this.title = "",
+    this.size = 3,
     required this.ontap,
     this.image = "",
     required this.height,
+    this.color,
     required this.width,
   });
 
@@ -30,7 +34,8 @@ class CustomBook extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColor.mainColor,
               borderRadius: BorderRadius.circular(5),
-              border: Border.all(color: AppColor.primaryColor),
+              border: Border.all(
+                  color: color ?? Theme.of(context).colorScheme.onTertiary),
             ),
           ),
         ),
@@ -43,7 +48,8 @@ class CustomBook extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColor.mainColor,
               borderRadius: BorderRadius.circular(5),
-              border: Border.all(color: AppColor.primaryColor),
+              border: Border.all(
+                  color: color ?? Theme.of(context).colorScheme.onTertiary),
             ),
           ),
         ),
@@ -53,7 +59,8 @@ class CustomBook extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColor.mainColor,
             borderRadius: BorderRadius.circular(5),
-            border: Border.all(color: AppColor.primaryColor),
+            border: Border.all(
+                color: color ?? Theme.of(context).colorScheme.onSecondary),
           ),
           child: image != ''
               ? CustomCachedImageCircle(
@@ -74,7 +81,7 @@ class CustomBook extends StatelessWidget {
           child: Text(
             title,
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                  fontSize: 10,
+                  fontSize: size == 3 ? 10 : 6,
                   color: AppColor.primaryColor,
                 ),
           ),

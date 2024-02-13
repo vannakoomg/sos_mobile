@@ -65,10 +65,9 @@ class CustomTextfield extends StatelessWidget {
         autofocus: autofocus,
         controller: textEditController,
         style: textStyle ??
-            Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(color: AppColor.mainColor),
+            Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                ),
         onChanged: (value) {
           onChanged!(value);
         },
@@ -110,9 +109,9 @@ class CustomTextfield extends StatelessWidget {
             isDense: isDense,
             hintStyle: hintTextStyle ??
                 Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    fontWeight: FontWeight.w400,
-                    color: AppColor.mainColor,
-                    fontSize: 14)),
+                      fontWeight: FontWeight.w400,
+                      color: Theme.of(context).colorScheme.onTertiary,
+                    )),
         maxLines: maxLines == 0 ? null : maxLines,
       ),
     );

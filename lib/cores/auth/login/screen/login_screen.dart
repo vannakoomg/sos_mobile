@@ -54,7 +54,6 @@ class LoginScreen extends StatelessWidget {
                 margin: const EdgeInsets.only(
                     left: 30, right: 30, top: 100, bottom: 30),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Spacer(),
@@ -62,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                       high: 60,
                       hintText: "Gmail.com",
                       onChanged: (value) {
-                        controller.checkValidation();
+                        controller.email.value = value;
                       },
                       textEditController: controller.emailText.value,
                     ),
@@ -72,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                     CustomTextfield(
                       hintText: "ពាក្យសម្ងាត់",
                       onChanged: (value) {
-                        controller.checkValidation();
+                        controller.password.value = value;
                       },
                       textEditController:
                           controller.passwordTextEditController.value,
@@ -105,13 +104,12 @@ class LoginScreen extends StatelessWidget {
                         controller.login().then((value) => {
                               if (controller.loginSuccess.value)
                                 {
-                                  context.go('/home'),
+                                  context.goNamed('/home'),
                                 }
                             });
                       },
                       disble: controller.checkValidation(),
                     ),
-
                     // const Gap(20),
                     // Container(
                     //   padding: const EdgeInsets.only(left: 5, right: 5),

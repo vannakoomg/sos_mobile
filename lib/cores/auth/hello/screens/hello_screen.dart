@@ -40,21 +40,21 @@ class HelloScreen extends StatelessWidget {
             ),
           ),
           Container(
+            width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
             child: Column(children: [
               const Spacer(),
               CustomButtom(
                   title: "Login",
                   onTap: () {
-                    context.go('/hello/login-screen');
+                    context.goNamed("login-screen");
                   }),
               const Gap(10),
               CustomButtom(
                 title: "Create Account",
                 onTap: () {
-                  context.go('/hello/create-account');
+                  context.goNamed('create-account');
                 },
-                // colors: AppColor.mainColor,
               ),
             ]),
           ),

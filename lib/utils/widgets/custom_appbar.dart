@@ -12,12 +12,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return PreferredSize(
       preferredSize: const Size.fromHeight(60.0), // Adjust the height as needed
       child: AppBar(
+        leadingWidth: 40,
         leading: const CustomBack(),
         backgroundColor: Theme.of(context).colorScheme.background,
         centerTitle: true,
         title: Text(
           title,
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(color: Theme.of(context).colorScheme.tertiary),
         ),
         actions: [action],
       ),

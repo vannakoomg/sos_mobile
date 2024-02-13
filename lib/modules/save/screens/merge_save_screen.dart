@@ -77,9 +77,9 @@ class _MergeSaveScreenState extends State<MergeSaveScreen> {
                                 ? GestureDetector(
                                     onTap: () {
                                       controller.mergeSaveCategory(
-                                        fromId: widget.categoryId,
-                                        toId: e.value.id.toString(),
-                                      );
+                                          fromId: widget.categoryId,
+                                          toId: e.value.id.toString(),
+                                          context: context);
                                     },
                                     child: Container(
                                       margin: const EdgeInsets.only(bottom: 5),

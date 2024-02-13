@@ -24,6 +24,9 @@ dependencies:
   dio: ^5.4.0
   top_snackbar_flutter: ^3.1.0
   lite_rolling_switch: ^1.0.1
+  flutter_svg: ^2.0.9
+  gallery_saver: ^2.3.2
+
 
 
 

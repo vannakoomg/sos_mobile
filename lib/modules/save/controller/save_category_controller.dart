@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
+import 'package:sos_mobile/utils/widgets/custom_comfirm_yes_no.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -80,24 +81,44 @@ class SaveCategoryController extends GetxController {
     }
   }
 
-  Future mergeSaveCategory({String? fromId, String? toId}) async {
-    ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
-        url: "/v1/save-category/merge",
-        methode: METHODE.post,
-        isAuthorize: true,
-        body: {
-          "from": fromId,
-          "to": toId,
-        }).then(
-      (value) {
-        debugPrint("done =================>");
-        isloading.value = false;
-        router.pop();
-      },
-    ).onError((error, stackTrace) {
-      debugPrint("on catch =================>");
-      isloading.value = false;
-    });
+  Future mergeSaveCategory(
+      {String? fromId, String? toId, BuildContext? context}) async {
+    showModalBottomSheet(
+        context: context!,
+        isScrollControlled: false,
+        builder: ((context) {
+          return CustomComfirmYesNo(
+            title: "Do Went To Meger The Book ?",
+            subTitle:
+                "Meger book mean that question in book 1 with cute to book 2",
+            ontapYes: () {
+              isloading.value = true;
+              ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
+                  url: "/v1/save-category/merge",
+                  methode: METHODE.post,
+                  isAuthorize: true,
+                  body: {
+                    "from": fromId,
+                    "to": toId,
+                  }).then(
+                (value) {
+                  debugPrint("done =================>");
+                  isloading.value = false;
+                  router.pop();
+                  Future.delayed(const Duration(milliseconds: 200), () {
+                    router.pop();
+                    Future.delayed(const Duration(milliseconds: 200), () {
+                      router.pop();
+                    });
+                  });
+                },
+              ).onError((error, stackTrace) {
+                debugPrint("on catch =================>");
+                isloading.value = false;
+              });
+            },
+          );
+        }));
   }
 
   Future deleteSaveCategory({String? id}) async {

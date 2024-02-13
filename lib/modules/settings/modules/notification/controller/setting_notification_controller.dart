@@ -6,31 +6,31 @@ class SettingNotificationController extends GetxController {
   final notificationData = <SettingCardModel>[
     SettingCardModel(
       description: "Notification",
-      subtitle: "On",
+      subtitle: "បើក",
       title: "Like",
       columName: "notification",
     ),
     SettingCardModel(
       description: "Allow Notification Like",
-      subtitle: "On",
+      subtitle: "បើក",
       title: "Like",
       columName: "notification_like",
     ),
     SettingCardModel(
       description: "Allow every one see your count",
-      subtitle: "On",
+      subtitle: "បើក",
       title: "Comment",
       columName: "notification_comment",
     ),
     SettingCardModel(
       description: "Allow every one see your the Question You Answer ",
-      subtitle: "on",
+      subtitle: "បើក",
       title: "Answer",
       columName: "notification_answer",
     ),
     SettingCardModel(
       description: "Allow every one see your the Question You Ask ",
-      subtitle: "Ask",
+      subtitle: "បើក",
       title: "Conrrect Answer",
       columName: "notification_correct",
     ),

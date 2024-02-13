@@ -25,6 +25,7 @@ class _CreateSaveScreenState extends State<CreateSaveScreen> {
         appBar: CustomAppBar(
           title: "បង្កើតសៀវភៅ",
           action: CustomButtom(
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 3),
             disble: controller.bookName.value == '' ? true : false,
             title: "បង្កើត",
             onTap: () {
@@ -80,20 +81,19 @@ class _CreateSaveScreenState extends State<CreateSaveScreen> {
                                         ),
                                 ),
                                 child: Text(controller.bookName.value,
-                                    style: Theme.of(context).textTheme.bodySmall
-                                    // overflow: TextOverflow.ellipsis,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall),
                               ),
                             ),
                             Positioned(
-                              right: 10,
-                              top: 0,
+                              right: 15,
+                              top: 2,
                               child: GestureDetector(
                                 onTap: () {
                                   controller.coverBook.value = File('');
                                 },
                                 child: Container(
-                                  padding: const EdgeInsets.all(5),
+                                  padding: const EdgeInsets.all(1),
                                   decoration: BoxDecoration(
                                       color: AppColor.textfourth,
                                       shape: BoxShape.circle),
@@ -124,7 +124,7 @@ class _CreateSaveScreenState extends State<CreateSaveScreen> {
                           .textTheme
                           .bodyLarge!
                           .copyWith(
-                              color: Theme.of(context).colorScheme.onTertiary,
+                              color: Theme.of(context).colorScheme.onSecondary,
                               fontSize: 18),
                       contentPadding: EdgeInsets.zero,
                       autofocus: true,

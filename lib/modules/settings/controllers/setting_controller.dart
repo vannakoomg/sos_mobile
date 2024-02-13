@@ -52,10 +52,6 @@ class SettingController extends GetxController {
       title: 'ជំនួយ',
     ),
     SettingRouterModel(
-      router: '/hom/setting/',
-      title: 'មតិកែលម្អ',
-    ),
-    SettingRouterModel(
       router: 'feedback',
       title: 'មតិកែលម្អ',
     ),

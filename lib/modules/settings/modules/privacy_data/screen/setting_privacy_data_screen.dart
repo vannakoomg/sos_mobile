@@ -31,14 +31,13 @@ class _SettingPricacyDataState extends State<SettingPricacyData> {
         ),
         body: Obx(
           () => Container(
-            margin: const EdgeInsets.only(left: 10),
+            margin: const EdgeInsets.only(left: 20),
             child: Column(
                 children: controller.privacyData.asMap().entries.map((e) {
               return Column(
                 children: [
                   OffOnSettingCard(
                       title: e.value.title!,
-                      subTitle: e.value.subtitle!,
                       ontap: () {
                         if (settingController.listOfPrivacy[e.key] == 0) {
                           settingController.listOfPrivacy[e.key] = 1;

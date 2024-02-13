@@ -39,7 +39,7 @@ class CreateAccountController extends GetxController {
   void onChanged({String value = '', required BuildContext context}) {
     if (value.length == 4) {
       clearValue();
-      router.go('/hello/create-account/otp/select-subject');
+      router.goNamed('select-subject');
     }
   }
 
@@ -77,7 +77,7 @@ class CreateAccountController extends GetxController {
               key: 'access_token', value: value['access_token'])
           .then((value) {
         isloading.value = false;
-        router.go('/home');
+        router.goNamed('/home');
       });
     }).onError((error, stackTrace) {
       debugPrint("onchaeafkdf");

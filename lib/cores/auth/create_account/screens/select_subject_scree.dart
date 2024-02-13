@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/cores/auth/create_account/controllers/create_account_controller.dart';
@@ -39,118 +40,124 @@ class SeletctSubjectScreen extends StatelessWidget {
                       painter: Paint06(),
                     )),
                 SafeArea(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const CustomBack(),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Text("រើសមុខវិជ្ជាដែលអ្នកចូលចិត្ត",
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const CustomBack(),
+                        const Gap(10),
+                        Text("រើសមុខវិជ្ជាដែលអ្នកចូលចិត្ត",
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge!
                                 .copyWith(color: AppColor.primaryColor)),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.only(
-                              left: 15, right: 15, top: 15),
+                        Expanded(
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Wrap(
-                                  spacing: 15,
-                                  runSpacing: 15,
-                                  children: controller.subject.value.data!
-                                      .asMap()
-                                      .entries
-                                      .map((e) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        if (controller.selectedSucject[e.key] !=
-                                            e.key) {
-                                          controller.numberSelect.value++;
-                                          controller.selectedSucject[e.key] =
-                                              e.key;
-                                          controller.selectSubjectSubmit
-                                              .add(e.value.id);
-                                        } else {
-                                          controller.numberSelect.value--;
-                                          controller.selectSubjectSubmit
-                                              .remove(e.value.id);
-                                          controller.selectedSucject[e.key] =
-                                              -1;
-                                        }
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.only(
-                                            left: 30, right: 30),
-                                        decoration: BoxDecoration(
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  spreadRadius: 1.9,
-                                                  offset: const Offset(8, 3),
-                                                  color:
-                                                      controller.selectedSucject[e
-                                                                  .key] ==
-                                                              e.key
-                                                          ? AppColor
-                                                              .secondnaryColor
-                                                              .withOpacity(0.0)
-                                                          : Theme.of(context)
-                                                              .colorScheme
-                                                              .primary
-                                                              .withOpacity(0.5),
-                                                  blurRadius: 10)
-                                            ],
-                                            color: controller.selectedSucject[
-                                                        e.key] ==
-                                                    e.key
-                                                ? AppColor.secondnaryColor
-                                                : Theme.of(context)
-                                                    .colorScheme
-                                                    .background,
-                                            borderRadius:
-                                                BorderRadius.circular(50)),
-                                        height: 45,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              e.value.title!,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .titleMedium!
-                                                  .copyWith(
-                                                      color:
-                                                          AppColor.primaryColor,
-                                                      fontSize: 17),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  }).toList()),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  padding: const EdgeInsets.only(
+                                      left: 15, right: 15, top: 15),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Wrap(
+                                          spacing: 15,
+                                          runSpacing: 15,
+                                          children: controller
+                                              .subject.value.data!
+                                              .asMap()
+                                              .entries
+                                              .map((e) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                if (controller.selectedSucject[
+                                                        e.key] !=
+                                                    e.key) {
+                                                  controller
+                                                      .numberSelect.value++;
+                                                  controller.selectedSucject[
+                                                      e.key] = e.key;
+                                                  controller.selectSubjectSubmit
+                                                      .add(e.value.id);
+                                                } else {
+                                                  controller
+                                                      .numberSelect.value--;
+                                                  controller.selectSubjectSubmit
+                                                      .remove(e.value.id);
+                                                  controller.selectedSucject[
+                                                      e.key] = -1;
+                                                }
+                                              },
+                                              child: Container(
+                                                padding: const EdgeInsets.only(
+                                                    left: 30, right: 30),
+                                                decoration: BoxDecoration(
+                                                    color:
+                                                        controller.selectedSucject[e
+                                                                    .key] ==
+                                                                e.key
+                                                            ? AppColor
+                                                                .secondnaryColor
+                                                            : Theme.of(context)
+                                                                .colorScheme
+                                                                .background,
+                                                    border: Border.all(
+                                                        color: AppColor
+                                                            .primaryColor,
+                                                        width: 0.5),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50)),
+                                                height: 45,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      e.value.title!,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleMedium!
+                                                          .copyWith(
+                                                              color: controller.selectedSucject[e
+                                                                          .key] ==
+                                                                      e.key
+                                                                  ? AppColor
+                                                                      .primaryColor
+                                                                  : AppColor
+                                                                      .textThird,
+                                                              fontSize: 17),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          }).toList()),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  padding: const EdgeInsets.only(
+                                      left: 30, right: 30, bottom: 30),
+                                  child: CustomButtom(
+                                    disble: controller.numberSelect.value > 0
+                                        ? false
+                                        : true,
+                                    title: "យល់ព្រម",
+                                    onTap: () {
+                                      controller.createAccount();
+                                    },
+                                    // colors: Theme.of(context).colorScheme.primary,
+                                  ))
                             ],
                           ),
-                        ),
-                      ),
-                      Container(
-                          padding: const EdgeInsets.only(
-                              left: 30, right: 30, bottom: 30),
-                          child: CustomButtom(
-                            disble: controller.numberSelect.value > 0
-                                ? false
-                                : true,
-                            title: "យល់ព្រម",
-                            onTap: () {
-                              controller.createAccount();
-                            },
-                            // colors: Theme.of(context).colorScheme.primary,
-                          ))
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 if (controller.isloading.value)

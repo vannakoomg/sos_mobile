@@ -30,14 +30,13 @@ class _SettingNotificationScreenState extends State<SettingNotificationScreen> {
         ),
         body: Obx(
           () => Container(
-            margin: const EdgeInsets.only(left: 10),
+            margin: const EdgeInsets.only(left: 10, right: 10),
             child: Column(
                 children: controller.notificationData.asMap().entries.map((e) {
               return Column(
                 children: [
                   OffOnSettingCard(
                       title: e.value.title!,
-                      subTitle: e.value.subtitle!,
                       ontap: () {
                         if (settingController.listOfNotification[e.key] == 0) {
                           settingController.listOfNotification[e.key] = 1;

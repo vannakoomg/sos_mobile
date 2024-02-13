@@ -21,7 +21,6 @@ class NotificationScreen extends StatelessWidget {
             right: 5,
           ),
           child: Column(children: [
-            // const Gap(10),
             Expanded(
               child: ListView.builder(
                 itemCount: 40,

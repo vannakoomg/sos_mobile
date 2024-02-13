@@ -33,18 +33,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ThemeCard(
-                    isTure: false,
-                    ontap: () {},
-                    subtilte: 'បើក',
-                    title: 'ពេញចិត្តពេលចុចពីរដង',
-                  ),
-                  ThemeCard(
-                    isTure: false,
-                    ontap: () {},
-                    subtilte: 'បើក',
-                    title: 'ពេញចិត្តពេលចុចពីរដង',
-                  ),
                   GestureDetector(
                     onTap: () {
                       controller.changeTheme();
