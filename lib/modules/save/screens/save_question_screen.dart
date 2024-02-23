@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/route/route.dart';
-import 'package:sos_mobile/modules/save/controller/save_category_controller.dart';
+import 'package:sos_mobile/modules/save/controller/category_controller.dart';
 import 'package:sos_mobile/modules/save/controller/save_controller.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/widgets/custom_book.dart';
@@ -71,7 +71,7 @@ class _CreateSaveState extends State<CreateSave> {
                       Text(
                         "សៀវភៅរបស់អ្នក",
                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                            color: Theme.of(context).colorScheme.onTertiary),
+                            color: Theme.of(context).colorScheme.onSecondary),
                       ),
                       const Gap(20),
                       Expanded(
@@ -109,7 +109,7 @@ class _CreateSaveState extends State<CreateSave> {
                                           .copyWith(
                                               color: Theme.of(context)
                                                   .colorScheme
-                                                  .onTertiary),
+                                                  .onSecondary),
                                       overflow: TextOverflow.ellipsis,
                                     )),
                                   ],

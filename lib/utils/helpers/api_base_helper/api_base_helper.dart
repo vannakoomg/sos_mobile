@@ -14,7 +14,7 @@ enum METHODE {
   get,
   post,
   delete,
-  update,
+  put,
 }
 
 class ApiBaseHelper {
@@ -32,9 +32,8 @@ class ApiBaseHelper {
     required METHODE? methode,
     required bool isAuthorize,
     String base = '',
-    // String baseUrl = '',
   }) async {
-    // if (baseUrl != '') baseurl = baseUrl;
+    debugPrint("body $body");
     final token = await LocalStorage.getStringValue(key: 'access_token');
     final fullUrl = base == '' ? baseUrl + url : base + url;
     Map<String, String> headerDefault = {
@@ -46,17 +45,23 @@ class ApiBaseHelper {
       switch (methode) {
         case METHODE.get:
           final response = await dio.get(fullUrl,
-              options: Options(
-                headers: header ?? headerDefault,
-              ),
-              data: body);
+              options: Options(headers: header ?? headerDefault), data: body);
           return _returnResponse(response);
         case METHODE.post:
           final response = await dio.post(fullUrl,
               options: Options(headers: header ?? headerDefault),
               data: body ?? {});
           return _returnResponse(response);
-
+        case METHODE.put:
+          final response = await dio.put(fullUrl,
+              options: Options(headers: header ?? headerDefault),
+              data: body ?? {});
+          return _returnResponse(response);
+        case METHODE.delete:
+          final response = await dio.put(fullUrl,
+              options: Options(headers: header ?? headerDefault),
+              data: body ?? {});
+          return _returnResponse(response);
         default:
           break;
       }

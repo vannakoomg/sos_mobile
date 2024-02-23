@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/configs/route/route.dart';
-import 'package:sos_mobile/modules/save/controller/save_category_controller.dart';
+import 'package:sos_mobile/modules/save/controller/category_controller.dart';
+import 'package:sos_mobile/modules/save/screens/edit_category_screen.dart';
 import 'package:sos_mobile/modules/save/screens/merge_save_screen.dart';
 
 class OptionSaveCategory extends StatelessWidget {
   final String categoryId;
   final int count;
+  final String id;
   const OptionSaveCategory({
     super.key,
     required this.categoryId,
     required this.count,
+    required this.id,
   });
 
   @override
@@ -64,7 +67,22 @@ class OptionSaveCategory extends StatelessWidget {
                 ),
               ),
             GestureDetector(
-              onTap: () {},
+              onTap: () async {
+                router.pop();
+                await Future.delayed(const Duration(milliseconds: 100), () {
+                  showModalBottomSheet(
+                    context: context,
+                    useSafeArea: true,
+                    isScrollControlled: true,
+                    builder: ((context) {
+                      return EditCategoryScreen(
+                        coverUrl: "",
+                        id: id,
+                      );
+                    }),
+                  );
+                });
+              },
               child: Container(
                 padding: const EdgeInsets.all(15),
                 color: Colors.transparent,

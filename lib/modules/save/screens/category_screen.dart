@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/modules/save/controller/save_category_controller.dart';
+import 'package:sos_mobile/modules/save/controller/category_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
 
 class SaveCategoryScreen extends StatefulWidget {
@@ -17,6 +17,8 @@ class _SaveCategoryScreenState extends State<SaveCategoryScreen> {
   final controller = Get.put(SaveCategoryController());
   @override
   void initState() {
+    controller.fetchSaveCategory();
+
     super.initState();
   }
 
@@ -53,12 +55,16 @@ class _SaveCategoryScreenState extends State<SaveCategoryScreen> {
                               itemBuilder: (BuildContext context, int index) {
                                 return GestureDetector(
                                   onTap: () {
+                                    controller.title.value = controller
+                                            .saveCategory
+                                            .value
+                                            .data![index]
+                                            .name ??
+                                        "";
+                                    controller.index.value = index;
                                     context.goNamed(
                                       'save-detail',
                                       pathParameters: {
-                                        "title": controller.saveCategory.value
-                                                .data![index].name ??
-                                            "",
                                         "id": controller
                                             .saveCategory.value.data![index].id
                                             .toString()

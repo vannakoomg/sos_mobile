@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/modules/save/controller/save_category_controller.dart';
+import 'package:sos_mobile/modules/save/controller/category_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
 import 'package:sos_mobile/utils/widgets/custom_textfield.dart';
 
@@ -19,19 +19,20 @@ class CreateSaveScreen extends StatefulWidget {
 
 class _CreateSaveScreenState extends State<CreateSaveScreen> {
   final controller = Get.put(SaveCategoryController());
+
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
         appBar: CustomAppBar(
           title: "បង្កើតសៀវភៅ",
           action: CustomButtom(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 3),
             disble: controller.bookName.value == '' ? true : false,
             title: "បង្កើត",
             onTap: () {
               controller.createSaveCategory(context);
             },
             fountSize: 14,
+            white: 60,
             height: 30,
           ),
         ),
@@ -45,12 +46,12 @@ class _CreateSaveScreenState extends State<CreateSaveScreen> {
                     Text(
                       "ក្រាប់សៀវភៅ",
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.onTertiary),
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                     const Gap(20),
                     GestureDetector(
                       onTap: () {
-                        controller.getCoverBook();
+                        controller.getCoverBook().then((value) {});
                       },
                       child: SizedBox(
                         // color: Colors.red,
@@ -71,7 +72,7 @@ class _CreateSaveScreenState extends State<CreateSaveScreen> {
                                       color: Theme.of(context)
                                           .colorScheme
                                           .onTertiary),
-                                  borderRadius: BorderRadius.circular(15),
+                                  borderRadius: BorderRadius.circular(10),
                                   image: controller.coverBook.value.path == ""
                                       ? null
                                       : DecorationImage(
@@ -118,7 +119,7 @@ class _CreateSaveScreenState extends State<CreateSaveScreen> {
                           .textTheme
                           .bodyLarge!
                           .copyWith(
-                              color: Theme.of(context).colorScheme.onTertiary,
+                              color: Theme.of(context).colorScheme.onSecondary,
                               fontSize: 18),
                       textStyle: Theme.of(context)
                           .textTheme

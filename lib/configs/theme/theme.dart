@@ -1,5 +1,8 @@
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
+
+DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
 ThemeData lightMode = ThemeData(
   textSelectionTheme: TextSelectionThemeData(
@@ -53,6 +56,7 @@ ThemeData lightMode = ThemeData(
     ),
   ),
 );
+
 ThemeData darkMode = ThemeData(
   colorScheme: const ColorScheme.dark(
     background: Colors.black,
@@ -61,7 +65,7 @@ ThemeData darkMode = ThemeData(
     tertiary: Color.fromARGB(255, 207, 207, 207),
     onPrimary: Color.fromARGB(255, 198, 198, 198),
     onSecondary: Color.fromARGB(255, 111, 111, 111),
-    onTertiary: Color.fromARGB(255, 51, 51, 51),
+    onTertiary: Color.fromARGB(255, 24, 24, 24),
   ),
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: AppColor.secondnaryColor.withOpacity(0.6),

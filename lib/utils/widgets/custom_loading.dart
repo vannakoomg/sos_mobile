@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
 class CustomLoading extends StatelessWidget {
   const CustomLoading({super.key});
@@ -13,7 +14,7 @@ class CustomLoading extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all(
               width: 0.5,
-              color: Theme.of(context).colorScheme.primary,
+              color: AppColor.textfourth,
             ),
             shape: BoxShape.circle),
         child: Image.asset(

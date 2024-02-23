@@ -10,6 +10,7 @@ class HomeContoller extends GetxController {
   final controller = Get.put(AppController());
   final questionData = QuestionModelData().obs;
   final question = <QuestionModel>[].obs;
+  final isShowBottonNavigettion = true.obs;
   final scrollPixel = 0.0.obs;
   final oldScrollPixel = 0.0.obs;
   final oldScrollback = 0.0.obs;

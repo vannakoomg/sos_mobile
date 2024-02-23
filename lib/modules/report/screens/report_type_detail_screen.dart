@@ -21,7 +21,9 @@ class _ReportTypeDetailScreenState extends State<ReportTypeDetailScreen> {
 
   @override
   void initState() {
-    controller.fetchReportTypeDetail(widget.id);
+    Future.delayed(const Duration(milliseconds: 100), () {
+      controller.fetchReportTypeDetail(widget.id);
+    });
     super.initState();
   }
 
@@ -47,36 +49,33 @@ class _ReportTypeDetailScreenState extends State<ReportTypeDetailScreen> {
                     .bodyLarge!
                     .copyWith(fontSize: 20, color: AppColor.textThird),
               ),
-              Expanded(
-                child: controller.isloading.value
-                    ? const Center(
-                        child: CustomLoading(),
-                      )
-                    : SingleChildScrollView(
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: Column(
-                            children: controller.reportTypeDetail.value.data!
-                                .map((e) {
-                              return GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  alignment: Alignment.centerLeft,
-                                  padding: const EdgeInsets.all(8),
-                                  color: Colors.transparent,
-                                  child: Text(
-                                    "${e.name}",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        ),
+              !controller.isloading.value
+                  ? Expanded(
+                      child: SingleChildScrollView(
+                          child: SizedBox(
+                      width: double.infinity,
+                      child: Column(
+                        children:
+                            controller.reportTypeDetail.value.data!.map((e) {
+                          return GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              padding: const EdgeInsets.all(8),
+                              color: Colors.transparent,
+                              child: Text(
+                                "${e.name}",
+                                style: Theme.of(context).textTheme.titleMedium!,
+                              ),
+                            ),
+                          );
+                        }).toList(),
                       ),
-              ),
+                    )))
+                  : const Expanded(
+                      child: Center(
+                      child: CustomLoading(),
+                    )),
               CustomButtom(
                   title: "Close",
                   onTap: () {

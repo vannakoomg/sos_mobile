@@ -1,8 +1,8 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
+import 'package:gap/gap.dart';
+import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
 
 import '../models/notification_model.dart';
 
@@ -17,28 +17,22 @@ class NotificationCard extends StatelessWidget {
       onTap: () {},
       child: Container(
         margin: const EdgeInsets.only(top: 5),
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+        padding: const EdgeInsets.only(top: 5, bottom: 5),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary,
+          color: Theme.of(context).colorScheme.background,
           border: Border.all(),
           borderRadius: BorderRadius.circular(30),
         ),
         child: Row(children: [
-          Container(
-              height: 40,
-              width: 40,
-              clipBehavior: Clip.antiAlias,
-              margin: const EdgeInsets.only(right: 10),
-              decoration: const BoxDecoration(
-                color: Colors.green,
-                shape: BoxShape.circle,
-              ),
-              child: CachedNetworkImage(
-                imageUrl: notification!.image ?? '',
-                fit: BoxFit.cover,
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              )),
+          CustomCachedImageCircle(
+            image: notification!.image ?? '',
+            border: Border.all(
+              color: Theme.of(context).colorScheme.primary,
+              width: 0.5,
+            ),
+          ),
+          const Gap(10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,10 +42,9 @@ class NotificationCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         notification!.name ?? '',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: AppColor.mainColor),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
                       ),
                     ),
                     Padding(

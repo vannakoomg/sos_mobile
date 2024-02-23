@@ -48,7 +48,6 @@ class CustomComfirmYesNo extends StatelessWidget {
           const Gap(10),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             CustomButtom(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
               colors: AppColor.dangerColor,
               title: "No",
               onTap: () async {
@@ -60,7 +59,6 @@ class CustomComfirmYesNo extends StatelessWidget {
               },
             ),
             CustomButtom(
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                 title: "Yes",
                 colors: AppColor.successColor,
                 onTap: () async {

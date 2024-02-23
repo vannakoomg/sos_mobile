@@ -3,14 +3,21 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sos_mobile/modules/home/controllers/home_controller.dart';
 import 'package:sos_mobile/modules/post_question/models/tag_model.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
 
 class PostQuestionController extends GetxController {
+  final homeController = Get.put(HomeContoller());
+  final isDisble = true.obs;
+  final isloading = false.obs;
   final image = File('').obs;
   final selectTags = <Tags>[].obs;
   final index = 0.obs;
   final tagtext = ''.obs;
+  final title = ''.obs;
+
+  final description = ''.obs;
   final titleTextEditController = TextEditingController().obs;
   final descriptionTextController = TextEditingController().obs;
   final tagTextController = TextEditingController().obs;
@@ -47,7 +54,12 @@ class PostQuestionController extends GetxController {
   }
 
   bool validationPost() {
-    if (selectTags.isNotEmpty && titleTextEditController.value.text != '') {
+    if ((selectTags.isNotEmpty &&
+            title.value != '' &&
+            image.value.path != "") ||
+        (selectTags.isNotEmpty &&
+            title.value != '' &&
+            description.value != "")) {
       return false;
     } else {
       return true;
@@ -100,10 +112,69 @@ class PostQuestionController extends GetxController {
   final listSelect = [];
 
   Future postQuestion() async {
+    isloading.value = true;
+    homeController.isShowBottonNavigettion.value = false;
     listSelect.clear();
     for (int i = 0; i < selectTags.length; ++i) {
       listSelect.add(selectTags[i].id);
     }
-    debugPrint("select list $listSelect");
+    ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
+        url: "/v1/question",
+        methode: METHODE.post,
+        isAuthorize: true,
+        body: {
+          "title": title.value,
+          "description": description.value,
+          "tags": listSelect,
+          "image": "example image"
+        }).then(
+      (value) {
+        debugPrint("your question $value");
+        listSelect.clear();
+        selectTags.clear();
+        title.value = "";
+        description.value = "";
+        titleTextEditController.value = TextEditingController();
+        descriptionTextController.value = TextEditingController();
+        image.value = File("");
+        isloading.value = false;
+        isDisble.value = true;
+        homeController.isShowBottonNavigettion.value = true;
+      },
+    ).onError((error, stackTrace) {
+      isloading.value = false;
+      homeController.isShowBottonNavigettion.value = true;
+    });
+  }
+
+  Future updateQuestion(int id) async {
+    ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
+        url: "/v1/question/$id",
+        methode: METHODE.put,
+        isAuthorize: true,
+        body: {
+          "title": title.value,
+          "description": description.value,
+          // "tags": listSelect,
+          "image": "example image"
+        }).then(
+      (value) {
+        debugPrint("your question $value");
+      },
+    );
+  }
+
+  Future deleteQuestion(int id) async {
+    ApiBaseHelper.apiBaseHelper
+        .onNetworkRequesting(
+      url: "/v1/question/$id",
+      methode: METHODE.delete,
+      isAuthorize: true,
+    )
+        .then(
+      (value) {
+        debugPrint("your question $value");
+      },
+    );
   }
 }

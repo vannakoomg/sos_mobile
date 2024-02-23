@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/modules/save/controller/save_category_controller.dart';
+import 'package:sos_mobile/modules/save/controller/category_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
 
 class SaveScreen extends StatefulWidget {

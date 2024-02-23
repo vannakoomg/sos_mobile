@@ -26,7 +26,6 @@ class FeedBackScreen extends StatelessWidget {
                   onTap: () {
                     controller.submit(context);
                   },
-                  padding: const EdgeInsets.only(top: 2, left: 10, right: 10),
                   height: 30,
                   disble:
                       controller.description.value.length > 15 ? false : true,

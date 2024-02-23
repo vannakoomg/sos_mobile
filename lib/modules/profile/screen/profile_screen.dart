@@ -94,16 +94,14 @@ class _OwnProfileScreenState extends State<OwnProfileScreen> {
                             router.goNamed('setting');
                           },
                           child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: AppColor.textfourth),
-                            ),
+                            color: Colors.transparent,
+                            height: 35,
+                            width: 35,
                             child: Center(
                               child: Icon(
                                 Icons.settings_rounded,
-                                color: Theme.of(context).colorScheme.onTertiary,
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary,
                                 size: 23,
                               ),
                             ),

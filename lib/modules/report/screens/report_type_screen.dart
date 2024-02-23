@@ -26,6 +26,7 @@ class _ReportTypeScreenState extends State<ReportTypeScreen> {
   Widget build(BuildContext context) {
     return Obx(() => Container(
           height: 300,
+          width: double.infinity,
           padding:
               const EdgeInsets.only(left: 2, right: 2, top: 20, bottom: 20),
           decoration: BoxDecoration(

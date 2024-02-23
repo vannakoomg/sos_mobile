@@ -36,6 +36,7 @@ class ReportController extends GetxController {
   }
 
   Future fetchReportTypeDetail(int id) async {
+    isloading.value = true;
     ApiBaseHelper.apiBaseHelper
         .onNetworkRequesting(
       url: "/v1/report-type/$id",
@@ -44,6 +45,7 @@ class ReportController extends GetxController {
     )
         .then((value) {
       reportTypeDetail.value = ListIdNameModel.fromJson(value);
+      isloading.value = false;
       debugPrint("report type $value");
     });
   }

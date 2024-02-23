@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 400),
                       margin: const EdgeInsets.only(top: 8, left: 0, right: 0),
-                      height: 40,
+                      height: 35,
                       curve: Curves.ease,
                       width: controller.isForYou.value == false
                           ? MediaQuery.of(context).size.width
@@ -63,8 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       decoration: BoxDecoration(
                         border: Border.all(
                             color: !controller.isForYou.value
-                                ? Theme.of(context).colorScheme.onTertiary
-                                : AppColor.secondnaryColor),
+                                ? Theme.of(context).colorScheme.onSecondary
+                                : Colors.transparent),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Stack(
@@ -72,18 +72,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           AnimatedPositioned(
                             duration: const Duration(milliseconds: 400),
                             left: controller.isForYou.value ? 0 : -90,
-                            top: 0,
                             child: AnimatedOpacity(
                               opacity: controller.isForYou.value ? 1 : 0,
                               duration: const Duration(milliseconds: 300),
                               child: Container(
-                                  margin: const EdgeInsets.only(
-                                      left: 2, right: 2, top: 2),
+                                  margin:
+                                      const EdgeInsets.only(left: 2, right: 2),
                                   height: 34,
                                   decoration: BoxDecoration(
-                                      color: AppColor.secondnaryColor
-                                          .withOpacity(0.9),
-                                      borderRadius: BorderRadius.circular(20)),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
                                   width: 70,
                                   child: Center(
                                     child: Text(
@@ -104,15 +102,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                    top: 5,
-                                  ),
+                                      top: 8, left: 4, right: 4),
                                   child: AnimatedContainer(
                                     curve: Curves.easeInCirc,
                                     duration: Duration(
                                         milliseconds: !controller.isForYou.value
                                             ? 800
                                             : 500),
-                                    padding: const EdgeInsets.all(5),
                                     child: Icon(
                                       Icons.search_rounded,
                                       color: Theme.of(context)
@@ -165,9 +161,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     padding: const EdgeInsets.only(
                                         top: 3, bottom: 1, left: 2, right: 2),
                                     color: Colors.transparent,
-                                    child: const Icon(
+                                    child: Icon(
                                       Icons.close,
                                       size: 20,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary,
                                     ),
                                   ),
                                 )
@@ -178,10 +177,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  controller.isLoading.value == false ||
-                          controller.nextPage.value != 0
-                      ? Expanded(
-                          child: PageView(
+                  // if (controller.isLoading.value == true)
+                  //   const Padding(
+                  //     padding: EdgeInsets.only(bottom: 20, top: 20),
+                  //     child: CustomLoading(),
+                  //   ),
+                  Expanded(
+                    child: !controller.isLoading.value
+                        ? PageView(
                             onPageChanged: (value) {
                               unFocus(context);
                               controller.isForYou.value =
@@ -192,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Container(
                                 margin: const EdgeInsets.only(
-                                    right: 5, left: 5, top: 10),
+                                    right: 5, left: 5, top: 5),
                                 child: ListView.builder(
                                   padding: EdgeInsets.zero,
                                   controller: controller.scrollController.value,
@@ -220,24 +223,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                         appController.onLongPressEnd(context);
                                       },
                                       child: CsutomQuestionCard(
+                                        isSmall: false,
                                         istall: i % 2 != 0 ? false : true,
                                         title:
                                             controller.question[i].title ?? "",
                                         tags: const [
                                           "dfa2341241344334534534534sfd",
                                           "dfa2341241344334534534534sfd",
+                                          "sdf",
+                                          "sdfds"
                                         ],
                                         answerCount: "0",
                                         ontapQuestion: () {
-                                          debugPrint("dfdf");
                                           context.pushNamed("question-detail",
                                               pathParameters: {"id": "2312"});
                                         },
                                         isCorrect: false,
                                         time: '2h ago',
-                                        descrition: controller
-                                                .question[i].description ??
-                                            "",
+                                        descrition: "",
                                         image:
                                             'https://hips.hearstapps.com/hmg-prod/images/index-avatar3-1672251913.jpg?crop=0.502xw:1.00xh;0.210xw,0&resize=1200:*',
                                         commentCount: '0',
@@ -252,9 +255,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 searchText: controller.searchText.value,
                               )
                             ],
+                          )
+                        : const Center(
+                            child: CustomLoading(),
                           ),
-                        )
-                      : const Expanded(child: Center(child: CustomLoading())),
+                  )
                 ],
               )),
         ),

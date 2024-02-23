@@ -1,5 +1,7 @@
 import 'dart:io';
 
+// import 'package:dio/dio.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
@@ -9,15 +11,18 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../configs/route/route.dart';
+import '../../../utils/helpers/local_data/storge_local.dart';
 import '../models/save_category_model.dart';
 
 class SaveCategoryController extends GetxController {
+  final title = ''.obs;
+  final index = 0.obs;
   final bookNameText = TextEditingController().obs;
   final saveCategory = SaveCategoryModel().obs;
   final isloading = false.obs;
   final bookName = ''.obs;
   final coverBook = File('').obs;
-  void getCoverBook() async {
+  Future getCoverBook() async {
     coverBook.value = await pickImage();
     debugPrint("ocver path ${coverBook.value.path}");
   }
@@ -61,21 +66,65 @@ class SaveCategoryController extends GetxController {
       );
     } else {
       isloading.value = true;
-      ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
-          url: "/v1/save-category",
-          methode: METHODE.post,
-          isAuthorize: true,
-          body: {
-            "name": bookName.value,
-          }).then(
+      // String image = await compressAndGetFile(coverBook.value);
+      // debugPrint("image =====> $image");
+      // String fileName = coverBook.value.path.split('/').last;
+      // var ddd= await dio.MultipartFile.fromFile(
+      //     _image.path,
+      //     filename: fileName,
+      //     contentType: MediaType('image', 'jpeg'), // Adjust as needed
+      //   ),
+      // FormData formData = FormData.fromMap({
+      //   'file': await MultipartFile.fromFile(
+      //     _image.path,
+      //     filename: fileName,
+      //   ),
+      // Additional fields if needed
+      // 'user': 'example',
+      // });
+      // FormData kkk = dataImage(
+      //   name: bookName.value,
+      //   path: coverBook.value1,
+      // );
+      Dio dio = Dio();
+      debugPrint("khmekrkejr ${dataImage(
+        name: bookName.value,
+        path: coverBook.value.path,
+      )}");
+      final token = await LocalStorage.getStringValue(key: 'access_token');
+      debugPrint("token $token");
+      var response = await dio
+          .post("http://10.0.2.2:8001/api/v1/save-category",
+              data: {
+                "name": "sdfds",
+                "cover": coverBook.value.path,
+              },
+              options: Options(headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Bearer $token',
+              }))
+          // ApiBaseHelper.apiBaseHelper
+          //     .onNetworkRequesting(
+          //   url: "/v1/save-category",
+          //   methode: METHODE.post,
+          //   isAuthorize: true,
+          //   body: dataImage(
+          //   name: bookName.value,
+          //   path: coverBook.value1,
+          // );,
+          // )
+          .then(
         (value) {
-          isloading.value = false;
+          debugPrint("donedddddddddddd");
           bookName.value = '';
           bookNameText.value = TextEditingController();
           router.pop();
           router.pop();
+          isloading.value = false;
         },
       ).onError((error, stackTrace) {
+        debugPrint("88888888888888888888$error");
         isloading.value = false;
       });
     }

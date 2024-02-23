@@ -62,16 +62,6 @@ class _CommentScreenState extends State<CommentScreen> {
                     Expanded(
                         child: Stack(
                       children: [
-                        if (controller.onPageing.value == false)
-                          GestureDetector(
-                            onTap: () {
-                              context.pop();
-                            },
-                            child: const Icon(
-                              Icons.close,
-                              color: Colors.white,
-                            ),
-                          ),
                         PageView(
                           onPageChanged: (value) {
                             controller.currentPage.value = value;
@@ -234,6 +224,16 @@ class _CommentScreenState extends State<CommentScreen> {
                             ),
                           ],
                         ),
+                        if (controller.onPageing.value == false)
+                          GestureDetector(
+                            onTap: () {
+                              context.pop();
+                            },
+                            child: Icon(
+                              Icons.close,
+                              color: Theme.of(context).colorScheme.tertiary,
+                            ),
+                          ),
                       ],
                     )),
                     Row(
@@ -256,8 +256,6 @@ class _CommentScreenState extends State<CommentScreen> {
                         CustomButtom(
                           borderColor: Theme.of(context).colorScheme.primary,
                           disble: controller.checkbutton(),
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, top: 3),
                           title: controller.currentPage.value == 0
                               ? 'ឆ្លើយ'
                               : "បញ្ចេញមតិ",

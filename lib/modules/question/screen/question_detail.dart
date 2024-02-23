@@ -295,45 +295,41 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                       //     ),
                                       //   ],
                                       // ),
-                                      Container(
-                                        child: ListView.builder(
-                                          controller:
-                                              controller.scrollerController02,
-                                          physics: controller.isScroll.value ||
-                                                  controller.jumpAll.value
-                                              ? null
-                                              : const NeverScrollableScrollPhysics(),
-                                          itemCount: 20,
-                                          itemBuilder: (context, i) {
-                                            return CustomAnswerCrad(
-                                              isCorrect: false,
-                                              isYourOwnQuestion: true,
-                                              name: "ចាន់ថា",
-                                              time: "១០​ថ្ងៃមុន",
-                                              description:
-                                                  "នេះដោយអចេតនា សូមចុចប៊ូតុង ត្រឡប់ក្រោយ របស់ឧបករណ៍រាវរករបស់អ្នក។",
-                                              image:
-                                                  "https://www.shareicon.net/data/256x256/2016/05/26/771203_man_512x512.png",
-                                              commentCount: "4",
-                                              likeAnswer: "50",
-                                              ontapProfile: () {
-                                                debugPrint("khmer sl khmer ");
-                                                context.pushNamed(
-                                                  '/user-profile',
-                                                  pathParameters: {
-                                                    "id": "2000"
-                                                  },
-                                                );
-                                              },
-                                              ontapCorrect: () {
-                                                debugPrint("khmer sl khmer ");
-                                              },
-                                              ontap: () {},
-                                              avarta:
-                                                  "https://www.shareicon.net/data/256x256/2016/05/26/771203_man_512x512.png",
-                                            );
-                                          },
-                                        ),
+                                      ListView.builder(
+                                        controller:
+                                            controller.scrollerController02,
+                                        physics: controller.isScroll.value ||
+                                                controller.jumpAll.value
+                                            ? null
+                                            : const NeverScrollableScrollPhysics(),
+                                        itemCount: 20,
+                                        itemBuilder: (context, i) {
+                                          return CustomAnswerCrad(
+                                            isCorrect: false,
+                                            isYourOwnQuestion: true,
+                                            name: "ចាន់ថា",
+                                            time: "១០​ថ្ងៃមុន",
+                                            description:
+                                                "នេះដោយអចេតនា សូមចុចប៊ូតុង ត្រឡប់ក្រោយ របស់ឧបករណ៍រាវរករបស់អ្នក។",
+                                            image:
+                                                "https://www.shareicon.net/data/256x256/2016/05/26/771203_man_512x512.png",
+                                            commentCount: "4",
+                                            likeAnswer: "50",
+                                            ontapProfile: () {
+                                              debugPrint("khmer sl khmer ");
+                                              context.pushNamed(
+                                                '/user-profile',
+                                                pathParameters: {"id": "2000"},
+                                              );
+                                            },
+                                            ontapCorrect: () {
+                                              debugPrint("khmer sl khmer ");
+                                            },
+                                            ontap: () {},
+                                            avarta:
+                                                "https://www.shareicon.net/data/256x256/2016/05/26/771203_man_512x512.png",
+                                          );
+                                        },
                                       ),
                                       ListView.builder(
                                         controller:

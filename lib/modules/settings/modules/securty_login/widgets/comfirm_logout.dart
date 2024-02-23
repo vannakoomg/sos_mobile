@@ -12,29 +12,25 @@ class ComfirmLogout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 20, bottom: 20),
-      alignment: Alignment.center,
       height: 180,
       decoration: BoxDecoration(
-        color: AppColor.textfourth,
+        color: Theme.of(context).colorScheme.onSecondary,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
             "Do You Went To Logout ?",
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(fontSize: 18, color: AppColor.textThird),
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontSize: 18, color: Theme.of(context).colorScheme.primary),
           ),
-          const Spacer(),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             CustomButtom(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+              white: 50,
               colors: AppColor.dangerColor,
               title: "No",
               onTap: () {
@@ -42,7 +38,7 @@ class ComfirmLogout extends StatelessWidget {
               },
             ),
             CustomButtom(
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+                white: 50,
                 title: "Yes",
                 colors: AppColor.successColor,
                 onTap: () async {
@@ -54,7 +50,6 @@ class ComfirmLogout extends StatelessWidget {
                   );
                 })
           ]),
-          const Spacer(),
         ],
       ),
     );

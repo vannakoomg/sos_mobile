@@ -13,7 +13,6 @@ class CustomBack extends StatelessWidget {
     return GestureDetector(
       onTap: ontap == null
           ? () {
-              debugPrint("sdfsd)sdfsd");
               unFocus(context);
               context.pop();
             }

@@ -26,6 +26,13 @@ dependencies:
   lite_rolling_switch: ^1.0.1
   flutter_svg: ^2.0.9
   gallery_saver: ^2.3.2
+  device_info: ^2.0.0
+  http_parser: ^4.0.0
+  flutter_image_compress: ^2.1.0
+
+
+
+
 
 
 

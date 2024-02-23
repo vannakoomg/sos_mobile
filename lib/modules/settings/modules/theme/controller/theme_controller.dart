@@ -8,6 +8,7 @@ class ThemeController extends GetxController {
   final settingController = Get.put(SettingController());
   final mode = "".obs;
   final theme = darkMode.obs;
+  final isSmall = false.obs;
   void changeTheme() {
     if (settingController.setting.value.mode == "0") {
       settingController.setting.value.mode = "1";

@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/utils/widgets/custom_back.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Widget action;
+  final Widget leading;
+  final bool isClose;
   const CustomAppBar(
-      {super.key, this.action = const SizedBox(), required this.title});
+      {super.key,
+      this.action = const SizedBox(),
+      required this.title,
+      this.isClose = false,
+      this.leading = const CustomBack()});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +20,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       preferredSize: const Size.fromHeight(60.0), // Adjust the height as needed
       child: AppBar(
         leadingWidth: 40,
-        leading: const CustomBack(),
+        leading: isClose
+            ? GestureDetector(
+                onTap: () {
+                  context.pop();
+                },
+                child: const Icon(Icons.close_rounded))
+            : leading,
         backgroundColor: Theme.of(context).colorScheme.background,
         centerTitle: true,
         title: Text(

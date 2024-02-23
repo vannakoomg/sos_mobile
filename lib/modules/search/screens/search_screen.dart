@@ -3,7 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/home/controllers/home_controller.dart';
-import 'package:sos_mobile/modules/search/screens/recent_search_screen.dart';
 import 'package:sos_mobile/utils/widgets/custom_book.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
 import '../controller/search_controller.dart';
@@ -101,14 +100,14 @@ class _SearchScreenState extends State<SearchScreen> {
                                       ],
                                     ),
                                   ),
-                                  if (widget.isFocus && widget.searchText == '')
-                                    const SingleChildScrollView(
-                                      padding: EdgeInsets.zero,
-                                      child: AnimatedOpacity(
-                                          duration: Duration(milliseconds: 300),
-                                          opacity: 1,
-                                          child: RecentSearchWidget()),
-                                    ),
+                                  // if (widget.isFocus && widget.searchText == '')
+                                  //   const SingleChildScrollView(
+                                  //     padding: EdgeInsets.zero,
+                                  //     child: AnimatedOpacity(
+                                  //         duration: Duration(milliseconds: 300),
+                                  //         opacity: 1,
+                                  //         child: RecentSearchWidget()),
+                                  //   ),
                                   if (widget.isFocus &&
                                       homeController.searchText.value != '')
                                     SingleChildScrollView(

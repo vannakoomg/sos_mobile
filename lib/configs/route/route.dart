@@ -5,8 +5,8 @@ import 'package:sos_mobile/cores/auth/create_account/screens/select_subject_scre
 import 'package:sos_mobile/cores/auth/hello/screens/hello_screen.dart';
 import 'package:sos_mobile/cores/walk_though/singin/screens/singin_screen.dart';
 import 'package:sos_mobile/modules/question/screen/question_detail.dart';
-import 'package:sos_mobile/modules/save/screens/create_savecatefory_screen.dart';
-import 'package:sos_mobile/modules/save/screens/save_detail_screen.dart';
+import 'package:sos_mobile/modules/save/screens/create_category_screen.dart';
+import 'package:sos_mobile/modules/save/screens/category_detail_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/feedback/screen/feedback_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/notification/screens/setting_notification_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/privacy_data/screen/setting_privacy_data_screen.dart';
@@ -105,10 +105,9 @@ final router = GoRouter(
           ),
           GoRoute(
             name: 'save-detail',
-            path: 'save-detail/:title/:id',
+            path: 'save-detail/:id',
             builder: (context, state) {
               return SaveDetailScreen(
-                title: state.pathParameters['title'],
                 id: state.pathParameters['id'],
               );
             },
