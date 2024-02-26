@@ -25,10 +25,11 @@ class CustomTagCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(left: 6, right: 6, top: 4, bottom: 4),
         decoration: BoxDecoration(
-            color: isTheSame == true
-                ? const Color.fromARGB(255, 11, 120, 150)
-                : AppColor.secondnaryColor.withOpacity(0.9),
-            borderRadius: BorderRadius.circular(8)),
+          color: isTheSame == true
+              ? const Color.fromARGB(255, 11, 120, 150)
+              : AppColor.secondnaryColor.withOpacity(0.9),
+          borderRadius: BorderRadius.circular(8),
+        ),
         child: isOnSearch == true
             ? Text(
                 title,

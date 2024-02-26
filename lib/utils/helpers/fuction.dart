@@ -64,12 +64,19 @@ Future<String> compressAndGetFile(File file) async {
   return base64img;
 }
 
-FormData dataImage({String? name, String? path}) {
+//  FormData formData = FormData.fromMap({
+//     'category': category,
+//     'question': question,
+//     "file": file != null
+//         ? await MultipartFile.fromFile(_file!.path, filename: fileName)
+//         : null,
+//   });
+Future<FormData> dataImage({String? name, String? path}) async {
   FormData formData = FormData.fromMap({
     "name": name,
-    "cover": MultipartFile.fromFile(
+    "cover": await MultipartFile.fromFile(
       path!,
-      filename: "category_image.jpg",
+      filename: "sdfsd.jpg",
     ),
   });
   return formData;

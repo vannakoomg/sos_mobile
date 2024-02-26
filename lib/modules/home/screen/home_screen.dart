@@ -90,7 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           .textTheme
                                           .titleSmall!
                                           .copyWith(
-                                              color: AppColor.primaryColor),
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary),
                                     ),
                                   )),
                             ),
@@ -193,62 +195,57 @@ class _HomeScreenState extends State<HomeScreen> {
                             allowImplicitScrolling: true,
                             controller: controller.pageController,
                             children: [
-                              Container(
-                                margin: const EdgeInsets.only(
-                                    right: 5, left: 5, top: 5),
-                                child: ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  controller: controller.scrollController.value,
-                                  itemCount: controller.question.length,
-                                  itemBuilder: (context, i) {
-                                    return GestureDetector(
-                                      onLongPressStart: (value) {
-                                        appController.onlongPressStart(
-                                          golbalDx: value.globalPosition.dx,
-                                          golbalDy: value.globalPosition.dy,
-                                          widthScreen:
-                                              MediaQuery.sizeOf(context).width,
-                                          id: controller.question[i].id
-                                              .toString(),
-                                        );
+                              ListView.builder(
+                                padding: EdgeInsets.zero,
+                                controller: controller.scrollController.value,
+                                itemCount: controller.question.length,
+                                itemBuilder: (context, i) {
+                                  return GestureDetector(
+                                    onLongPressStart: (value) {
+                                      appController.onlongPressStart(
+                                        golbalDx: value.globalPosition.dx,
+                                        golbalDy: value.globalPosition.dy,
+                                        widthScreen:
+                                            MediaQuery.sizeOf(context).width,
+                                        id: controller.question[i].id
+                                            .toString(),
+                                      );
+                                    },
+                                    onLongPressMoveUpdate: (value) {
+                                      appController.onLongPressMoveUpdate(
+                                          globalDx:
+                                              value.globalPosition.dx - 22,
+                                          globalDy:
+                                              value.globalPosition.dy - 22);
+                                    },
+                                    onLongPressEnd: (value) {
+                                      appController.onLongPressEnd(context);
+                                    },
+                                    child: CsutomQuestionCard(
+                                      isSmall: false,
+                                      istall: i % 2 != 0 ? false : true,
+                                      title: controller.question[i].title ?? "",
+                                      tags: const [
+                                        "dfa2341241344334534534534sfd",
+                                        "dfa2341241344334534534534sfd",
+                                        "sdf",
+                                        "sdfds"
+                                      ],
+                                      answerCount: "0",
+                                      ontapQuestion: () {
+                                        context.pushNamed("question-detail",
+                                            pathParameters: {"id": "2312"});
                                       },
-                                      onLongPressMoveUpdate: (value) {
-                                        appController.onLongPressMoveUpdate(
-                                            globalDx:
-                                                value.globalPosition.dx - 22,
-                                            globalDy:
-                                                value.globalPosition.dy - 22);
-                                      },
-                                      onLongPressEnd: (value) {
-                                        appController.onLongPressEnd(context);
-                                      },
-                                      child: CsutomQuestionCard(
-                                        isSmall: false,
-                                        istall: i % 2 != 0 ? false : true,
-                                        title:
-                                            controller.question[i].title ?? "",
-                                        tags: const [
-                                          "dfa2341241344334534534534sfd",
-                                          "dfa2341241344334534534534sfd",
-                                          "sdf",
-                                          "sdfds"
-                                        ],
-                                        answerCount: "0",
-                                        ontapQuestion: () {
-                                          context.pushNamed("question-detail",
-                                              pathParameters: {"id": "2312"});
-                                        },
-                                        isCorrect: false,
-                                        time: '2h ago',
-                                        descrition: "",
-                                        image:
-                                            'https://hips.hearstapps.com/hmg-prod/images/index-avatar3-1672251913.jpg?crop=0.502xw:1.00xh;0.210xw,0&resize=1200:*',
-                                        commentCount: '0',
-                                        likeCount: '8',
-                                      ),
-                                    );
-                                  },
-                                ),
+                                      isCorrect: true,
+                                      time: '2h ago',
+                                      descrition: "",
+                                      image:
+                                          'https://hips.hearstapps.com/hmg-prod/images/index-avatar3-1672251913.jpg?crop=0.502xw:1.00xh;0.210xw,0&resize=1200:*',
+                                      commentCount: '0',
+                                      likeCount: '8',
+                                    ),
+                                  );
+                                },
                               ),
                               SearchScreen(
                                 isFocus: controller.isFocus.value,

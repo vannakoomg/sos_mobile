@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
 
@@ -9,9 +10,11 @@ class CustomBook extends StatelessWidget {
   final double height;
   final double width;
   final double size;
+  final EdgeInsets padding;
   final Color? color;
   const CustomBook({
     super.key,
+    this.padding = const EdgeInsets.only(left: 12, top: 4),
     this.title = "",
     this.size = 3,
     required this.ontap,
@@ -72,10 +75,7 @@ class CustomBook extends StatelessWidget {
         Container(
           width: width,
           height: height,
-          margin: const EdgeInsets.only(
-            top: 8,
-            left: 8,
-          ),
+          margin: padding,
           padding: const EdgeInsets.only(right: 15, bottom: 2),
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
           child: Text(

@@ -32,9 +32,12 @@ class CustomButtom extends StatelessWidget {
       child: AnimatedContainer(
         width: white,
         decoration: BoxDecoration(
-            color: disble == false ? colors : AppColor.textfourth,
-            borderRadius: BorderRadius.circular(100),
-            border: Border.all(color: borderColor, width: 0.5)),
+          color: disble == false
+              ? colors
+              : Theme.of(context).colorScheme.onTertiary,
+          borderRadius: BorderRadius.circular(100),
+          border: Border.all(color: borderColor, width: 0.5),
+        ),
         height: height,
         curve: Curves.easeIn,
         duration: const Duration(milliseconds: 150),

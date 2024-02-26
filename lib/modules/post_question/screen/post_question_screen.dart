@@ -60,8 +60,8 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
-                  padding:
-                      const EdgeInsets.only(left: 10, right: 10, bottom: 5),
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10, bottom: 5, top: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -76,7 +76,7 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
                       ),
                       const Gap(5),
                       CustomTextfield(
-                        radius: 20,
+                        radius: 8,
                         hintText: "អត្តន័យ",
                         onChanged: (value) {
                           controller.description.value = value;

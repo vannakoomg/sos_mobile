@@ -47,9 +47,9 @@ class CustomAnswerCrad extends StatelessWidget {
             const EdgeInsets.only(left: 10, top: 10, bottom: 10, right: 10),
         margin: const EdgeInsets.only(bottom: 5),
         decoration: BoxDecoration(
-          color: AppColor.primaryColor,
+          color: Theme.of(context).colorScheme.onTertiary,
           border: Border.all(width: 0.5),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +65,7 @@ class CustomAnswerCrad extends StatelessWidget {
                           },
                           child: CustomCachedImageCircle(image: image)),
                       const Gap(5),
-                      Row(
+                      Column(
                         children: [
                           Text(
                             name,
@@ -73,20 +73,18 @@ class CustomAnswerCrad extends StatelessWidget {
                                 .textTheme
                                 .titleSmall!
                                 .copyWith(
-                                    color: AppColor.secondnaryColor,
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
                                     fontWeight: FontWeight.w600),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 15),
-                            child: Text(
-                              time,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(
-                                      color: AppColor.textThird, fontSize: 9),
-                              overflow: TextOverflow.ellipsis,
-                            ),
+                          Text(
+                            time,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    color: AppColor.textThird, fontSize: 9),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ],
                       ),
@@ -99,13 +97,13 @@ class CustomAnswerCrad extends StatelessWidget {
                   },
                   child: isCorrect == true
                       ? const Icon(
-                          Icons.check_circle_sharp,
+                          Icons.task_alt_rounded,
                           color: Colors.green,
                         )
                       : isYourOwnQuestion
                           ? const Icon(
                               Icons.check_circle_sharp,
-                              color: Color.fromARGB(255, 124, 107, 96),
+                              color: Color.fromARGB(255, 146, 146, 146),
                             )
                           : const SizedBox(),
                 )
@@ -133,7 +131,7 @@ class CustomAnswerCrad extends StatelessWidget {
               children: [
                 Text(commentCount,
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          color: AppColor.mainColor,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         )),
                 const SizedBox(
                   width: 5,
@@ -148,7 +146,7 @@ class CustomAnswerCrad extends StatelessWidget {
                 const Spacer(),
                 Text(likeAnswer,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: AppColor.mainColor,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         )),
                 const SizedBox(
                   width: 5,

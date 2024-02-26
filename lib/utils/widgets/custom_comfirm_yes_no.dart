@@ -22,7 +22,7 @@ class CustomComfirmYesNo extends StatelessWidget {
       padding: const EdgeInsets.only(left: 20, right: 20),
       height: 180,
       decoration: BoxDecoration(
-        color: AppColor.textfourth,
+        color: Theme.of(context).colorScheme.onTertiary,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
@@ -48,6 +48,7 @@ class CustomComfirmYesNo extends StatelessWidget {
           const Gap(10),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             CustomButtom(
+              white: 60,
               colors: AppColor.dangerColor,
               title: "No",
               onTap: () async {
@@ -59,6 +60,7 @@ class CustomComfirmYesNo extends StatelessWidget {
               },
             ),
             CustomButtom(
+                white: 60,
                 title: "Yes",
                 colors: AppColor.successColor,
                 onTap: () async {

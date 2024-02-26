@@ -67,9 +67,9 @@ class _CsutomQuestionCardState extends State<CsutomQuestionCard> {
         ),
         margin: const EdgeInsets.only(bottom: 5),
         decoration: BoxDecoration(
-          color: AppColor.primaryColor,
+          color: Theme.of(context).colorScheme.onTertiary,
           border: Border.all(width: 0.5),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,36 +85,35 @@ class _CsutomQuestionCardState extends State<CsutomQuestionCard> {
                         Row(
                           children: [
                             Expanded(
-                              child: RichText(
-                                text: TextSpan(
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text: widget.title,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleSmall!
-                                          .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .onTertiary),
-                                    ),
-                                    TextSpan(
-                                      text: "sadfasfd",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall!
-                                          .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .onTertiary),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                                child: Text(
+                              widget.title,
+                              maxLines: 2,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary,
+                                      overflow: TextOverflow.ellipsis),
+                            )),
+                            if (widget.isCorrect)
+                              const Icon(
+                                Icons.task_alt_rounded,
+                                color: Colors.green,
+                              )
                           ],
                         ),
-                        if (widget.descrition != '')
+                        Text(
+                          widget.time,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary),
+                        ),
+                        if (widget.descrition != '' && widget.image == "")
                           Text(
                             widget.descrition,
                             maxLines: widget.image == "" ? 6 : 1,
@@ -200,7 +199,7 @@ class _CsutomQuestionCardState extends State<CsutomQuestionCard> {
                                                 : TextOverflow.ellipsis,
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .titleSmall!
+                                                .bodyMedium!
                                                 .copyWith(
                                                     color: Theme.of(context)
                                                         .colorScheme
@@ -295,7 +294,7 @@ class _CsutomQuestionCardState extends State<CsutomQuestionCard> {
                     ),
                   ),
             Container(
-              margin: const EdgeInsets.only(bottom: 2, top: 4),
+              margin: const EdgeInsets.only(bottom: 6, top: 8),
               height: 0.3,
               color: Theme.of(context).colorScheme.onSecondary,
             ),
@@ -303,12 +302,29 @@ class _CsutomQuestionCardState extends State<CsutomQuestionCard> {
               padding: const EdgeInsets.only(left: 8, right: 8),
               child: Row(
                 children: [
+                  Expanded(
+                      child: Row(
+                    children: [
+                      Text(
+                        widget.answerCount,
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            color: Theme.of(context).colorScheme.onPrimary),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "ចម្លើយ",
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                              color: AppColor.textfourth,
+                            ),
+                      ),
+                    ],
+                  )),
                   Text(
                     widget.commentCount,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: AppColor.mainColor),
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: Theme.of(context).colorScheme.onPrimary),
                   ),
                   const SizedBox(
                     width: 5,
@@ -320,30 +336,11 @@ class _CsutomQuestionCardState extends State<CsutomQuestionCard> {
                         .bodySmall!
                         .copyWith(color: AppColor.textfourth),
                   ),
-                  const Spacer(),
-                  Text(
-                    widget.answerCount,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: AppColor.mainColor),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    "ចម្លើយ",
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          color: AppColor.textfourth,
-                        ),
-                  ),
-                  const Spacer(),
+                  const Gap(20),
                   Text(
                     widget.likeCount,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: AppColor.mainColor),
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: Theme.of(context).colorScheme.onPrimary),
                   ),
                   const SizedBox(
                     width: 5,

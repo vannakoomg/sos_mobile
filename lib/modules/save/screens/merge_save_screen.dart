@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/modules/save/controller/category_controller.dart';
+import 'package:sos_mobile/utils/widgets/custom_book.dart';
 
 class MergeSaveScreen extends StatefulWidget {
   final String categoryId;
@@ -85,14 +86,14 @@ class _MergeSaveScreenState extends State<MergeSaveScreen> {
                                       margin: const EdgeInsets.only(bottom: 5),
                                       child: Row(
                                         children: [
-                                          Container(
-                                            height: 50,
-                                            width: 50,
-                                            decoration: BoxDecoration(
-                                              color: Colors.red,
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                            ),
+                                          CustomBook(
+                                            padding: const EdgeInsets.only(
+                                                left: 4, top: 4),
+                                            ontap: () {},
+                                            height: 55,
+                                            width: 40,
+                                            title: "${e.value.name}",
+                                            size: 2,
                                           ),
                                           const Gap(10),
                                           Expanded(

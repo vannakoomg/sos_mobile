@@ -1,11 +1,13 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/BottomNavigationBar/controller/bottom_navigation_bar.dart';
 import 'package:sos_mobile/modules/home/screen/home_screen.dart';
 import 'package:sos_mobile/modules/profile/screen/profile_screen.dart';
+import 'package:sos_mobile/modules/save/controller/category_controller.dart';
 
 import '../../home/controllers/home_controller.dart';
 import '../../notification/screens/notificaition_screen.dart';
@@ -20,6 +22,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(BottomNavigatonBarController());
     final homeController = Get.put(HomeContoller());
+    final categoryController = Get.put(SaveCategoryController());
     return Obx(() => Scaffold(
           backgroundColor: Theme.of(context).colorScheme.background,
           body: Column(
@@ -55,6 +58,9 @@ class ScaffoldWithNavBar extends StatelessWidget {
                       return Expanded(
                         child: GestureDetector(
                           onTap: () {
+                            if (e.key == 1) {
+                              categoryController.fetchSaveCategory();
+                            }
                             if (e.key == 2) {
                               showModalBottomSheet(
                                   useSafeArea: true,

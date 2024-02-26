@@ -1,9 +1,8 @@
 import 'dart:io';
 
-// import 'package:dio/dio.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sos_mobile/modules/save/controller/kkkkk.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/widgets/custom_comfirm_yes_no.dart';
@@ -11,7 +10,6 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../configs/route/route.dart';
-import '../../../utils/helpers/local_data/storge_local.dart';
 import '../models/save_category_model.dart';
 
 class SaveCategoryController extends GetxController {
@@ -58,7 +56,7 @@ class SaveCategoryController extends GetxController {
             width: 3000,
             height: 60,
             color: Colors.green,
-            child: const Text("sdafsadhfksadhf;kadshf;k"),
+            child: const Text("sdafsadhfksadhfkadshf;k"),
           ),
           borderRadius: BorderRadius.circular(300),
           message: 'sdafas',
@@ -66,65 +64,14 @@ class SaveCategoryController extends GetxController {
       );
     } else {
       isloading.value = true;
-      // String image = await compressAndGetFile(coverBook.value);
-      // debugPrint("image =====> $image");
-      // String fileName = coverBook.value.path.split('/').last;
-      // var ddd= await dio.MultipartFile.fromFile(
-      //     _image.path,
-      //     filename: fileName,
-      //     contentType: MediaType('image', 'jpeg'), // Adjust as needed
-      //   ),
-      // FormData formData = FormData.fromMap({
-      //   'file': await MultipartFile.fromFile(
-      //     _image.path,
-      //     filename: fileName,
-      //   ),
-      // Additional fields if needed
-      // 'user': 'example',
-      // });
-      // FormData kkk = dataImage(
-      //   name: bookName.value,
-      //   path: coverBook.value1,
-      // );
-      Dio dio = Dio();
-      debugPrint("khmekrkejr ${dataImage(
+      createCategory(
+        file: coverBook.value,
         name: bookName.value,
-        path: coverBook.value.path,
-      )}");
-      final token = await LocalStorage.getStringValue(key: 'access_token');
-      debugPrint("token $token");
-      var response = await dio
-          .post("http://10.0.2.2:8001/api/v1/save-category",
-              data: {
-                "name": "sdfds",
-                "cover": coverBook.value.path,
-              },
-              options: Options(headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'Bearer $token',
-              }))
-          // ApiBaseHelper.apiBaseHelper
-          //     .onNetworkRequesting(
-          //   url: "/v1/save-category",
-          //   methode: METHODE.post,
-          //   isAuthorize: true,
-          //   body: dataImage(
-          //   name: bookName.value,
-          //   path: coverBook.value1,
-          // );,
-          // )
-          .then(
-        (value) {
-          debugPrint("donedddddddddddd");
-          bookName.value = '';
-          bookNameText.value = TextEditingController();
-          router.pop();
-          router.pop();
-          isloading.value = false;
-        },
-      ).onError((error, stackTrace) {
-        debugPrint("88888888888888888888$error");
+      ).then((value) {
+        bookName.value = '';
+        bookNameText.value = TextEditingController();
+        router.pop();
+        router.pop();
         isloading.value = false;
       });
     }

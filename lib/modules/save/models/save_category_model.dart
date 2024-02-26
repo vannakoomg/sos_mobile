@@ -24,6 +24,7 @@ class SaveCategoryModel {
 class Data {
   int? id;
   String? name;
+  String? cover;
   int? count;
 
   Data({this.id, this.name, this.count});
@@ -32,6 +33,7 @@ class Data {
     id = json['id'];
     name = json['name'];
     count = json['count'];
+    cover = json['cover'];
   }
 
   Map<String, dynamic> toJson() {
@@ -39,6 +41,7 @@ class Data {
     data['id'] = id;
     data['name'] = name;
     data['count'] = count;
+    data['cover'] = cover;
     return data;
   }
 }

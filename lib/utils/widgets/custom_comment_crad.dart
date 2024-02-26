@@ -24,8 +24,8 @@ class CustomCommentCrad extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
       margin: const EdgeInsets.only(bottom: 5),
       decoration: BoxDecoration(
-        color: AppColor.primaryColor,
-        borderRadius: BorderRadius.circular(20),
+        color: Theme.of(context).colorScheme.onTertiary,
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(width: 0.5),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

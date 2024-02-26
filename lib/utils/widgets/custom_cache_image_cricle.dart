@@ -23,7 +23,7 @@ class CustomCachedImageCircle extends StatelessWidget {
       imageBuilder: (context, imageProvider) => Container(
         decoration: BoxDecoration(
           borderRadius: borderRadius ?? BorderRadius.circular(400),
-          border: border ?? Border.all(),
+          border: border ?? Border.all(color: Colors.transparent),
           image: DecorationImage(
             image: imageProvider,
             fit: BoxFit.cover,
@@ -35,7 +35,13 @@ class CustomCachedImageCircle extends StatelessWidget {
       placeholder: (context, url) => Container(
         color: Colors.transparent,
       ),
-      errorWidget: (context, url, error) => const Icon(Icons.error),
+      errorWidget: (context, url, error) => Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.background,
+        ),
+        height: height,
+        width: width,
+      ),
     );
   }
 }

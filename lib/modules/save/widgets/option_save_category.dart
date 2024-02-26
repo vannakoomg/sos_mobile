@@ -33,7 +33,7 @@ class OptionSaveCategory extends StatelessWidget {
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
-        color: AppColor.textThird,
+        color: Theme.of(context).colorScheme.onTertiary,
       ),
       child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

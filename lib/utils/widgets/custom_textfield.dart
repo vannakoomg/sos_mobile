@@ -43,7 +43,7 @@ class CustomTextfield extends StatelessWidget {
     this.maxLines = 1,
     this.color,
     this.onValidate,
-    this.radius = 200,
+    this.radius = 8,
     this.subfix,
     this.maxLength,
     this.textAlign = TextAlign.start,
@@ -55,7 +55,7 @@ class CustomTextfield extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: color ?? AppColor.primaryColor,
+        color: color ?? Theme.of(context).colorScheme.onTertiary,
         borderRadius: BorderRadius.circular(radius),
       ),
       child: TextFormField(
@@ -66,7 +66,7 @@ class CustomTextfield extends StatelessWidget {
         controller: textEditController,
         style: textStyle ??
             Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  color: Theme.of(context).colorScheme.onTertiary,
+                  color: Theme.of(context).colorScheme.onPrimary,
                 ),
         onChanged: (value) {
           onChanged!(value);
@@ -83,7 +83,6 @@ class CustomTextfield extends StatelessWidget {
         },
         cursorColor: AppColor.secondnaryColor,
         enableSuggestions: false,
-        // cursorHeight: 10,
         autocorrect: false,
         maxLength: maxLength == 0 ? null : maxLength,
         keyboardType: textInputType,
@@ -110,7 +109,7 @@ class CustomTextfield extends StatelessWidget {
             hintStyle: hintTextStyle ??
                 Theme.of(context).textTheme.bodyLarge!.copyWith(
                       fontWeight: FontWeight.w400,
-                      color: Theme.of(context).colorScheme.onTertiary,
+                      color: Theme.of(context).colorScheme.onSecondary,
                     )),
         maxLines: maxLines == 0 ? null : maxLines,
       ),

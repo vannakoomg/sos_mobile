@@ -54,7 +54,6 @@ class _CreateSaveScreenState extends State<CreateSaveScreen> {
                         controller.getCoverBook().then((value) {});
                       },
                       child: SizedBox(
-                        // color: Colors.red,
                         height: 140,
                         width: 100,
                         child: Stack(

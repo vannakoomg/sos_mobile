@@ -23,7 +23,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
-    debugPrint("app ${widget.searchText}");
+    debugPrint("appjjjjjjjj ${widget.searchText}");
     controller.fetchPopular();
     controller.fetchRecentSeaarch();
     super.initState();

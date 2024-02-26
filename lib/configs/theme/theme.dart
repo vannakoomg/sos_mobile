@@ -15,9 +15,9 @@ ThemeData lightMode = ThemeData(
     tertiary: Color.fromARGB(255, 27, 27, 27),
 
     ///--------------
-    onPrimary: Color.fromARGB(255, 67, 67, 67),
+    onPrimary: Color.fromARGB(255, 39, 39, 39),
     onSecondary: Color.fromARGB(255, 133, 133, 133),
-    onTertiary: Color.fromARGB(255, 49, 49, 49),
+    onTertiary: Color.fromARGB(255, 232, 232, 232),
   ),
   useMaterial3: true,
   brightness: Brightness.light,
