@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/modules/question/screen/comment_screen.dart';
-import 'package:sos_mobile/modules/question/widgets/comment_option.dart';
-import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
+import 'package:sos_mobile/modules/question/screen/comment_answer_screen.dart';
+import 'package:sos_mobile/modules/question/widgets/more_comment_option.dart';
+import 'package:sos_mobile/modules/question/widgets/more_question_option.dart';
 
 import '../../../utils/helpers/api_base_helper/api_base_helper.dart';
-import '../../report/screens/report_type_screen.dart';
 
 class QuestionDetailController extends GetxController {
   QuestionDetailController();
@@ -19,7 +16,6 @@ class QuestionDetailController extends GetxController {
   final hightOfBar = 0.0.obs;
   final isScroll = false.obs;
   final isAnswer = true.obs;
-  final isScale = false.obs;
   final isLoading = false.obs;
   final jumpAll = false.obs;
 
@@ -42,13 +38,6 @@ class QuestionDetailController extends GetxController {
           .then((value) {
         jumpAll.value = true;
       });
-      // scrollerController02.animateTo(0,
-      //     curve: Curves.ease, duration: const Duration(milliseconds: 700));
-      // scrollerController03
-      //     .animateTo(0,
-      //         curve: Curves.ease, duration: const Duration(milliseconds: 700))
-      //     .then((value) => {
-      // });
     }
   }
 
@@ -137,114 +126,38 @@ class QuestionDetailController extends GetxController {
         }));
   }
 
-  void ontapMoreQuestion(BuildContext context) async {
-    isScale.value = !isScale.value;
+  void ontapMoreQuestion(BuildContext context, String questionId) async {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
         builder: ((context) {
-          return SingleChildScrollView(
-              child: Container(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: Container(
-              height: 240,
-              width: double.infinity,
-              padding: const EdgeInsets.only(
-                  left: 10, right: 10, top: 20, bottom: 10),
-              decoration: BoxDecoration(
-                color: AppColor.textfourth,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-              ),
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Text(
-                  "Option",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: AppColor.textThird, fontSize: 18),
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(bottom: 5, top: 5),
-                        width: double.infinity,
-                        color: Colors.transparent,
-                        child: Text(
-                          "Hide",
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(bottom: 5, top: 5),
-                        width: double.infinity,
-                        color: Colors.transparent,
-                        child: Text(
-                          "Download Photo",
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                              context: context,
-                              isScrollControlled: false,
-                              builder: ((context) {
-                                return const ReportTypeScreen();
-                              }));
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.only(bottom: 5, top: 5),
-                          width: double.infinity,
-                          color: Colors.transparent,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Text("Report",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_rounded,
-                                size: 20,
-                                color: AppColor.textThird,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Spacer(),
-                CustomButtom(
-                  height: 40,
-                  title: "Close",
-                  onTap: () {
-                    context.pop();
-                  },
-                )
-              ]),
-            ),
-          ));
+          return MoreQuesionOption(
+            questionId: questionId,
+          );
         }));
   }
 
-  void ontapInput(BuildContext context) async {
+  Future deleteQuestion(String id) async {
+    debugPrint("vaue iiii $id");
+    ApiBaseHelper.apiBaseHelper
+        .onNetworkRequesting(
+      url: "/v1/question/$id",
+      methode: METHODE.delete,
+      isAuthorize: true,
+    )
+        .then((value) {
+      debugPrint("value $value");
+    });
+  }
+
+  void ontapInput(BuildContext context, String questionId) async {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
         builder: ((context) {
-          return const CommentScreen();
+          return CommentAnswerScreen(
+            id: questionId,
+          );
         }));
   }
 }

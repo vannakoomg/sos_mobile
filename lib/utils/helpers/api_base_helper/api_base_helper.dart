@@ -33,9 +33,9 @@ class ApiBaseHelper {
     required bool isAuthorize,
     String base = '',
   }) async {
-    debugPrint("body $body");
     final token = await LocalStorage.getStringValue(key: 'access_token');
     final fullUrl = base == '' ? baseUrl + url : base + url;
+
     Map<String, String> headerDefault = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -58,7 +58,7 @@ class ApiBaseHelper {
               data: body ?? {});
           return _returnResponse(response);
         case METHODE.delete:
-          final response = await dio.put(fullUrl,
+          final response = await dio.delete(fullUrl,
               options: Options(headers: header ?? headerDefault),
               data: body ?? {});
           return _returnResponse(response);

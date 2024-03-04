@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/modules/settings/modules/profile_information/controller/profile_infomation_controller.dart';
 import 'package:sos_mobile/modules/settings/modules/profile_information/widgets/profile_info_card.dart';
+import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
 
@@ -117,6 +118,7 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                                   }
                                 },
                                 child: DynamicSquareContainer(
+                                  colors: rendomColors(),
                                   text: e.value.title!,
                                   ontap: () {
                                     if (controller.selectedSucject[e.key] !=

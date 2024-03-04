@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
                 maxScaleFactor: 2.0,
                 child: Obx(() => Stack(
                       children: [
-                        child!,
+                      child!,
                         if (controller.isLongPress.value == true)
                           Scaffold(
                             backgroundColor: Colors.black.withOpacity(0.96),

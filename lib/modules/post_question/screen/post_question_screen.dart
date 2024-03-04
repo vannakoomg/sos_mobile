@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/post_question/controllers/post_question_controller.dart';
@@ -22,6 +23,8 @@ class PostQuestionScreen extends StatefulWidget {
 
 class _PostQuestionScreenState extends State<PostQuestionScreen> {
   final controller = Get.put(PostQuestionController());
+  final _debouncer = Debouncer(delay: const Duration(milliseconds: 500));
+
   FocusNode focusNode = FocusNode();
   @override
   void initState() {
@@ -43,19 +46,23 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
     return Obx(
       () => Container(
         height: MediaQuery.sizeOf(context).height,
-        color: Theme.of(context).colorScheme.background,
+        decoration: const BoxDecoration(
+            // color: Colors.red,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: Column(
           children: [
             CustomAppBar(
               title: "សួរ",
               leading: IconButton(
-                  onPressed: () {
-                    context.pop();
-                  },
-                  icon: Icon(
-                    Icons.close,
-                    color: Theme.of(context).colorScheme.tertiary,
-                  )),
+                onPressed: () {
+                  context.pop();
+                },
+                icon: Icon(
+                  Icons.close,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+              ),
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -76,7 +83,7 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
                       ),
                       const Gap(5),
                       CustomTextfield(
-                        radius: 8,
+                        radius: 20,
                         hintText: "អត្តន័យ",
                         onChanged: (value) {
                           controller.description.value = value;
@@ -91,7 +98,7 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: AppColor.primaryColor,
+                          color: Theme.of(context).colorScheme.onTertiary,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,8 +121,10 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
                                   ? "ពាក្យសម្គាល់"
                                   : "ពាក្យសម្គាល់គ្រាប់ហើយ",
                               onChanged: (value) {
-                                controller.tagtext.value = value;
-                                controller.fetchTag(value);
+                                _debouncer.call(() {
+                                  controller.tagtext.value = value;
+                                  controller.fetchTag(value);
+                                });
                               },
                               textEditController:
                                   controller.tagTextController.value,
@@ -206,16 +215,17 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
               ),
             ),
             Container(
-              color: Theme.of(context).colorScheme.onTertiary,
+              padding: const EdgeInsets.only(right: 10),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.onTertiary,
+              ),
               child: controller.tagsData.value.tags != null &&
                       controller.tagtext.value != '' &&
                       controller.tagtext.value.length < 20 &&
                       controller.isFocus.value
                   ? Container(
                       alignment: Alignment.center,
-                      margin: const EdgeInsets.only(
-                        bottom: 5,
-                      ),
+                      margin: const EdgeInsets.only(bottom: 5, right: 10),
                       padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
                       decoration: BoxDecoration(
                           border: controller.tagtext.value.length < 3 &&
@@ -288,32 +298,31 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
                             onPressed: () {
                               controller.getImageGallery();
                             },
-                            icon: const Icon(Icons.photo)),
+                            icon: Icon(
+                              Icons.photo,
+                              color: Theme.of(context).colorScheme.onSecondary,
+                            )),
                         IconButton(
                             onPressed: () {
                               controller.getImageCamera();
                             },
-                            icon: const Icon(Icons.camera_alt)),
+                            icon: Icon(
+                              Icons.camera_alt,
+                              color: Theme.of(context).colorScheme.onSecondary,
+                            )),
                         const Spacer(),
-                        Container(
-                          alignment: Alignment.centerRight,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomButtom(
-                                disble: controller.validationPost(),
-                                title: "សួរមួយ?",
-                                onTap: () {
-                                  unFocus(context);
-                                  controller.postQuestion().then((value) {
-                                    context.pop();
-                                  });
-                                },
-                                fountSize: 14,
-                                height: 30,
-                              )
-                            ],
-                          ),
+                        CustomButtom(
+                          disble: controller.validationPost(),
+                          title: "?",
+                          onTap: () {
+                            unFocus(context);
+                            controller.postQuestion().then((value) {
+                              context.pop();
+                            });
+                          },
+                          white: 30,
+                          fountSize: 14,
+                          height: 30,
                         ),
                       ],
                     ),

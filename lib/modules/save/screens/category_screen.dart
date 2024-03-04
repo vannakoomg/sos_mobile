@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/save/controller/category_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_book.dart';
-import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
+import 'package:sos_mobile/utils/widgets/custom_oops.dart';
 
 class SaveCategoryScreen extends StatefulWidget {
   const SaveCategoryScreen({super.key});
@@ -19,7 +18,6 @@ class _SaveCategoryScreenState extends State<SaveCategoryScreen> {
   final controller = Get.put(SaveCategoryController());
   @override
   void initState() {
-    debugPrint("khmer sl khmer ");
     controller.fetchSaveCategory();
     super.initState();
   }
@@ -43,59 +41,82 @@ class _SaveCategoryScreenState extends State<SaveCategoryScreen> {
                     style: Theme.of(context).textTheme.titleMedium!),
                 const Gap(20),
                 Expanded(
-                  child: !controller.isloading.value
-                      ? controller.saveCategory.value.data != null
-                          ? GridView.builder(
-                              padding: EdgeInsets.zero,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                mainAxisSpacing: 30,
-                              ),
-                              itemCount:
-                                  controller.saveCategory.value.data!.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    controller.title.value = controller
-                                            .saveCategory
-                                            .value
-                                            .data![index]
-                                            .name ??
-                                        "";
-                                    controller.index.value = index;
-                                    context.goNamed(
-                                      'save-detail',
-                                      pathParameters: {
-                                        "id": controller
-                                            .saveCategory.value.data![index].id
-                                            .toString()
+                    child: controller.isloading.value &&
+                            controller.saveCategory.value.data == null
+                        ? const Center(
+                            child: CustomLoading(),
+                          )
+                        : controller.saveCategory.value.data != null
+                            ? Stack(
+                                children: [
+                                  Expanded(
+                                    child: GridView.builder(
+                                      padding: EdgeInsets.zero,
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        mainAxisSpacing: 30,
+                                      ),
+                                      itemCount: controller
+                                          .saveCategory.value.data!.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            controller.title.value = controller
+                                                    .saveCategory
+                                                    .value
+                                                    .data![index]
+                                                    .name ??
+                                                "";
+                                            controller.index.value = index;
+                                            context.goNamed(
+                                              'save-detail',
+                                              pathParameters: {
+                                                "id": controller.saveCategory
+                                                    .value.data![index].id
+                                                    .toString()
+                                              },
+                                            );
+                                          },
+                                          child: Center(
+                                            child: CustomBook(
+                                              padding: const EdgeInsets.only(
+                                                  left: 8, top: 5),
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width /
+                                                  3.5,
+                                              height: MediaQuery.sizeOf(context)
+                                                      .width /
+                                                  2.5,
+                                              ontap: () {},
+                                              title: controller
+                                                      .saveCategory
+                                                      .value
+                                                      .data![index]
+                                                      .name ??
+                                                  "",
+                                              image: controller
+                                                      .saveCategory
+                                                      .value
+                                                      .data![index]
+                                                      .cover ??
+                                                  "",
+                                            ),
+                                          ),
+                                        );
                                       },
-                                    );
-                                  },
-                                  child: Center(
-                                    child: CustomBook(
-                                      width: MediaQuery.sizeOf(context).width /
-                                          3.5,
-                                      height: MediaQuery.sizeOf(context).width /
-                                          2.5,
-                                      ontap: () {},
-                                      title: controller.saveCategory.value
-                                              .data![index].name ??
-                                          "",
-                                      image: controller.saveCategory.value
-                                              .data![index].cover ??
-                                          "",
                                     ),
                                   ),
-                                );
-                              },
-                            )
-                          : Container()
-                      : const Center(
-                          child: CustomLoading(),
-                        ),
-                )
+                                  if (controller.isloading.value &&
+                                      controller.saveCategory.value.data !=
+                                          null)
+                                    const CustomLoading()
+                                ],
+                              )
+                            : CustomOops(ontap: () {
+                                controller.fetchSaveCategory();
+                              }))
               ],
             ),
           ),

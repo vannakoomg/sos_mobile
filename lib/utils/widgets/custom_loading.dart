@@ -9,9 +9,10 @@ class CustomLoading extends StatelessWidget {
     return Center(
       child: Container(
         padding: const EdgeInsets.all(3),
-        height: 40,
-        width: 40,
+        height: 45,
+        width: 45,
         decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.onTertiary,
             border: Border.all(
               width: 0.5,
               color: AppColor.textfourth,

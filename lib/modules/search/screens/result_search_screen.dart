@@ -6,12 +6,11 @@ class ResultScearchPopular extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: const CustomAppBar(title: "----------------"),
-        body: Container(
-          child: const Column(
-            children: [],
-          ),
-        ));
+    return const Scaffold(
+      appBar: CustomAppBar(title: "----------------"),
+      body: Column(
+        children: [],
+      ),
+    );
   }
 }

@@ -17,6 +17,7 @@ class CreateAccountController extends GetxController {
   final otp = TextEditingController().obs;
   final disable = true.obs;
   final isloading = false.obs;
+  final color = [];
   void clearValue() {
     gmailtext.value = TextEditingController();
     nametext.value = TextEditingController();
@@ -53,8 +54,12 @@ class CreateAccountController extends GetxController {
             url: "/v1/subject", methode: METHODE.get, isAuthorize: false)
         .then((value) {
       subject.value = SubjectModel.fromJson(value);
+      selectedSucject.clear();
+      selectSubjectSubmit.clear();
+      color.clear();
       for (int i = 0; i < subject.value.data!.length; ++i) {
         selectedSucject.add(-1);
+        color.add(rendomColors());
       }
     });
   }

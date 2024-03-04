@@ -68,24 +68,26 @@ class PostQuestionController extends GetxController {
 
   Future fetchTag(String name) async {
     listSelect.clear();
-    for (int i = 0; i < selectTags.length; ++i) {
-      listSelect.add(selectTags[i].id);
-    }
-    if (name != '') {
-      ApiBaseHelper.apiBaseHelper
-          .onNetworkRequesting(
-        url: "/v1/tags/search",
-        body: {"name": name, "oldList": listSelect},
-        methode: METHODE.get,
-        isAuthorize: false,
-      )
-          .then((value) {
-        debugPrint("value $value");
-        tagsData.value = TagsModel.fromJson(value);
-      }).onError(
-        (error, stackTrace) {},
-      );
-    }
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      for (int i = 0; i < selectTags.length; ++i) {
+        listSelect.add(selectTags[i].id);
+      }
+      if (name != '') {
+        ApiBaseHelper.apiBaseHelper
+            .onNetworkRequesting(
+          url: "/v1/tags/search",
+          body: {"name": name, "oldList": listSelect},
+          methode: METHODE.get,
+          isAuthorize: false,
+        )
+            .then((value) {
+          debugPrint("value $value");
+          tagsData.value = TagsModel.fromJson(value);
+        }).onError(
+          (error, stackTrace) {},
+        );
+      }
+    });
   }
 
   Future createTag(String name) async {

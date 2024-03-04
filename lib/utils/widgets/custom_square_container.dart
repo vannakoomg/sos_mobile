@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:sos_mobile/utils/helpers/fuction.dart';
 
 class DynamicSquareContainer extends StatelessWidget {
   final bool select;
   final Function ontap;
   final String text;
+  final Color colors;
 
   const DynamicSquareContainer({
     Key? key,
     required this.text,
+    required this.colors,
     required this.select,
     required this.ontap,
   }) : super(key: key);
@@ -30,7 +31,7 @@ class DynamicSquareContainer extends StatelessWidget {
             color: select ? Colors.white : Colors.transparent,
             width: 2,
           ),
-          color: rendomColors(),
+          color: colors,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(

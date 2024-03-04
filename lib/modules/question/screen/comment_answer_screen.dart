@@ -10,16 +10,18 @@ import '../../../configs/const/Colors/app_colors.dart';
 import '../../../utils/widgets/custom_buttom.dart';
 import '../../../utils/widgets/custom_textfield.dart';
 
-class CommentScreen extends StatefulWidget {
-  const CommentScreen({
+class CommentAnswerScreen extends StatefulWidget {
+  final String id;
+  const CommentAnswerScreen({
     super.key,
+    required this.id,
   });
 
   @override
-  State<CommentScreen> createState() => _CommentScreenState();
+  State<CommentAnswerScreen> createState() => _CommentAnswerScreenState();
 }
 
-class _CommentScreenState extends State<CommentScreen> {
+class _CommentAnswerScreenState extends State<CommentAnswerScreen> {
   PageController? _pageController;
   final controller = Get.put(AnswerCommentController());
 
@@ -49,7 +51,7 @@ class _CommentScreenState extends State<CommentScreen> {
               ),
               height: controller.image.value.path == "" ? 175 : 324,
               decoration: BoxDecoration(
-                color: AppColor.textfourth,
+                color: Theme.of(context).colorScheme.onTertiary,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
@@ -76,7 +78,10 @@ class _CommentScreenState extends State<CommentScreen> {
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium!
-                                      .copyWith(color: Colors.white),
+                                      .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary),
                                 ),
                                 const SizedBox(
                                   width: 20,
@@ -95,14 +100,17 @@ class _CommentScreenState extends State<CommentScreen> {
                                   textStyle: Theme.of(context)
                                       .textTheme
                                       .bodyLarge!
-                                      .copyWith(color: AppColor.textThird),
+                                      .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .tertiary),
                                   hintTextStyle: Theme.of(context)
                                       .textTheme
                                       .bodyLarge!
                                       .copyWith(
                                           color: Theme.of(context)
                                               .colorScheme
-                                              .onSecondary),
+                                              .tertiary),
                                   color: Colors.transparent,
                                   textInputType: TextInputType.multiline,
                                 ),
@@ -254,12 +262,15 @@ class _CommentScreenState extends State<CommentScreen> {
                         ),
                         const Spacer(),
                         CustomButtom(
-                          borderColor: Theme.of(context).colorScheme.primary,
+                          // white: 70,
+                          // borderColor: Theme.of(context).colorScheme.primary,
                           disble: controller.checkbutton(),
-                          title: controller.currentPage.value == 0
-                              ? 'ឆ្លើយ'
-                              : "បញ្ចេញមតិ",
-                          onTap: () {},
+                          title: "យល់ព្រម",
+                          onTap: () {
+                            controller.ontap(widget.id).then((value) {
+                              context.pop();
+                            });
+                          },
                           height: 30,
                           fountSize: 14,
                         ),

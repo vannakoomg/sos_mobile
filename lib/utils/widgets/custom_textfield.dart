@@ -43,7 +43,7 @@ class CustomTextfield extends StatelessWidget {
     this.maxLines = 1,
     this.color,
     this.onValidate,
-    this.radius = 8,
+    this.radius = 20,
     this.subfix,
     this.maxLength,
     this.textAlign = TextAlign.start,

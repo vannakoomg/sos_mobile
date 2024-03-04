@@ -13,7 +13,6 @@ class LoginController extends GetxController {
   final isLoading = false.obs;
   final loginSuccess = true.obs;
   Future login() async {
-    loginSuccess.value = true;
     isLoading.value = true;
     await ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
         url: '/login',
@@ -27,8 +26,10 @@ class LoginController extends GetxController {
       await LocalStorage.storeData(
           key: 'access_token', value: value["access_token"]);
       loginSuccess.value = true;
+      isLoading.value = false;
     }).onError((error, stackTrace) {
       loginSuccess.value = false;
+      isLoading.value = false;
       debugPrint("is facking errro$error");
     });
   }

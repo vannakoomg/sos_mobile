@@ -1,14 +1,12 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/BottomNavigationBar/controller/bottom_navigation_bar.dart';
 import 'package:sos_mobile/modules/home/screen/home_screen.dart';
 import 'package:sos_mobile/modules/profile/screen/profile_screen.dart';
 import 'package:sos_mobile/modules/save/controller/category_controller.dart';
-
 import '../../home/controllers/home_controller.dart';
 import '../../notification/screens/notificaition_screen.dart';
 import '../../post_question/screen/post_question_screen.dart';
@@ -58,6 +56,10 @@ class ScaffoldWithNavBar extends StatelessWidget {
                       return Expanded(
                         child: GestureDetector(
                           onTap: () {
+                            if (e.key != 2) {
+                              controller.index.value = e.key;
+                            }
+
                             if (e.key == 1) {
                               categoryController.fetchSaveCategory();
                             }
@@ -68,6 +70,16 @@ class ScaffoldWithNavBar extends StatelessWidget {
                                   isScrollControlled: true,
                                   builder: ((context) {
                                     return Container(
+                                        decoration: BoxDecoration(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .background,
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(20),
+                                                    topRight:
+                                                        Radius.circular(20))),
                                         padding: EdgeInsets.only(
                                           bottom: MediaQuery.of(context)
                                               .viewInsets
@@ -75,15 +87,19 @@ class ScaffoldWithNavBar extends StatelessWidget {
                                         ),
                                         child: const PostQuestionScreen());
                                   }));
-                            } else {
-                              controller.index.value = e.key;
-                              if (homeController.scrollPixel.value < 10) {
-                                homeController.fetchQuestion(1);
-                              } else {
-                                homeController.scrollController.value.animateTo(
-                                    0,
-                                    duration: const Duration(milliseconds: 500),
-                                    curve: Curves.easeIn);
+                            }
+                            if (e.key == 0) {
+                              {
+                                if (homeController.scrollPixel.value < 10) {
+                                  homeController.nextPage.value = 0;
+                                  homeController.fetchQuestion(1);
+                                } else {
+                                  homeController.scrollController.value
+                                      .animateTo(0,
+                                          duration:
+                                              const Duration(milliseconds: 500),
+                                          curve: Curves.easeIn);
+                                }
                               }
                             }
                           },

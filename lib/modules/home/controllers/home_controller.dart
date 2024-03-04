@@ -5,6 +5,8 @@ import 'package:sos_mobile/utils/controllers/app_controller.dart';
 
 import '../../../utils/helpers/api_base_helper/api_base_helper.dart';
 
+// import '../../../utils/helpers/api_base_helper/api_base_helper.dart';
+
 class HomeContoller extends GetxController {
   final searchTextEditController = TextEditingController().obs;
   final controller = Get.put(AppController());
@@ -58,8 +60,8 @@ class HomeContoller extends GetxController {
 
   void fetchQuestionNextPage() {
     if (nextPage < questionData.value.meta!.lastPage!) {
-      if (scrollController.value.offset ==
-          scrollController.value.position.maxScrollExtent) {
+      if (scrollController.value.offset >=
+          scrollController.value.position.maxScrollExtent - 50) {
         nextPage.value = currentPage.value + 1;
         fetchQuestion(nextPage.value).then((value) {
           currentPage.value = nextPage.value;
@@ -69,25 +71,29 @@ class HomeContoller extends GetxController {
   }
 
   Future fetchQuestion(int page) async {
+    debugPrint("fetch...... question ");
     isLoading.value = true;
     isForYou.value = true;
     await ApiBaseHelper.apiBaseHelper
         .onNetworkRequesting(
-          url: "/v1/question?page=$page",
-          methode: METHODE.get,
-          isAuthorize: true,
-        )
-        .onError((error, stackTrace) => {
-              debugPrint("data"),
-            })
-        .then((value) => {
-              isLoading.value = false,
-              questionData.value = QuestionModelData.fromJson(value),
-              for (int i = 0; i < value['data'].length; ++i)
-                {
-                  question.add(QuestionModel.fromJson(value['data'][i])),
-                },
-            });
-    fetchData.value = false;
+      url: "/v1/question?page=$page",
+      methode: METHODE.get,
+      isAuthorize: true,
+    )
+        .then(
+      (value) {
+        if (nextPage.value == 0 && question.isNotEmpty) {
+          question.clear();
+        }
+        isLoading.value = false;
+        questionData.value = QuestionModelData.fromJson(value);
+        for (int i = 0; i < value['data'].length; ++i) {
+          question.add(QuestionModel.fromJson(value['data'][i]));
+        }
+      },
+    ).onError((error, stackTrace) {
+      isLoading.value = false;
+      // debugPrint("fick $error");
+    });
   }
 }

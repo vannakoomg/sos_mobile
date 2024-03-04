@@ -1,8 +1,9 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
 
 import '../../../utils/helpers/local_data/storge_local.dart';
 

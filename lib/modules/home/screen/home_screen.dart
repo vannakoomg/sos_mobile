@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/search/screens/search_screen.dart';
 import 'package:sos_mobile/utils/controllers/app_controller.dart';
+import 'package:sos_mobile/utils/controllers/singleTon.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
+import 'package:sos_mobile/utils/widgets/custom_oops.dart';
 import '../../../utils/widgets/custom_question_card.dart';
 import '../../../utils/widgets/custom_textfield.dart';
+import '../../question/widgets/more_question_option.dart';
 import '../controllers/home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,6 +22,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final controller = Get.put(HomeContoller());
   final appController = Get.put(AppController());
+
   FocusNode myfocus = FocusNode();
   @override
   void initState() {
@@ -53,7 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 400),
-                      margin: const EdgeInsets.only(top: 8, left: 0, right: 0),
+                      margin:
+                          const EdgeInsets.only(top: 8, left: 15, right: 15),
                       height: 35,
                       curve: Curves.ease,
                       width: controller.isForYou.value == false
@@ -61,10 +66,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           : 120,
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
-                        border: Border.all(
-                            color: !controller.isForYou.value
-                                ? Theme.of(context).colorScheme.onSecondary
-                                : Colors.transparent),
+                        color: !controller.isForYou.value
+                            ? Theme.of(context).colorScheme.onTertiary
+                            : Colors.transparent,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Stack(
@@ -76,8 +80,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               opacity: controller.isForYou.value ? 1 : 0,
                               duration: const Duration(milliseconds: 300),
                               child: Container(
-                                  margin:
-                                      const EdgeInsets.only(left: 2, right: 2),
+                                  margin: const EdgeInsets.only(
+                                    left: 2,
+                                    right: 2,
+                                  ),
                                   height: 34,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
@@ -121,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 Container(
-                                  margin: const EdgeInsets.only(top: 4),
+                                  margin: const EdgeInsets.only(top: 8),
                                   width: controller.searchText.value != ''
                                       ? MediaQuery.of(context).size.width - 70
                                       : MediaQuery.of(context).size.width,
@@ -179,84 +185,146 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  // if (controller.isLoading.value == true)
-                  //   const Padding(
-                  //     padding: EdgeInsets.only(bottom: 20, top: 20),
-                  //     child: CustomLoading(),
-                  //   ),
+                  if (controller.isLoading.value &&
+                      controller.nextPage.value == 0 &&
+                      controller.question.isNotEmpty)
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 20, top: 20),
+                      child: CustomLoading(),
+                    ),
+                  const Gap(5),
                   Expanded(
-                    child: !controller.isLoading.value
-                        ? PageView(
-                            onPageChanged: (value) {
-                              unFocus(context);
-                              controller.isForYou.value =
-                                  !controller.isForYou.value;
-                            },
-                            allowImplicitScrolling: true,
-                            controller: controller.pageController,
-                            children: [
-                              ListView.builder(
-                                padding: EdgeInsets.zero,
-                                controller: controller.scrollController.value,
-                                itemCount: controller.question.length,
-                                itemBuilder: (context, i) {
-                                  return GestureDetector(
-                                    onLongPressStart: (value) {
-                                      appController.onlongPressStart(
-                                        golbalDx: value.globalPosition.dx,
-                                        golbalDy: value.globalPosition.dy,
-                                        widthScreen:
-                                            MediaQuery.sizeOf(context).width,
-                                        id: controller.question[i].id
-                                            .toString(),
-                                      );
-                                    },
-                                    onLongPressMoveUpdate: (value) {
-                                      appController.onLongPressMoveUpdate(
-                                          globalDx:
-                                              value.globalPosition.dx - 22,
-                                          globalDy:
-                                              value.globalPosition.dy - 22);
-                                    },
-                                    onLongPressEnd: (value) {
-                                      appController.onLongPressEnd(context);
-                                    },
-                                    child: CsutomQuestionCard(
-                                      isSmall: false,
-                                      istall: i % 2 != 0 ? false : true,
-                                      title: controller.question[i].title ?? "",
-                                      tags: const [
-                                        "dfa2341241344334534534534sfd",
-                                        "dfa2341241344334534534534sfd",
-                                        "sdf",
-                                        "sdfds"
-                                      ],
-                                      answerCount: "0",
-                                      ontapQuestion: () {
-                                        context.pushNamed("question-detail",
-                                            pathParameters: {"id": "2312"});
-                                      },
-                                      isCorrect: true,
-                                      time: '2h ago',
-                                      descrition: "",
-                                      image:
-                                          'https://hips.hearstapps.com/hmg-prod/images/index-avatar3-1672251913.jpg?crop=0.502xw:1.00xh;0.210xw,0&resize=1200:*',
-                                      commentCount: '0',
-                                      likeCount: '8',
-                                    ),
-                                  );
+                      child: controller.isLoading.value &&
+                              controller.nextPage.value == 0 &&
+                              controller.question.isEmpty
+                          ? const Center(
+                              child: CustomLoading(),
+                            )
+                          : Container(
+                              margin:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              child: PageView(
+                                onPageChanged: (value) {
+                                  unFocus(context);
+                                  controller.isForYou.value =
+                                      !controller.isForYou.value;
                                 },
+                                allowImplicitScrolling: true,
+                                controller: controller.pageController,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Expanded(
+                                        child: controller
+                                                    .questionData.value.data !=
+                                                null
+                                            ? ListView.builder(
+                                                padding: EdgeInsets.zero,
+                                                controller: controller
+                                                    .scrollController.value,
+                                                itemCount:
+                                                    controller.question.length,
+                                                itemBuilder: (context, i) {
+                                                  return GestureDetector(
+                                                    onLongPressStart: (value) {
+                                                      appController
+                                                          .onlongPressStart(
+                                                        golbalDx: value
+                                                            .globalPosition.dx,
+                                                        golbalDy: value
+                                                            .globalPosition.dy,
+                                                        widthScreen:
+                                                            MediaQuery.sizeOf(
+                                                                    context)
+                                                                .width,
+                                                        id: controller
+                                                            .question[i].id
+                                                            .toString(),
+                                                      );
+                                                    },
+                                                    onLongPressMoveUpdate:
+                                                        (value) {
+                                                      appController
+                                                          .onLongPressMoveUpdate(
+                                                              globalDx: value
+                                                                      .globalPosition
+                                                                      .dx -
+                                                                  22,
+                                                              globalDy: value
+                                                                      .globalPosition
+                                                                      .dy -
+                                                                  22);
+                                                    },
+                                                    onLongPressEnd: (value) {
+                                                      appController
+                                                          .onLongPressEnd(
+                                                              context);
+                                                    },
+                                                    child: CsutomQuestionCard(
+                                                      questionId:
+                                                          "${controller.question[i].id}",
+                                                      isSmall: false,
+                                                      istall: i % 2 != 0
+                                                          ? false
+                                                          : true,
+                                                      title:
+                                                          "${controller.question[i].title}",
+                                                      tags: const [
+                                                        "dfa2341241344334534534534sfd",
+                                                        "dfa2341241344334534534534sfd",
+                                                        "dfa2341241344334534534534sfd",
+                                                        "dfa2341241344334534534534sfd",
+                                                        "dfa2341241344334534534534sfd",
+                                                      ],
+                                                      answerCount:
+                                                          "${controller.question[i].amountAnswers}",
+                                                      ontapQuestion: () {
+                                                        Singleton
+                                                            .obj.questionId = i;
+                                                        context.pushNamed(
+                                                            "question-detail",
+                                                            pathParameters: {
+                                                              "id": controller
+                                                                  .question[i]
+                                                                  .id
+                                                                  .toString()
+                                                            });
+                                                      },
+                                                      isCorrect: true,
+                                                      time: '2h ago',
+                                                      descrition:
+                                                          "${controller.question[i].description}",
+                                                      image:
+                                                          'https://hips.hearstapps.com/hmg-prod/images/index-avatar3-1672251913.jpg?crop=0.502xw:1.00xh;0.210xw,0&resize=1200:*',
+                                                      commentCount:
+                                                          "${controller.question[i].amountComments}",
+                                                      likeCount:
+                                                          "${controller.question[i].amountAnswers}",
+                                                    ),
+                                                  );
+                                                },
+                                              )
+                                            : CustomOops(ontap: () {
+                                                controller.fetchQuestion(1);
+                                              }),
+                                      ),
+                                      if (controller.isLoading.value &&
+                                          controller.nextPage.value > 0)
+                                        const SizedBox(
+                                          height: 100,
+                                          child: Center(
+                                            child: CustomLoading(),
+                                          ),
+                                        )
+                                    ],
+                                  ),
+                                  SearchScreen(
+                                    isFocus: controller.isFocus.value,
+                                    searchText: controller.searchText.value,
+                                  )
+                                ],
                               ),
-                              SearchScreen(
-                                isFocus: controller.isFocus.value,
-                                searchText: controller.searchText.value,
-                              )
-                            ],
-                          )
-                        : const Center(
-                            child: CustomLoading(),
-                          ),
-                  )
+                            ))
                 ],
               )),
         ),

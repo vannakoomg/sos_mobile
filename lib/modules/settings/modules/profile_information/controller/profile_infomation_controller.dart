@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/modules/profile/controllers/profile_controller.dart';
+import 'package:sos_mobile/utils/helpers/fuction.dart';
 
 import '../../../../../cores/auth/create_account/models/subject_model.dart';
 import '../../../../../utils/helpers/api_base_helper/api_base_helper.dart';
@@ -20,6 +21,7 @@ class ProfileInfoController extends GetxController {
   final userNameText = TextEditingController().obs;
   final selectedSucject = [].obs;
   final selectSubjectSubmit = [];
+  final color = [];
   final subject = SubjectModel().obs;
   Future fetchSubject() async {
     isLoading.value = true;
@@ -31,6 +33,7 @@ class ProfileInfoController extends GetxController {
       subject.value = SubjectModel.fromJson(value);
       for (int i = 0; i < subject.value.data!.length; ++i) {
         selectedSucject.add(-1);
+        color.add(rendomColors());
       }
     });
   }

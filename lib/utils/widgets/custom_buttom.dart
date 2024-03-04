@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
 class CustomButtom extends StatelessWidget {
   final String? title;
@@ -34,7 +33,7 @@ class CustomButtom extends StatelessWidget {
         decoration: BoxDecoration(
           color: disble == false
               ? colors
-              : Theme.of(context).colorScheme.onTertiary,
+              : Theme.of(context).colorScheme.onSecondary,
           borderRadius: BorderRadius.circular(100),
           border: Border.all(color: borderColor, width: 0.5),
         ),
@@ -44,10 +43,9 @@ class CustomButtom extends StatelessWidget {
         child: Center(
           child: Text(
             "$title",
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(color: Colors.white, fontSize: fountSize),
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                color: Theme.of(context).colorScheme.onPrimary,
+                fontSize: fountSize),
           ),
         ),
       ),

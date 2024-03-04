@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
         () => Stack(
           children: [
             CustomPaint(
-              painter: Paint05(),
+              // painter: Paint05(),
               child: SafeArea(
                 child: Container(
                   height: MediaQuery.sizeOf(context).width * .88,
@@ -56,12 +56,12 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Spacer(),
                     CustomTextfield(
                       high: 60,
-                      hintText: "Gmail.com",
+                      hintText: "gmail.com",
                       onChanged: (value) {
                         controller.email.value = value;
+                        controller.loginSuccess.value = true;
                       },
                       textEditController: controller.emailText.value,
                     ),
@@ -72,6 +72,7 @@ class LoginScreen extends StatelessWidget {
                       hintText: "ពាក្យសម្ងាត់",
                       onChanged: (value) {
                         controller.password.value = value;
+                        controller.loginSuccess.value = true;
                       },
                       textEditController:
                           controller.passwordTextEditController.value,
@@ -87,8 +88,12 @@ class LoginScreen extends StatelessWidget {
                             children: [
                               const Gap(15),
                               Text(
-                                "ពាក្យសម្ងាត់រឺ gamil.com របស់អ្នកមិនត្រូវទេ",
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                "ពាក្យសម្ងាត់រឺ gamil.com របស់អ្នកមិនត្រូវទេ​, សូមព្យាយាមម្ដងទៀត",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(color: AppColor.dangerColor),
+                                textAlign: TextAlign.center,
                               ),
                             ],
                           ),
@@ -97,7 +102,7 @@ class LoginScreen extends StatelessWidget {
                       ),
 
                     CustomButtom(
-                      height: 40,
+                      height: 35,
                       title: "Login",
                       onTap: () {
                         unFocus(context);

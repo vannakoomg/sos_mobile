@@ -6,6 +6,8 @@ import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
 import 'package:sos_mobile/utils/widgets/custom_square_container.dart';
 
+import '../../../../utils/helpers/fuction.dart';
+
 class SeletctSubjectScreen extends StatelessWidget {
   const SeletctSubjectScreen({super.key});
 
@@ -39,6 +41,7 @@ class SeletctSubjectScreen extends StatelessWidget {
                                       return GestureDetector(
                                           onTap: () {},
                                           child: DynamicSquareContainer(
+                                            colors: controller.color[e.key],
                                             text: e.value.title!,
                                             ontap: () {
                                               if (controller
@@ -67,7 +70,7 @@ class SeletctSubjectScreen extends StatelessWidget {
                               ),
                             ),
                             Container(
-                                padding: const EdgeInsets.only(bottom: 30),
+                                padding: const EdgeInsets.only(bottom: 20),
                                 child: CustomButtom(
                                   disble: controller.numberSelect.value > 0
                                       ? false

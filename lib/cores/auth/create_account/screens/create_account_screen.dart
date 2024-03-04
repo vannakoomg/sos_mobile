@@ -35,13 +35,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           () => SizedBox(
             child: Stack(
               children: [
-                CustomPaint(
-                  painter: Paint07(),
-                  child: SizedBox(
-                    width: MediaQuery.sizeOf(context).width / 1.2,
-                    height: MediaQuery.sizeOf(context).height / 2.6,
-                  ),
-                ),
+                // CustomPaint(
+                //   painter: Paint07(),
+                //   child: SizedBox(
+                //     width: MediaQuery.sizeOf(context).width / 1.2,
+                //     height: MediaQuery.sizeOf(context).height / 2.6,
+                //   ),
+                // ),
                 SafeArea(
                   child: Container(
                     padding: const EdgeInsets.only(top: 10, left: 15),
@@ -68,7 +68,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 Container(
                   padding: const EdgeInsets.only(left: 30, right: 30),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomTextfield(
                         high: 60,
@@ -91,7 +91,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       ),
                       const Gap(10),
                       CustomTextfield(
-                        color: AppColor.textThird.withOpacity(0.5),
                         high: 60,
                         hintText: "ពាក្យសម្ងាត់",
                         onChanged: (value) {
@@ -102,7 +101,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       ),
                       const Gap(10),
                       CustomButtom(
-                        height: 40,
+                        height: 35,
                         disble: controller.disable.value,
                         title: "យល់ព្រម",
                         onTap: () {

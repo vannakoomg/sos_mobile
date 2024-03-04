@@ -47,6 +47,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                       children: [
                         controller.isSmall.value
                             ? CsutomQuestionCard(
+                                questionId: "",
                                 isSmall: true,
                                 istall: false,
                                 title: "ហេតុអ្វីបានជាទុំស្រលាញ់ទាវ ?",
@@ -66,6 +67,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                                 likeCount: '300',
                               )
                             : CsutomQuestionCard(
+                                questionId: "",
                                 isSmall: false,
                                 istall: false,
                                 title: "ហេតុអ្វីបានជាទុំស្រលាញ់ទាវ ?",

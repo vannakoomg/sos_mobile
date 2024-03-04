@@ -36,7 +36,6 @@ class SaveCategoryController extends GetxController {
         .then(
       (value) {
         saveCategory.value = SaveCategoryModel.fromJson(value);
-        debugPrint("saveCategory = ${saveCategory.value.data!.length}");
         isloading.value = false;
       },
     ).onError((error, stackTrace) {
@@ -45,6 +44,7 @@ class SaveCategoryController extends GetxController {
   }
 
   Future createSaveCategory(BuildContext context) async {
+    unFocus(context);
     if (saveCategory.value.data!
         .any((element) => element.name == bookName.value)) {
       showTopSnackBar(
@@ -72,6 +72,9 @@ class SaveCategoryController extends GetxController {
         bookNameText.value = TextEditingController();
         router.pop();
         router.pop();
+        isloading.value = false;
+      }).onError((error, stackTrace) {
+        debugPrint("sdfds");
         isloading.value = false;
       });
     }
