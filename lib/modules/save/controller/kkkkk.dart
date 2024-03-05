@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
 
 import '../../../utils/helpers/local_data/storge_local.dart';
 
@@ -20,15 +21,18 @@ Future createCategory({
         : "",
   });
   try {
-    Dio dio = Dio();
-    await dio
-        .post("http://10.0.2.2:8001/api/v1/save-category",
-            data: formData,
-            options: Options(headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-              'Authorization': 'Bearer $token',
-            }))
+    // Dio dio = Dio();
+    // await dio
+    //     .post("http://10.0.2.2:8001/api/v1/save-category",
+    //         data: formData,
+    //         options: Options(headers: {
+    //           'Content-Type': 'application/json',
+    //           'Accept': 'application/json',
+    //           'Authorization': 'Bearer $token',
+    //         }))
+    ApiBaseHelper.apiBaseHelper
+        .onNetworkRequesting(
+            url: "v1/save-category", methode: METHODE.post, isAuthorize: true)
         .then((value) {
       debugPrint("done---------------------------");
     });

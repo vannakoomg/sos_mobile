@@ -92,6 +92,7 @@ class HomeContoller extends GetxController {
         }
       },
     ).onError((error, stackTrace) {
+      debugPrint("you have been catch dddddddddd");
       isLoading.value = false;
       // debugPrint("fick $error");
     });

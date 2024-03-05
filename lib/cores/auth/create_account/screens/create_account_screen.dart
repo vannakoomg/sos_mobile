@@ -9,8 +9,6 @@ import 'package:sos_mobile/utils/widgets/custom_back.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 import 'package:sos_mobile/utils/widgets/custom_textfield.dart';
 
-import '../../hello/widgets/paint.dart';
-
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
 

@@ -16,8 +16,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await dotenv.load(fileName: ".env");
-  listNotification();
   await LocalStorage.init();
+  listNotification();
   runApp(const MyApp());
 }
 
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
                 maxScaleFactor: 2.0,
                 child: Obx(() => Stack(
                       children: [
-                      child!,
+                        child!,
                         if (controller.isLongPress.value == true)
                           Scaffold(
                             backgroundColor: Colors.black.withOpacity(0.96),

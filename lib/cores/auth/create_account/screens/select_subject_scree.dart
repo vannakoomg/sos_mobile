@@ -6,8 +6,6 @@ import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
 import 'package:sos_mobile/utils/widgets/custom_square_container.dart';
 
-import '../../../../utils/helpers/fuction.dart';
-
 class SeletctSubjectScreen extends StatelessWidget {
   const SeletctSubjectScreen({super.key});
 

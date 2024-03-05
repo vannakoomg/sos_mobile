@@ -152,7 +152,7 @@ class PostQuestionController extends GetxController {
   Future updateQuestion(int id) async {
     ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
         url: "/v1/question/$id",
-        methode: METHODE.put,
+        methode: METHODE.update,
         isAuthorize: true,
         body: {
           "title": title.value,

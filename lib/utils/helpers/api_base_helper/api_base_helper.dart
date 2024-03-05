@@ -1,5 +1,7 @@
-import 'package:dio/dio.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sos_mobile/configs/url.dart';
 
 import '../local_data/storge_local.dart';
@@ -15,10 +17,11 @@ enum METHODE {
   post,
   delete,
   put,
+  update,
 }
 
-class ApiBaseHelper {
-  final dio = Dio();
+class ApiBaseHelper extends GetConnect {
+  // final dio = Dio();
 
   static final ApiBaseHelper apiBaseHelper = ApiBaseHelper._internal();
   ApiBaseHelper._internal();
@@ -44,24 +47,27 @@ class ApiBaseHelper {
     try {
       switch (methode) {
         case METHODE.get:
-          final response = await dio.get(fullUrl,
-              options: Options(headers: header ?? headerDefault), data: body);
+          final response = await get(fullUrl, headers: header ?? headerDefault);
           return _returnResponse(response);
         case METHODE.post:
-          final response = await dio.post(fullUrl,
-              options: Options(headers: header ?? headerDefault),
-              data: body ?? {});
-          return _returnResponse(response);
-        case METHODE.put:
-          final response = await dio.put(fullUrl,
-              options: Options(headers: header ?? headerDefault),
-              data: body ?? {});
-          return _returnResponse(response);
+          if (body != null) {
+            final response =
+                await post(fullUrl, json.encode(body), headers: headerDefault);
+            return _returnResponse(response);
+          }
+          return Future.error(
+              const ErrorModel(bodyString: 'Body must be included'));
         case METHODE.delete:
-          final response = await dio.delete(fullUrl,
-              options: Options(headers: header ?? headerDefault),
-              data: body ?? {});
+          final response = await delete(fullUrl, headers: headerDefault);
           return _returnResponse(response);
+        case METHODE.update:
+          if (body != null) {
+            final response =
+                await put(fullUrl, json.encode(body), headers: headerDefault);
+            return _returnResponse(response);
+          }
+          return Future.error(
+              const ErrorModel(bodyString: 'Body must be included'));
         default:
           break;
       }
@@ -72,27 +78,28 @@ class ApiBaseHelper {
   }
 
   dynamic _returnResponse(Response response) {
+    debugPrint("staud code ${response.statusCode}");
     switch (response.statusCode) {
       case 200:
-        return response.data;
+        return json.decode(response.bodyString!);
       case 201:
-        return response.data;
+        return json.decode(response.bodyString!);
       case 202:
-        return response.data;
+        return json.decode(response.bodyString!);
       case 404:
         return Future.error(ErrorModel(
-            statusCode: response.statusCode, bodyString: response.data!));
+            statusCode: response.statusCode, bodyString: response.bodyString!));
       case 400:
         return Future.error(ErrorModel(
-            statusCode: response.statusCode, bodyString: response.data!));
+            statusCode: response.statusCode, bodyString: response.bodyString!));
       case 401:
         return 3000;
       case 403:
         return Future.error(ErrorModel(
-            statusCode: response.statusCode, bodyString: response.data!));
+            statusCode: response.statusCode, bodyString: response.bodyString!));
       case 422:
         return Future.error(ErrorModel(
-            statusCode: response.statusCode, bodyString: response.data!));
+            statusCode: response.statusCode, bodyString: response.bodyString!));
       case 500:
         break;
       default:

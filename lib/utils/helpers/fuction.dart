@@ -20,6 +20,12 @@ Future unFocus(BuildContext context) async {
   }
 }
 
+Future<String> imageToBase64(File imageFile) async {
+  List<int> imageBytes = await imageFile.readAsBytes();
+  String base64Image = base64Encode(imageBytes);
+  return base64Image;
+}
+
 Future<List> pickMultiImage() async {
   var listimage = await picker.pickMultiImage();
   return listimage;
@@ -51,8 +57,6 @@ Color rendomColors() {
 }
 
 Future<String> compressAndGetFile(File file) async {
-  // final dir = Directory.systemTemp;
-  // final targetPath = "${dir.absolute.path}/temp.jpg";
   var result = await FlutterImageCompress.compressWithFile(
     file.absolute.path,
     minWidth: 2300,
@@ -64,13 +68,6 @@ Future<String> compressAndGetFile(File file) async {
   return base64img;
 }
 
-//  FormData formData = FormData.fromMap({
-//     'category': category,
-//     'question': question,
-//     "file": file != null
-//         ? await MultipartFile.fromFile(_file!.path, filename: fileName)
-//         : null,
-//   });
 Future<FormData> dataImage({String? name, String? path}) async {
   FormData formData = FormData.fromMap({
     "name": name,
