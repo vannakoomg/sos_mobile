@@ -13,7 +13,7 @@ class MergeSaveScreen extends StatefulWidget {
 }
 
 class _MergeSaveScreenState extends State<MergeSaveScreen> {
-  final controller = Get.put(SaveCategoryController());
+  final controller = Get.put(CategoryController());
   @override
   void initState() {
     Future.delayed(const Duration(milliseconds: 200), () {

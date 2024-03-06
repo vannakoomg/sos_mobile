@@ -37,7 +37,7 @@ class CustomBook extends StatelessWidget {
               color: AppColor.mainColor,
               borderRadius: BorderRadius.circular(5),
               border: Border.all(
-                  color: color ?? Theme.of(context).colorScheme.onTertiary),
+                  color: color ?? Theme.of(context).colorScheme.onSecondary),
             ),
           ),
         ),
@@ -51,7 +51,7 @@ class CustomBook extends StatelessWidget {
               color: AppColor.mainColor,
               borderRadius: BorderRadius.circular(5),
               border: Border.all(
-                  color: color ?? Theme.of(context).colorScheme.onTertiary),
+                  color: color ?? Theme.of(context).colorScheme.onSecondary),
             ),
           ),
         ),

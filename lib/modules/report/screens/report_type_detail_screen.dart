@@ -21,7 +21,7 @@ class _ReportTypeDetailScreenState extends State<ReportTypeDetailScreen> {
 
   @override
   void initState() {
-    Future.delayed(const Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 1), () {
       controller.fetchReportTypeDetail(widget.id);
     });
     super.initState();

@@ -19,7 +19,7 @@ class CreateSaveScreen extends StatefulWidget {
 }
 
 class _CreateSaveScreenState extends State<CreateSaveScreen> {
-  final controller = Get.put(SaveCategoryController());
+  final controller = Get.put(CategoryController());
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +90,8 @@ class _CreateSaveScreenState extends State<CreateSaveScreen> {
                                               fit: BoxFit.cover,
                                             ),
                                     ),
-                                    child: Text(controller.bookName.value,
+                                    child: Text(
+                                        controller.bookName.value.trim(),
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodySmall),

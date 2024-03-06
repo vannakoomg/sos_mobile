@@ -12,7 +12,7 @@ class SaveScreen extends StatefulWidget {
 }
 
 class _SaveScreenState extends State<SaveScreen> {
-  final controller = Get.put(SaveCategoryController());
+  final controller = Get.put(CategoryController());
   @override
   void initState() {
     super.initState();

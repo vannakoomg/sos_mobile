@@ -19,7 +19,7 @@ class CreateSave extends StatefulWidget {
 }
 
 class _CreateSaveState extends State<CreateSave> {
-  final controller = Get.put(SaveCategoryController());
+  final controller = Get.put(CategoryController());
   final saveController = Get.put(SaveController());
   @override
   void initState() {
@@ -93,8 +93,9 @@ class _CreateSaveState extends State<CreateSave> {
                                 child: Row(
                                   children: [
                                     CustomBook(
+                                      image: "${e.value.cover}",
                                       size: 2,
-                                      title: "${e.value.name}",
+                                      title: "",
                                       ontap: () {},
                                       height: 60,
                                       width: 45,

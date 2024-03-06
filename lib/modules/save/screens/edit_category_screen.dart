@@ -27,7 +27,7 @@ class EditCategoryScreen extends StatefulWidget {
 
 class _EditCategoryScreenState extends State<EditCategoryScreen> {
   final controller = EditCategoryController();
-  final categoryController = Get.put(SaveCategoryController());
+  final categoryController = Get.put(CategoryController());
   @override
   void initState() {
     controller.bookNameText.value.text = categoryController.title.value;

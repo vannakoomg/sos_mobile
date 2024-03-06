@@ -21,21 +21,27 @@ Future createCategory({
         : "",
   });
   try {
-    // Dio dio = Dio();
-    // await dio
-    //     .post("http://10.0.2.2:8001/api/v1/save-category",
-    //         data: formData,
-    //         options: Options(headers: {
-    //           'Content-Type': 'application/json',
-    //           'Accept': 'application/json',
-    //           'Authorization': 'Bearer $token',
-    //         }))
-    ApiBaseHelper.apiBaseHelper
-        .onNetworkRequesting(
-            url: "v1/save-category", methode: METHODE.post, isAuthorize: true)
-        .then((value) {
-      debugPrint("done---------------------------");
-    });
+    Dio dio = Dio();
+    await dio.post("http://10.0.2.2:8001/api/v1/save-category",
+        data: formData,
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        }));
+    // ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
+    //   url: "v1/save-category",
+    //   methode: METHODE.post,
+    //   isAuthorize: true,
+    //   body: {
+    //     'name': name,
+    //     "cover": file.path != ""
+    //         ? await MultipartFile.fromFile(file.path, filename: fileName)
+    //         : "",
+    //   },
+    // ).then((value) {
+    //   debugPrint("done---------------------------");
+    // });
   } on DioError catch (e) {
     debugPrint("error--------------------------$e-");
   }

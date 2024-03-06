@@ -12,7 +12,7 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import '../../../configs/route/route.dart';
 import '../models/save_category_model.dart';
 
-class SaveCategoryController extends GetxController {
+class CategoryController extends GetxController {
   final title = ''.obs;
   final index = 0.obs;
   final bookNameText = TextEditingController().obs;

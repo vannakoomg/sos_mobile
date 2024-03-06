@@ -19,15 +19,14 @@ class OptionSaveCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final saveCategoryController = Get.put(SaveCategoryController());
+    final categoryController = Get.put(CategoryController());
     return Container(
       padding: const EdgeInsets.only(
         left: 20,
         right: 20,
       ),
       width: double.infinity,
-      height:
-          saveCategoryController.saveCategory.value.data!.length > 1 ? 200 : 80,
+      height: categoryController.saveCategory.value.data!.length > 1 ? 200 : 80,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -39,7 +38,7 @@ class OptionSaveCategory extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (saveCategoryController.saveCategory.value.data!.length > 1 &&
+            if (categoryController.saveCategory.value.data!.length > 1 &&
                 count > 0)
               GestureDetector(
                 onTap: () async {
@@ -95,11 +94,10 @@ class OptionSaveCategory extends StatelessWidget {
                 ),
               ),
             ),
-            if (saveCategoryController.saveCategory.value.data!.length > 1)
+            if (categoryController.saveCategory.value.data!.length > 1)
               GestureDetector(
                 onTap: () async {
-                  await saveCategoryController.deleteSaveCategory(
-                      id: categoryId);
+                  await categoryController.deleteSaveCategory(id: categoryId);
                 },
                 child: Container(
                   padding: const EdgeInsets.all(15),

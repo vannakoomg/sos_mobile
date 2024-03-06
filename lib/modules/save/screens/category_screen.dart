@@ -15,7 +15,7 @@ class SaveCategoryScreen extends StatefulWidget {
 }
 
 class _SaveCategoryScreenState extends State<SaveCategoryScreen> {
-  final controller = Get.put(SaveCategoryController());
+  final controller = Get.put(CategoryController());
   @override
   void initState() {
     controller.fetchSaveCategory();

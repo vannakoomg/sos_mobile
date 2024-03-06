@@ -20,7 +20,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(BottomNavigatonBarController());
     final homeController = Get.put(HomeContoller());
-    final categoryController = Get.put(SaveCategoryController());
+    final categoryController = Get.put(CategoryController());
     return Obx(() => Scaffold(
           backgroundColor: Theme.of(context).colorScheme.background,
           body: Column(
