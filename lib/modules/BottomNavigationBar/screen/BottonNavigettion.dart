@@ -6,11 +6,11 @@ import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/BottomNavigationBar/controller/bottom_navigation_bar.dart';
 import 'package:sos_mobile/modules/home/screen/home_screen.dart';
 import 'package:sos_mobile/modules/profile/screen/profile_screen.dart';
-import 'package:sos_mobile/modules/save/controller/category_controller.dart';
+import 'package:sos_mobile/modules/cateory/controller/category_controller.dart';
 import '../../home/controllers/home_controller.dart';
 import '../../notification/screens/notificaition_screen.dart';
 import '../../post_question/screen/post_question_screen.dart';
-import '../../save/screens/category_screen.dart';
+import '../../cateory/screens/category_screen.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
   final Widget? child;
@@ -107,7 +107,8 @@ class ScaffoldWithNavBar extends StatelessWidget {
                             height: 60,
                             color: Colors.transparent,
                             child: Icon(e.value,
-                                size: 25,
+                                size: 20,
+                                weight: 7,
                                 color: controller.index.value == e.key
                                     ? AppColor.secondnaryColor
                                     : Theme.of(context).colorScheme.primary),

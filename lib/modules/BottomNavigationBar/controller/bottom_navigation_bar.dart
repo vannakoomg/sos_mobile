@@ -5,7 +5,7 @@ class BottomNavigatonBarController extends GetxController {
   final index = 0.obs;
   final icon = [
     Icons.home_filled,
-    Icons.save_alt,
+    Icons.book,
     Icons.question_mark_rounded,
     Icons.notifications,
     Icons.person

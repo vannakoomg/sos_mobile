@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:sos_mobile/modules/report/screens/report_type_screen.dart';
 
-import '../../modules/save/screens/save_question_screen.dart';
+import '../../modules/cateory/screens/save_question_screen.dart';
 
 class AppController extends GetxController {
   final questionId = ''.obs;

@@ -3,8 +3,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/route/route.dart';
-import 'package:sos_mobile/modules/save/controller/category_controller.dart';
-import 'package:sos_mobile/modules/save/controller/save_controller.dart';
+import 'package:sos_mobile/modules/cateory/controller/category_controller.dart';
+import 'package:sos_mobile/modules/cateory/controller/save_controller.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/widgets/custom_book.dart';
 

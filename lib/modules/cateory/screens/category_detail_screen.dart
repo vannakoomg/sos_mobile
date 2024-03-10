@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/modules/save/controller/category_controller.dart';
+import 'package:sos_mobile/modules/cateory/controller/category_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
 
 import '../widgets/option_save_category.dart';

@@ -63,7 +63,7 @@ class CustomAnswerCrad extends StatelessWidget {
                           onTap: () {
                             ontapProfile();
                           },
-                          child: CustomCachedImageCircle(image: image)),
+                          child: CustomCachedImageCircle(image: avarta)),
                       const Gap(5),
                       Column(
                         children: [

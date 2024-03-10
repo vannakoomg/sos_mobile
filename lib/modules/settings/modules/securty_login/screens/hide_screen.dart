@@ -15,11 +15,10 @@ class HideScreen extends StatelessWidget {
         child: Column(children: [
           Column(
             children: [
-              CsutomQuestionCard(
+              CustomQuestionCard(
                 questionId: "",
                 isCorrect: false,
                 tags: const ["3", "3"],
-                time: "qw",
                 image: "https://i.ytimg.com/vi/yWMKYID5fr8/maxresdefault.jpg",
                 commentCount: "2",
                 title: "khmer sl khmer",

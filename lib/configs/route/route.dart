@@ -5,8 +5,9 @@ import 'package:sos_mobile/cores/auth/create_account/screens/select_subject_scre
 import 'package:sos_mobile/cores/auth/hello/screens/hello_screen.dart';
 import 'package:sos_mobile/cores/walk_though/singin/screens/singin_screen.dart';
 import 'package:sos_mobile/modules/question/screen/question_detail.dart';
-import 'package:sos_mobile/modules/save/screens/create_category_screen.dart';
-import 'package:sos_mobile/modules/save/screens/category_detail_screen.dart';
+import 'package:sos_mobile/modules/cateory/screens/create_category_screen.dart';
+import 'package:sos_mobile/modules/cateory/screens/category_detail_screen.dart';
+import 'package:sos_mobile/modules/search/screens/result_search_screnn.dart';
 import 'package:sos_mobile/modules/settings/modules/feedback/screen/feedback_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/notification/screens/setting_notification_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/privacy_data/screen/setting_privacy_data_screen.dart';
@@ -193,6 +194,15 @@ final router = GoRouter(
       builder: (context, state) {
         return UserProfileScreen(
           id: state.pathParameters['id']!,
+        );
+      },
+    ),
+    GoRoute(
+      path: '/result-search/:text',
+      name: '/result-search',
+      builder: (context, state) {
+        return ResultSearchScreen(
+          text: state.pathParameters['text']!,
         );
       },
     ),

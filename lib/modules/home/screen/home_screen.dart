@@ -21,7 +21,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final controller = Get.put(HomeContoller());
   final appController = Get.put(AppController());
-
   FocusNode myfocus = FocusNode();
   @override
   void initState() {
@@ -56,8 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 400),
-                      margin:
-                          const EdgeInsets.only(top: 8, left: 15, right: 15),
+                      margin: const EdgeInsets.only(top: 8, left: 8, right: 8),
                       height: 35,
                       curve: Curves.ease,
                       width: controller.isForYou.value == false
@@ -126,9 +124,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 Container(
-                                  margin: const EdgeInsets.only(top: 8),
+                                  margin: const EdgeInsets.only(top: 4),
                                   width: controller.searchText.value != ''
-                                      ? MediaQuery.of(context).size.width - 70
+                                      ? MediaQuery.of(context).size.width - 80
                                       : MediaQuery.of(context).size.width,
                                   child: AnimatedOpacity(
                                     opacity: controller.isForYou.value ? 0 : 1,
@@ -142,10 +140,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                       hintText: "ស្វែងរក",
                                       textStyle: Theme.of(context)
                                           .textTheme
-                                          .bodyMedium!,
+                                          .bodyLarge!,
                                       hintTextStyle: Theme.of(context)
                                           .textTheme
-                                          .titleSmall!
+                                          .bodyLarge!
                                           .copyWith(
                                               color: Theme.of(context)
                                                   .colorScheme
@@ -165,9 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     controller.clearSearch();
                                   },
                                   child: Container(
-                                    padding: const EdgeInsets.only(
-                                        top: 3, bottom: 1, left: 2, right: 2),
-                                    color: Colors.transparent,
+                                    padding: const EdgeInsets.only(top: 8),
                                     child: Icon(
                                       Icons.close,
                                       size: 20,
@@ -224,82 +220,45 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 itemCount:
                                                     controller.question.length,
                                                 itemBuilder: (context, i) {
-                                                  return GestureDetector(
-                                                    onLongPressStart: (value) {
-                                                      appController
-                                                          .onlongPressStart(
-                                                        golbalDx: value
-                                                            .globalPosition.dx,
-                                                        golbalDy: value
-                                                            .globalPosition.dy,
-                                                        widthScreen:
-                                                            MediaQuery.sizeOf(
-                                                                    context)
-                                                                .width,
-                                                        id: controller
-                                                            .question[i].id
-                                                            .toString(),
-                                                      );
+                                                  return CustomQuestionCard(
+                                                    isHighlight: false,
+                                                    textHighlight: "យាយ",
+                                                    questionId:
+                                                        "${controller.question[i].id}",
+                                                    istall: i % 2 != 0
+                                                        ? false
+                                                        : true,
+                                                    title:
+                                                        "${controller.question[i].title}",
+                                                    tags: const [
+                                                      "vv",
+                                                      "vv",
+                                                      "vv",
+                                                      "vv",
+                                                      "vv",
+                                                      "vv",
+                                                    ],
+                                                    answerCount:
+                                                        "${controller.question[i].amountAnswers}",
+                                                    ontapQuestion: () {
+                                                      Singleton.obj.questionId =
+                                                          i;
+                                                      context.pushNamed(
+                                                          "question-detail",
+                                                          pathParameters: {
+                                                            "id": controller
+                                                                .question[i].id
+                                                                .toString()
+                                                          });
                                                     },
-                                                    onLongPressMoveUpdate:
-                                                        (value) {
-                                                      appController
-                                                          .onLongPressMoveUpdate(
-                                                              globalDx: value
-                                                                      .globalPosition
-                                                                      .dx -
-                                                                  22,
-                                                              globalDy: value
-                                                                      .globalPosition
-                                                                      .dy -
-                                                                  22);
-                                                    },
-                                                    onLongPressEnd: (value) {
-                                                      appController
-                                                          .onLongPressEnd(
-                                                              context);
-                                                    },
-                                                    child: CsutomQuestionCard(
-                                                      questionId:
-                                                          "${controller.question[i].id}",
-                                                      isSmall: false,
-                                                      istall: i % 2 != 0
-                                                          ? false
-                                                          : true,
-                                                      title:
-                                                          "${controller.question[i].title}",
-                                                      tags: const [
-                                                        "dfa2341241344334534534534sfd",
-                                                        "dfa2341241344334534534534sfd",
-                                                        "dfa2341241344334534534534sfd",
-                                                        "dfa2341241344334534534534sfd",
-                                                        "dfa2341241344334534534534sfd",
-                                                      ],
-                                                      answerCount:
-                                                          "${controller.question[i].amountAnswers}",
-                                                      ontapQuestion: () {
-                                                        Singleton
-                                                            .obj.questionId = i;
-                                                        context.pushNamed(
-                                                            "question-detail",
-                                                            pathParameters: {
-                                                              "id": controller
-                                                                  .question[i]
-                                                                  .id
-                                                                  .toString()
-                                                            });
-                                                      },
-                                                      isCorrect: true,
-                                                      time: '2h ago',
-                                                      descrition:
-                                                          "${controller.question[i].description}",
-                                                      image:
-                                                          'https://hips.hearstapps.com/hmg-prod/images/index-avatar3-1672251913.jpg?crop=0.502xw:1.00xh;0.210xw,0&resize=1200:*',
-                                                      commentCount:
-                                                          "${controller.question[i].amountComments}",
-                                                      likeCount:
-                                                          "${controller.question[i].amountAnswers}",
-                                                    ),
+                                                    isCorrect: true,
+                                                    descrition:
+                                                        "${controller.question[i].description}",
+                                                    image: "",
+                                                    commentCount:
+                                                        "${controller.question[i].amountComments}",
+                                                    likeCount:
+                                                        "${controller.question[i].amountAnswers}",
                                                   );
                                                 },
                                               )

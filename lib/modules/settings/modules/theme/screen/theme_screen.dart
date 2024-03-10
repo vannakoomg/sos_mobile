@@ -45,56 +45,29 @@ class _ThemeScreenState extends State<ThemeScreen> {
                         color: Colors.transparent),
                     child: Column(
                       children: [
-                        controller.isSmall.value
-                            ? CsutomQuestionCard(
-                                questionId: "",
-                                isSmall: true,
-                                istall: false,
-                                title: "ហេតុអ្វីបានជាទុំស្រលាញ់ទាវ ?",
-                                tags: const [
-                                  "dfa2341241344334534534534sfd",
-                                  "dfa2341241344334534534534sfd",
-                                ],
-                                answerCount: "12",
-                                ontapQuestion: () {},
-                                isCorrect: false,
-                                time: '2h ago',
-                                descrition:
-                                    "fsaasdfdslkfdajf;lkjasdlkfj;lasjfd;ksadf;lksadf;sajf;lsajdf;lkajds;lfjdsa;lkfja;ldsjf;ldsajf;ladsjf;lsadf;lsad;lfjsd;lfjladsjfladsjfljadslfj;ldsajf;ldsajfladsflksafd;ladsjflsajdf",
-                                image:
-                                    'https://hips.hearstapps.com/hmg-prod/images/index-avatar3-1672251913.jpg?crop=0.502xw:1.00xh;0.210xw,0&resize=1200:*',
-                                commentCount: '10',
-                                likeCount: '300',
-                              )
-                            : CsutomQuestionCard(
-                                questionId: "",
-                                isSmall: false,
-                                istall: false,
-                                title: "ហេតុអ្វីបានជាទុំស្រលាញ់ទាវ ?",
-                                tags: const [
-                                  "dfa2341241344334534534534sfd",
-                                  "dfa2341241344334534534534sfd",
-                                ],
-                                answerCount: "12",
-                                ontapQuestion: () {},
-                                isCorrect: false,
-                                time: '2h ago',
-                                descrition:
-                                    "fsaasdfsadfsadfsadlfnksajhf;sadf;adsnf;lsad;sad;ladsfdskadslkfdaj;slfdksa;lkfdsajlkfdsaa;lkdsjdlfjkdsajf;lkjasdlkfj;lasjfd;ksadf;lksadf;sajf;lsajdf;lkajds;lfjdsa;lkfja;ldsjf;ldsajf;ladsjf;lsadf;lsad;lfjsd;lfjladsjfladsjfljadslfj;ldsajf;ldsajfladsflksafd;ladsjflsajdf",
-                                image:
-                                    'https://hips.hearstapps.com/hmg-prod/images/index-avatar3-1672251913.jpg?crop=0.502xw:1.00xh;0.210xw,0&resize=1200:*',
-                                commentCount: '10',
-                                likeCount: '300',
-                              ),
+                        CustomQuestionCard(
+                          questionId: "",
+                          istall: false,
+                          title: "ហេតុអ្វីបានជាទុំស្រលាញ់ទាវ ?",
+                          tags: const [
+                            "dfa2341241344334534534534sfd",
+                            "dfa2341241344334534534534sfd",
+                          ],
+                          answerCount: "12",
+                          ontapQuestion: () {},
+                          isCorrect: false,
+                          descrition:
+                              "fsaasdfsadfsadfsadlfnksajhf;sadf;adsnf;lsad;sad;ladsfdskadslkfdaj;slfdksa;lkfdsajlkfdsaa;lkdsjdlfjkdsajf;lkjasdlkfj;lasjfd;ksadf;lksadf;sajf;lsajdf;lkajds;lfjdsa;lkfja;ldsjf;ldsajf;ladsjf;lsadf;lsad;lfjsd;lfjladsjfladsjfljadslfj;ldsajf;ldsajfladsflksafd;ladsjflsajdf",
+                          image:
+                              'https://hips.hearstapps.com/hmg-prod/images/index-avatar3-1672251913.jpg?crop=0.502xw:1.00xh;0.210xw,0&resize=1200:*',
+                          commentCount: '10',
+                          likeCount: '300',
+                        ),
                         const Gap(5),
                         Row(
                           children: [
                             GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  controller.isSmall.value = false;
-                                });
-                              },
+                              onTap: () {},
                               child: Container(
                                 height: 80,
                                 width: 50,
@@ -116,11 +89,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                             ),
                             const Gap(10),
                             GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  controller.isSmall.value = true;
-                                });
-                              },
+                              onTap: () {},
                               child: Container(
                                 height: 80,
                                 width: 50,

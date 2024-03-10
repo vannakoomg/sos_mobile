@@ -9,6 +9,7 @@ import '../../../utils/helpers/api_base_helper/api_base_helper.dart';
 
 class HomeContoller extends GetxController {
   final searchTextEditController = TextEditingController().obs;
+  final searchText = ''.obs;
   final controller = Get.put(AppController());
   final questionData = QuestionModelData().obs;
   final question = <QuestionModel>[].obs;
@@ -21,7 +22,6 @@ class HomeContoller extends GetxController {
   final isForYou = true.obs;
   final isMovePage = true.obs;
   final isFocus = false.obs;
-  final searchText = ''.obs;
   final pageController = PageController();
   final scrollController = ScrollController().obs;
   final fetchData = true.obs;
@@ -87,14 +87,16 @@ class HomeContoller extends GetxController {
         }
         isLoading.value = false;
         questionData.value = QuestionModelData.fromJson(value);
-        for (int i = 0; i < value['data'].length; ++i) {
-          question.add(QuestionModel.fromJson(value['data'][i]));
-        }
+        question.addAll(questionData.value.data!);
       },
     ).onError((error, stackTrace) {
       debugPrint("you have been catch dddddddddd");
       isLoading.value = false;
-      // debugPrint("fick $error");
     });
+  }
+
+  void clearText() {
+    searchText.value = '';
+    searchTextEditController.value = TextEditingController();
   }
 }

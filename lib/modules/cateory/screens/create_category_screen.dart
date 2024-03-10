@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/modules/save/controller/category_controller.dart';
+import 'package:sos_mobile/modules/cateory/controller/category_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
 import 'package:sos_mobile/utils/widgets/custom_textfield.dart';

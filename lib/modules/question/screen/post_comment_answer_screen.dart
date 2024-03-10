@@ -5,26 +5,30 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/modules/question/controller/answer_comment_controller.dart';
+import 'package:sos_mobile/modules/question/controller/answer_controller.dart';
+import 'package:sos_mobile/modules/question/controller/comment_controller.dart';
 
 import '../../../configs/const/Colors/app_colors.dart';
 import '../../../utils/widgets/custom_buttom.dart';
 import '../../../utils/widgets/custom_textfield.dart';
 
-class CommentAnswerScreen extends StatefulWidget {
+class PostAnwserCommentScreen extends StatefulWidget {
   final String id;
-  const CommentAnswerScreen({
+  const PostAnwserCommentScreen({
     super.key,
     required this.id,
   });
 
   @override
-  State<CommentAnswerScreen> createState() => _CommentAnswerScreenState();
+  State<PostAnwserCommentScreen> createState() =>
+      _PostAnwserCommentScreenState();
 }
 
-class _CommentAnswerScreenState extends State<CommentAnswerScreen> {
+class _PostAnwserCommentScreenState extends State<PostAnwserCommentScreen> {
   PageController? _pageController;
   final controller = Get.put(AnswerCommentController());
-
+  final commentController = Get.put(CommentController());
+  final anwserController = Get.put(AnwserController());
   @override
   void initState() {
     _pageController = PageController(initialPage: controller.currentPage.value);
@@ -49,7 +53,7 @@ class _CommentAnswerScreenState extends State<CommentAnswerScreen> {
                 top: 15,
                 left: 10,
               ),
-              height: controller.image.value.path == "" ? 175 : 324,
+              height: anwserController.image.value.path == "" ? 175 : 324,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.onTertiary,
                 borderRadius: const BorderRadius.only(
@@ -91,11 +95,11 @@ class _CommentAnswerScreenState extends State<CommentAnswerScreen> {
                                       const EdgeInsets.only(left: 5),
                                   autofocus: true,
                                   onChanged: (value) {
-                                    controller.answerText.value = value;
+                                    anwserController.answerText.value = value;
                                   },
                                   hintText: "ផ្ដល់ឆ្លើយ",
-                                  textEditController:
-                                      controller.answerTexteditController.value,
+                                  textEditController: anwserController
+                                      .answerTexteditController.value,
                                   maxLines: 4,
                                   textStyle: Theme.of(context)
                                       .textTheme
@@ -114,7 +118,7 @@ class _CommentAnswerScreenState extends State<CommentAnswerScreen> {
                                   color: Colors.transparent,
                                   textInputType: TextInputType.multiline,
                                 ),
-                                if (controller.image.value.path != '')
+                                if (anwserController.image.value.path != '')
                                   Container(
                                     margin: const EdgeInsets.only(left: 5),
                                     child: Stack(
@@ -130,7 +134,7 @@ class _CommentAnswerScreenState extends State<CommentAnswerScreen> {
                                                   BorderRadius.circular(15),
                                             ),
                                             child: Image.file(
-                                              controller.image.value,
+                                              anwserController.image.value,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -140,7 +144,8 @@ class _CommentAnswerScreenState extends State<CommentAnswerScreen> {
                                           top: -2,
                                           child: GestureDetector(
                                             onTap: () {
-                                              controller.image.value = File('');
+                                              anwserController.image.value =
+                                                  File('');
                                             },
                                             child: const Icon(
                                               Icons.cancel_rounded,
@@ -171,11 +176,11 @@ class _CommentAnswerScreenState extends State<CommentAnswerScreen> {
                                       const EdgeInsets.only(left: 5),
                                   autofocus: true,
                                   onChanged: (value) {
-                                    controller.commentText.value = value;
+                                    commentController.commentText.value = value;
                                   },
                                   hintText: "ផ្ដល់ឆ្លើយ",
-                                  textEditController:
-                                      controller.commetTexteditController.value,
+                                  textEditController: commentController
+                                      .commetTexteditController.value,
                                   maxLines: 4,
                                   textStyle: Theme.of(context)
                                       .textTheme
@@ -191,7 +196,7 @@ class _CommentAnswerScreenState extends State<CommentAnswerScreen> {
                                   color: Colors.transparent,
                                   textInputType: TextInputType.multiline,
                                 ),
-                                if (controller.image.value.path != '')
+                                if (anwserController.image.value.path != '')
                                   Container(
                                     margin: const EdgeInsets.only(left: 5),
                                     child: Stack(
@@ -207,7 +212,7 @@ class _CommentAnswerScreenState extends State<CommentAnswerScreen> {
                                                   BorderRadius.circular(15),
                                             ),
                                             child: Image.file(
-                                              controller.image.value,
+                                              anwserController.image.value,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -217,7 +222,8 @@ class _CommentAnswerScreenState extends State<CommentAnswerScreen> {
                                           top: -2,
                                           child: GestureDetector(
                                             onTap: () {
-                                              controller.image.value = File('');
+                                              anwserController.image.value =
+                                                  File('');
                                             },
                                             child: const Icon(
                                               Icons.cancel_rounded,
@@ -250,11 +256,11 @@ class _CommentAnswerScreenState extends State<CommentAnswerScreen> {
                           padding: const EdgeInsets.only(top: 5),
                           child: GestureDetector(
                             onTap: () {
-                              controller.getImage();
+                              anwserController.getImage();
                             },
                             child: Icon(
                               Icons.photo,
-                              color: controller.image.value.path == ''
+                              color: anwserController.image.value.path == ''
                                   ? Colors.white
                                   : Colors.grey,
                             ),

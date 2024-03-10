@@ -28,7 +28,7 @@ class CustomTagCard extends StatelessWidget {
           color: isTheSame == true
               ? const Color.fromARGB(255, 11, 120, 150)
               : AppColor.secondnaryColor.withOpacity(0.9),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(5),
         ),
         child: isOnSearch == true
             ? Text(

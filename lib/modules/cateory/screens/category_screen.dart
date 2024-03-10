@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sos_mobile/modules/save/controller/category_controller.dart';
+import 'package:sos_mobile/modules/cateory/controller/category_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_book.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
 import 'package:sos_mobile/utils/widgets/custom_oops.dart';

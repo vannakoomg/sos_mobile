@@ -375,10 +375,9 @@ class _OwnProfileScreenState extends State<OwnProfileScreen> {
                                             const SizedBox(
                                               height: 2,
                                             ),
-                                          CsutomQuestionCard(
+                                          CustomQuestionCard(
                                             questionId: "",
                                             isCorrect: false,
-                                            time: "២​​ថ្ងៃមុន",
                                             descrition: "B sl soyb",
                                             image:
                                                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1UlqB6vnCeTu-AZ0dzsQrhdWr1h58XOqpUQ&usqp=CAU",

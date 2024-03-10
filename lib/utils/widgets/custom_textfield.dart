@@ -108,7 +108,6 @@ class CustomTextfield extends StatelessWidget {
             isDense: isDense,
             hintStyle: hintTextStyle ??
                 Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      fontWeight: FontWeight.w400,
                       color: Theme.of(context).colorScheme.onSecondary,
                     )),
         maxLines: maxLines == 0 ? null : maxLines,

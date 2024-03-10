@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/modules/search/controller/search_controller.dart';
-import 'package:sos_mobile/modules/search/model/recent_search_model.dart';
+import 'package:sos_mobile/modules/search/controller/recent_search_controller.dart';
 
 class RecentSearchWidget extends StatelessWidget {
   const RecentSearchWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(Searchcontroller());
+    final recentSearchController = Get.put(RecentSearchController());
+    recentSearchController.getRecentSearch();
     return Obx(
       () => Container(
         padding: const EdgeInsets.only(top: 10),
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
-        child: controller.recentSearch.value.data != null &&
-                controller.recentSearch.value.data!.isNotEmpty
+        child: recentSearchController.recentsearch.isNotEmpty
             ? Column(
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                      width: 0.2,
-                      color: Theme.of(context).colorScheme.onSecondary,
-                    ))),
-                    // margin: const EdgeInsets.only(left: 10, right: 10),
+                      border: Border(
+                        bottom: BorderSide(
+                          width: 0.2,
+                          color: Theme.of(context).colorScheme.onTertiary,
+                        ),
+                      ),
+                    ),
                     padding: const EdgeInsets.only(
-                        right: 20, left: 20, bottom: 10, top: 3),
+                        right: 10, left: 8, bottom: 10, top: 3),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -43,10 +43,7 @@ class RecentSearchWidget extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            controller.deleteAll().then((value) {
-                              controller.recentSearch.value =
-                                  RecentSearchModel();
-                            });
+                            recentSearchController.delectALL();
                           },
                           child: Container(
                             color: Colors.transparent,
@@ -66,21 +63,20 @@ class RecentSearchWidget extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(left: 20, right: 15, top: 5),
+                    margin: const EdgeInsets.only(left: 8, right: 5, top: 5),
                     child: Column(
-                        children: controller.recentSearch.value.data!
+                        children: recentSearchController.recentsearch
                             .asMap()
                             .entries
                             .map((e) {
                       return Container(
                         alignment: Alignment.center,
-                        // color: Colors.pink,
                         height: 40,
                         child: Row(
                           children: [
                             Expanded(
                               child: Text(
-                                "${e.value.name}",
+                                e.value.name,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge!
@@ -90,9 +86,8 @@ class RecentSearchWidget extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                controller.recentSearch.value.data!
-                                    .removeAt(e.key);
-                                controller.deleteRecentSearch(e.value.id!);
+                                recentSearchController.deleteOne(
+                                    index: e.key, id: e.value.id);
                               },
                               child: Container(
                                 color: Colors.transparent,

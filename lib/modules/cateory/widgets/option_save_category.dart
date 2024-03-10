@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/configs/route/route.dart';
-import 'package:sos_mobile/modules/save/controller/category_controller.dart';
-import 'package:sos_mobile/modules/save/screens/edit_category_screen.dart';
-import 'package:sos_mobile/modules/save/screens/merge_save_screen.dart';
+import 'package:sos_mobile/modules/cateory/controller/category_controller.dart';
+import 'package:sos_mobile/modules/cateory/screens/edit_category_screen.dart';
+import 'package:sos_mobile/modules/cateory/screens/merge_save_screen.dart';
 
 class OptionSaveCategory extends StatelessWidget {
   final String categoryId;

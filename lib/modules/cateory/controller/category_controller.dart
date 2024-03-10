@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/modules/save/controller/kkkkk.dart';
+import 'package:sos_mobile/modules/cateory/controller/kkkkk.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/widgets/custom_comfirm_yes_no.dart';

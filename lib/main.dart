@@ -9,6 +9,7 @@ import 'package:sos_mobile/utils/controllers/app_controller.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/helpers/local_data/storge_local.dart';
 import 'package:sos_mobile/utils/helpers/notification/listion_notification.dart';
+import 'package:sos_mobile/utils/helpers/sqlife/db_helper.dart';
 import 'configs/route/route.dart';
 import 'modules/settings/modules/theme/controller/theme_controller.dart';
 
@@ -18,6 +19,7 @@ void main() async {
   await dotenv.load(fileName: ".env");
   await LocalStorage.init();
   listNotification();
+  DBHelper.obj.databaseObj = await DBHelper.obj.initDB();
   runApp(const MyApp());
 }
 

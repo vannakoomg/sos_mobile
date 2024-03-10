@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return PreferredSize(
-      preferredSize: const Size.fromHeight(50.0), // Adjust the height as needed
+      preferredSize: const Size.fromHeight(40.0), // Adjust the height as needed
       child: AppBar(
         leadingWidth: 40,
         leading: isClose

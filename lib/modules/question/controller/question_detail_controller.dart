@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/modules/question/screen/comment_answer_screen.dart';
+import 'package:sos_mobile/modules/question/screen/post_comment_answer_screen.dart';
 import 'package:sos_mobile/modules/question/widgets/more_comment_option.dart';
 import 'package:sos_mobile/modules/question/widgets/more_question_option.dart';
 
@@ -155,7 +155,7 @@ class QuestionDetailController extends GetxController {
         context: context,
         isScrollControlled: true,
         builder: ((context) {
-          return CommentAnswerScreen(
+          return PostAnwserCommentScreen(
             id: questionId,
           );
         }));

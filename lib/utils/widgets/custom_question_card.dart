@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:sos_mobile/modules/question/widgets/more_question_option.dart';
+import 'package:sos_mobile/utils/controllers/app_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
+import 'package:sos_mobile/utils/widgets/custom_highlightText.dart';
 
 import '../../configs/const/Colors/app_colors.dart';
 
-class CsutomQuestionCard extends StatefulWidget {
+class CustomQuestionCard extends StatefulWidget {
+  final bool isHighlight;
   final List<String> tags;
   final bool isCorrect;
-  final String time;
+  // final String time;
   final String title;
   final String descrition;
   final String image;
@@ -17,33 +21,34 @@ class CsutomQuestionCard extends StatefulWidget {
   final String likeCount;
   final Function ontapQuestion;
   final bool istall;
-  final bool isSmall;
   final String questionId;
+  final String textHighlight;
 
-  const CsutomQuestionCard({
+  const CustomQuestionCard({
     super.key,
     this.istall = true,
-    this.isSmall = false,
+    this.isHighlight = false,
+    this.descrition = '',
+    this.textHighlight = '',
     required this.questionId,
     required this.isCorrect,
     required this.tags,
-    required this.time,
+    // required this.time,
     required this.image,
     required this.commentCount,
     required this.title,
     required this.likeCount,
     required this.answerCount,
     required this.ontapQuestion,
-    this.descrition = '',
   });
 
   @override
-  State<CsutomQuestionCard> createState() => _CsutomQuestionCardState();
+  State<CustomQuestionCard> createState() => _CustomQuestionCardState();
 }
 
-class _CsutomQuestionCardState extends State<CsutomQuestionCard>
+class _CustomQuestionCardState extends State<CustomQuestionCard>
     with SingleTickerProviderStateMixin {
-  GlobalKey globalKey = GlobalKey();
+  final appController = Get.put(AppController());
   TransformationController controller = TransformationController();
   AnimationController? animationController;
   Animation<Matrix4>? animation;
@@ -62,13 +67,7 @@ class _CsutomQuestionCardState extends State<CsutomQuestionCard>
           removeOverlay(context);
         }
       });
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(const Duration(milliseconds: 200), () {
-        setState(() {
-          hightImage = globalKey.currentContext!.size!.height;
-        });
-      });
-    });
+
     super.initState();
   }
 
@@ -85,6 +84,22 @@ class _CsutomQuestionCardState extends State<CsutomQuestionCard>
       onTap: () {
         widget.ontapQuestion();
       },
+      onLongPressStart: (value) {
+        appController.onlongPressStart(
+          golbalDx: value.globalPosition.dx,
+          golbalDy: value.globalPosition.dy,
+          widthScreen: MediaQuery.sizeOf(context).width,
+          id: widget.questionId,
+        );
+      },
+      onLongPressMoveUpdate: (value) {
+        appController.onLongPressMoveUpdate(
+            globalDx: value.globalPosition.dx - 22,
+            globalDy: value.globalPosition.dy - 22);
+      },
+      onLongPressEnd: (value) {
+        appController.onLongPressEnd(context);
+      },
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.only(
@@ -94,252 +109,148 @@ class _CsutomQuestionCardState extends State<CsutomQuestionCard>
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.onTertiary,
           border: Border.all(width: 0.5),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //check is show card small or big
-            widget.isSmall == false
-                ? Padding(
-                    key: globalKey,
-                    padding: const EdgeInsets.only(left: 8, right: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                                child: Text(
-                              widget.title,
-                              maxLines: 2,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onPrimary,
-                                      overflow: TextOverflow.ellipsis),
-                            )),
-                            if (widget.isCorrect)
-                              const Icon(
-                                Icons.task_alt_rounded,
-                                color: Colors.green,
-                              )
-                          ],
-                        ),
-                        Text(
-                          widget.time,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary),
-                        ),
-                        if (widget.descrition != '' && widget.image == "")
-                          Text(
-                            widget.descrition,
-                            maxLines: widget.image == "" ? 6 : 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                    color: AppColor.textfourth, fontSize: 11),
-                          ),
-                        if (widget.image != '') buildimage(),
-                        SizedBox(
-                          height: 40,
-                          width: double.infinity,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                    children: widget.tags.map((e) {
-                                      return Container(
-                                        height: 15,
-                                        margin: const EdgeInsets.only(right: 4),
-                                        padding: const EdgeInsets.only(
-                                          left: 4,
-                                          right: 4,
-                                        ),
-                                        decoration: BoxDecoration(
-                                            color: const Color.fromARGB(
-                                                255, 215, 35, 95),
-                                            borderRadius:
-                                                BorderRadius.circular(6)),
-                                        child: Center(
-                                          child: Text(
-                                            "សមីការឌ៣៤៥៦៧៨",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodySmall!
-                                                .copyWith(
-                                                    color:
-                                                        AppColor.primaryColor,
-                                                    fontSize: 8),
-                                          ),
-                                        ),
-                                      );
-                                    }).toList(),
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  debugPrint(widget.questionId);
-                                  showModalBottomSheet(
-                                    context: context,
-                                    builder: (context) {
-                                      return MoreQuesionOption(
-                                          questionId: widget.questionId);
-                                    },
-                                  );
-                                },
-                                child: const Icon(
-                                  Icons.more_horiz_rounded,
-                                  // fill: 0.8,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : Padding(
-                    padding: const EdgeInsets.only(left: 8, right: 8),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, right: 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                          child: widget.isHighlight
+                              ? CustomHighlightText(
+                                  context: context,
+                                  text: widget.title,
+                                  highlightText: widget.textHighlight,
+                                  textStyle: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onPrimary,
+                                          overflow: TextOverflow.ellipsis),
+                                  highlightTextStyle: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(
+
+                                          // backgroundColor: Colors.blue,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onPrimary,
+                                          overflow: TextOverflow.ellipsis))
+                              : Text(
+                                  widget.title,
+                                  maxLines: 2,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onPrimary,
+                                          overflow: TextOverflow.ellipsis),
+                                )),
+                      if (widget.isCorrect)
+                        const Icon(
+                          Icons.task_alt_rounded,
+                          color: Colors.green,
+                        )
+                    ],
+                  ),
+                  // if (widget.descrition != '' && widget.image == "")
+                  Text(
+                    widget.descrition,
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.onPrimary),
+                  ),
+                  if (widget.image != '') buildimage(),
+                  // Text(
+                  //   widget.time,
+                  //   style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  //       color: Theme.of(context).colorScheme.onPrimary),
+                  // ),
+                  SizedBox(
+                    height: 30,
+                    width: double.infinity,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
-                          flex: 7,
-                          child: SizedBox(
-                            height: hightImage <
-                                    MediaQuery.sizeOf(context).width * 0.3
-                                ? MediaQuery.sizeOf(context).width * 0.3 + 10
-                                : hightImage + 5,
-                            key: globalKey,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            widget.title,
-                                            overflow: widget.descrition == ""
-                                                ? null
-                                                : TextOverflow.ellipsis,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .onTertiary),
-                                          ),
-                                        ),
-                                      ],
+                          child: Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Wrap(
+                                children: widget.tags.map((e) {
+                                  return Container(
+                                    height: 16,
+                                    margin: const EdgeInsets.only(right: 5),
+                                    padding: const EdgeInsets.only(
+                                      left: 5,
+                                      right: 5,
                                     ),
-                                    if (widget.descrition != "")
-                                      Text(
-                                        widget.descrition,
-                                        maxLines: 8,
-                                        overflow: TextOverflow.ellipsis,
+                                    decoration: BoxDecoration(
+                                        color: const Color.fromARGB(
+                                            255, 231, 152, 179),
+                                        borderRadius: BorderRadius.circular(3)),
+                                    child: Center(
+                                      child: Text(
+                                        "សមីការឌ៣៤៥៦៧៨",
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyMedium!
+                                            .bodySmall!
                                             .copyWith(
-                                                color: AppColor.textfourth,
-                                                fontSize: 11),
-                                      ),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      widget.time,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall!
-                                          .copyWith(
-                                              color: AppColor.textfourth,
-                                              fontSize: 9),
-                                    ),
-                                    Container(
-                                      width: double.infinity,
-                                      margin: const EdgeInsets.only(top: 5),
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          children: widget.tags.map((e) {
-                                            return Container(
-                                              margin: const EdgeInsets.only(
-                                                  right: 2.5),
-                                              padding: const EdgeInsets.only(
-                                                  left: 4,
-                                                  right: 4,
-                                                  bottom: 2,
-                                                  top: 2),
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                  color: const Color.fromARGB(
-                                                      255, 230, 74, 126),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8)),
-                                              child: Center(
-                                                child: Text(
-                                                  "សមីការឌ៣៤៥៦៧៨",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodySmall!
-                                                      .copyWith(
-                                                          color: AppColor
-                                                              .primaryColor,
-                                                          fontSize: 8),
-                                                ),
-                                              ),
-                                            );
-                                          }).toList(),
-                                        ),
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
+                                                fontSize: 8),
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ],
+                                  );
+                                }).toList(),
+                              ),
                             ),
                           ),
                         ),
-                        const Gap(5),
-                        if (widget.image != '')
-                          Expanded(
-                            flex: 2,
-                            child: CustomCachedImageCircle(
-                              borderRadius: BorderRadius.circular(0),
-                              height: MediaQuery.sizeOf(context).width * (0.3),
-                              width: double.infinity,
-                              image: widget.image,
-                            ),
-                          )
+                        GestureDetector(
+                          onTap: () {
+                            debugPrint(widget.questionId);
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return MoreQuesionOption(
+                                    questionId: widget.questionId);
+                              },
+                            );
+                          },
+                          child: const Icon(
+                            Icons.more_vert_rounded,
+                            size: 20,
+                          ),
+                        )
                       ],
                     ),
                   ),
+                ],
+              ),
+            ),
             Container(
               height: 0.5,
               color: Theme.of(context).colorScheme.onSecondary,
             ),
             Container(
-              // color: Colors.pink,
               margin: const EdgeInsets.only(left: 8, right: 8),
               height: 30,
               child: Row(

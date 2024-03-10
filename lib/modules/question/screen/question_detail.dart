@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/question/controller/answer_comment_controller.dart';
+import 'package:sos_mobile/modules/question/controller/answer_controller.dart';
 import 'package:sos_mobile/modules/question/controller/question_detail_controller.dart';
-import 'package:sos_mobile/modules/question/screen/comment_answer_screen.dart';
-import 'package:sos_mobile/utils/widgets/custom_answer_card.dart';
+import 'package:sos_mobile/modules/question/screen/anwser_screen.dart';
+import 'package:sos_mobile/modules/question/screen/post_comment_answer_screen.dart';
 import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
-import 'package:sos_mobile/utils/widgets/custom_comment_crad.dart';
 import '../widgets/page_sliy.dart';
 
 class QuestionDetail extends StatefulWidget {
@@ -23,7 +23,8 @@ class QuestionDetail extends StatefulWidget {
 }
 
 class _QuestionDetailState extends State<QuestionDetail> {
-  final controller = QuestionDetailController();
+  final controller = Get.put(QuestionDetailController());
+  final anwserController = Get.put(AnwserController());
   final commentController = AnswerCommentController();
   @override
   void initState() {
@@ -69,24 +70,6 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                 children: [
                                   Stack(
                                     children: [
-                                      // Container(
-                                      //   margin:
-                                      //       const EdgeInsets.only(bottom: 10),
-                                      //   child: CustomCachedImageCircle(
-                                      //     height: MediaQuery.sizeOf(context)
-                                      //             .height *
-                                      //         0.8,
-                                      //     width: double.infinity,
-                                      //     borderRadius:
-                                      //         const BorderRadius.only(
-                                      //             topLeft:
-                                      //                 Radius.circular(20),
-                                      //             topRight:
-                                      //                 Radius.circular(20)),
-                                      //     image:
-                                      //         'https://i.pinimg.com/736x/d5/cb/83/d5cb8311c9d8f7f076c0475726c4913f.jpg',
-                                      //   ),
-                                      // ),
                                       SizedBox(
                                         child: Row(children: [
                                           IconButton(
@@ -141,7 +124,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                             const SizedBox(
                                               width: 10,
                                             ),
-                                            Row(
+                                            Column(
                                               children: [
                                                 Text(
                                                   "វណ្ណះ",
@@ -149,21 +132,15 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                                       .textTheme
                                                       .titleSmall,
                                                 ),
-                                                const Gap(3),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 15),
-                                                  child: Text(
-                                                    "2 day",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodySmall!
-                                                        .copyWith(
-                                                            color: AppColor
-                                                                .textThird,
-                                                            fontSize: 9),
-                                                  ),
+                                                Text(
+                                                  "2 day",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                          color: AppColor
+                                                              .textThird,
+                                                          fontSize: 9),
                                                 ),
                                               ],
                                             )
@@ -171,21 +148,19 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                         ),
                                         const Gap(10),
                                         Text(
-                                          "ហេតុអ្វីបានជាទំស្រលាញ់ទាវ",
+                                          "ហេតុអ្វីបានជាទំស្រលាញ់ទាវ ?",
                                           style: Theme.of(context)
                                               .textTheme
-                                              .titleSmall!
-                                              .copyWith(
-                                                  color: AppColor.textThird),
+                                              .titleSmall,
                                         ),
                                         const SizedBox(
                                           height: 0,
                                         ),
                                         Text(
-                                          ":៥៩ ថ្ងៃសៅរ៍ ទី១៧ ខែកុម្ភៈ ឆ្នាំ២០១៨។អត្ថប-ShareAlike Lice",
+                                          ":៥៩ ថ្ងៃសៅរ៍ ទី១៧ ខែកុម្lsdlfadsdkfkdslksdlkdsalkdsaldsalalsksadkdskdsaksadlksdkkdskdsalkdsakdsaksadldsaldsaslfsadlkadslsafdlksdlkflssdlkfdsalklkdsaldsadsalkdslkmភៈ ឆ្នាំ២០១៨។អត្ថប-ShareAlike Lice",
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodySmall!
+                                              .bodyLarge!
                                               .copyWith(
                                                   color: AppColor.textThird),
                                         ),
@@ -207,7 +182,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                             context: context,
                                             isScrollControlled: true,
                                             builder: (BuildContext context) {
-                                              return CommentAnswerScreen(
+                                              return PostAnwserCommentScreen(
                                                 id: widget.id,
                                               );
                                             },
@@ -259,96 +234,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                     controller.onPageChanged();
                                   },
                                   children: [
-                                    // Column(
-                                    //   children: [
-                                    //     const Gap(20),
-                                    //     Text(
-                                    //       "ពំុទាន់មានចម្លើយ !!!!",
-                                    //       style: Theme.of(context)
-                                    //           .textTheme
-                                    //           .bodyLarge!
-                                    //           .copyWith(
-                                    //               color: Theme.of(context)
-                                    //                   .colorScheme
-                                    //                   .onTertiary),
-                                    //     ),
-                                    //   ],
-                                    // ),
-                                    // Column(
-                                    //   children: [
-                                    //     const Gap(20),
-                                    //     Text(
-                                    //       "ពំុទាន់មានមតិ !!!!",
-                                    //       style: Theme.of(context)
-                                    //           .textTheme
-                                    //           .bodyLarge!
-                                    //           .copyWith(
-                                    //               color: Theme.of(context)
-                                    //                   .colorScheme
-                                    //                   .onTertiary),
-                                    //     ),
-                                    //   ],
-                                    // ),
-                                    ListView.builder(
-                                      controller:
-                                          controller.scrollerController02,
-                                      physics: controller.isScroll.value ||
-                                              controller.jumpAll.value
-                                          ? null
-                                          : const NeverScrollableScrollPhysics(),
-                                      itemCount: 20,
-                                      itemBuilder: (context, i) {
-                                        return CustomAnswerCrad(
-                                          isCorrect: false,
-                                          isYourOwnQuestion: true,
-                                          name: "ចាន់ថា",
-                                          time: "១០​ថ្ងៃមុន",
-                                          description:
-                                              "នេះដោយអចេតនា សូមចុចប៊ូតុង ត្រឡប់ក្រោយ របស់ឧបករណ៍រាវរករបស់អ្នក។",
-                                          image:
-                                              "https://www.shareicon.net/data/256x256/2016/05/26/771203_man_512x512.png",
-                                          commentCount: "4",
-                                          likeAnswer: "50",
-                                          ontapProfile: () {
-                                            context.pushNamed(
-                                              '/user-profile',
-                                              pathParameters: {"id": "2000"},
-                                            );
-                                          },
-                                          ontapCorrect: () {
-                                            debugPrint("khmer sl khmer ");
-                                          },
-                                          ontap: () {},
-                                          avarta:
-                                              "https://www.shareicon.net/data/256x256/2016/05/26/771203_man_512x512.png",
-                                        );
-                                      },
-                                    ),
-                                    ListView.builder(
-                                      controller:
-                                          controller.scrollerController03,
-                                      physics: controller.isScroll.value ||
-                                              controller.jumpAll.value
-                                          ? null
-                                          : const NeverScrollableScrollPhysics(),
-                                      itemCount: 40,
-                                      itemBuilder: (context, i) {
-                                        return CustomCommentCrad(
-                                          ontapProfile: () {
-                                            context.pushNamed('/user-profile',
-                                                pathParameters: {"id": "reer"});
-                                          },
-                                          ontap: () {
-                                            controller
-                                                .ontapMoreComment(context);
-                                          },
-                                          name: "vannak",
-                                          time: "4h ago ",
-                                          title:
-                                              "ជួយបញ្ជាjlkjfajslkfdjlkafjjfklsjflkajsfljasfljsafdlក់បន្ថែមតិចមើលញុំដូចអត់សូវយល់",
-                                        );
-                                      },
-                                    ),
+                                    AnwserScreen(id: widget.id),
                                   ],
                                 ),
                               ),
