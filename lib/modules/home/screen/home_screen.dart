@@ -221,7 +221,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     controller.question.length,
                                                 itemBuilder: (context, i) {
                                                   return CustomQuestionCard(
-                                                    isHighlight: false,
                                                     textHighlight: "យាយ",
                                                     questionId:
                                                         "${controller.question[i].id}",
@@ -251,7 +250,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                 .toString()
                                                           });
                                                     },
-                                                    isCorrect: true,
+                                                    isCorrect: false,
                                                     descrition:
                                                         "${controller.question[i].description}",
                                                     image: "",

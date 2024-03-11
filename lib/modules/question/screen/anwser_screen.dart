@@ -26,8 +26,11 @@ class _AnwserScreenState extends State<AnwserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => !anwserController.isloaing.value
-        ? ListView.builder(
+    return Obx(() => anwserController.isloaing.value
+        ? const Center(
+            child: Text("No Anwser"),
+          )
+        : ListView.builder(
             controller: controller.scrollerController02,
             physics: controller.isScroll.value || controller.jumpAll.value
                 ? null
@@ -58,9 +61,6 @@ class _AnwserScreenState extends State<AnwserScreen> {
                     "https://www.shareicon.net/data/256x256/2016/05/26/771203_man_512x512.png",
               );
             },
-          )
-        : const Center(
-            child: Text("No Anwser"),
           ));
   }
 }

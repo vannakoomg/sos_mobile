@@ -37,8 +37,10 @@ Future<File> pickImage({ImageSource source = ImageSource.gallery}) async {
   return File(image.path);
 }
 
-Future<void> saveUrlImage(String urlImage) async {
-  await GallerySaver.saveImage(urlImage);
+Future<void> saveImage(String urlImage) async {
+  var kkk = await GallerySaver.saveImage(
+      "https://laravelnak.s3.amazonaws.com/public/images/1708677150_sea-moring.jpg");
+  debugPrint("khmer $kkk");
 }
 
 Color rendomColors() {

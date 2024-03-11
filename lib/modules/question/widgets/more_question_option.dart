@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/modules/home/controllers/home_controller.dart';
 import 'package:sos_mobile/modules/question/controller/question_detail_controller.dart';
 import 'package:sos_mobile/utils/controllers/singleTon.dart';
+import 'package:sos_mobile/utils/helpers/fuction.dart';
 
 import '../../../configs/const/Colors/app_colors.dart';
 import '../../../utils/widgets/custom_buttom.dart';
@@ -12,8 +13,10 @@ import '../../report/screens/report_type_screen.dart';
 
 class MoreQuesionOption extends StatelessWidget {
   final String questionId;
+  final String image;
   const MoreQuesionOption({
     super.key,
+    required this.image,
     required this.questionId,
   });
 
@@ -61,13 +64,18 @@ class MoreQuesionOption extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 5, top: 5),
-                  width: double.infinity,
-                  color: Colors.transparent,
-                  child: Text(
-                    "Download Photo",
-                    style: Theme.of(context).textTheme.titleMedium,
+                GestureDetector(
+                  onTap: () async {
+                    await saveImage(image);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.only(bottom: 5, top: 5),
+                    width: double.infinity,
+                    color: Colors.transparent,
+                    child: Text(
+                      "Download Photo",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                   ),
                 ),
                 GestureDetector(

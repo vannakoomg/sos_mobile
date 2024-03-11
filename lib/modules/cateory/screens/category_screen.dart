@@ -47,7 +47,7 @@ class _SaveCategoryScreenState extends State<SaveCategoryScreen> {
                             child: CustomLoading(),
                           )
                         : controller.saveCategory.value.data != null
-                            ? Stack(
+                            ? Column(
                                 children: [
                                   Expanded(
                                     child: GridView.builder(

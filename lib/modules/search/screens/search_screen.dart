@@ -33,96 +33,92 @@ class _SearchScreenState extends State<SearchScreen> {
     return Obx(
       () => Container(
         color: Theme.of(context).colorScheme.background,
-        child: SafeArea(
-          child: !controller.isloading.value
-              ? controller.popular.value.data != null
-                  ? Container(
-                      color: Theme.of(context).colorScheme.background,
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: Stack(
-                              children: [
-                                AnimatedOpacity(
-                                  opacity: widget.isFocus ? 0 : 1,
-                                  duration: const Duration(milliseconds: 300),
-                                  child: Column(
-                                    children: [
-                                      const Gap(10),
-                                      Text("ពេញនិយមក្នុងការស្វ័យរក",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleSmall!
-                                              .copyWith(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .tertiary)),
-                                      Expanded(
-                                        child: GridView.builder(
-                                          itemCount: controller
-                                              .popular.value.data!.length,
-                                          padding: EdgeInsets.zero,
-                                          gridDelegate:
-                                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 2,
-                                            mainAxisSpacing: 0,
-                                          ),
-                                          itemBuilder: (context, index) {
-                                            return Center(
-                                              child: CustomBook(
-                                                width:
-                                                    MediaQuery.sizeOf(context)
-                                                            .width /
-                                                        3.5,
-                                                height:
-                                                    MediaQuery.sizeOf(context)
-                                                            .width /
-                                                        2.5,
-                                                ontap: () {},
-                                                title: controller.popular.value
-                                                        .data![index].title ??
-                                                    '',
-                                                image: controller.popular.value
-                                                        .data![index].image ??
-                                                    "",
-                                              ),
-                                            );
-                                          },
+        child: !controller.isloading.value
+            ? controller.popular.value.data != null
+                ? Container(
+                    color: Theme.of(context).colorScheme.background,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Stack(
+                            children: [
+                              AnimatedOpacity(
+                                opacity: widget.isFocus ? 0 : 1,
+                                duration: const Duration(milliseconds: 300),
+                                child: Column(
+                                  children: [
+                                    const Gap(10),
+                                    Text("គំនិតខ្លះៗក្នុងការស្វ័យរក",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall!
+                                            .copyWith(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .tertiary)),
+                                    Expanded(
+                                      child: GridView.builder(
+                                        itemCount: controller
+                                            .popular.value.data!.length,
+                                        padding: EdgeInsets.zero,
+                                        gridDelegate:
+                                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                          mainAxisSpacing: 0,
                                         ),
+                                        itemBuilder: (context, index) {
+                                          return Center(
+                                            child: CustomBook(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width /
+                                                  3.5,
+                                              height: MediaQuery.sizeOf(context)
+                                                      .width /
+                                                  2.5,
+                                              ontap: () {},
+                                              title: controller.popular.value
+                                                      .data![index].title ??
+                                                  '',
+                                              image: controller.popular.value
+                                                      .data![index].image ??
+                                                  "",
+                                            ),
+                                          );
+                                        },
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                if (widget.isFocus && widget.searchText == '')
-                                  const SingleChildScrollView(
-                                    padding: EdgeInsets.zero,
-                                    child: AnimatedOpacity(
-                                        duration: Duration(milliseconds: 300),
-                                        opacity: 1,
-                                        child: RecentSearchWidget()),
-                                  ),
-                                if (widget.isFocus &&
-                                    homeController.searchText.value != '')
-                                  OptionsSearch(ontapParagram: () {
-                                    controller.tapSearch(
-                                        context: context,
-                                        name: widget.searchText,
-                                        type: 1);
-                                  }, ontapTag: () {
-                                    controller.tapSearch(
-                                        context: context,
-                                        name: widget.searchText,
-                                        type: 0);
-                                  })
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  : Container()
-              : const CustomLoading(),
-        ),
+                              ),
+                              if (widget.isFocus && widget.searchText == '')
+                                const SingleChildScrollView(
+                                  padding: EdgeInsets.zero,
+                                  child: AnimatedOpacity(
+                                      duration: Duration(milliseconds: 300),
+                                      opacity: 1,
+                                      child: RecentSearchWidget()),
+                                ),
+                              if (widget.isFocus &&
+                                  homeController.searchText.value != '')
+                                OptionsSearch(ontapParagram: () {
+                                  controller.tapSearch(
+                                      context: context,
+                                      name: widget.searchText,
+                                      type: 1);
+                                }, ontapTag: () {
+                                  controller.tapSearch(
+                                      context: context,
+                                      name: widget.searchText,
+                                      type: 0);
+                                })
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                : Container()
+            : const CustomLoading(),
       ),
     );
   }

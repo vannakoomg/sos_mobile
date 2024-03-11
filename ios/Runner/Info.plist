@@ -4,6 +4,8 @@
 <dict>
 	<key>GIDClientID</key>
 	<string>com.googleusercontent.apps.964168453976-8gloqbrdvpkmrooqkde0mqr3ro3frhaq</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>My description about why I need this capability</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

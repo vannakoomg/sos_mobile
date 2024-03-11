@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/modules/search/controller/result_search_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
+import 'package:sos_mobile/utils/widgets/custom_empty_data.dart';
 
 import '../../../utils/controllers/singleTon.dart';
 import '../../../utils/widgets/custom_loading.dart';
@@ -25,50 +26,52 @@ class _ResultSearchScreenState extends State<ResultSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: CustomAppBar(title: widget.text),
-        body: Obx(() => Container(
-              height: double.infinity,
-              padding: const EdgeInsets.only(left: 10, right: 10),
-              child: Expanded(
-                  child: !controller.isloading.value
-                      ? ListView.builder(
-                          padding: EdgeInsets.zero,
-                          // controller: controller.scrollController.value,
-                          itemCount: controller.resultSearch.length,
-                          itemBuilder: (context, i) {
-                            return CustomQuestionCard(
-                              isHighlight: true,
-                              textHighlight: widget.text,
-                              questionId: "${controller.resultSearch[i].id}",
-                              istall: i % 2 != 0 ? false : true,
-                              title: "${controller.resultSearch[i].title}",
-                              tags: const [
-                                "dfa2341241344334534534534sfd",
-                                "dfa2341241344334534534534sfd",
-                                "dfa2341241344334534534534sfd",
-                                "dfa2341241344334534534534sfd",
-                                "dfa2341241344334534534534sfd",
-                              ],
-                              answerCount: "${controller.resultSearch[i].id}",
-                              ontapQuestion: () {
-                                Singleton.obj.questionId = i;
-                                context.pushNamed("question-detail",
-                                    pathParameters: {
-                                      "id": controller.resultSearch[i].id
-                                          .toString()
-                                    });
-                              },
-                              isCorrect: false,
-                              descrition:
-                                  "${controller.resultSearch[i].description}",
-                              image: "",
-                              commentCount: "",
-                              likeCount: "",
-                            );
-                          },
-                        )
-                      : const CustomLoading()),
-            )));
+    return Obx(() => Scaffold(
+          appBar: CustomAppBar(title: widget.text),
+          body: Container(
+            height: double.infinity,
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: controller.isloading.value
+                ? const Center(child: CustomLoading())
+                : controller.resultSearch.isEmpty
+                    ? const CustomEmptyData()
+                    : ListView.builder(
+                        padding: EdgeInsets.zero,
+                        // controller: controller.scrollController.value,
+                        itemCount: controller.resultSearch.length,
+                        itemBuilder: (context, i) {
+                          return CustomQuestionCard(
+                            isHighlight: true,
+                            textHighlight: widget.text,
+                            questionId: "${controller.resultSearch[i].id}",
+                            istall: i % 2 != 0 ? false : true,
+                            title: "${controller.resultSearch[i].title}",
+                            tags: const [
+                              "dfa2341241344334534534534sfd",
+                              "dfa2341241344334534534534sfd",
+                              "dfa2341241344334534534534sfd",
+                              "dfa2341241344334534534534sfd",
+                              "dfa2341241344334534534534sfd",
+                            ],
+                            answerCount: "${controller.resultSearch[i].id}",
+                            ontapQuestion: () {
+                              Singleton.obj.questionId = i;
+                              context.pushNamed("question-detail",
+                                  pathParameters: {
+                                    "id":
+                                        controller.resultSearch[i].id.toString()
+                                  });
+                            },
+                            isCorrect: false,
+                            descrition:
+                                "${controller.resultSearch[i].description}",
+                            image: "",
+                            commentCount: "",
+                            likeCount: "",
+                          );
+                        },
+                      ),
+          ),
+        ));
   }
 }

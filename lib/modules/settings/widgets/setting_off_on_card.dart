@@ -31,12 +31,12 @@ class OffOnSettingCard extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
-                      .copyWith(color: AppColor.textThird),
+                      .copyWith(color: Theme.of(context).colorScheme.onPrimary),
                 ),
                 Text(
                   description,
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: Theme.of(context).colorScheme.onTertiary),
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
               ],
             ),

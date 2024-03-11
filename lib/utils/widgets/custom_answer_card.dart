@@ -43,8 +43,9 @@ class CustomAnswerCrad extends StatelessWidget {
       },
       child: Container(
         width: double.infinity,
-        padding:
-            const EdgeInsets.only(left: 10, top: 10, bottom: 10, right: 10),
+        padding: const EdgeInsets.only(
+          top: 10,
+        ),
         margin: const EdgeInsets.only(bottom: 5),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.onTertiary,
@@ -54,111 +55,120 @@ class CustomAnswerCrad extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Row(
-                    children: [
-                      GestureDetector(
+            Container(
+              padding: const EdgeInsets.only(left: 8),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Row(
+                            children: [
+                              GestureDetector(
+                                  onTap: () {
+                                    ontapProfile();
+                                  },
+                                  child:
+                                      CustomCachedImageCircle(image: avarta)),
+                              const Gap(5),
+                              Column(
+                                children: [
+                                  Text(
+                                    name,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall!
+                                        .copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onPrimary,
+                                            fontWeight: FontWeight.w600),
+                                  ),
+                                  Text(
+                                    time,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                            color: AppColor.textThird,
+                                            fontSize: 9),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        GestureDetector(
                           onTap: () {
-                            ontapProfile();
+                            ontapCorrect();
                           },
-                          child: CustomCachedImageCircle(image: avarta)),
-                      const Gap(5),
-                      Column(
-                        children: [
-                          Text(
-                            name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleSmall!
-                                .copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.onPrimary,
-                                    fontWeight: FontWeight.w600),
-                          ),
-                          Text(
-                            time,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                    color: AppColor.textThird, fontSize: 9),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    ontapCorrect();
-                  },
-                  child: isCorrect == true
-                      ? const Icon(
-                          Icons.task_alt_rounded,
-                          color: Colors.green,
+                          child: isCorrect == true
+                              ? const Icon(
+                                  Icons.task_alt_rounded,
+                                  color: Colors.green,
+                                )
+                              : isYourOwnQuestion
+                                  ? const Icon(
+                                      Icons.check_circle_sharp,
+                                      color: Color.fromARGB(255, 146, 146, 146),
+                                    )
+                                  : const SizedBox(),
                         )
-                      : isYourOwnQuestion
-                          ? const Icon(
-                              Icons.check_circle_sharp,
-                              color: Color.fromARGB(255, 146, 146, 146),
-                            )
-                          : const SizedBox(),
-                )
-              ],
+                      ],
+                    ),
+                    const Gap(10),
+                    Text(
+                      description,
+                      maxLines: image == "" ? 6 : 1,
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    if (image != '')
+                      CachedNetworkImage(
+                        imageUrl: image,
+                        height: MediaQuery.sizeOf(context).width / 2,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
+                  ]),
             ),
-            Text(
-              description,
-              maxLines: image == "" ? 6 : 1,
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: AppColor.textfourth,
+            Container(
+              padding: const EdgeInsets.only(left: 8),
+              height: 30,
+              decoration: BoxDecoration(
+                  border: Border(
+                      top: BorderSide(
+                color: Theme.of(context).colorScheme.onSecondary,
+                width: 0.5,
+              ))),
+              child: Row(
+                children: [
+                  Text(likeAnswer,
+                      style: Theme.of(context).textTheme.bodyMedium!),
+                  const SizedBox(
+                    width: 5,
                   ),
-              overflow: TextOverflow.ellipsis,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            if (image != '')
-              CachedNetworkImage(
-                imageUrl: image,
-                height: MediaQuery.sizeOf(context).width / 2,
-                width: double.infinity,
-                fit: BoxFit.cover,
+                  Text(
+                    "ពេញចិត្ត",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: AppColor.textThird),
+                  ),
+                  const Spacer(),
+                  const Icon(
+                    Icons.more_vert_rounded,
+                    size: 18,
+                  ),
+                ],
               ),
-            Row(
-              children: [
-                Text(commentCount,
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          color: Theme.of(context).colorScheme.onPrimary,
-                        )),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  "មតិ",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: AppColor.textThird),
-                ),
-                const Spacer(),
-                Text(likeAnswer,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Theme.of(context).colorScheme.onPrimary,
-                        )),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  "ពេញចិត្ត",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: AppColor.textThird),
-                )
-              ],
             ),
           ],
         ),

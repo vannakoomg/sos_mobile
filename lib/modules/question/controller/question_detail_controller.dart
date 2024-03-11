@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/modules/question/screen/post_comment_answer_screen.dart';
 import 'package:sos_mobile/modules/question/widgets/more_comment_option.dart';
@@ -62,6 +63,7 @@ class QuestionDetailController extends GetxController {
       }
     });
     scrollerController02.addListener(() {
+      debugPrint("${scrollerController02.offset}");
       if (scrollerController02.offset == 0) {
         scrollerController01
             .animateTo(0,
@@ -126,13 +128,16 @@ class QuestionDetailController extends GetxController {
         }));
   }
 
-  void ontapMoreQuestion(BuildContext context, String questionId) async {
+  void ontapMoreQuestion(
+      BuildContext context, String questionId, String image) async {
+    debugPrint(image);
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
         builder: ((context) {
           return MoreQuesionOption(
             questionId: questionId,
+            image: image,
           );
         }));
   }

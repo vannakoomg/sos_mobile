@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/search/controller/recent_search_controller.dart';
+import 'package:sos_mobile/modules/search/controller/search_controller.dart';
 
 class RecentSearchWidget extends StatelessWidget {
   const RecentSearchWidget({super.key});
@@ -9,6 +10,7 @@ class RecentSearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final recentSearchController = Get.put(RecentSearchController());
+    final searchController = Get.put(Searchcontroller());
     recentSearchController.getRecentSearch();
     return Obx(
       () => Container(
@@ -63,41 +65,50 @@ class RecentSearchWidget extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(left: 8, right: 5, top: 5),
                     child: Column(
                         children: recentSearchController.recentsearch
                             .asMap()
                             .entries
                             .map((e) {
-                      return Container(
-                        alignment: Alignment.center,
-                        height: 40,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                e.value.name,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .copyWith(color: AppColor.textThird),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                recentSearchController.deleteOne(
-                                    index: e.key, id: e.value.id);
-                              },
-                              child: Container(
-                                color: Colors.transparent,
-                                child: Icon(
-                                  Icons.close,
-                                  color: AppColor.textThird,
+                      return GestureDetector(
+                        onTap: () {
+                          searchController.tapSearch(
+                              context: context,
+                              type: e.value.type,
+                              name: e.value.name);
+                        },
+                        child: Container(
+                          padding:
+                              const EdgeInsets.only(left: 8, right: 5, top: 5),
+                          alignment: Alignment.center,
+                          height: 40,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  e.value.name,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(color: AppColor.textThird),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                            )
-                          ],
+                              GestureDetector(
+                                onTap: () {
+                                  recentSearchController.deleteOne(
+                                      index: e.key, id: e.value.id);
+                                },
+                                child: Container(
+                                  color: Colors.transparent,
+                                  child: Icon(
+                                    Icons.close,
+                                    color: AppColor.textThird,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       );
                     }).toList()),

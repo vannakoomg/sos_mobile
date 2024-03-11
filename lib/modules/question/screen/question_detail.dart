@@ -7,6 +7,7 @@ import 'package:sos_mobile/modules/question/controller/answer_comment_controller
 import 'package:sos_mobile/modules/question/controller/answer_controller.dart';
 import 'package:sos_mobile/modules/question/controller/question_detail_controller.dart';
 import 'package:sos_mobile/modules/question/screen/anwser_screen.dart';
+import 'package:sos_mobile/modules/question/screen/comment_screen.dart';
 import 'package:sos_mobile/modules/question/screen/post_comment_answer_screen.dart';
 import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
 import '../widgets/page_sliy.dart';
@@ -23,12 +24,11 @@ class QuestionDetail extends StatefulWidget {
 }
 
 class _QuestionDetailState extends State<QuestionDetail> {
-  final controller = Get.put(QuestionDetailController());
+  final controller = QuestionDetailController();
   final anwserController = Get.put(AnwserController());
   final commentController = AnswerCommentController();
   @override
   void initState() {
-    debugPrint("question id ${widget.id}");
     controller.listenScoller();
     super.initState();
   }
@@ -86,7 +86,10 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                           IconButton(
                                             onPressed: () {
                                               controller.ontapMoreQuestion(
-                                                  context, widget.id);
+                                                context,
+                                                widget.id,
+                                                "https://scontent.fpnh18-1.fna.fbcdn.net/v/t39.30808-6/431967746_1147247899781283_6948626698840049783_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFYFFXM6TB_M8c68_698XMfQzjyCdtnriNDOPIJ22euI80W_Rv8Fe-fIbJotUNCFr_e9ZK56272vFA7sBv4qLSU&_nc_ohc=6ZqleNjb_NIAX9tO2Bs&_nc_zt=23&_nc_ht=scontent.fpnh18-1.fna&oh=00_AfC7WAjZu6SD48G-NfVsbhR9evDNTY7bJhNmm4MGQJnL5A&oe=65F1DABF",
+                                              );
                                             },
                                             icon: const Icon(
                                               Icons.more_horiz,
@@ -224,7 +227,9 @@ class _QuestionDetailState extends State<QuestionDetail> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              SizedBox(
+                              Container(
+                                padding:
+                                    const EdgeInsets.only(left: 8, right: 8),
                                 height: MediaQuery.of(context).size.height,
                                 width: double.infinity,
                                 child: PageView(
@@ -233,8 +238,9 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                   onPageChanged: (id) {
                                     controller.onPageChanged();
                                   },
-                                  children: [
-                                    AnwserScreen(id: widget.id),
+                                  children: const [
+                                    // AnwserScreen(id: widget.id),
+                                    CommentScreen(),
                                   ],
                                 ),
                               ),

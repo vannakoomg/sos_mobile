@@ -231,7 +231,9 @@ class _CustomQuestionCardState extends State<CustomQuestionCard>
                               context: context,
                               builder: (context) {
                                 return MoreQuesionOption(
-                                    questionId: widget.questionId);
+                                  questionId: widget.questionId,
+                                  image: widget.image,
+                                );
                               },
                             );
                           },
