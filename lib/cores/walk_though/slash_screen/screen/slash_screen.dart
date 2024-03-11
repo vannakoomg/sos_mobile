@@ -11,13 +11,13 @@ class SlashScreen extends StatefulWidget {
 class _SlashScreenState extends State<SlashScreen> {
   void getToken() async {
     String token = await LocalStorage.getStringValue(key: "access_token");
-    Future.delayed(const Duration(milliseconds: 600), () {
-      if (token != '') {
-        context.go('/home');
-      } else {
-        context.go('/hello');
-      }
-    });
+    // Future.delayed(const Duration(milliseconds: 600), () {
+    //   if (token != '') {
+    //     context.go('/home');
+    //   } else {
+    //     context.go('/hello');
+    //   }
+    // });
   }
 
   @override

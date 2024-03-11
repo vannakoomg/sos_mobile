@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -33,12 +34,19 @@ void listNotification() async {
     provisional: false,
     sound: true,
   );
-  String? token = await FirebaseMessaging.instance.getToken();
-  debugPrint("your get device token $token");
+  try {
+    String? token = await messaging.getToken();
+    debugPrint("device token $token");
+  } catch (e) {
+    debugPrint("catch $e");
+  }
+  debugPrint("notification is ==== ${messaging.isAutoInitEnabled}");
   if (messaging.isAutoInitEnabled) {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-      debugPrint("you have been get notification from firebase ");
+      debugPrint(
+          "you have been get notification from firebase ${message.notification!.body!}");
       RemoteNotification? notification = message.notification;
+      // notification..
       if (message.notification != null) {
         if (Platform.isAndroid) {
           await flutterLocalNotificationsPlugin
@@ -50,12 +58,13 @@ void listNotification() async {
             notification!.title,
             notification.body,
             NotificationDetails(
-                android: AndroidNotificationDetails(
-                  channel.id,
-                  channel.name,
-                  icon: '@mipmap/ic_launcher',
-                ),
-                iOS: const DarwinNotificationDetails()),
+              android: AndroidNotificationDetails(
+                channel.id,
+                channel.name,
+                icon: '@mipmap/ic_launcher',
+              ),
+              iOS: const DarwinNotificationDetails(),
+            ),
           );
         }
       }
