@@ -64,55 +64,53 @@ class RecentSearchWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    child: Column(
-                        children: recentSearchController.recentsearch
-                            .asMap()
-                            .entries
-                            .map((e) {
-                      return GestureDetector(
-                        onTap: () {
-                          searchController.tapSearch(
-                              context: context,
-                              type: e.value.type,
-                              name: e.value.name);
-                        },
-                        child: Container(
-                          padding:
-                              const EdgeInsets.only(left: 8, right: 5, top: 5),
-                          alignment: Alignment.center,
-                          height: 40,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  e.value.name,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .copyWith(color: AppColor.textThird),
-                                  overflow: TextOverflow.ellipsis,
+                  Column(
+                      children: recentSearchController.recentsearch
+                          .asMap()
+                          .entries
+                          .map((e) {
+                    return GestureDetector(
+                      onTap: () {
+                        searchController.tapSearch(
+                            context: context,
+                            type: e.value.type,
+                            name: e.value.name);
+                      },
+                      child: Container(
+                        padding:
+                            const EdgeInsets.only(left: 8, right: 5, top: 5),
+                        alignment: Alignment.center,
+                        height: 40,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                e.value.name,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(color: AppColor.textThird),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                recentSearchController.deleteOne(
+                                    index: e.key, id: e.value.id);
+                              },
+                              child: Container(
+                                color: Colors.transparent,
+                                child: Icon(
+                                  Icons.close,
+                                  color: AppColor.textThird,
                                 ),
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  recentSearchController.deleteOne(
-                                      index: e.key, id: e.value.id);
-                                },
-                                child: Container(
-                                  color: Colors.transparent,
-                                  child: Icon(
-                                    Icons.close,
-                                    color: AppColor.textThird,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
+                            )
+                          ],
                         ),
-                      );
-                    }).toList()),
-                  ),
+                      ),
+                    );
+                  }).toList()),
                 ],
               )
             : const SizedBox(),

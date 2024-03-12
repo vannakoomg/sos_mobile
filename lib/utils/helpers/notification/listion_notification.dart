@@ -15,7 +15,6 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 void listNotification() async {
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   if (Platform.isIOS) {
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
@@ -40,11 +39,10 @@ void listNotification() async {
   } catch (e) {
     debugPrint("catch $e");
   }
-  debugPrint("notification is ==== ${messaging.isAutoInitEnabled}");
   if (messaging.isAutoInitEnabled) {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-      debugPrint(
-          "you have been get notification from firebase ${message.notification!.body!}");
+      debugPrint("++++++++++++++++++++");
+      debugPrint("--------------------${message.data['click_action']}");
       RemoteNotification? notification = message.notification;
       // notification..
       if (message.notification != null) {
@@ -69,6 +67,10 @@ void listNotification() async {
         }
       }
     });
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      debugPrint("khmer sl khmer ");
+    });
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   } else {
     debugPrint('User declined or has not accepted permission');
   }

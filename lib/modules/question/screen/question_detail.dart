@@ -6,7 +6,6 @@ import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/question/controller/answer_comment_controller.dart';
 import 'package:sos_mobile/modules/question/controller/answer_controller.dart';
 import 'package:sos_mobile/modules/question/controller/question_detail_controller.dart';
-import 'package:sos_mobile/modules/question/screen/anwser_screen.dart';
 import 'package:sos_mobile/modules/question/screen/comment_screen.dart';
 import 'package:sos_mobile/modules/question/screen/post_comment_answer_screen.dart';
 import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
