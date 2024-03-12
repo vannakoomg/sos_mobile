@@ -18,16 +18,28 @@ void main() async {
   await Firebase.initializeApp();
   await dotenv.load(fileName: ".env");
   await LocalStorage.init();
-  listNotification();
   DBHelper.obj.databaseObj = await DBHelper.obj.initDB();
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    checkForInitalMessge();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    listNotification(context);
+
     final controller = Get.put(AppController());
     final themeController = Get.put(ThemeController());
     return GestureDetector(

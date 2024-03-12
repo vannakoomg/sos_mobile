@@ -10,6 +10,7 @@ import 'package:sos_mobile/modules/question/screen/comment_screen.dart';
 import 'package:sos_mobile/modules/question/screen/post_comment_answer_screen.dart';
 import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
 import '../widgets/page_sliy.dart';
+import 'anwser_screen.dart';
 
 class QuestionDetail extends StatefulWidget {
   final String id;
@@ -237,9 +238,9 @@ class _QuestionDetailState extends State<QuestionDetail> {
                                   onPageChanged: (id) {
                                     controller.onPageChanged();
                                   },
-                                  children: const [
-                                    // AnwserScreen(id: widget.id),
-                                    CommentScreen(),
+                                  children: [
+                                    AnwserScreen(id: widget.id),
+                                    const CommentScreen(),
                                   ],
                                 ),
                               ),

@@ -1,11 +1,24 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+import '../../../configs/route/route.dart';
+
+Future checkForInitalMessge() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await FirebaseMessaging.instance.getInitialMessage().then((value) {
+    if (value != null) {
+      handleRoute(value);
+    }
+  });
+}
+
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  handleRoute(message);
   debugPrint("Handling a background message: ${message.notification!.title}");
 }
 
@@ -14,7 +27,7 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
     importance: Importance.high, playSound: true);
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
-void listNotification() async {
+void listNotification(BuildContext context) async {
   if (Platform.isIOS) {
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
@@ -41,10 +54,7 @@ void listNotification() async {
   }
   if (messaging.isAutoInitEnabled) {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-      debugPrint("++++++++++++++++++++");
-      debugPrint("--------------------${message.data['click_action']}");
       RemoteNotification? notification = message.notification;
-      // notification..
       if (message.notification != null) {
         if (Platform.isAndroid) {
           await flutterLocalNotificationsPlugin
@@ -68,10 +78,42 @@ void listNotification() async {
       }
     });
     FirebaseMessaging.onMessageOpenedApp.listen((event) {
-      debugPrint("khmer sl khmer ");
+      debugPrint("tap on Notification  ${event.data["route"]}");
+      handleRoute(event);
     });
+    void notificationTapBackground(NotificationResponse notificationResponse) {
+      router.pushNamed(
+        'question-detail',
+        pathParameters: {"id": "109"},
+      );
+    }
+
+    await flutterLocalNotificationsPlugin.initialize(
+      const InitializationSettings(
+        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+        iOS: DarwinInitializationSettings(),
+      ),
+      onDidReceiveNotificationResponse:
+          (NotificationResponse notificationResponse) async {
+        router.pushNamed(
+          'question-detail',
+          pathParameters: {"id": "109"},
+        );
+      },
+      // onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
+    );
+
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   } else {
     debugPrint('User declined or has not accepted permission');
   }
+}
+
+void handleRoute(RemoteMessage message) {
+  // context.goNamed("setting");
+
+  router.pushNamed(
+    'question-detail',
+    pathParameters: {"id": "109"},
+  );
 }

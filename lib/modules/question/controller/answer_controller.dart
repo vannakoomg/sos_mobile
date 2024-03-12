@@ -26,6 +26,7 @@ class AnwserController extends GetxController {
   final anwserInQuestionModel = AnwserInQuestionModel().obs;
   final anwserInQuestion = <AnwserInQuestion>[].obs;
   Future fetchAnwserInQuestion(String id) async {
+    debugPrint("fetching answer in question $id");
     anwserInQuestion.clear();
     isloaing.value = true;
     ApiBaseHelper.apiBaseHelper
