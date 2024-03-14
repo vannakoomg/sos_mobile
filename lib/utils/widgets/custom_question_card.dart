@@ -12,7 +12,6 @@ class CustomQuestionCard extends StatefulWidget {
   final bool isHighlight;
   final List<String> tags;
   final bool isCorrect;
-  // final String time;
   final String title;
   final String descrition;
   final String image;
@@ -20,6 +19,7 @@ class CustomQuestionCard extends StatefulWidget {
   final String answerCount;
   final String likeCount;
   final Function ontapQuestion;
+  final Function onDoubleTap;
   final bool istall;
   final String questionId;
   final String textHighlight;
@@ -32,8 +32,8 @@ class CustomQuestionCard extends StatefulWidget {
     this.textHighlight = '',
     required this.questionId,
     required this.isCorrect,
+    required this.onDoubleTap,
     required this.tags,
-    // required this.time,
     required this.image,
     required this.commentCount,
     required this.title,
@@ -81,6 +81,14 @@ class _CustomQuestionCardState extends State<CustomQuestionCard>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onDoubleTapDown: (detail) {
+        widget.onDoubleTap();
+        debugPrint("double tap ");
+        appController.addListLike(
+          detail.globalPosition.dx,
+          detail.globalPosition.dy,
+        );
+      },
       onTap: () {
         widget.ontapQuestion();
       },
@@ -164,7 +172,6 @@ class _CustomQuestionCardState extends State<CustomQuestionCard>
                         )
                     ],
                   ),
-                  // if (widget.descrition != '' && widget.image == "")
                   Text(
                     widget.descrition,
                     maxLines: 4,
@@ -173,11 +180,6 @@ class _CustomQuestionCardState extends State<CustomQuestionCard>
                         color: Theme.of(context).colorScheme.onPrimary),
                   ),
                   if (widget.image != '') buildimage(),
-                  // Text(
-                  //   widget.time,
-                  //   style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  //       color: Theme.of(context).colorScheme.onPrimary),
-                  // ),
                   SizedBox(
                     height: 30,
                     width: double.infinity,

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../../../configs/route/route.dart';
+import '../../controllers/singleton.dart';
+import '../local_data/storge_local.dart';
 
 Future checkForInitalMessge() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,25 +19,12 @@ Future checkForInitalMessge() async {
   });
 }
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  handleRoute(message);
-  debugPrint("Handling a background message: ${message.notification!.title}");
-}
-
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_cannel', 'high Importance Notification',
     importance: Importance.high, playSound: true);
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
-void listNotification(BuildContext context) async {
-  if (Platform.isIOS) {
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
-      alert: true, // Required to display a heads up notification
-      badge: true,
-      sound: true,
-    );
-  }
+void listNotification() async {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   await messaging.requestPermission(
     alert: true,
@@ -46,14 +35,17 @@ void listNotification(BuildContext context) async {
     provisional: false,
     sound: true,
   );
-  try {
-    String? token = await messaging.getToken();
-    debugPrint("device token $token");
-  } catch (e) {
-    debugPrint("catch $e");
-  }
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+  String? token = await messaging.getToken();
+  debugPrint("device token $token");
+
   if (messaging.isAutoInitEnabled) {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      addtNotification();
       RemoteNotification? notification = message.notification;
       if (message.notification != null) {
         if (Platform.isAndroid) {
@@ -70,50 +62,72 @@ void listNotification(BuildContext context) async {
                 channel.id,
                 channel.name,
                 icon: '@mipmap/ic_launcher',
+                importance: Importance.high,
               ),
               iOS: const DarwinNotificationDetails(),
             ),
           );
         }
+
+        await flutterLocalNotificationsPlugin.initialize(
+          const InitializationSettings(
+            android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+            iOS: DarwinInitializationSettings(),
+          ),
+          onDidReceiveNotificationResponse:
+              (NotificationResponse notificationResponse) {
+            debugPrint("tap on notification $message");
+            handleRoute(message);
+          },
+        );
       }
     });
-    FirebaseMessaging.onMessageOpenedApp.listen((event) {
-      debugPrint("tap on Notification  ${event.data["route"]}");
-      handleRoute(event);
+    // FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    //   handleRoute(message);
+    // });
+    FirebaseMessaging.onBackgroundMessage((message) async {
+      debugPrint("88888888888");
+      handleRoute(message);
     });
-    void notificationTapBackground(NotificationResponse notificationResponse) {
-      router.pushNamed(
-        'question-detail',
-        pathParameters: {"id": "109"},
-      );
-    }
-
-    await flutterLocalNotificationsPlugin.initialize(
-      const InitializationSettings(
-        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-        iOS: DarwinInitializationSettings(),
-      ),
-      onDidReceiveNotificationResponse:
-          (NotificationResponse notificationResponse) async {
-        router.pushNamed(
-          'question-detail',
-          pathParameters: {"id": "109"},
-        );
-      },
-      // onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
-    );
-
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   } else {
     debugPrint('User declined or has not accepted permission');
   }
 }
 
 void handleRoute(RemoteMessage message) {
-  // context.goNamed("setting");
-
   router.pushNamed(
     'question-detail',
     pathParameters: {"id": "109"},
   );
+}
+
+void addtNotification() async {
+  try {
+    int number = 0;
+    await LocalStorage.getIntValue(key: 'numberNotificaiton').then((value) {
+      number = value;
+    });
+    await LocalStorage.storeData(key: 'numberNotificaiton', value: number + 1);
+    Singleton.obj.numberNotification.value =
+        await LocalStorage.getIntValue(key: 'numberNotificaiton');
+  } catch (e) {
+    debugPrint("catch $e");
+  }
+}
+
+void subtractNotification() async {
+  int number = 0;
+  await LocalStorage.getIntValue(key: 'numberNotificaiton').then((value) {
+    number = value;
+    debugPrint("number $number");
+  });
+  await LocalStorage.storeData(key: 'numberNotificaiton', value: number - 1);
+  Singleton.obj.numberNotification.value =
+      await LocalStorage.getIntValue(key: 'numberNotificaiton');
+}
+
+void countNotification() async {
+  Singleton.obj.numberNotification.value =
+      await LocalStorage.getIntValue(key: 'numberNotificaiton');
+  debugPrint("------ ${Singleton.obj.numberNotification.value}");
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
+import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
 
 class BlockScreen extends StatelessWidget {
   const BlockScreen({super.key});
@@ -15,7 +16,21 @@ class BlockScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: const Row(
-            children: [],
+            children: [
+              CustomCachedImageCircle(
+                image: "",
+                height: 50,
+                width: 50,
+              ),
+              Column(
+                children: [
+                  Text(
+                    "Vannak",
+                    // style: Theme.of(context),
+                  )
+                ],
+              )
+            ],
           ),
         )
       ]),

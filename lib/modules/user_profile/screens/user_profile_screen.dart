@@ -365,6 +365,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                               height: 2,
                                             ),
                                           CustomQuestionCard(
+                                            onDoubleTap: () {},
                                             questionId: "",
                                             isCorrect: false,
                                             descrition: "B sl soyb",

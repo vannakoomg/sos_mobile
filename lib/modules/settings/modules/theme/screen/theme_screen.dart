@@ -46,6 +46,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                     child: Column(
                       children: [
                         CustomQuestionCard(
+                          onDoubleTap: () {},
                           questionId: "",
                           istall: false,
                           title: "ហេតុអ្វីបានជាទុំស្រលាញ់ទាវ ?",

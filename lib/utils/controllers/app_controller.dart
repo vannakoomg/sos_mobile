@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
@@ -122,4 +124,50 @@ class AppController extends GetxController {
       isPress04.value = false;
     }
   }
+
+  // like ui
+  final listLike = <LikeModel>[].obs;
+  void addListLike(double dx, double dy) {
+    listLike.add(
+      LikeModel(
+        id: listLike.length + 1,
+        dx: dx - 60,
+        dy: dy - 40,
+        angle: getAngle(),
+        remove: false,
+      ),
+    );
+    listLike.refresh();
+    Future.delayed(const Duration(milliseconds: 10), () async {
+      listLike[listLike.length - 1].remove = true;
+      listLike.refresh();
+    });
+  }
+
+  double getAngle() {
+    int i = Random().nextInt(5);
+    if (i == 0) {
+      return -0.8;
+    }
+    if (i == 1) {
+      return -0.9;
+    }
+    if (i == 2) {
+      return 0;
+    }
+    if (i == 3) {
+      return 0.1;
+    }
+    return 0.2;
+  }
+}
+
+class LikeModel {
+  int? id;
+  double? dx;
+  double? dy;
+  double? angle;
+  bool? remove;
+
+  LikeModel({this.id, this.dx, this.dy, this.angle, this.remove});
 }

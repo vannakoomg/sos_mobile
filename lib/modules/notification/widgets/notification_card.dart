@@ -21,8 +21,6 @@ class NotificationCard extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.background,
-          border: Border.all(),
-          borderRadius: BorderRadius.circular(30),
         ),
         child: Row(children: [
           CustomCachedImageCircle(

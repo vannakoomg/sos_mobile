@@ -1,12 +1,15 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/modules/BottomNavigationBar/controller/bottom_navigation_bar.dart';
+import 'package:sos_mobile/modules/BottomNavigationBar/controller/bottom_navigationbar_controller.dart';
 import 'package:sos_mobile/modules/home/screen/home_screen.dart';
 import 'package:sos_mobile/modules/profile/screen/profile_screen.dart';
 import 'package:sos_mobile/modules/cateory/controller/category_controller.dart';
+import '../../../configs/const/Colors/app_colors.dart';
+import '../../../utils/controllers/singleton.dart';
+import '../../../utils/helpers/notification/listion_notification.dart';
 import '../../home/controllers/home_controller.dart';
 import '../../notification/screens/notificaition_screen.dart';
 import '../../post_question/screen/post_question_screen.dart';
@@ -18,6 +21,8 @@ class ScaffoldWithNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    countNotification();
+
     final controller = Get.put(BottomNavigatonBarController());
     final homeController = Get.put(HomeContoller());
     final categoryController = Get.put(CategoryController());
@@ -106,12 +111,49 @@ class ScaffoldWithNavBar extends StatelessWidget {
                           child: Container(
                             height: 60,
                             color: Colors.transparent,
-                            child: Icon(e.value,
-                                size: 20,
-                                weight: 7,
-                                color: controller.index.value == e.key
-                                    ? AppColor.secondnaryColor
-                                    : Theme.of(context).colorScheme.primary),
+                            child: Center(
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    color: Colors.transparent,
+                                    height: 45,
+                                    width: 55,
+                                    child: Icon(
+                                      e.value,
+                                      size: 25,
+                                      weight: 7,
+                                      color: controller.index.value == e.key
+                                          ? AppColor.secondnaryColor
+                                          : Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                    ),
+                                  ),
+                                  if (e.key == 3)
+                                    Positioned(
+                                      left: 27,
+                                      top: 5,
+                                      child: Container(
+                                        padding: const EdgeInsets.only(
+                                          left: 4,
+                                          right: 4,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          color: Colors.red,
+                                        ),
+                                        child: Text(
+                                          "${Singleton.obj.numberNotification.value}",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall,
+                                        ),
+                                      ),
+                                    )
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       );

@@ -16,6 +16,7 @@ class HideScreen extends StatelessWidget {
           Column(
             children: [
               CustomQuestionCard(
+                onDoubleTap: () {},
                 questionId: "",
                 isCorrect: false,
                 tags: const ["3", "3"],

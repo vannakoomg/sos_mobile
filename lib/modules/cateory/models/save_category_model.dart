@@ -27,7 +27,7 @@ class Data {
   String? cover;
   int? count;
 
-  Data({this.id, this.name, this.count});
+  Data({this.id, this.name, this.count, this.cover});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];

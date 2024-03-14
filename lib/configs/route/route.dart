@@ -12,7 +12,7 @@ import 'package:sos_mobile/modules/settings/modules/feedback/screen/feedback_scr
 import 'package:sos_mobile/modules/settings/modules/notification/screens/setting_notification_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/privacy_data/screen/setting_privacy_data_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/profile_information/screen/profile_info_screen.dart';
-import 'package:sos_mobile/modules/settings/modules/securty_login/screens/black_screen.dart';
+import 'package:sos_mobile/modules/settings/modules/securty_login/screens/block_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/securty_login/screens/hide_screen.dart';
 import 'package:sos_mobile/modules/settings/modules/theme/screen/theme_screen.dart';
 import 'package:sos_mobile/modules/settings/screens/setting_screen.dart';

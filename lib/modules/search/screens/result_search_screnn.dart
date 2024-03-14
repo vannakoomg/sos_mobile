@@ -41,6 +41,7 @@ class _ResultSearchScreenState extends State<ResultSearchScreen> {
                         itemCount: controller.resultSearch.length,
                         itemBuilder: (context, i) {
                           return CustomQuestionCard(
+                            onDoubleTap: () {},
                             isHighlight: true,
                             textHighlight: widget.text,
                             questionId: "${controller.resultSearch[i].id}",

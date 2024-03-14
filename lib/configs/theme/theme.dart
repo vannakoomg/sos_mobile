@@ -9,48 +9,47 @@ ThemeData lightMode = ThemeData(
     selectionColor: AppColor.secondnaryColor.withOpacity(0.6),
   ),
   colorScheme: const ColorScheme.light(
-    background: Color.fromARGB(255, 238, 238, 238),
+    background: Color.fromARGB(255, 255, 255, 255),
     primary: Colors.black,
-    secondary: Colors.white,
+    secondary: Color.fromARGB(255, 209, 209, 209),
     tertiary: Color.fromARGB(255, 27, 27, 27),
-
-    ///--------------
     onPrimary: Color.fromARGB(255, 39, 39, 39),
     onSecondary: Color.fromARGB(255, 133, 133, 133),
     onTertiary: Color.fromARGB(255, 232, 232, 232),
   ),
   useMaterial3: true,
   brightness: Brightness.light,
-  textTheme: TextTheme(
+  textTheme: const TextTheme(
     titleLarge: TextStyle(
-      color: AppColor.textFirst,
+      color: Colors.black,
       fontSize: 20,
       fontWeight: FontWeight.bold,
       fontFamily: "Siemreap",
     ),
-    titleMedium: const TextStyle(
+    titleMedium: TextStyle(
       fontSize: 18,
+      color: Colors.black,
       fontWeight: FontWeight.w500,
       fontFamily: "Siemreap",
     ),
     titleSmall: TextStyle(
-      color: AppColor.textFirst,
+      color: Colors.black,
       fontSize: 14,
       fontWeight: FontWeight.w500,
       fontFamily: "Siemreap",
     ),
     bodyLarge: TextStyle(
-      color: AppColor.textFirst,
+      color: Colors.black,
       fontSize: 15,
       fontFamily: "Siemreap",
     ),
     bodyMedium: TextStyle(
-      color: AppColor.textFirst,
+      color: Colors.black,
       fontSize: 12,
       fontFamily: "Siemreap",
     ),
     bodySmall: TextStyle(
-      color: AppColor.textFirst,
+      color: Colors.black,
       fontSize: 11,
       fontFamily: "Siemreap",
     ),
@@ -58,6 +57,9 @@ ThemeData lightMode = ThemeData(
 );
 
 ThemeData darkMode = ThemeData(
+  textSelectionTheme: TextSelectionThemeData(
+    selectionColor: AppColor.secondnaryColor.withOpacity(0.6),
+  ),
   colorScheme: const ColorScheme.dark(
     background: Colors.black,
     primary: Colors.white,
@@ -66,9 +68,6 @@ ThemeData darkMode = ThemeData(
     onPrimary: Color.fromARGB(255, 198, 198, 198),
     onSecondary: Color.fromARGB(255, 111, 111, 111),
     onTertiary: Color.fromARGB(255, 24, 24, 24),
-  ),
-  textSelectionTheme: TextSelectionThemeData(
-    selectionColor: AppColor.secondnaryColor.withOpacity(0.6),
   ),
   useMaterial3: true,
   brightness: Brightness.dark,

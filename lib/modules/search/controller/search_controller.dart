@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sos_mobile/modules/BottomNavigationBar/controller/bottom_navigation_bar.dart';
+import 'package:sos_mobile/modules/BottomNavigationBar/controller/bottom_navigationbar_controller.dart';
 import 'package:sos_mobile/modules/home/controllers/home_controller.dart';
 import 'package:sos_mobile/modules/search/controller/recent_search_controller.dart';
 import 'package:sos_mobile/modules/search/model/popular_model.dart';

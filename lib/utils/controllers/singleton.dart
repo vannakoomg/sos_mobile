@@ -7,4 +7,5 @@ class Singleton extends GetxController {
   Singleton._();
   static Singleton get obj => _obj ??= Singleton._();
   int questionId = 0;
+  final numberNotification = 0.obs;
 }
