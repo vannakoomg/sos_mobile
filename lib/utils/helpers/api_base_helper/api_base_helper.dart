@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:sos_mobile/configs/url.dart';
 
 import '../local_data/storge_local.dart';
@@ -69,7 +68,6 @@ class ApiBaseHelper {
   }
 
   dynamic returnResponse(Response response) {
-    debugPrint("staud code ${response.statusCode}");
     switch (response.statusCode) {
       case 200:
         return response.data;

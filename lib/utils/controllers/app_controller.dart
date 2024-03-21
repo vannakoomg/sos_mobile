@@ -33,6 +33,7 @@ class AppController extends GetxController {
       Future.delayed(const Duration(milliseconds: 200), () {
         showModalBottomSheet(
             context: context,
+            useSafeArea: true,
             isScrollControlled: true,
             builder: ((context) {
               return CreateSave(
@@ -137,11 +138,11 @@ class AppController extends GetxController {
         remove: false,
       ),
     );
-    listLike.refresh();
     Future.delayed(const Duration(milliseconds: 10), () async {
       listLike[listLike.length - 1].remove = true;
       listLike.refresh();
     });
+    listLike.refresh();
   }
 
   double getAngle() {

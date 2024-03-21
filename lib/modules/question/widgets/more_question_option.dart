@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -35,7 +37,7 @@ class MoreQuesionOption extends StatelessWidget {
         padding:
             const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 10),
         decoration: BoxDecoration(
-          color: AppColor.textfourth,
+          color: Theme.of(context).colorScheme.onTertiary,
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
@@ -55,37 +57,56 @@ class MoreQuesionOption extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding: const EdgeInsets.only(bottom: 5, top: 5),
-                  width: double.infinity,
-                  color: Colors.transparent,
-                  child: Text(
-                    "Hide",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ),
                 GestureDetector(
-                  onTap: () async {
-                    await saveImage(image);
-                  },
+                  onTap: () {},
                   child: Container(
                     padding: const EdgeInsets.only(bottom: 5, top: 5),
                     width: double.infinity,
                     color: Colors.transparent,
                     child: Text(
-                      "Download Photo",
+                      "Hide",
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                 ),
+                if (image != '')
+                  GestureDetector(
+                    onTap: () async {
+                      try {
+                        context.pop();
+                        await saveImage(
+                                "https://laravelnak.s3.amazonaws.com/public/images/1708677150_sea-moring.jpg")
+                            .then((value) {
+                          debugPrint("khmer sl khmer ");
+                        });
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text('Image saved to gallery!'),
+                          duration: Duration(seconds: 2),
+                        ));
+                      } catch (e) {
+                        debugPrint("reee$e");
+                      }
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.only(bottom: 5, top: 5),
+                      width: double.infinity,
+                      color: Colors.transparent,
+                      child: Text(
+                        "Download Photo",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
+                  ),
                 GestureDetector(
                   onTap: () {
                     showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: false,
-                        builder: ((context) {
-                          return const ReportTypeScreen();
-                        }));
+                      context: context,
+                      isScrollControlled: false,
+                      builder: ((context) {
+                        return const ReportTypeScreen();
+                      }),
+                    );
                   },
                   child: Container(
                     padding: const EdgeInsets.only(bottom: 5, top: 5),

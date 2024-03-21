@@ -1,27 +1,24 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
+import 'package:sos_mobile/modules/profile/controllers/profile_controller.dart';
 import 'package:sos_mobile/modules/profile/widgets/profile.dart';
-import 'package:sos_mobile/modules/user_profile/controllers/user_profile_controller.dart';
 import 'package:sos_mobile/utils/controllers/app_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_comment_crad.dart';
 
 import '../../../utils/widgets/custom_answer_card.dart';
 
-class UserProfileScreen extends StatefulWidget {
-  String id;
-  UserProfileScreen({super.key, required this.id});
+class OwnProfileScreen extends StatefulWidget {
+  const OwnProfileScreen({super.key});
   @override
-  State<UserProfileScreen> createState() => _UserProfileScreenState();
+  State<OwnProfileScreen> createState() => _OwnProfileScreenState();
 }
 
-final controller = Get.put(UserProfileController());
+final controller = Get.put(OwnProfileController());
 final appController = Get.put(AppController());
 
-class _UserProfileScreenState extends State<UserProfileScreen> {
+class _OwnProfileScreenState extends State<OwnProfileScreen> {
   GlobalKey kkk = GlobalKey();
   @override
   void initState() {

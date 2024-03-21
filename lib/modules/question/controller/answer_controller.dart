@@ -14,35 +14,52 @@ class AnwserController extends GetxController {
   final homeController = Get.put(HomeContoller());
   final answerTexteditController = TextEditingController().obs;
   final answerText = ''.obs;
-  final isloaing = false.obs;
+  final isloading = false.obs;
   final currentPage = 1.obs;
   final nextPage = 0.obs;
+  final isScroller = false.obs;
+  final tabIndex = 10.obs;
+
+  final scrollController = ScrollController().obs;
   final image = File('').obs;
   void getImage() async {
     File i = await pickImage();
     image.value = i;
   }
 
+  final scrollkey = GlobalKey().obs;
   final anwserInQuestionModel = AnwserInQuestionModel().obs;
   final anwserInQuestion = <AnwserInQuestion>[].obs;
-  Future fetchAnwserInQuestion(String id) async {
+  Future fetchAnwserInQuestion(String id, int page) async {
     debugPrint("fetching answer in question $id");
     anwserInQuestion.clear();
-    isloaing.value = true;
+    isloading.value = true;
     ApiBaseHelper.apiBaseHelper
         .onNetworkRequesting(
-      url: "/v1/answer/all?question_id=$id",
+      url: "/v1/answer/all?question_id=$id&page=$page",
       methode: METHODE.get,
       isAuthorize: true,
     )
         .then((value) {
-      isloaing.value = false;
+      isloading.value = false;
       anwserInQuestionModel.value = AnwserInQuestionModel.fromJson(value);
       anwserInQuestion.addAll(anwserInQuestionModel.value.data!);
-      debugPrint("data55555555 ${anwserInQuestion.length}");
+      debugPrint(
+          "data${anwserInQuestion.length} /v1/answer/all?question_id=$id");
     }).onError((error, stackTrace) {
-      isloaing.value = false;
+      isloading.value = false;
     });
+  }
+
+  void fetchAnwserInQuestionNextPage(String id) {
+    if (isloading.value == false) {
+      if (nextPage < anwserInQuestionModel.value.meta!.lastPage!) {
+        nextPage.value = currentPage.value + 1;
+        fetchAnwserInQuestion(id, nextPage.value).then((value) {
+          currentPage.value = nextPage.value;
+        });
+      }
+    }
   }
 
   Future submmitAnswer({String? questionId}) async {

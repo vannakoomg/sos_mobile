@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
 
@@ -48,15 +49,18 @@ class CustomAnswerCrad extends StatelessWidget {
         ),
         margin: const EdgeInsets.only(bottom: 5),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onTertiary,
-          border: Border.all(width: 0.5),
+          // color: Theme.of(context).colorScheme.o,
+          border: Border.all(
+            width: 0.5,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: const EdgeInsets.only(left: 8),
+              padding: const EdgeInsets.only(left: 8, right: 8),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -143,24 +147,24 @@ class CustomAnswerCrad extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8),
               height: 30,
               decoration: BoxDecoration(
-                  border: Border(
-                      top: BorderSide(
-                color: Theme.of(context).colorScheme.onSecondary,
-                width: 0.5,
-              ))),
+                border: Border(
+                    top: BorderSide(
+                  color: Theme.of(context).colorScheme.onSecondary,
+                  width: 0.5,
+                )),
+              ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(likeAnswer,
                       style: Theme.of(context).textTheme.bodyMedium!),
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(
-                    "ពេញចិត្ត",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: AppColor.textThird),
+                  SvgPicture.asset(
+                    "assets/icons/favorite.svg",
+                    height: 15,
+                    width: 15,
                   ),
                   const Spacer(),
                   const Icon(

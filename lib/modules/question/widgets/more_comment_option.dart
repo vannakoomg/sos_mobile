@@ -14,7 +14,7 @@ class CommentOption extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 10),
       decoration: BoxDecoration(
-        color: AppColor.textfourth,
+        color: Theme.of(context).colorScheme.onTertiary,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),

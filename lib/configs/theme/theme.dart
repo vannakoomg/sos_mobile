@@ -19,6 +19,9 @@ ThemeData lightMode = ThemeData(
   ),
   useMaterial3: true,
   brightness: Brightness.light,
+  tabBarTheme: const TabBarTheme(
+      // Set the elevation to 0 to remove the shadow
+      splashFactory: InkSplash.splashFactory),
   textTheme: const TextTheme(
     titleLarge: TextStyle(
       color: Colors.black,
@@ -60,6 +63,7 @@ ThemeData darkMode = ThemeData(
   textSelectionTheme: TextSelectionThemeData(
     selectionColor: AppColor.secondnaryColor.withOpacity(0.6),
   ),
+  tabBarTheme: const TabBarTheme(splashFactory: InkSplash.splashFactory),
   colorScheme: const ColorScheme.dark(
     background: Colors.black,
     primary: Colors.white,

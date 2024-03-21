@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/modules/question/widgets/more_question_option.dart';
 import 'package:sos_mobile/utils/controllers/app_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
 import 'package:sos_mobile/utils/widgets/custom_highlightText.dart';
-
-import '../../configs/const/Colors/app_colors.dart';
 
 class CustomQuestionCard extends StatefulWidget {
   final bool isHighlight;
@@ -115,15 +114,15 @@ class _CustomQuestionCardState extends State<CustomQuestionCard>
         ),
         margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onTertiary,
-          border: Border.all(width: 0.5),
+          border: Border.all(
+              width: 0.5, color: Theme.of(context).colorScheme.onSecondary),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 8, right: 0),
+              padding: const EdgeInsets.only(left: 8, right: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -172,16 +171,17 @@ class _CustomQuestionCardState extends State<CustomQuestionCard>
                         )
                     ],
                   ),
-                  Text(
-                    widget.descrition,
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.onPrimary),
-                  ),
+                  if (widget.descrition != '')
+                    Text(
+                      widget.descrition,
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimary),
+                    ),
                   if (widget.image != '') buildimage(),
                   SizedBox(
-                    height: 30,
+                    height: 35,
                     width: double.infinity,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -197,16 +197,17 @@ class _CustomQuestionCardState extends State<CustomQuestionCard>
                               child: Wrap(
                                 children: widget.tags.map((e) {
                                   return Container(
-                                    height: 16,
+                                    height: 20,
                                     margin: const EdgeInsets.only(right: 5),
                                     padding: const EdgeInsets.only(
                                       left: 5,
                                       right: 5,
                                     ),
                                     decoration: BoxDecoration(
-                                        color: const Color.fromARGB(
-                                            255, 231, 152, 179),
-                                        borderRadius: BorderRadius.circular(3)),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onTertiary,
+                                        borderRadius: BorderRadius.circular(5)),
                                     child: Center(
                                       child: Text(
                                         "សមីការឌ៣៤៥៦៧៨",
@@ -214,9 +215,9 @@ class _CustomQuestionCardState extends State<CustomQuestionCard>
                                             .textTheme
                                             .bodySmall!
                                             .copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .secondary,
+                                                // color: Theme.of(context)
+                                                //     .colorScheme
+                                                //     .onPrimary,
                                                 fontSize: 8),
                                       ),
                                     ),
@@ -271,11 +272,10 @@ class _CustomQuestionCardState extends State<CustomQuestionCard>
                       const SizedBox(
                         width: 5,
                       ),
-                      Text(
-                        "ចម្លើយ",
-                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                              color: AppColor.textfourth,
-                            ),
+                      SvgPicture.asset(
+                        "assets/icons/anwser.svg",
+                        height: 20,
+                        width: 20,
                       ),
                     ],
                   )),
@@ -287,12 +287,10 @@ class _CustomQuestionCardState extends State<CustomQuestionCard>
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(
-                    "មតិ",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: AppColor.textfourth),
+                  SvgPicture.asset(
+                    "assets/icons/comment.svg",
+                    height: 15,
+                    width: 15,
                   ),
                   const Gap(20),
                   Text(
@@ -303,13 +301,11 @@ class _CustomQuestionCardState extends State<CustomQuestionCard>
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(
-                    "ពេញចិត្ត",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: AppColor.textfourth, fontSize: 10),
-                  )
+                  SvgPicture.asset(
+                    "assets/icons/favorite.svg",
+                    height: 15,
+                    width: 15,
+                  ),
                 ],
               ),
             ),

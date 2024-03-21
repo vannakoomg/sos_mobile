@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/cores/auth/create_account/screens/create_account_screen.dart';
 import 'package:sos_mobile/cores/auth/create_account/screens/otp_screen.dart';
 import 'package:sos_mobile/cores/auth/create_account/screens/select_subject_scree.dart';
 import 'package:sos_mobile/cores/auth/hello/screens/hello_screen.dart';
-import 'package:sos_mobile/cores/walk_though/singin/screens/singin_screen.dart';
 import 'package:sos_mobile/modules/question/screen/question_detail.dart';
 import 'package:sos_mobile/modules/cateory/screens/create_category_screen.dart';
 import 'package:sos_mobile/modules/cateory/screens/category_detail_screen.dart';
@@ -80,7 +80,7 @@ final router = GoRouter(
       name: '/singin',
       path: '/singin',
       builder: (context, state) {
-        return const SingInScreen();
+        return Container();
       },
     ),
     GoRoute(

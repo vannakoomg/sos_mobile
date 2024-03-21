@@ -1,14 +1,14 @@
-class CommentInQuestion {
-  List<Data>? data;
+class CommentInQuestionModel {
+  List<CommentInQuestion>? data;
   Meta? meta;
 
-  CommentInQuestion({this.data, this.meta});
+  CommentInQuestionModel({this.data, this.meta});
 
-  CommentInQuestion.fromJson(Map<String, dynamic> json) {
+  CommentInQuestionModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <CommentInQuestion>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(CommentInQuestion.fromJson(v));
       });
     }
     meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
@@ -26,15 +26,15 @@ class CommentInQuestion {
   }
 }
 
-class Data {
+class CommentInQuestion {
   int? id;
   int? userId;
   String? description;
   String? createdAt;
 
-  Data({this.id, this.userId, this.description, this.createdAt});
+  CommentInQuestion({this.id, this.userId, this.description, this.createdAt});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  CommentInQuestion.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['user_id'];
     description = json['description'];

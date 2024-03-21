@@ -9,10 +9,12 @@ import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
 class UserProfileController extends GetxController {
   var imagePath = File('').obs;
   var listImage = <File>[].obs;
+  final renderHihg = 0.0.obs;
   final isScroll = false.obs;
   final isAnswer = true.obs;
   final profileDate = ProfileModel().obs;
   final isloadingProfile = true.obs;
+  final scrollController = ScrollController().obs;
 
   void getProfile() async {
     isloadingProfile.value = true;

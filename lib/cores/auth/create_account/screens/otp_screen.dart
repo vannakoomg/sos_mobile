@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/cores/auth/hello/widgets/paint.dart';
 import 'package:sos_mobile/utils/widgets/custom_back.dart';
 import 'package:sos_mobile/utils/widgets/custom_textfield.dart';
 
@@ -21,13 +19,6 @@ class OtpScreen extends StatelessWidget {
         body: Obx(
           () => Stack(
             children: [
-              CustomPaint(
-                painter: PaintOtp(),
-                child: SizedBox(
-                  width: MediaQuery.sizeOf(context).width,
-                  height: MediaQuery.sizeOf(context).height / 2,
-                ),
-              ),
               SafeArea(
                 child: Container(
                   margin: const EdgeInsets.only(top: 10, left: 20),
@@ -42,11 +33,9 @@ class OtpScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: Text(
-                            "Otp ត្រូវបានផ្ញើទៅកាន់ Gmail ${controller.gmail.value} \n សូមចូលត្រួតពិនិត្យ",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(color: AppColor.primaryColor)),
+                          "Otp ត្រូវបានផ្ញើទៅកាន់ Gmail ${controller.gmail.value} \n សូមចូលត្រួតពិនិត្យ",
+                          style: Theme.of(context).textTheme.titleLarge!,
+                        ),
                       ),
                     ],
                   ),
@@ -54,9 +43,9 @@ class OtpScreen extends StatelessWidget {
               ),
               Center(
                 child: SizedBox(
-                  width: 110,
+                  width: 180,
                   child: CustomTextfield(
-                    hintText: "Otp",
+                    hintText: "Comfirm Otp",
                     maxLength: 4,
                     textAlign: TextAlign.center,
                     onChanged: (value) {

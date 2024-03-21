@@ -9,7 +9,6 @@ import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/post_question/controllers/post_question_controller.dart';
 import 'package:sos_mobile/modules/post_question/models/tag_model.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
-import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
 import 'package:sos_mobile/utils/widgets/custom_tag_card.dart';
 import '../../../utils/widgets/custom_textfield.dart';
@@ -44,31 +43,37 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Container(
+      () => SizedBox(
         height: MediaQuery.sizeOf(context).height,
-        decoration: const BoxDecoration(
-            // color: Colors.red,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: Column(
           children: [
-            CustomAppBar(
-              title: "សួរ",
-              leading: IconButton(
-                onPressed: () {
-                  context.pop();
-                },
-                icon: Icon(
-                  Icons.close,
-                  color: Theme.of(context).colorScheme.onSecondary,
-                ),
+            SizedBox(
+              height: 60,
+              width: double.infinity,
+              child: Stack(
+                children: [
+                  Positioned(
+                      top: 5,
+                      child: IconButton(
+                        onPressed: () {
+                          context.pop();
+                        },
+                        icon: const Icon(Icons.close_rounded),
+                      )),
+                  Center(
+                    child: Text(
+                      "សំនួរ",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  )
+                ],
               ),
             ),
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
-                  padding: const EdgeInsets.only(
-                      left: 10, right: 10, bottom: 5, top: 10),
+                  padding:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -215,7 +220,6 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
               ),
             ),
             Container(
-              padding: const EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.onTertiary,
               ),
@@ -292,39 +296,49 @@ class _PostQuestionScreenState extends State<PostQuestionScreen> {
                             )
                         ],
                       ))
-                  : Row(
-                      children: [
-                        IconButton(
-                            onPressed: () {
+                  : Container(
+                      height: 40,
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
                               controller.getImageGallery();
                             },
-                            icon: Icon(
+                            child: Icon(
                               Icons.photo,
                               color: Theme.of(context).colorScheme.onSecondary,
-                            )),
-                        IconButton(
-                            onPressed: () {
+                            ),
+                          ),
+                          const Gap(8),
+                          GestureDetector(
+                            onTap: () {
                               controller.getImageCamera();
                             },
-                            icon: Icon(
+                            child: Icon(
                               Icons.camera_alt,
                               color: Theme.of(context).colorScheme.onSecondary,
-                            )),
-                        const Spacer(),
-                        CustomButtom(
-                          disble: controller.validationPost(),
-                          title: "?",
-                          onTap: () {
-                            unFocus(context);
-                            controller.postQuestion().then((value) {
-                              context.pop();
-                            });
-                          },
-                          white: 30,
-                          fountSize: 14,
-                          height: 30,
-                        ),
-                      ],
+                            ),
+                          ),
+                          const Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              if (!controller.validationPost()) {
+                                unFocus(context);
+                                controller.postQuestion().then((value) {
+                                  context.pop();
+                                });
+                              }
+                            },
+                            child: Icon(
+                              Icons.question_mark_rounded,
+                              color: controller.validationPost()
+                                  ? Theme.of(context).colorScheme.onSecondary
+                                  : AppColor.secondnaryColor,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
             )
           ],

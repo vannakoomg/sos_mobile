@@ -41,11 +41,10 @@ class HelloScreen extends StatelessWidget {
           ),
           SizedBox(
             width: double.infinity,
-            // padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
             child: Column(children: [
               const Spacer(),
               CustomButtom(
-                title: "Login",
+                title: "ចូលប្រើ",
                 onTap: () {
                   context.goNamed("login-screen");
                 },
@@ -53,44 +52,14 @@ class HelloScreen extends StatelessWidget {
               ),
               const Gap(8),
               CustomButtom(
-                title: "Create Account",
+                outline: true,
+                title: "បង្កើតគណនី",
                 onTap: () {
                   context.goNamed('create-account');
                 },
                 white: 160,
-                colors: Colors.transparent,
-                borderColor: Colors.white,
               ),
-              Container(
-                  margin: const EdgeInsets.only(top: 20, bottom: 20),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 0.5,
-                          color: Theme.of(context).colorScheme.onSecondary,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8, right: 8),
-                        child: Text(
-                          "ភ្លេចពាក្យសម្ងាត់",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.tertiary,
-                              ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          height: 0.5,
-                          color: Theme.of(context).colorScheme.onSecondary,
-                        ),
-                      ),
-                    ],
-                  ))
+              const Gap(30),
             ]),
           ),
         ],

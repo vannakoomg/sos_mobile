@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/modules/settings/modules/privacy_data/controller/privacy_data_controller.dart';
 import 'package:sos_mobile/modules/settings/controllers/setting_controller.dart';
-import 'package:sos_mobile/modules/settings/widgets/setting_off_on_card.dart';
+import 'package:sos_mobile/utils/widgets/custom_offon_setting.dart';
 
 class SettingPricacyData extends StatefulWidget {
   const SettingPricacyData({super.key});
@@ -36,9 +36,9 @@ class _SettingPricacyDataState extends State<SettingPricacyData> {
                 children: controller.privacyData.asMap().entries.map((e) {
               return Column(
                 children: [
-                  OffOnSettingCard(
-                      title: e.value.title!,
-                      ontap: () {
+                  CustomOffOnSetting(
+                      tilte: e.value.title!,
+                      onChanged: () {
                         if (settingController.listOfPrivacy[e.key] == 0) {
                           settingController.listOfPrivacy[e.key] = 1;
                         } else {
@@ -48,7 +48,7 @@ class _SettingPricacyDataState extends State<SettingPricacyData> {
                             key: '${e.value.columName}',
                             value: settingController.listOfPrivacy[e.key]);
                       },
-                      isShow: settingController.listOfPrivacy[e.key],
+                      value: settingController.listOfPrivacy[e.key],
                       description: e.value.description!),
                   const Gap(20),
                 ],

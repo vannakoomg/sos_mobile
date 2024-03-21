@@ -37,10 +37,27 @@ Future<File> pickImage({ImageSource source = ImageSource.gallery}) async {
   return File(image.path);
 }
 
-Future<void> saveImage(String urlImage) async {
-  var kkk = await GallerySaver.saveImage(
-      "https://laravelnak.s3.amazonaws.com/public/images/1708677150_sea-moring.jpg");
-  debugPrint("khmer $kkk");
+Future saveImage(String urlImage) async {
+  var kkk = await GallerySaver.saveImage(urlImage);
+  debugPrint("kkk $kkk");
+}
+
+void showSnackBar(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text(
+      message,
+      style: Theme.of(context).textTheme.bodyLarge,
+    ),
+    behavior: SnackBarBehavior.floating,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(24),
+    ),
+    margin: EdgeInsets.only(
+      bottom: MediaQuery.of(context).size.height - 100,
+      right: 20,
+      left: 20,
+    ),
+  ));
 }
 
 Color rendomColors() {

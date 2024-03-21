@@ -14,7 +14,7 @@ class ComfirmLogout extends StatelessWidget {
     return Container(
       height: 180,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onSecondary,
+        color: Theme.of(context).colorScheme.onTertiary,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
@@ -30,7 +30,7 @@ class ComfirmLogout extends StatelessWidget {
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             CustomButtom(
-              white: 50,
+              white: 60,
               colors: AppColor.dangerColor,
               title: "No",
               onTap: () {
@@ -38,7 +38,7 @@ class ComfirmLogout extends StatelessWidget {
               },
             ),
             CustomButtom(
-                white: 50,
+                white: 60,
                 title: "Yes",
                 colors: AppColor.successColor,
                 onTap: () async {

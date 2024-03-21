@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sos_mobile/modules/settings/modules/securty_login/widgets/change_gmail.dart';
+import 'package:sos_mobile/modules/settings/modules/securty_login/widgets/comfirm_old_gmail.dart';
 import 'package:sos_mobile/modules/settings/modules/securty_login/widgets/comfirm_logout.dart';
-import 'package:sos_mobile/modules/settings/widgets/setting_off_on_card.dart';
 import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
 
 import '../../../../../configs/const/Colors/app_colors.dart';
@@ -24,12 +23,12 @@ class SecurityLoginScreen extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    OffOnSettingCard(
-                      title: "Two Factor Login",
-                      ontap: () {},
-                      isShow: 0,
-                      description: 'when you login new device is require Otp',
-                    ),
+                    // OffOnSettingCard(
+                    //   title: "Two Factor Login",
+                    //   ontap: () {},
+                    //   isShow: 0,
+                    //   description: 'when you login new device is require Otp',
+                    // ),
                     GestureDetector(
                       onTap: () {
                         context.goNamed('block');
@@ -90,11 +89,13 @@ class SecurityLoginScreen extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: false,
-                            builder: ((context) {
-                              return const ChangeGmail();
-                            }));
+                          useSafeArea: true,
+                          context: context,
+                          isScrollControlled: true,
+                          builder: ((context) {
+                            return const ComfirmOldGmail();
+                          }),
+                        );
                       },
                       child: Container(
                         padding: const EdgeInsets.only(bottom: 5, top: 5),
@@ -115,7 +116,7 @@ class SecurityLoginScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 0.5,
-              color: AppColor.textfourth,
+              color: Theme.of(context).colorScheme.onTertiary,
             ),
             const Gap(15),
             GestureDetector(

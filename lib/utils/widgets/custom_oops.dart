@@ -26,11 +26,6 @@ class CustomOops extends StatelessWidget {
               .copyWith(color: Theme.of(context).colorScheme.onSecondary),
         ),
         const Gap(10),
-        // TextButton(
-        //     onPressed: () {
-        //       ontap();
-        //     },
-        //     child: const Text("try again!"))
         CustomButtom(
             colors: AppColor.secondnaryColor.withOpacity(0.6),
             height: 35,

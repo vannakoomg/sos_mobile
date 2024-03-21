@@ -1,11 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/modules/BottomNavigationBar/controller/bottom_navigationbar_controller.dart';
 import 'package:sos_mobile/modules/home/screen/home_screen.dart';
-import 'package:sos_mobile/modules/profile/screen/profile_screen.dart';
+import 'package:sos_mobile/modules/profile/screen/own_profile_screen.dart';
 import 'package:sos_mobile/modules/cateory/controller/category_controller.dart';
 import '../../../configs/const/Colors/app_colors.dart';
 import '../../../utils/controllers/singleton.dart';
@@ -69,22 +68,21 @@ class ScaffoldWithNavBar extends StatelessWidget {
                               categoryController.fetchSaveCategory();
                             }
                             if (e.key == 2) {
+                              // showModalBottomSheet(
+                              //     context: context,
+                              //     isScrollControlled: true,
+                              //     builder: ((context) {
+                              //       return ReportTypeDetailScreen(
+                              //         title: "",
+                              //         id: 2,
+                              //       );
+                              //     }));
                               showModalBottomSheet(
                                   useSafeArea: true,
                                   context: context,
                                   isScrollControlled: true,
                                   builder: ((context) {
                                     return Container(
-                                        decoration: BoxDecoration(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .background,
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(20),
-                                                    topRight:
-                                                        Radius.circular(20))),
                                         padding: EdgeInsets.only(
                                           bottom: MediaQuery.of(context)
                                               .viewInsets
@@ -100,10 +98,11 @@ class ScaffoldWithNavBar extends StatelessWidget {
                                   homeController.fetchQuestion(1);
                                 } else {
                                   homeController.scrollController.value
-                                      .animateTo(0,
-                                          duration:
-                                              const Duration(milliseconds: 500),
-                                          curve: Curves.easeIn);
+                                      .animateTo(
+                                    0,
+                                    duration: const Duration(milliseconds: 500),
+                                    curve: Curves.easeIn,
+                                  );
                                 }
                               }
                             }

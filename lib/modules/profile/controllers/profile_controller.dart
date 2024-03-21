@@ -11,9 +11,10 @@ class OwnProfileController extends GetxController {
   var listImage = <File>[].obs;
   final isScroll = false.obs;
   final isAnswer = true.obs;
+  final scrollController = ScrollController().obs;
   final profileDate = ProfileModel().obs;
   final isloadingProfile = true.obs;
-
+  final renderHihg = 0.0.obs;
   void getProfile() async {
     isloadingProfile.value = true;
     try {

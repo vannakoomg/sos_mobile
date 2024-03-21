@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/cateory/controller/category_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
@@ -92,7 +91,9 @@ class _CreateSaveScreenState extends State<CreateSaveScreen> {
                                   child: Container(
                                     padding: const EdgeInsets.all(1),
                                     decoration: BoxDecoration(
-                                        color: AppColor.textfourth,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onTertiary,
                                         shape: BoxShape.circle),
                                     child: Icon(
                                       Icons.close_rounded,

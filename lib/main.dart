@@ -5,9 +5,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
-import 'package:sos_mobile/configs/theme/theme.dart';
 import 'package:sos_mobile/utils/controllers/app_controller.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/helpers/local_data/storge_local.dart';
@@ -41,7 +41,6 @@ void main() async {
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   DBHelper.obj.databaseObj = await DBHelper.obj.initDB();
-
   await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
@@ -62,7 +61,7 @@ class MyApp extends StatelessWidget {
             routeInformationParser: router.routeInformationParser,
             routerDelegate: router.routerDelegate,
             routeInformationProvider: router.routeInformationProvider,
-            theme: lightMode,
+            theme: themeController.theme.value,
             debugShowCheckedModeBanner: false,
             builder: (context, child) {
               return MediaQuery.withClampedTextScaling(
@@ -74,7 +73,7 @@ class MyApp extends StatelessWidget {
                       child!,
                       if (controller.isLongPress.value == true)
                         Scaffold(
-                          backgroundColor: Colors.black.withOpacity(0.96),
+                          backgroundColor: Colors.black.withOpacity(0.5),
                           body: Stack(
                             children: [
                               Positioned(
@@ -288,15 +287,10 @@ class MyApp extends StatelessWidget {
                                   opacity: element.remove == true ? 0 : 1,
                                   child: IgnorePointer(
                                     ignoring: true,
-                                    child: Container(
-                                      color: Colors.white,
-                                      height: 80,
+                                    child: SvgPicture.asset(
+                                      'assets/icons/favorite.svg',
+                                      height: 120,
                                       width: 120,
-                                      child: const Icon(
-                                        Icons.favorite,
-                                        size: 60,
-                                        color: Colors.pink,
-                                      ),
                                     ),
                                   ),
                                 ),

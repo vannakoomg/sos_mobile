@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 
@@ -6,14 +7,14 @@ class CustomCommentCrad extends StatelessWidget {
   final String name;
   final String time;
   final String title;
-  final Function ontap;
+  final String countLike;
   final Function ontapProfile;
   const CustomCommentCrad({
     super.key,
     required this.name,
+    required this.countLike,
     required this.time,
     required this.title,
-    required this.ontap,
     required this.ontapProfile,
   });
 
@@ -21,18 +22,24 @@ class CustomCommentCrad extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
+      padding: const EdgeInsets.only(
+        top: 10,
+      ),
       margin: const EdgeInsets.only(bottom: 5),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onTertiary,
+        color: Theme.of(context).colorScheme.background,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(width: 0.5),
+        border: Border.all(
+          width: 0.5,
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(
-          children: [
-            Expanded(
-              child: Row(
+        Container(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: Column(
+            children: [
+              Row(
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -56,27 +63,49 @@ class CustomCommentCrad extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                ontap();
-              },
-              child: Icon(
-                Icons.more_horiz,
-                color: AppColor.textfourth,
+              Text(
+                "$title dslfjldfsakjfksjflsflkdsjljlsjflsjdlfsdkfslkflksjdflksjfsajdflsadjflsjdaflsadjfjslkdafjlksajflsadjfljsdlkjsdaljsadfljdsalkjadsfljdsaljadslfjsalfjadsljsfljs;ldsfjlksdfjlksjlsdfjlsdfjlsjfl;sdfjdsjfkjdsfjsdlfjsldkfjlskdjs",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: AppColor.textThird),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 4,
               ),
-            )
-          ],
+            ],
+          ),
         ),
-        Text(
-          "$title dslfjldfsakjfksjflsflkdsjljlsjflsjdlfsdkfslkflksjdflksjfsajdflsadjflsjdaflsadjfjslkdafjlksajflsadjfljsdlkjsdaljsadfljdsalkjadsfljdsaljadslfjsalfjadsljsfljs;ldsfjlksdfjlksjlsdfjlsdfjlsjfl;sdfjdsjfkjdsfjsdlfjsldkfjlskdjs",
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium!
-              .copyWith(color: AppColor.textThird),
-          overflow: TextOverflow.ellipsis,
-          maxLines: 4,
-        ),
+        Container(
+          padding: const EdgeInsets.only(left: 8),
+          height: 30,
+          decoration: BoxDecoration(
+              border: Border(
+                  top: BorderSide(
+            color: Theme.of(context).colorScheme.onSecondary,
+            width: 0.5,
+          ))),
+          child: Row(
+            children: [
+              Text(
+                countLike,
+                style: Theme.of(context).textTheme.bodyMedium!,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              SvgPicture.asset(
+                "assets/icons/favorite.svg",
+                height: 15,
+                width: 15,
+              ),
+              const Spacer(),
+              const Icon(
+                Icons.more_vert_rounded,
+                size: 18,
+              ),
+            ],
+          ),
+        )
       ]),
     );
   }

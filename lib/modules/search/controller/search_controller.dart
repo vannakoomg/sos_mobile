@@ -15,7 +15,8 @@ class Searchcontroller extends GetxController {
   final isloading = false.obs;
 
   void fetchPopular() async {
-    if (bottomNavigetionController.index.value == 0) {
+    if (popular.value.data!.isEmpty) {
+      debugPrint("fetching popular");
       isloading.value = true;
       await ApiBaseHelper.apiBaseHelper
           .onNetworkRequesting(

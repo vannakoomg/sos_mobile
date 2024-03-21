@@ -18,7 +18,7 @@ class OptionsSearch extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: AppColor.secondnaryColor,
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(8),
           ),
           padding: const EdgeInsets.only(
             left: 8,
@@ -28,7 +28,10 @@ class OptionsSearch extends StatelessWidget {
           child: Center(
             child: Text(
               "ដោយអត្តបទ",
-              style: Theme.of(context).textTheme.bodySmall,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall!
+                  .copyWith(color: Colors.white),
             ),
           ),
         ),
@@ -41,7 +44,7 @@ class OptionsSearch extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: AppColor.secondnaryColor,
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(8),
           ),
           padding: const EdgeInsets.only(
             left: 8,
@@ -51,7 +54,10 @@ class OptionsSearch extends StatelessWidget {
           child: Center(
             child: Text(
               "ដោយពាក្យសម្គាល់",
-              style: Theme.of(context).textTheme.bodySmall,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall!
+                  .copyWith(color: Colors.white),
             ),
           ),
         ),

@@ -24,7 +24,9 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
-    controller.fetchPopular();
+    if (homeController.isForYou.value == false) {
+      controller.fetchPopular();
+    }
     super.initState();
   }
 
@@ -118,7 +120,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   )
                 : Container()
-            : const CustomLoading(),
+            : const Center(child: CustomLoading()),
       ),
     );
   }

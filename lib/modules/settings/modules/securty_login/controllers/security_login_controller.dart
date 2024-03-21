@@ -22,4 +22,5 @@ class SecurityLoginController extends GetxController {
       columName: "two_factor",
     ),
   ];
+  final indexChangeGmail = 0.obs;
 }

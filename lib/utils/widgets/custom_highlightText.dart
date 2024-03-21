@@ -43,7 +43,7 @@ class CustomHighlightText extends StatelessWidget {
         // Add normal text before the match
         spans.add(TextSpan(
           text: text.substring(start, match.start),
-          style: const TextStyle(color: Colors.white),
+          style: Theme.of(context).textTheme.bodyLarge,
         ));
       }
       // Add the highlighted text

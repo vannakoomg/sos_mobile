@@ -34,7 +34,7 @@ class CustomBook extends StatelessWidget {
             width: width,
             height: height,
             decoration: BoxDecoration(
-              color: AppColor.mainColor,
+              color: Theme.of(context).colorScheme.background,
               borderRadius: BorderRadius.circular(5),
               border: Border.all(
                   color: color ?? Theme.of(context).colorScheme.onSecondary),
@@ -48,7 +48,7 @@ class CustomBook extends StatelessWidget {
             width: width,
             height: height,
             decoration: BoxDecoration(
-              color: AppColor.mainColor,
+              color: Theme.of(context).colorScheme.background,
               borderRadius: BorderRadius.circular(5),
               border: Border.all(
                   color: color ?? Theme.of(context).colorScheme.onSecondary),
@@ -76,7 +76,9 @@ class CustomBook extends StatelessWidget {
           height: height,
           margin: padding,
           padding: const EdgeInsets.only(right: 15, bottom: 2),
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+          ),
           child: Text(
             title,
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
