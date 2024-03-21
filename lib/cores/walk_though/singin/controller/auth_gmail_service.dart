@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sos_mobile/cores/auth/create_account/screens/create_account_screen.dart';
 import 'package:sos_mobile/modules/home/screen/home_screen.dart';
@@ -45,9 +44,10 @@ class AuthGmailService {
 
         UserCredential nnn =
             await FirebaseAuth.instance.signInWithCredential(credential);
+        debugPrint("name ${nnn.user!.displayName}");
         return nnn.user;
       } else {
-        return Future.error("cancel");
+        return Future.error("cancel connet with gmails");
       }
     } catch (e) {
       Future.error("something were worng");

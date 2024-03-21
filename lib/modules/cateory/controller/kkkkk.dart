@@ -28,20 +28,8 @@ Future createCategory({
           'Accept': 'application/json',
           'Authorization': 'Bearer $token',
         }));
-    // ApiBaseHelper.apiBaseHelper.onNetworkRequesting(
-    //   url: "v1/save-category",
-    //   methode: METHODE.post,
-    //   isAuthorize: true,
-    //   body: {
-    //     'name': name,
-    //     "cover": file.path != ""
-    //         ? await MultipartFile.fromFile(file.path, filename: fileName)
-    //         : "",
-    //   },
-    // ).then((value) {
-    //   debugPrint("done---------------------------");
-    // });
   } on DioError catch (e) {
     debugPrint("error--------------------------$e-");
+    return Future.error("some thing error $e");
   }
 }

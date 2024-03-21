@@ -6,8 +6,6 @@ import 'package:sos_mobile/modules/cateory/controller/kkkkk.dart';
 import 'package:sos_mobile/utils/helpers/api_base_helper/api_base_helper.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/widgets/custom_comfirm_yes_no.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../configs/route/route.dart';
 import '../models/save_category_model.dart';
@@ -47,21 +45,21 @@ class CategoryController extends GetxController {
     unFocus(context);
     if (saveCategory.value.data!
         .any((element) => element.name == bookName.value)) {
-      showTopSnackBar(
-        padding: const EdgeInsets.only(left: 20, right: 20),
-        animationDuration: const Duration(milliseconds: 500),
-        Overlay.of(context),
-        CustomSnackBar.success(
-          icon: Container(
-            width: 3000,
-            height: 60,
-            color: Colors.green,
-            child: const Text("sdafsadhfksadhfkadshf;k"),
-          ),
-          borderRadius: BorderRadius.circular(300),
-          message: 'sdafas',
-        ),
-      );
+      // showTopSnackBar(
+      //   padding: const EdgeInsets.only(left: 20, right: 20),
+      //   animationDuration: const Duration(milliseconds: 500),
+      //   Overlay.of(context),
+      //   CustomSnackBar.success(
+      //     icon: Container(
+      //       width: 3000,
+      //       height: 60,
+      //       color: Colors.green,
+      //       child: const Text("sdafsadhfksadhfkadshf;k"),
+      //     ),
+      //     borderRadius: BorderRadius.circular(300),
+      //     message: 'sdafas',
+      //   ),
+      // );
     } else {
       isloading.value = true;
       createCategory(
@@ -74,7 +72,7 @@ class CategoryController extends GetxController {
         router.pop();
         isloading.value = false;
       }).onError((error, stackTrace) {
-        debugPrint("sdfds");
+        debugPrint("error $error");
         isloading.value = false;
       });
     }

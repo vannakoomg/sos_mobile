@@ -18,14 +18,9 @@ enum METHODE {
 }
 
 class ApiBaseHelper {
-  // final dio = Dio();
-
   final dio = Dio();
-
   static final ApiBaseHelper apiBaseHelper = ApiBaseHelper._internal();
   ApiBaseHelper._internal();
-
-  // String? baseurl = '';
   Future<dynamic> onNetworkRequesting({
     required String url,
     Map<String, String>? header,

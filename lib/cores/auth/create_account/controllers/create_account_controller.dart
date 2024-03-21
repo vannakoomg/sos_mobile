@@ -13,6 +13,7 @@ class CreateAccountController extends GetxController {
   final passwordtext = TextEditingController().obs;
   final gmail = ''.obs;
   final password = ''.obs;
+  final time = 60.obs;
   final name = ''.obs;
   final otp = TextEditingController().obs;
   final disable = true.obs;

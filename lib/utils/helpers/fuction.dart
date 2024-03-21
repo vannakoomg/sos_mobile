@@ -8,6 +8,20 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 
+String formatToKhmer(String number) {
+  // Khmer numbers from 0 to 9
+  List<String> khmerDigits = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩'];
+
+  String result = '';
+  String numberStr = number.toString();
+  for (int i = 0; i < numberStr.length; i++) {
+    int digit = int.parse(numberStr[i]);
+    result += khmerDigits[digit];
+  }
+
+  return result;
+}
+
 final ImagePicker picker = ImagePicker();
 bool checkStringIsgmail({required String value}) {
   return RegExp(r'^[a-zA-Z0-9.]+@gmail\.com$').hasMatch(value);
