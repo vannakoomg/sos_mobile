@@ -19,7 +19,7 @@ class _AnwserScreenState extends State<AnwserScreen>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
-  final controller = AnwserController();
+  final controller = Get.put(AnwserController());
   final questionDetailcontroller = Get.put(QuestionDetailController());
   ScrollController scrollController = ScrollController();
 
@@ -49,44 +49,42 @@ class _AnwserScreenState extends State<AnwserScreen>
                   onNotification: ((notification) {
                     debugPrint("${notification.metrics.pixels}");
                     if (notification.metrics.pixels >=
-                        notification.metrics.maxScrollExtent) {
+                            notification.metrics.maxScrollExtent &&
+                        notification.metrics.maxScrollExtent != 0) {
                       controller.fetchAnwserInQuestionNextPage(widget.id);
                     }
                     return true;
                   }),
-                  child: Stack(
-                    children: [
-                      ListView.builder(
-                        itemCount: controller.anwserInQuestion.length,
-                        padding: EdgeInsets.zero,
-                        itemBuilder: (context, i) {
-                          return CustomAnswerCrad(
-                            isCorrect: false,
-                            isYourOwnQuestion: false,
-                            name: "ចាន់ថា",
-                            time: "១០​ថ្ងៃមុន",
-                            description:
-                                "${controller.anwserInQuestion[i].description}",
-                            image: "",
-                            commentCount: "4",
-                            likeAnswer: "50",
-                            ontapProfile: () {
-                              context.pushNamed(
-                                '/user-profile',
-                                pathParameters: {"id": "2000"},
-                              );
-                            },
-                            ontapCorrect: () {
-                              debugPrint("khmer sl khmer ");
-                            },
-                            ontap: () {},
-                            avarta:
-                                "https://www.shareicon.net/data/256x256/2016/05/26/771203_man_512x512.png",
+                  child: ListView.builder(
+                    itemCount: controller.anwserInQuestion.length,
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (context, i) {
+                      return CustomAnswerCrad(
+                        isPosted:
+                            controller.anwserInQuestion[i].isPosted ?? true,
+                        isCorrect: false,
+                        isYourOwnQuestion: false,
+                        name: "ចាន់ថា",
+                        time: "១០​ថ្ងៃមុន",
+                        description:
+                            "${controller.anwserInQuestion[i].description}",
+                        image: controller.anwserInQuestion[i].image ?? "",
+                        commentCount: "4",
+                        likeAnswer: "50",
+                        ontapProfile: () {
+                          context.pushNamed(
+                            '/user-profile',
+                            pathParameters: {"id": "2000"},
                           );
                         },
-                      ),
-                      // AnimatedPositioned(child: child, duration: duration)
-                    ],
+                        ontapCorrect: () {
+                          debugPrint("khmer sl khmer ");
+                        },
+                        ontap: () {},
+                        avarta:
+                            "https://www.shareicon.net/data/256x256/2016/05/26/771203_man_512x512.png",
+                      );
+                    },
                   ),
                 )
               : Container(

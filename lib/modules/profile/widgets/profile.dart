@@ -5,32 +5,45 @@ import '../../../configs/const/Colors/app_colors.dart';
 import '../../../configs/route/route.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({super.key});
+  final bool isUser;
+  final bool showQuestion;
+  final bool showAnwser;
+  final bool showLike;
+  final bool showTrueAnwser;
+  const Profile({
+    super.key,
+    this.isUser = false,
+    this.showQuestion = true,
+    this.showAnwser = true,
+    this.showLike = true,
+    this.showTrueAnwser = true,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          alignment: Alignment.centerRight,
-          child: GestureDetector(
-            onTap: () {
-              router.goNamed('setting');
-            },
-            child: Container(
-              color: Colors.transparent,
-              height: 35,
-              width: 35,
-              child: Center(
-                child: Icon(
-                  Icons.settings_rounded,
-                  color: Theme.of(context).colorScheme.onSecondary,
-                  size: 23,
+        if (isUser == false)
+          Container(
+            alignment: Alignment.centerRight,
+            child: GestureDetector(
+              onTap: () {
+                router.goNamed('setting');
+              },
+              child: Container(
+                color: Colors.transparent,
+                height: 35,
+                width: 35,
+                child: Center(
+                  child: Icon(
+                    Icons.settings_rounded,
+                    color: Theme.of(context).colorScheme.onSecondary,
+                    size: 23,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
         const Gap(10),
         Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           GestureDetector(
@@ -64,50 +77,56 @@ class Profile extends StatelessWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Column(
-                    children: [
-                      Text("23",
-                          style: Theme.of(context).textTheme.titleMedium!),
-                      Text("ឆ្លើយ",
+                  if (showAnwser == true)
+                    Column(
+                      children: [
+                        Text("23",
+                            style: Theme.of(context).textTheme.titleMedium!),
+                        Text("ឆ្លើយ",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(color: AppColor.textThird)),
+                      ],
+                    ),
+                  if (showQuestion == true)
+                    Column(
+                      children: [
+                        Text("3",
+                            style: Theme.of(context).textTheme.titleMedium!),
+                        Text(
+                          "សំនួរ",
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
-                              .copyWith(color: AppColor.textThird)),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text("3",
-                          style: Theme.of(context).textTheme.titleMedium!),
-                      Text("សំនួរ",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(color: AppColor.textThird))
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text("43",
-                          style: Theme.of(context).textTheme.titleMedium!),
-                      Text("ចូលចិត្ត",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(color: AppColor.textThird))
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text("4",
-                          style: Theme.of(context).textTheme.titleMedium!),
-                      Text("ចម្លើយត្រូវ",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(color: AppColor.textThird))
-                    ],
-                  )
+                              .copyWith(color: AppColor.textThird),
+                        )
+                      ],
+                    ),
+                  if (showLike == true)
+                    Column(
+                      children: [
+                        Text("43",
+                            style: Theme.of(context).textTheme.titleMedium!),
+                        Text("ចូលចិត្ត",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(color: AppColor.textThird))
+                      ],
+                    ),
+                  if (showTrueAnwser)
+                    Column(
+                      children: [
+                        Text("4",
+                            style: Theme.of(context).textTheme.titleMedium!),
+                        Text("ចម្លើយត្រូវ",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(color: AppColor.textThird))
+                      ],
+                    )
                 ]),
           ),
         ]),

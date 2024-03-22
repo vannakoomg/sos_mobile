@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
+import 'package:sos_mobile/utils/widgets/custom_textfield.dart';
 
 class CustomCommentCrad extends StatelessWidget {
   final String name;
@@ -9,6 +10,9 @@ class CustomCommentCrad extends StatelessWidget {
   final String title;
   final String countLike;
   final Function ontapProfile;
+  final Function ontapLike;
+  final Function ontapMore;
+
   const CustomCommentCrad({
     super.key,
     required this.name,
@@ -16,6 +20,8 @@ class CustomCommentCrad extends StatelessWidget {
     required this.time,
     required this.title,
     required this.ontapProfile,
+    required this.ontapLike,
+    required this.ontapMore,
   });
 
   @override
@@ -64,14 +70,15 @@ class CustomCommentCrad extends StatelessWidget {
                 ],
               ),
               Text(
-                "$title dslfjldfsakjfksjflsflkdsjljlsjflsjdlfsdkfslkflksjdflksjfsajdflsadjflsjdaflsadjfjslkdafjlksajflsadjfljsdlkjsdaljsadfljdsalkjadsfljdsaljadslfjsalfjadsljsfljs;ldsfjlksdfjlksjlsdfjlsdfjlsjfl;sdfjdsjfkjdsfjsdlfjsldkfjlskdjs",
+                title,
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium!
                     .copyWith(color: AppColor.textThird),
                 overflow: TextOverflow.ellipsis,
-                maxLines: 4,
+                maxLines: 6,
               ),
+              const Gap(10),
             ],
           ),
         ),
@@ -86,22 +93,38 @@ class CustomCommentCrad extends StatelessWidget {
           ))),
           child: Row(
             children: [
-              Text(
-                countLike,
-                style: Theme.of(context).textTheme.bodyMedium!,
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              SvgPicture.asset(
-                "assets/icons/favorite.svg",
-                height: 15,
-                width: 15,
+              GestureDetector(
+                onTap: () {
+                  ontapLike();
+                },
+                child: Row(
+                  children: [
+                    Text(
+                      countLike,
+                      style: Theme.of(context).textTheme.bodyMedium!,
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    SvgPicture.asset(
+                      "assets/icons/favorite.svg",
+                      height: 15,
+                      width: 15,
+                    ),
+                  ],
+                ),
               ),
               const Spacer(),
-              const Icon(
-                Icons.more_vert_rounded,
-                size: 18,
+              GestureDetector(
+                onTap: () {
+                  ontapMore();
+                },
+                child: Container(
+                  child: const Icon(
+                    Icons.more_vert_rounded,
+                    size: 18,
+                  ),
+                ),
               ),
             ],
           ),

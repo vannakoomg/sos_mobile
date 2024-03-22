@@ -27,18 +27,17 @@ class DynamicSquareContainer extends StatelessWidget {
         height: containerSize,
         padding: const EdgeInsets.only(left: 2, right: 2),
         decoration: BoxDecoration(
-          border: Border.all(
-            color: select ? Colors.white : Colors.transparent,
-            width: 2,
-          ),
-          color: colors,
+          color: select ? colors : colors.withOpacity(0.6),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(
           child: Text(
             text,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(color: Colors.white),
           ),
         ),
       ),

@@ -45,6 +45,7 @@ void listNotification() async {
 
   if (messaging.isAutoInitEnabled) {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      debugPrint("get messages");
       addtNotification();
       RemoteNotification? notification = message.notification;
       if (message.notification != null) {

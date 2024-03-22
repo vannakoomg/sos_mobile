@@ -24,7 +24,7 @@ class CustomAppBarWidget extends StatelessWidget {
             onPressed: () {
               ontap!();
             },
-            icon: isClose == false
+            icon: isClose == true
                 ? const Icon(
                     Icons.close_rounded,
                   )

@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
 
 import '../../configs/const/Colors/app_colors.dart';
@@ -19,6 +22,7 @@ class CustomAnswerCrad extends StatelessWidget {
   final Function ontapProfile;
   final Function ontapCorrect;
   final Function ontap;
+  final bool isPosted;
 
   const CustomAnswerCrad({
     super.key,
@@ -29,6 +33,7 @@ class CustomAnswerCrad extends StatelessWidget {
     required this.time,
     required this.description,
     this.image = '',
+    this.isPosted = true,
     required this.commentCount,
     required this.likeAnswer,
     required this.ontapProfile,
@@ -134,9 +139,15 @@ class CustomAnswerCrad extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    if (image != '')
-                      CachedNetworkImage(
-                        imageUrl: image,
+                    if (image != '' && isPosted == true)
+                      CustomCachedImageCircle(
+                        image: image,
+                        height: MediaQuery.sizeOf(context).width / 2,
+                        width: double.infinity,
+                      ),
+                    if (image != '' && isPosted == false)
+                      Image.file(
+                        File(image),
                         height: MediaQuery.sizeOf(context).width / 2,
                         width: double.infinity,
                         fit: BoxFit.cover,

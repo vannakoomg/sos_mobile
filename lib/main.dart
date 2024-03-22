@@ -42,6 +42,7 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   DBHelper.obj.databaseObj = await DBHelper.obj.initDB();
   await dotenv.load(fileName: ".env");
+  listNotification();
   runApp(const MyApp());
 }
 

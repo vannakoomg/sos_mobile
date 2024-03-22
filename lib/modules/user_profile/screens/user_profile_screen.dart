@@ -7,7 +7,7 @@ import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/profile/widgets/profile.dart';
 import 'package:sos_mobile/modules/user_profile/controllers/user_profile_controller.dart';
 import 'package:sos_mobile/utils/controllers/app_controller.dart';
-import 'package:sos_mobile/utils/widgets/custom_comment_crad.dart';
+import 'package:sos_mobile/utils/widgets/custom_question_card.dart';
 
 import '../../../utils/widgets/custom_answer_card.dart';
 
@@ -44,7 +44,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               child: Column(
                 children: [
                   if (controller.renderHihg.value == 0)
-                    Container(key: kkk, child: const Profile()),
+                    Container(
+                        key: kkk,
+                        child: const Profile(
+                          isUser: true,
+                          showAnwser: false,
+                        )),
                   if (controller.renderHihg.value != 0)
                     Expanded(
                       child: NestedScrollView(
@@ -58,7 +63,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               scrolledUnderElevation: 0,
                               flexibleSpace: const FlexibleSpaceBar(
                                 collapseMode: CollapseMode.pin,
-                                background: Profile(),
+                                background: Profile(
+                                  isUser: true,
+                                  // showAnwser: false,
+                                  showTrueAnwser: false,
+                                  showLike: false,
+                                ),
                               ),
                               toolbarHeight: controller.renderHihg.value,
                               pinned: true,
@@ -157,17 +167,17 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                 itemCount: 33,
                                 padding: EdgeInsets.zero,
                                 itemBuilder: (context, i) {
-                                  return CustomCommentCrad(
-                                    countLike: "234",
+                                  return CustomQuestionCard(
                                     title: "kkdfkjjkdfkjjjkkkkk",
-                                    name: "ចាន់ថា",
-                                    time: "១០​ថ្ងៃមុន",
-                                    ontapProfile: () {
-                                      context.pushNamed(
-                                        '/user-profile',
-                                        pathParameters: {"id": "2000"},
-                                      );
-                                    },
+                                    answerCount: "2",
+                                    isCorrect: false,
+                                    questionId: '',
+                                    image: '',
+                                    likeCount: '',
+                                    tags: const ["3", "3", "3"],
+                                    commentCount: '',
+                                    onDoubleTap: () {},
+                                    ontapQuestion: () {},
                                   );
                                 },
                               ),

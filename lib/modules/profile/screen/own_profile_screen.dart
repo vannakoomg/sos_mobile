@@ -8,6 +8,7 @@ import 'package:sos_mobile/utils/controllers/app_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_comment_crad.dart';
 
 import '../../../utils/widgets/custom_answer_card.dart';
+import '../../../utils/widgets/custom_showModalBottomSheet.dart';
 
 class OwnProfileScreen extends StatefulWidget {
   const OwnProfileScreen({super.key});
@@ -129,8 +130,8 @@ class _OwnProfileScreenState extends State<OwnProfileScreen> {
                                   return CustomAnswerCrad(
                                     isCorrect: false,
                                     isYourOwnQuestion: false,
-                                    name: "ចាន់ថា",
-                                    time: "១០​ថ្ងៃមុន",
+                                    name: "ថា",
+                                    time: "",
                                     description: "234234",
                                     image: "",
                                     commentCount: "4",
@@ -165,6 +166,19 @@ class _OwnProfileScreenState extends State<OwnProfileScreen> {
                                         pathParameters: {"id": "2000"},
                                       );
                                     },
+                                    ontapMore: () {
+                                      debugPrint("moce");
+                                      customShowModalBottomSheet(
+                                        context: context,
+                                        height: 200,
+                                        list: ["Report", "Edit", "Detele"],
+                                        title: "comment",
+                                        ontap: (key) {
+                                          debugPrint("value $key");
+                                        },
+                                      );
+                                    },
+                                    ontapLike: () {},
                                   );
                                 },
                               ),

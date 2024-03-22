@@ -1,3 +1,5 @@
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
 class AnwserInQuestionModel {
   List<AnwserInQuestion>? data;
   Meta? meta;
@@ -33,18 +35,20 @@ class AnwserInQuestion {
   int? isCorrect;
   int? isReport;
   String? createdAt;
-
+  bool? isPosted;
   AnwserInQuestion(
       {this.description,
       this.image,
       this.amountComments,
       this.isCorrect,
       this.isReport,
+      this.isPosted,
       this.createdAt});
 
   AnwserInQuestion.fromJson(Map<String, dynamic> json) {
     description = json['description'];
     image = json['image'];
+    isPosted = json['isPosted'];
     amountComments = json['amount_comments'];
     isCorrect = json['is_correct'];
     isReport = json['is_report'];
@@ -55,6 +59,7 @@ class AnwserInQuestion {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['description'] = description;
     data['image'] = image;
+    data['isPosted'];
     data['amount_comments'] = amountComments;
     data['is_correct'] = isCorrect;
     data['is_report'] = isReport;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:sos_mobile/utils/widgets/custom_appbar.dart';
 import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
-import 'package:sos_mobile/utils/widgets/custom_shhh.dart';
+import 'package:sos_mobile/utils/widgets/custom_showModalBottomSheet.dart';
 
 class BlockScreen extends StatelessWidget {
   const BlockScreen({super.key});
@@ -49,18 +49,10 @@ class BlockScreen extends StatelessWidget {
                 onPressed: () {
                   customShowModalBottomSheet(
                     context: context,
-                    height: 100,
-                    widget: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "ដោះសោ",
-                            style: Theme.of(context).textTheme.titleLarge!,
-                          ),
-                        ],
-                      ),
-                    ),
+                    height: 200,
+                    list: ["Report"],
+                    title: "comment",
+                    ontap: (key) {},
                   );
                 },
                 icon: const Icon(Icons.more_horiz_rounded),

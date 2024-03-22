@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sos_mobile/modules/question/controller/comment_controller.dart';
 import 'package:sos_mobile/modules/question/controller/question_detail_controller.dart';
 import 'package:sos_mobile/utils/widgets/custom_loading.dart';
+import 'package:sos_mobile/utils/widgets/custom_showModalBottomSheet.dart';
 
 import '../../../utils/widgets/custom_comment_crad.dart';
 
@@ -17,7 +18,7 @@ class CommentScreen extends StatefulWidget {
 
 class _CommentScreenState extends State<CommentScreen>
     with AutomaticKeepAliveClientMixin {
-  final controller = CommentController();
+  final controller = Get.put(CommentController());
   final questionDetailcontroller = Get.put(QuestionDetailController());
   @override
   void initState() {
@@ -48,7 +49,8 @@ class _CommentScreenState extends State<CommentScreen>
                       child: NotificationListener<ScrollNotification>(
                         onNotification: ((notification) {
                           if (notification.metrics.pixels >=
-                              notification.metrics.maxScrollExtent) {
+                                  notification.metrics.maxScrollExtent &&
+                              notification.metrics.maxScrollExtent != 0) {
                             controller
                                 .fetchCommentInQuestionNextPage(widget.id);
                           }
@@ -81,6 +83,17 @@ class _CommentScreenState extends State<CommentScreen>
                                         },
                                         countLike: "34",
                                         title: 'fsadfdsaf',
+                                        ontapLike: () {
+                                          debugPrint("like 123");
+                                        },
+                                        ontapMore: () {
+                                          customShowModalBottomSheet(
+                                              context: context,
+                                              height: 200,
+                                              list: ["Report"],
+                                              title: "comment",
+                                              ontap: (key) {});
+                                        },
                                       ),
                                     ],
                                   );

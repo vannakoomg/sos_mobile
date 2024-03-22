@@ -60,9 +60,9 @@ class CardQuestion extends StatelessWidget {
                                     .withOpacity(0.5),
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.arrow_back,
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.primary,
                           )),
                     ),
                     const Spacer(),
@@ -81,9 +81,9 @@ class CardQuestion extends StatelessWidget {
                                     .withOpacity(0.5),
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.more_horiz_rounded,
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.primary,
                           )),
                     ),
                   ]),

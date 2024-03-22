@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
@@ -93,6 +94,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                 const SizedBox(width: 8),
                             validator: (value) {
                               debugPrint("validator otp");
+                              context.pushNamed('select-subject');
                               return null;
                               // return value == '2222' ? null : 'Pin is incorrect';
                             },
