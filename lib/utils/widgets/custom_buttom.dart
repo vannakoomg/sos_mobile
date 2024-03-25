@@ -9,7 +9,6 @@ class CustomButtom extends StatelessWidget {
   final double height;
   final double white;
   final Color colors;
-  final Color borderColor;
   final bool outline;
 
   const CustomButtom({
@@ -20,7 +19,6 @@ class CustomButtom extends StatelessWidget {
     this.height = 40,
     this.white = 80,
     this.colors = Colors.pink,
-    this.borderColor = Colors.transparent,
     this.disble = false,
     this.fountSize = 16,
   });

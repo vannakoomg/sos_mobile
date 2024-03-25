@@ -1,10 +1,8 @@
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 import 'package:sos_mobile/utils/widgets/custom_cache_image_cricle.dart';
 
 import '../../configs/const/Colors/app_colors.dart';

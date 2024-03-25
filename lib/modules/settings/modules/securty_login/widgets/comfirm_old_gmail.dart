@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sos_mobile/configs/const/Colors/app_colors.dart';
 import 'package:sos_mobile/modules/settings/modules/securty_login/controllers/security_login_controller.dart';
 import 'package:sos_mobile/utils/helpers/fuction.dart';
 import 'package:sos_mobile/utils/widgets/custom_buttom.dart';
@@ -63,7 +62,6 @@ class ComfirmOldGmail extends StatelessWidget {
                   ),
                   const Gap(20),
                   CustomButtom(
-                    borderColor: AppColor.textThird,
                     disble: !checkStringIsgmail(value: controller.gmail.value),
                     title: "យល់ព្រម",
                     onTap: () {
@@ -101,7 +99,6 @@ class ComfirmOldGmail extends StatelessWidget {
                   CustomButtom(
                     title: "យល់ព្រម",
                     onTap: () {},
-                    borderColor: Theme.of(context).colorScheme.primary,
                     disble: controller.otp.value.length == 4 ? false : true,
                   ),
                   const Gap(10),
@@ -132,7 +129,6 @@ class ComfirmOldGmail extends StatelessWidget {
                   CustomButtom(
                     title: "យល់ព្រម",
                     onTap: () {},
-                    borderColor: Theme.of(context).colorScheme.primary,
                     disble: controller.otp.value.length == 4 ? false : true,
                   ),
                   const Gap(10),
@@ -163,7 +159,6 @@ class ComfirmOldGmail extends StatelessWidget {
                   CustomButtom(
                     title: "យល់ព្រម",
                     onTap: () {},
-                    borderColor: Theme.of(context).colorScheme.primary,
                     disble: controller.otp.value.length == 4 ? false : true,
                   ),
                   const Gap(10),
