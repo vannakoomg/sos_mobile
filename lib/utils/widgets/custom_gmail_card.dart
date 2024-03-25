@@ -26,7 +26,7 @@ class CustomGmailCard extends StatelessWidget {
             width: 1,
             color: AppColor.secondnaryColor,
           ),
-          color: AppColor.secondnaryColor,
+          // color: AppColor.secondnaryColor,
         ),
         child: Row(
           children: [
@@ -47,7 +47,7 @@ class CustomGmailCard extends StatelessWidget {
               child: Text(
                 "ភ្ជាប់ជាមួយ​ Google",
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
               ),
             )

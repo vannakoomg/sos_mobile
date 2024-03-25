@@ -3,11 +3,14 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../../../configs/route/route.dart';
 import '../../controllers/singleton.dart';
 import '../local_data/storge_local.dart';
+
+// import 'package:flutter_app_badger/flutter_app_badger.dart';
 
 Future checkForInitalMessge() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +27,10 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
     importance: Importance.high, playSound: true);
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
+int i = 0;
 void listNotification() async {
+  i = i + 2;
+  FlutterAppBadger.updateBadgeCount(5);
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   await messaging.requestPermission(
     alert: true,
@@ -46,6 +52,7 @@ void listNotification() async {
   if (messaging.isAutoInitEnabled) {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       debugPrint("get messages");
+
       addtNotification();
       RemoteNotification? notification = message.notification;
       if (message.notification != null) {
